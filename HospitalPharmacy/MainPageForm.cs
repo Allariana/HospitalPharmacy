@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace HospitalPharmacy
 {
-    public partial class Form1 : Form
+    public partial class MainPageForm : Form
     {
-        public Form1()
+        public MainPageForm(string username)
         {
             InitializeComponent();
+        }
+
+        private void MainPagecs_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

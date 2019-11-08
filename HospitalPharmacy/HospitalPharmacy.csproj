@@ -53,16 +53,58 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Administrator.cs">
+      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Category.cs">
+      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectionManager.cs" />
+    <Compile Include="Department.cs">
+      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainPageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainPageForm.Designer.cs">
+      <DependentUpon>MainPageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Medicine.cs">
+      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewMedicineOrder.cs">
+      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NewMedicineOrderDetail.cs">
+      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderDetail.cs">
+      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PackageofMedicine.cs">
+      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pharmacist.cs">
+      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PharmacyEntityDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PharmacyEntityDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PharmacyEntityDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PharmacyEntityDataModel.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -71,6 +113,27 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier.cs">
+      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainPageForm.resx">
+      <DependentUpon>MainPageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -105,6 +168,12 @@
     <Content Include="PharmacyEntityDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>PharmacyEntityDataModel.Context.cs</LastGenOutput>
+      <DependentUpon>PharmacyEntityDataModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="PharmacyEntityDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PharmacyEntityDataModel.edmx</DependentUpon>
+      <LastGenOutput>PharmacyEntityDataModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
