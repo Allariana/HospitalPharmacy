@@ -31,17 +31,22 @@
             this.label1 = new System.Windows.Forms.Label();
             this.UserLabel = new System.Windows.Forms.Label();
             this.LogOutButton = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.departmentsGridView = new System.Windows.Forms.DataGridView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.medicinesGridView = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.departmentsAndOrToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listOfDepartmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.warehouseAndShoppingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabControl1.SuspendLayout();
+            this.inStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabControl.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.departmentsGridView)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.medicinesGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,15 +79,16 @@
             this.LogOutButton.UseVisualStyleBackColor = true;
             this.LogOutButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
-            // tabControl1
+            // tabControl
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(15, 38);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1228, 558);
-            this.tabControl1.TabIndex = 5;
+            this.tabControl.Controls.Add(this.tabPage1);
+            this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Controls.Add(this.tabPage3);
+            this.tabControl.Location = new System.Drawing.Point(15, 38);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(1228, 558);
+            this.tabControl.TabIndex = 5;
             // 
             // tabPage1
             // 
@@ -111,9 +117,27 @@
             this.departmentsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.departmentsGridView.Location = new System.Drawing.Point(17, 19);
             this.departmentsGridView.Name = "departmentsGridView";
-            this.departmentsGridView.Size = new System.Drawing.Size(621, 326);
+            this.departmentsGridView.Size = new System.Drawing.Size(457, 326);
             this.departmentsGridView.TabIndex = 0;
             this.departmentsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.departmentsGridView_CellContentClick);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.medicinesGridView);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1220, 532);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "In Stock";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // medicinesGridView
+            // 
+            this.medicinesGridView.Location = new System.Drawing.Point(17, 12);
+            this.medicinesGridView.Name = "medicinesGridView";
+            this.medicinesGridView.Size = new System.Drawing.Size(1012, 264);
+            this.medicinesGridView.TabIndex = 0;
+            this.medicinesGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // menuStrip1
             // 
@@ -143,16 +167,24 @@
             // 
             // warehouseAndShoppingToolStripMenuItem
             // 
+            this.warehouseAndShoppingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.inStockToolStripMenuItem});
             this.warehouseAndShoppingToolStripMenuItem.Name = "warehouseAndShoppingToolStripMenuItem";
             this.warehouseAndShoppingToolStripMenuItem.Size = new System.Drawing.Size(154, 20);
             this.warehouseAndShoppingToolStripMenuItem.Text = "Warehouse and shopping";
+            // 
+            // inStockToolStripMenuItem
+            // 
+            this.inStockToolStripMenuItem.Name = "inStockToolStripMenuItem";
+            this.inStockToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.inStockToolStripMenuItem.Text = "In stock";
             // 
             // MainPageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1255, 608);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.LogOutButton);
             this.Controls.Add(this.UserLabel);
             this.Controls.Add(this.label1);
@@ -161,9 +193,11 @@
             this.Name = "MainPageForm";
             this.Text = "PharmKing";
             this.Load += new System.EventHandler(this.MainPagecs_Load);
-            this.tabControl1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.departmentsGridView)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.medicinesGridView)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -176,7 +210,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label UserLabel;
         private System.Windows.Forms.Button LogOutButton;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView departmentsGridView;
@@ -184,5 +218,8 @@
         private System.Windows.Forms.ToolStripMenuItem departmentsAndOrToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listOfDepartmentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem warehouseAndShoppingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem inStockToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.DataGridView medicinesGridView;
     }
 }

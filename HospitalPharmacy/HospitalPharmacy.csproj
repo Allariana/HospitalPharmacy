@@ -81,6 +81,9 @@
     <Compile Include="Medicine.cs">
       <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MedicinesView.cs">
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="NewMedicineOrder.cs">
       <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>

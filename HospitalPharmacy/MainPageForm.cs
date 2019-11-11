@@ -22,6 +22,7 @@ namespace HospitalPharmacy
             {
                 pharmacyContext = new PharmacyEntities();
                 departmentsGridView.DataSource = pharmacyContext.DepartmentsViews.ToList();
+                medicinesGridView.DataSource = pharmacyContext.MedicinesViews.ToList();
             }
             catch (Exception ex)
             {
@@ -52,7 +53,7 @@ namespace HospitalPharmacy
 
         private void listOfDepartmentsToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-
+           tabPage2.Show();
         }
 
         private void departmentsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -61,6 +62,11 @@ namespace HospitalPharmacy
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

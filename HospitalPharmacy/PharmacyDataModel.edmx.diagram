@@ -33,6 +33,7 @@
         <AssociationConnector Association="PharmacyEntity.detail_supplier_fk" ManuallyRouted="false" />
         <AssociationConnector Association="PharmacyEntity.order_pharmacist_fk" ManuallyRouted="false" />
         <AssociationConnector Association="PharmacyEntity.pharmacist_user_fk" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PharmacyEntity.MedicinesView" Width="1.5" PointX="10.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

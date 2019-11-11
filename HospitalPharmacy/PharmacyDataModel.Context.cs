@@ -19,7 +19,7 @@ namespace HospitalPharmacy
     public partial class PharmacyEntities : DbContext
     {
         public PharmacyEntities()
-            : base("name=PharmacyEntities")
+            : base("name=PharmacyEntities1")
         {
         }
     
@@ -42,6 +42,7 @@ namespace HospitalPharmacy
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<DepartmentsView> DepartmentsViews { get; set; }
+        public DbSet<MedicinesView> MedicinesViews { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
