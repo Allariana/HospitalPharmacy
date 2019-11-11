@@ -53,7 +53,7 @@ namespace HospitalPharmacy
             }
             else
             {
-                MessageBox.Show("Loging failed");
+                MessageBox.Show("Login failed");
             }
         }
     }

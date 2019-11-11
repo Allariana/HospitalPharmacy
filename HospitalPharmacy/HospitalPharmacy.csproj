@@ -54,14 +54,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administrator.cs">
-      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Category.cs">
-      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ConnectionManager.cs" />
     <Compile Include="Department.cs">
-      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DepartmentsView.cs">
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -76,57 +79,57 @@
       <DependentUpon>MainPageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Medicine.cs">
-      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="NewMedicineOrder.cs">
-      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="NewMedicineOrderDetail.cs">
-      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Order.cs">
-      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderDetail.cs">
-      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PackageofMedicine.cs">
-      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Pharmacist.cs">
-      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PharmacyEntityDataModel.Context.cs">
+    <Compile Include="PharmacyDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PharmacyEntityDataModel.Context.tt</DependentUpon>
+      <DependentUpon>PharmacyDataModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="PharmacyEntityDataModel.cs">
+    <Compile Include="PharmacyDataModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PharmacyEntityDataModel.Designer.cs">
+    <Compile Include="PharmacyDataModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PharmacyEntityDataModel.edmx</DependentUpon>
+      <DependentUpon>PharmacyDataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Supplier.cs">
-      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagram.cs">
-      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>PharmacyEntityDataModel.tt</DependentUpon>
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -143,13 +146,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EntityDeploy Include="PharmacyEntityDataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PharmacyEntityDataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="packages.config" />
-    <None Include="PharmacyEntityDataModel.edmx.diagram">
-      <DependentUpon>PharmacyEntityDataModel.edmx</DependentUpon>
+    <EntityDeploy Include="PharmacyDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PharmacyDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="PharmacyDataModel.edmx.diagram">
+      <DependentUpon>PharmacyDataModel.edmx</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -165,19 +168,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PharmacyEntityDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PharmacyEntityDataModel.Context.cs</LastGenOutput>
-      <DependentUpon>PharmacyEntityDataModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="PharmacyEntityDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PharmacyEntityDataModel.edmx</DependentUpon>
-      <LastGenOutput>PharmacyEntityDataModel.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="PharmacyDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PharmacyDataModel.edmx</DependentUpon>
+      <LastGenOutput>PharmacyDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="PharmacyDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PharmacyDataModel.edmx</DependentUpon>
+      <LastGenOutput>PharmacyDataModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

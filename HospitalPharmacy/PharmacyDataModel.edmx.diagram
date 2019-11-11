@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2bf20a7916bb4edb89931b9ae67660f6" Name="Diagram1">
+        <EntityTypeShape EntityType="PharmacyEntity.Administrator" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmacyEntity.Category" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmacyEntity.Department" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmacyEntity.Medicine" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmacyEntity.NewMedicineOrderDetail" Width="1.5" PointX="7.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmacyEntity.NewMedicineOrder" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmacyEntity.OrderDetail" Width="1.5" PointX="10.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmacyEntity.Order" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmacyEntity.PackageofMedicine" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmacyEntity.Pharmacist" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmacyEntity.Supplier" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmacyEntity.sysdiagram" Width="1.5" PointX="7.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmacyEntity.User" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PharmacyEntity.DepartmentsView" Width="1.5" PointX="9.75" PointY="9.125" IsExpanded="true" />
+        <AssociationConnector Association="PharmacyEntity.admin_user_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmacyEntity.medicine_category_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmacyEntity.order_department_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmacyEntity.medicine_supplier_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmacyEntity.package_medicine_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmacyEntity.mdetail_medorder_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmacyEntity.mdetail_package_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmacyEntity.newmedicinedetail_order_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmacyEntity.medorder_pharmacist_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmacyEntity.detail_order_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmacyEntity.detail_package_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmacyEntity.detail_supplier_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmacyEntity.order_pharmacist_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="PharmacyEntity.pharmacist_user_fk" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

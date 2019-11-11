@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PharmacyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="PharmacyEntity.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Administrators">
           <Key>
             <PropertyRef Name="AdministratorID" />
@@ -148,6 +148,18 @@
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Role" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Pharmacy.dbo.DepartmentsView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DepartmentsView">
+          <Key>
+            <PropertyRef Name="DepartmentName" />
+            <PropertyRef Name="Phone" />
+            <PropertyRef Name="OrdynatorName" />
+          </Key>
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="int" Nullable="false" />
+          <Property Name="OrdynatorName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="admin_user_fk">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
@@ -348,7 +360,7 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="PharmacyModelStoreContainer">
+        <EntityContainer Name="PharmacyEntityStoreContainer">
           <EntitySet Name="Administrators" EntityType="Self.Administrators" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
@@ -362,6 +374,13 @@
           <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DepartmentsView" EntityType="Self.DepartmentsView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[DepartmentsView].[DepartmentName] AS [DepartmentName], 
+[DepartmentsView].[Phone] AS [Phone], 
+[DepartmentsView].[OrdynatorName] AS [OrdynatorName]
+FROM [dbo].[DepartmentsView] AS [DepartmentsView]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="admin_user_fk" Association="Self.admin_user_fk">
             <End Role="Users" EntitySet="Users" />
             <End Role="Administrators" EntitySet="Administrators" />
@@ -423,7 +442,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="PharmacyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="PharmacyEntity" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Administrator">
           <Key>
             <PropertyRef Name="AdministratorID" />
@@ -596,6 +615,16 @@
           <NavigationProperty Name="Administrators" Relationship="Self.admin_user_fk" FromRole="Users" ToRole="Administrators" />
           <NavigationProperty Name="Pharmacists" Relationship="Self.pharmacist_user_fk" FromRole="Users" ToRole="Pharmacists" />
         </EntityType>
+        <EntityType Name="DepartmentsView">
+          <Key>
+            <PropertyRef Name="DepartmentName" />
+            <PropertyRef Name="Phone" />
+            <PropertyRef Name="OrdynatorName" />
+          </Key>
+          <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="Int32" Nullable="false" />
+          <Property Name="OrdynatorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <Association Name="admin_user_fk">
           <End Role="Users" Type="Self.User" Multiplicity="1" />
           <End Role="Administrators" Type="Self.Administrator" Multiplicity="*" />
@@ -764,7 +793,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PharmacyEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="PharmacyEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Administrators" EntityType="Self.Administrator" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
@@ -778,6 +807,7 @@
           <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="DepartmentsViews" EntityType="Self.DepartmentsView" />
           <AssociationSet Name="admin_user_fk" Association="Self.admin_user_fk">
             <End Role="Users" EntitySet="Users" />
             <End Role="Administrators" EntitySet="Administrators" />
@@ -850,11 +880,11 @@
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(PharmacyModel.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(PharmacyEntity.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(PharmacyModel.sp_helpdiagrams_Result)">
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(PharmacyEntity.sp_helpdiagrams_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -881,9 +911,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PharmacyModelStoreContainer" CdmEntityContainer="PharmacyEntities">
+        <EntityContainerMapping StorageEntityContainer="PharmacyEntityStoreContainer" CdmEntityContainer="PharmacyEntities1">
           <EntitySetMapping Name="Administrators">
-            <EntityTypeMapping TypeName="PharmacyModel.Administrator">
+            <EntityTypeMapping TypeName="PharmacyEntity.Administrator">
               <MappingFragment StoreEntitySet="Administrators">
                 <ScalarProperty Name="AdministratorID" ColumnName="AdministratorID" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -898,7 +928,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="PharmacyModel.Category">
+            <EntityTypeMapping TypeName="PharmacyEntity.Category">
               <MappingFragment StoreEntitySet="Categories">
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
@@ -906,7 +936,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="PharmacyModel.Department">
+            <EntityTypeMapping TypeName="PharmacyEntity.Department">
               <MappingFragment StoreEntitySet="Departments">
                 <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
                 <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
@@ -916,7 +946,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Medicines">
-            <EntityTypeMapping TypeName="PharmacyModel.Medicine">
+            <EntityTypeMapping TypeName="PharmacyEntity.Medicine">
               <MappingFragment StoreEntitySet="Medicines">
                 <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
                 <ScalarProperty Name="TradeName" ColumnName="TradeName" />
@@ -932,7 +962,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NewMedicineOrderDetails">
-            <EntityTypeMapping TypeName="PharmacyModel.NewMedicineOrderDetail">
+            <EntityTypeMapping TypeName="PharmacyEntity.NewMedicineOrderDetail">
               <MappingFragment StoreEntitySet="NewMedicineOrderDetails">
                 <ScalarProperty Name="NewMedicineOrderDetailsID" ColumnName="NewMedicineOrderDetailsID" />
                 <ScalarProperty Name="NewMedicineOrderID" ColumnName="NewMedicineOrderID" />
@@ -946,7 +976,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NewMedicineOrders">
-            <EntityTypeMapping TypeName="PharmacyModel.NewMedicineOrder">
+            <EntityTypeMapping TypeName="PharmacyEntity.NewMedicineOrder">
               <MappingFragment StoreEntitySet="NewMedicineOrders">
                 <ScalarProperty Name="NewMedicineOrderID" ColumnName="NewMedicineOrderID" />
                 <ScalarProperty Name="PharmacistID" ColumnName="PharmacistID" />
@@ -956,7 +986,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderDetails">
-            <EntityTypeMapping TypeName="PharmacyModel.OrderDetail">
+            <EntityTypeMapping TypeName="PharmacyEntity.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetails">
                 <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
@@ -970,7 +1000,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="PharmacyModel.Order">
+            <EntityTypeMapping TypeName="PharmacyEntity.Order">
               <MappingFragment StoreEntitySet="Orders">
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
@@ -981,7 +1011,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PackageofMedicines">
-            <EntityTypeMapping TypeName="PharmacyModel.PackageofMedicine">
+            <EntityTypeMapping TypeName="PharmacyEntity.PackageofMedicine">
               <MappingFragment StoreEntitySet="PackageofMedicine">
                 <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
                 <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
@@ -992,7 +1022,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pharmacists">
-            <EntityTypeMapping TypeName="PharmacyModel.Pharmacist">
+            <EntityTypeMapping TypeName="PharmacyEntity.Pharmacist">
               <MappingFragment StoreEntitySet="Pharmacists">
                 <ScalarProperty Name="PharmacistID" ColumnName="PharmacistID" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -1007,7 +1037,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Suppliers">
-            <EntityTypeMapping TypeName="PharmacyModel.Supplier">
+            <EntityTypeMapping TypeName="PharmacyEntity.Supplier">
               <MappingFragment StoreEntitySet="Suppliers">
                 <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
@@ -1018,7 +1048,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="PharmacyModel.sysdiagram">
+            <EntityTypeMapping TypeName="PharmacyEntity.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -1029,7 +1059,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="PharmacyModel.User">
+            <EntityTypeMapping TypeName="PharmacyEntity.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
@@ -1039,20 +1069,29 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="PharmacyModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="PharmacyModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="PharmacyModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="PharmacyModel.Store.sp_helpdiagramdefinition">
+          <EntitySetMapping Name="DepartmentsViews">
+            <EntityTypeMapping TypeName="PharmacyEntity.DepartmentsView">
+              <MappingFragment StoreEntitySet="DepartmentsView">
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="OrdynatorName" ColumnName="OrdynatorName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="PharmacyEntity.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="PharmacyEntity.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="PharmacyEntity.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="PharmacyEntity.Store.sp_helpdiagramdefinition">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PharmacyModel.sp_helpdiagramdefinition_Result">
+              <ComplexTypeMapping TypeName="PharmacyEntity.sp_helpdiagramdefinition_Result">
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="PharmacyModel.Store.sp_helpdiagrams">
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="PharmacyEntity.Store.sp_helpdiagrams">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="PharmacyModel.sp_helpdiagrams_Result">
+              <ComplexTypeMapping TypeName="PharmacyEntity.sp_helpdiagrams_Result">
                 <ScalarProperty Name="Database" ColumnName="Database" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -1061,8 +1100,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="PharmacyModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="PharmacyModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="PharmacyEntity.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="PharmacyEntity.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
