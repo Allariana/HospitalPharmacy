@@ -28,5 +28,33 @@ namespace HospitalPharmacy
             connection.Close();
             return result;
         }
+        public void getTable(String tablename,String columnname, DataTable dataTable)
+        {
+            connection.Open();
+            String command = "select " + columnname + " from " + tablename + ";";
+            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
+            adapter.Fill(dataTable);
+            connection.Close();
+        }
+        public DataTable getPrice(DataTable price)
+        {
+            connection.Open();
+            String command = "select SUM(Price) price from GenerateOrderView;";
+            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
+            adapter.Fill(price);
+            connection.Close();
+            return price;
+        }
+        /*public void getTableWithCondition(String columnname, String tablename, String condition, String condition2, DataTable dataTable)
+        {
+            connection.Open();
+            //if (condition2 is null) condition2 = "Seronil";
+            //select [Dose(mg)] from Medicines where TradeName = 'Seronil';
+            //String command = "select " + columnname + " from " + tablename + "where " + condition + " = " + condition2 + ";";
+            String command = "select " + columnname + " from " + tablename + "where " + condition + " = 'Seronil';";
+            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
+            adapter.Fill(dataTable);
+            connection.Close();
+        }*/
     }
 }

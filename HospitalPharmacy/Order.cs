@@ -26,7 +26,7 @@ namespace HospitalPharmacy
         public System.DateTime RequiredDate { get; set; }
     
         public virtual Department Department { get; set; }
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual Pharmacist Pharmacist { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

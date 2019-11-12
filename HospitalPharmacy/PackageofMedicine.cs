@@ -16,7 +16,6 @@ namespace HospitalPharmacy
     {
         public PackageofMedicine()
         {
-            this.NewMedicineOrderDetails = new HashSet<NewMedicineOrderDetail>();
             this.OrderDetails = new HashSet<OrderDetail>();
         }
     
@@ -27,7 +26,6 @@ namespace HospitalPharmacy
         public int SeriesNumber { get; set; }
     
         public virtual Medicine Medicine { get; set; }
-        public virtual ICollection<NewMedicineOrderDetail> NewMedicineOrderDetails { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

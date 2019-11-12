@@ -12,20 +12,15 @@ namespace HospitalPharmacy
     using System;
     using System.Collections.Generic;
     
-    public partial class NewMedicineOrderDetail
+    public partial class GenerateOrderView
     {
-        public int NewMedicineOrderDetailsID { get; set; }
-        public int NewMedicineOrderID { get; set; }
         public string TradeName { get; set; }
+        public string ActiveSubstance { get; set; }
         public int Dose_mg_ { get; set; }
         public int QuantityPerUnit { get; set; }
-        public Nullable<int> Quantity { get; set; }
-        public Nullable<int> SupplierID { get; set; }
-        public Nullable<int> MedicineID { get; set; }
+        public Nullable<double> UnitPrice_EUR_ { get; set; }
+        public string CompanyName { get; set; }
+        public Nullable<int> Amount { get; set; }
         public Nullable<double> Price { get; set; }
-    
-        public virtual Medicine Medicine { get; set; }
-        public virtual Supplier Supplier { get; set; }
-        public virtual NewMedicineOrder NewMedicineOrder { get; set; }
     }
 }

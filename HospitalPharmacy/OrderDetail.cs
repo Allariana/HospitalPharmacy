@@ -20,7 +20,7 @@ namespace HospitalPharmacy
         public int Dose_mg_ { get; set; }
         public int QuantityPerUnit { get; set; }
         public Nullable<int> Quantity { get; set; }
-        public Nullable<int> SerialNumber { get; set; }
+        public Nullable<int> MedicineID { get; set; }
         public Nullable<int> SupplierID { get; set; }
     
         public virtual Order Order { get; set; }

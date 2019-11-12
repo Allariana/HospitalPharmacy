@@ -70,5 +70,20 @@ namespace HospitalPharmacy
         {
 
         }
+
+        private void orderButton_Click(object sender, EventArgs e)
+        {
+            new MakingOrderForm().Show();
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void generateButton_Click(object sender, EventArgs e)
+        {
+            new GenerateOrderForm().Show();
+        }
     }
 }

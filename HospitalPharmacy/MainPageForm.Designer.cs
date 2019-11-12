@@ -32,10 +32,11 @@
             this.UserLabel = new System.Windows.Forms.Label();
             this.LogOutButton = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.departmentsGridView = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.generateButton = new System.Windows.Forms.Button();
+            this.orderButton = new System.Windows.Forms.Button();
             this.medicinesGridView = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.departmentsAndOrToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,7 +82,6 @@
             // 
             // tabControl
             // 
-            this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage2);
             this.tabControl.Controls.Add(this.tabPage3);
             this.tabControl.Location = new System.Drawing.Point(15, 38);
@@ -89,17 +89,6 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(1228, 558);
             this.tabControl.TabIndex = 5;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1220, 532);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Main Page";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // tabPage2
             // 
@@ -111,6 +100,7 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Departments";
             this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // departmentsGridView
             // 
@@ -123,6 +113,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.generateButton);
+            this.tabPage3.Controls.Add(this.orderButton);
             this.tabPage3.Controls.Add(this.medicinesGridView);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -130,6 +122,26 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "In Stock";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // generateButton
+            // 
+            this.generateButton.Location = new System.Drawing.Point(17, 300);
+            this.generateButton.Name = "generateButton";
+            this.generateButton.Size = new System.Drawing.Size(88, 23);
+            this.generateButton.TabIndex = 2;
+            this.generateButton.Text = "Generate order";
+            this.generateButton.UseVisualStyleBackColor = true;
+            this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
+            // 
+            // orderButton
+            // 
+            this.orderButton.Location = new System.Drawing.Point(132, 300);
+            this.orderButton.Name = "orderButton";
+            this.orderButton.Size = new System.Drawing.Size(88, 23);
+            this.orderButton.TabIndex = 1;
+            this.orderButton.Text = "Make order";
+            this.orderButton.UseVisualStyleBackColor = true;
+            this.orderButton.Click += new System.EventHandler(this.orderButton_Click);
             // 
             // medicinesGridView
             // 
@@ -211,7 +223,6 @@
         private System.Windows.Forms.Label UserLabel;
         private System.Windows.Forms.Button LogOutButton;
         private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView departmentsGridView;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -221,5 +232,7 @@
         private System.Windows.Forms.ToolStripMenuItem inStockToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView medicinesGridView;
+        private System.Windows.Forms.Button orderButton;
+        private System.Windows.Forms.Button generateButton;
     }
 }

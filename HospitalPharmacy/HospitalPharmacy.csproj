@@ -66,6 +66,15 @@
     <Compile Include="DepartmentsView.cs">
       <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GenerateOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerateOrderForm.Designer.cs">
+      <DependentUpon>GenerateOrderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerateOrderView.cs">
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +86,12 @@
     </Compile>
     <Compile Include="MainPageForm.Designer.cs">
       <DependentUpon>MainPageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MakingOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MakingOrderForm.Designer.cs">
+      <DependentUpon>MakingOrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Medicine.cs">
       <DependentUpon>PharmacyDataModel.tt</DependentUpon>
@@ -134,11 +149,17 @@
     <Compile Include="User.cs">
       <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GenerateOrderForm.resx">
+      <DependentUpon>GenerateOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainPageForm.resx">
       <DependentUpon>MainPageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MakingOrderForm.resx">
+      <DependentUpon>MakingOrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -168,7 +189,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -56,5 +56,10 @@ namespace HospitalPharmacy
                 MessageBox.Show("Login failed");
             }
         }
+
+        private void UsernameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
