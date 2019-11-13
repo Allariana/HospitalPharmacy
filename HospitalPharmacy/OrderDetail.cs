@@ -16,15 +16,10 @@ namespace HospitalPharmacy
     {
         public int OrderDetailID { get; set; }
         public int OrderID { get; set; }
-        public string TradeName { get; set; }
-        public int Dose_mg_ { get; set; }
-        public int QuantityPerUnit { get; set; }
-        public Nullable<int> Quantity { get; set; }
-        public Nullable<int> MedicineID { get; set; }
-        public Nullable<int> SupplierID { get; set; }
+        public int MedicineID { get; set; }
+        public int Amount { get; set; }
     
         public virtual Order Order { get; set; }
         public virtual PackageofMedicine PackageofMedicine { get; set; }
-        public virtual Supplier Supplier { get; set; }
     }
 }

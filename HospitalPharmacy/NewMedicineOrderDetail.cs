@@ -16,8 +16,9 @@ namespace HospitalPharmacy
     {
         public int NewMedicineOrderDetailsID { get; set; }
         public int NewMedicineOrderID { get; set; }
-        public Nullable<int> Amount { get; set; }
-        public Nullable<int> MedicineID { get; set; }
+        public int MedicineID { get; set; }
+        public int Amount { get; set; }
+        public int Price { get; set; }
     
         public virtual Medicine Medicine { get; set; }
         public virtual NewMedicineOrder NewMedicineOrder { get; set; }

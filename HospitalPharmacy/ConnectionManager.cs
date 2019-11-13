@@ -47,21 +47,17 @@ namespace HospitalPharmacy
         }
         public void insertOrder()
         {
-            try
-            {
                 connection.Open();
-                string insertOrder = "insert into NewMedicineOrders([NewMedicineOrderID]) values (NEXT VALUE FOR dbo.newmedicineorder_id_seq);";
-                new SqlCommand(insertOrder, connection).ExecuteNonQuery();
+                //string insertOrder = "insert into NewMedicineOrders([NewMedicineOrderID]) values (1);";
+                string insertNewMedicinesOrderDetails = "insert into NewMedicineOrders([NewMedicineOrderID]) values (1);" +
+                "INSERT INTO NewMedicineOrderDetails " +
+                    "select NEXT VALUE FOR dbo.newMedicineOrderDetails_id_seq NewMedicineOrderDetailsID,1 NewMedicineOrderID, MedicineId, " +
+                    "dbo.Medicines.RequiredQuantity - dbo.Medicines.UnitsInStock Amount, " +
+                    "dbo.Medicines.[UnitPrice(EUR)] * (dbo.Medicines.RequiredQuantity - dbo.Medicines.UnitsInStock) Price from Medicines;";
+                new SqlCommand(insertNewMedicinesOrderDetails, connection).ExecuteNonQuery();
                 connection.Close();
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show("Order failed");
-            }
-            finally
-            {
-                
-            }
+        }
+            
         }
         /*public void getTableWithCondition(String columnname, String tablename, String condition, String condition2, DataTable dataTable)
         {
@@ -75,4 +71,4 @@ namespace HospitalPharmacy
             connection.Close();
         }*/
     }
-}
+

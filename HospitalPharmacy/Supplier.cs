@@ -17,7 +17,6 @@ namespace HospitalPharmacy
         public Supplier()
         {
             this.Medicines = new HashSet<Medicine>();
-            this.OrderDetails = new HashSet<OrderDetail>();
         }
     
         public int SupplierID { get; set; }
@@ -27,6 +26,5 @@ namespace HospitalPharmacy
         public string HomePage { get; set; }
     
         public virtual ICollection<Medicine> Medicines { get; set; }
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }
