@@ -84,7 +84,8 @@ namespace HospitalPharmacy
 
         private void generateButton_Click(object sender, EventArgs e)
         {
-            new GenerateOrderForm().Show();
+            string username = this.UserLabel.Text;
+            new GenerateOrderForm(username).Show();
         }
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)

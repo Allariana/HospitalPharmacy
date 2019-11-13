@@ -50,24 +50,33 @@ namespace HospitalPharmacy
             connection.Close();
             return price;
         }
-        public void insertOrder()
+        public void insertOrder(String username)
         {
             connection.Open();
-            int id;
+            int orderID,pharmacistID;
             DataTable dt = new DataTable();
+            DataTable dataTable = new DataTable();
             SqlCommand orderIDCommand = new SqlCommand("select NEXT VALUE FOR dbo.newmedicineorder_id_seq;", connection);
             SqlDataReader reader = orderIDCommand.ExecuteReader();
             dt.Load(reader);
             DataRow dw = dt.Rows[0];
-            id = int.Parse(dw[0].ToString());
-            //select SUM(Price) Total_price from GenerateOrderView;
-            string insertNewMedicinesOrderDetails = "insert into NewMedicineOrders([NewMedicineOrderID],[OrderDate],[Price]) select " + id + ",CONVERT (date, SYSDATETIME())," +
+            DataRow data = dt.Rows[0];
+            orderID = int.Parse(dw[0].ToString());
+            SqlCommand pharmacistIDCommand = new SqlCommand("select p.PharmacistID from Pharmacists p join Users u on p.UserID=u.UserID where u.Username = '" 
+                + username + "';", connection);
+            SqlDataReader sqlDataReader = pharmacistIDCommand.ExecuteReader();
+            dataTable.Load(sqlDataReader);
+            data = dataTable.Rows[0];
+            pharmacistID = int.Parse(data[0].ToString());
+            string insertNewMedicinesOrderDetails = "insert into NewMedicineOrders ([NewMedicineOrderID],[PharmacistID],[OrderDate],[Price]) select " + orderID + 
+                "," + pharmacistID + ",CONVERT (date, SYSDATETIME())," +
                 "SUM(Price) from GenerateOrderView;" +
                 "INSERT INTO NewMedicineOrderDetails " +
-                    "select NEXT VALUE FOR dbo.newMedicineOrderDetails_id_seq NewMedicineOrderDetailsID," + id + " NewMedicineOrderID, MedicineId, " +
+                    "select NEXT VALUE FOR dbo.newMedicineOrderDetails_id_seq NewMedicineOrderDetailsID," + orderID + " NewMedicineOrderID, MedicineId, " +
                     "dbo.Medicines.RequiredQuantity - dbo.Medicines.UnitsInStock Amount, " +
                     "dbo.Medicines.[UnitPrice(EUR)] * (dbo.Medicines.RequiredQuantity - dbo.Medicines.UnitsInStock) Price from Medicines;";
                 new SqlCommand(insertNewMedicinesOrderDetails, connection).ExecuteNonQuery();
+            sqlDataReader.Close();
             reader.Close();
             connection.Close();
         }

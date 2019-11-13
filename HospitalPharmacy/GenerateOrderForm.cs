@@ -14,9 +14,12 @@ namespace HospitalPharmacy
     public partial class GenerateOrderForm : Form
     {
         PharmacyEntities pharmacyContext;
+        string username;
                 
-        public GenerateOrderForm()
+        public GenerateOrderForm(string username)
         {
+            this.username = username;
+
             InitializeComponent();
             ConnectionManager connection = new ConnectionManager();
             
@@ -42,7 +45,7 @@ namespace HospitalPharmacy
         private void confirmButton_Click(object sender, EventArgs e)
         {
             ConnectionManager connection = new ConnectionManager();
-            connection.insertOrder();
+            connection.insertOrder(username);
         }
 
         private void priceLabel_Click(object sender, EventArgs e)
