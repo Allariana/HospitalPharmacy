@@ -72,6 +72,9 @@
     <Compile Include="GenerateOrderForm.Designer.cs">
       <DependentUpon>GenerateOrderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenerateOrdersView.cs">
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="GenerateOrderView.cs">
       <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
@@ -96,13 +99,13 @@
     <Compile Include="Medicine.cs">
       <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MedicineOrderDetail.cs">
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MedicinesOrder.cs">
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="MedicinesView.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NewMedicineOrder.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NewMedicineOrderDetail.cs">
       <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Order.cs">

@@ -23,7 +23,6 @@ namespace HospitalPharmacy
                 pharmacyContext = new PharmacyEntities();
                 departmentsGridView.DataSource = pharmacyContext.DepartmentsViews.ToList();
                 medicinesGridView.DataSource = pharmacyContext.MedicinesViews.ToList();
-                newOrderGridView.DataSource = pharmacyContext.NewMedicineOrderDetails.ToList();
             }
             catch (Exception ex)
             {

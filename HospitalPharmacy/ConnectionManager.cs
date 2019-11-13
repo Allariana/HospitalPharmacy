@@ -38,17 +38,27 @@ namespace HospitalPharmacy
         }
         public int getPrice()
         {
-            int price;
-            connection.Open();
-            DataTable dt = new DataTable();
-            SqlCommand priceCommand = new SqlCommand("SELECT SUM(Price) FROM GenerateOrderView;", connection);
-            SqlDataReader reader = priceCommand.ExecuteReader();
-            dt.Load(reader);
-            DataRow dw = dt.Rows[0];
-            price = int.Parse(dw[0].ToString());
-            reader.Close();
-            connection.Close();
-            return price;
+            
+            try
+            {
+                int price;
+                connection.Open();
+                DataTable dt = new DataTable();
+                SqlCommand priceCommand = new SqlCommand("SELECT SUM(Total_price) FROM GenerateOrdersView;", connection);
+                SqlDataReader reader = priceCommand.ExecuteReader();
+                dt.Load(reader);
+                DataRow dw = dt.Rows[0];
+                price = int.Parse(dw[0].ToString());
+                reader.Close();
+                connection.Close();
+                return price;
+            }
+            catch(FormatException formatException)
+            {
+                int price = 0;
+                return price;
+            }
+            
         }
         public void insertOrder(String username)
         {
@@ -56,7 +66,7 @@ namespace HospitalPharmacy
             int orderID,pharmacistID;
             DataTable dt = new DataTable();
             DataTable dataTable = new DataTable();
-            SqlCommand orderIDCommand = new SqlCommand("select NEXT VALUE FOR dbo.newmedicineorder_id_seq;", connection);
+            SqlCommand orderIDCommand = new SqlCommand("select NEXT VALUE FOR medicinesOrderIDSeq;", connection);
             SqlDataReader reader = orderIDCommand.ExecuteReader();
             dt.Load(reader);
             DataRow dw = dt.Rows[0];
@@ -68,14 +78,14 @@ namespace HospitalPharmacy
             dataTable.Load(sqlDataReader);
             data = dataTable.Rows[0];
             pharmacistID = int.Parse(data[0].ToString());
-            string insertNewMedicinesOrderDetails = "insert into NewMedicineOrders ([NewMedicineOrderID],[PharmacistID],[OrderDate],[Price]) select " + orderID + 
+            string insertMedicinesOrder = "insert into MedicinesOrders ([MedicinesOrderID],[PharmacistID],[OrderDate],[Price],[RealizationFlag]) select " + orderID + 
                 "," + pharmacistID + ",CONVERT (date, SYSDATETIME())," +
-                "SUM(Price) from GenerateOrderView;" +
-                "INSERT INTO NewMedicineOrderDetails " +
-                    "select NEXT VALUE FOR dbo.newMedicineOrderDetails_id_seq NewMedicineOrderDetailsID," + orderID + " NewMedicineOrderID, MedicineId, " +
+                "SUM(Price),'N' from GenerateOrderView;" +
+                "INSERT INTO MedicineOrderDetails " +
+                    "select NEXT VALUE FOR medicineOrderDetailsIdSeq MedicineOrderDetailsID," + orderID + " MedicinesOrderID, MedicineId, " +
                     "dbo.Medicines.RequiredQuantity - dbo.Medicines.UnitsInStock Amount, " +
                     "dbo.Medicines.[UnitPrice(EUR)] * (dbo.Medicines.RequiredQuantity - dbo.Medicines.UnitsInStock) Price from Medicines;";
-                new SqlCommand(insertNewMedicinesOrderDetails, connection).ExecuteNonQuery();
+                new SqlCommand(insertMedicinesOrder, connection).ExecuteNonQuery();
             sqlDataReader.Close();
             reader.Close();
             connection.Close();

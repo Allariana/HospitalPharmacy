@@ -12,15 +12,15 @@ namespace HospitalPharmacy
     using System;
     using System.Collections.Generic;
     
-    public partial class NewMedicineOrderDetail
+    public partial class MedicineOrderDetail
     {
-        public int NewMedicineOrderDetailsID { get; set; }
-        public int NewMedicineOrderID { get; set; }
+        public int MedicineOrderDetailsID { get; set; }
+        public int MedicinesOrderID { get; set; }
         public int MedicineID { get; set; }
         public int Amount { get; set; }
         public int Price { get; set; }
     
         public virtual Medicine Medicine { get; set; }
-        public virtual NewMedicineOrder NewMedicineOrder { get; set; }
+        public virtual MedicinesOrder MedicinesOrder { get; set; }
     }
 }

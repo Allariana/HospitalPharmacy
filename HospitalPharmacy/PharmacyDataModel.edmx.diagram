@@ -24,15 +24,16 @@
         <EntityTypeShape EntityType="PharmacyEntity.GenerateOrderView" Width="1.5" PointX="12.75" PointY="0.5" />
         <EntityTypeShape EntityType="PharmacyEntity.OrderDetail" Width="1.5" PointX="10.625" PointY="4.75" />
         <AssociationConnector Association="PharmacyEntity.detail_package_fk" />
-        <EntityTypeShape EntityType="PharmacyEntity.NewMedicineOrderDetail" Width="1.5" PointX="7.75" PointY="5.75" />
-        <AssociationConnector Association="PharmacyEntity.newdetail_medicine_fk" />
-        <EntityTypeShape EntityType="PharmacyEntity.NewMedicineOrder" Width="1.5" PointX="5.375" PointY="12.25" />
         <EntityTypeShape EntityType="PharmacyEntity.Order" Width="1.5" PointX="5.375" PointY="8" />
         <AssociationConnector Association="PharmacyEntity.order_department_fk" />
-        <AssociationConnector Association="PharmacyEntity.medicinedetail_order_fk" />
-        <AssociationConnector Association="PharmacyEntity.medorder_pharmacist_fk" />
         <AssociationConnector Association="PharmacyEntity.detail_order_fk" />
         <AssociationConnector Association="PharmacyEntity.order_pharmacist_fk" />
+        <EntityTypeShape EntityType="PharmacyEntity.MedicineOrderDetail" Width="1.5" PointX="7.625" PointY="5.25" />
+        <EntityTypeShape EntityType="PharmacyEntity.MedicinesOrder" Width="1.5" PointX="5.375" PointY="12" />
+        <AssociationConnector Association="PharmacyEntity.detail_medicine_fk" />
+        <AssociationConnector Association="PharmacyEntity.medicinedetail_order_fk" />
+        <AssociationConnector Association="PharmacyEntity.medorder_pharmacist_fk" />
+        <EntityTypeShape EntityType="PharmacyEntity.GenerateOrdersView" Width="1.5" PointX="5.375" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -29,7 +29,7 @@ namespace HospitalPharmacy
             try
             {
                 pharmacyContext = new PharmacyEntities();
-                generateOrderViewGrid.DataSource = pharmacyContext.GenerateOrderViews.ToList();
+                generateOrderViewGrid.DataSource = pharmacyContext.GenerateOrdersViews.ToList();
             }
             catch (Exception ex)
             {
@@ -44,8 +44,17 @@ namespace HospitalPharmacy
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
-            ConnectionManager connection = new ConnectionManager();
-            connection.insertOrder(username);
+            try
+            {
+                ConnectionManager connection = new ConnectionManager();
+                connection.insertOrder(username);
+                MessageBox.Show("Order completed!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void priceLabel_Click(object sender, EventArgs e)
