@@ -16,10 +16,10 @@ namespace HospitalPharmacy
     using System.Data.Objects.DataClasses;
     using System.Linq;
     
-    public partial class PharmacyEntities1 : DbContext
+    public partial class PharmacyEntities : DbContext
     {
-        public PharmacyEntities1()
-            : base("name=PharmacyEntities1")
+        public PharmacyEntities()
+            : base("name=PharmacyEntities")
         {
         }
     
@@ -44,6 +44,7 @@ namespace HospitalPharmacy
         public DbSet<MedicineOrderDetail> MedicineOrderDetails { get; set; }
         public DbSet<MedicinesOrder> MedicinesOrders { get; set; }
         public DbSet<GenerateOrdersView> GenerateOrdersViews { get; set; }
+        public DbSet<GenerateOrderView> GenerateOrderViews { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

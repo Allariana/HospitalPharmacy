@@ -29,7 +29,7 @@ namespace HospitalPharmacy
             try
             {
                 pharmacyContext = new PharmacyEntities();
-                generateOrderViewGrid.DataSource = pharmacyContext.GenerateOrdersViews.ToList();
+                generateOrderViewGrid.DataSource = pharmacyContext.GenerateOrderViews.ToList();
             }
             catch (Exception ex)
             {
