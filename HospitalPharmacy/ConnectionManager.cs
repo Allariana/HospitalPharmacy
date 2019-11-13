@@ -56,7 +56,8 @@ namespace HospitalPharmacy
             DataRow dw = dt.Rows[0];
             id = int.Parse(dw[0].ToString());
             //select SUM(Price) Total_price from GenerateOrderView;
-            string insertNewMedicinesOrderDetails = "insert into NewMedicineOrders([NewMedicineOrderID],[Price]) select " + id + ",SUM(Price) from GenerateOrderView;" +
+            string insertNewMedicinesOrderDetails = "insert into NewMedicineOrders([NewMedicineOrderID],[OrderDate],[Price]) select " + id + ",CONVERT (date, SYSDATETIME())," +
+                "SUM(Price) from GenerateOrderView;" +
                 "INSERT INTO NewMedicineOrderDetails " +
                     "select NEXT VALUE FOR dbo.newMedicineOrderDetails_id_seq NewMedicineOrderDetailsID," + id + " NewMedicineOrderID, MedicineId, " +
                     "dbo.Medicines.RequiredQuantity - dbo.Medicines.UnitsInStock Amount, " +

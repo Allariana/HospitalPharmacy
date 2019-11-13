@@ -21,12 +21,12 @@ namespace HospitalPharmacy
     
         public int NewMedicineOrderID { get; set; }
         public Nullable<int> PharmacistID { get; set; }
-        public Nullable<int> OrderDate { get; set; }
+        public Nullable<System.DateTime> OrderDate { get; set; }
         public Nullable<System.DateTime> RegiuredDate { get; set; }
         public Nullable<double> Price { get; set; }
         public Nullable<System.DateTime> RealizationDate { get; set; }
     
-        public virtual Pharmacist Pharmacist { get; set; }
         public virtual ICollection<NewMedicineOrderDetail> NewMedicineOrderDetails { get; set; }
+        public virtual Pharmacist Pharmacist { get; set; }
     }
 }
