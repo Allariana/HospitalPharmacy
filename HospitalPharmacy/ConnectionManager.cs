@@ -47,15 +47,23 @@ namespace HospitalPharmacy
         }
         public void insertOrder()
         {
-                connection.Open();
-                //string insertOrder = "insert into NewMedicineOrders([NewMedicineOrderID]) values (1);";
-                string insertNewMedicinesOrderDetails = "insert into NewMedicineOrders([NewMedicineOrderID]) values (1);" +
+            connection.Open();
+            int id;
+            DataTable dt = new DataTable();
+            SqlCommand orderIDCommand = new SqlCommand("select NEXT VALUE FOR dbo.newmedicineorder_id_seq;", connection);
+            SqlDataReader reader = orderIDCommand.ExecuteReader();
+            dt.Load(reader);
+            DataRow dw = dt.Rows[0];
+            id = int.Parse(dw[0].ToString());
+            
+            string insertNewMedicinesOrderDetails = "insert into NewMedicineOrders([NewMedicineOrderID]) values (" + id + ");" +
                 "INSERT INTO NewMedicineOrderDetails " +
-                    "select NEXT VALUE FOR dbo.newMedicineOrderDetails_id_seq NewMedicineOrderDetailsID,1 NewMedicineOrderID, MedicineId, " +
+                    "select NEXT VALUE FOR dbo.newMedicineOrderDetails_id_seq NewMedicineOrderDetailsID," + id + " NewMedicineOrderID, MedicineId, " +
                     "dbo.Medicines.RequiredQuantity - dbo.Medicines.UnitsInStock Amount, " +
                     "dbo.Medicines.[UnitPrice(EUR)] * (dbo.Medicines.RequiredQuantity - dbo.Medicines.UnitsInStock) Price from Medicines;";
                 new SqlCommand(insertNewMedicinesOrderDetails, connection).ExecuteNonQuery();
-                connection.Close();
+            reader.Close();
+            connection.Close();
         }
             
         }
