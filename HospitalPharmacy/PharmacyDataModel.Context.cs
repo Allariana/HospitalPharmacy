@@ -32,7 +32,6 @@ namespace HospitalPharmacy
         public DbSet<Category> Categories { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Medicine> Medicines { get; set; }
-        public DbSet<Order> Orders { get; set; }
         public DbSet<PackageofMedicine> PackageofMedicines { get; set; }
         public DbSet<Pharmacist> Pharmacists { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
@@ -44,6 +43,7 @@ namespace HospitalPharmacy
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<NewMedicineOrderDetail> NewMedicineOrderDetails { get; set; }
         public DbSet<NewMedicineOrder> NewMedicineOrders { get; set; }
+        public DbSet<Order> Orders { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

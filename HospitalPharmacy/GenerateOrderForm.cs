@@ -19,15 +19,14 @@ namespace HospitalPharmacy
         {
             InitializeComponent();
             ConnectionManager connection = new ConnectionManager();
-            DataTable price = new DataTable();
-            connection.getPrice(price);
-            this.priceLabel.Text = price.ToString();
-            //priceGridView.DataSource = price.ToString();
+            
+            
+            this.priceLabel.Text = connection.getPrice().ToString();
+            
             try
             {
                 pharmacyContext = new PharmacyEntities();
                 generateOrderViewGrid.DataSource = pharmacyContext.GenerateOrderViews.ToList();
-                //priceGridView.DataSource = pharmacyContext.TotalPriceView.ToList();
             }
             catch (Exception ex)
             {
@@ -44,6 +43,11 @@ namespace HospitalPharmacy
         {
             ConnectionManager connection = new ConnectionManager();
             connection.insertOrder();
+        }
+
+        private void priceLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

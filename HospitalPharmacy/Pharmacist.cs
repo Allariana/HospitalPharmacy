@@ -16,8 +16,8 @@ namespace HospitalPharmacy
     {
         public Pharmacist()
         {
-            this.Orders = new HashSet<Order>();
             this.NewMedicineOrders = new HashSet<NewMedicineOrder>();
+            this.Orders = new HashSet<Order>();
         }
     
         public int PharmacistID { get; set; }
@@ -30,8 +30,8 @@ namespace HospitalPharmacy
         public Nullable<int> Phone { get; set; }
         public int UserID { get; set; }
     
-        public virtual ICollection<Order> Orders { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<NewMedicineOrder> NewMedicineOrders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

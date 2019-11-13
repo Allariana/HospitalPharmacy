@@ -36,12 +36,17 @@ namespace HospitalPharmacy
             adapter.Fill(dataTable);
             connection.Close();
         }
-        public DataTable getPrice(DataTable price)
+        public int getPrice()
         {
+            int price;
             connection.Open();
-            String command = "select SUM(Price) price from GenerateOrderView;";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            adapter.Fill(price);
+            DataTable dt = new DataTable();
+            SqlCommand priceCommand = new SqlCommand("SELECT SUM(Price) FROM GenerateOrderView;", connection);
+            SqlDataReader reader = priceCommand.ExecuteReader();
+            dt.Load(reader);
+            DataRow dw = dt.Rows[0];
+            price = int.Parse(dw[0].ToString());
+            reader.Close();
             connection.Close();
             return price;
         }

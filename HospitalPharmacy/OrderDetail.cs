@@ -19,7 +19,7 @@ namespace HospitalPharmacy
         public int MedicineID { get; set; }
         public int Amount { get; set; }
     
-        public virtual Order Order { get; set; }
         public virtual PackageofMedicine PackageofMedicine { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

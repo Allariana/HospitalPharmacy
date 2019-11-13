@@ -112,6 +112,7 @@
             // 
             // departmentsGridView
             // 
+            this.departmentsGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.departmentsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.departmentsGridView.Location = new System.Drawing.Point(17, 19);
             this.departmentsGridView.Name = "departmentsGridView";
@@ -153,6 +154,7 @@
             // 
             // medicinesGridView
             // 
+            this.medicinesGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.medicinesGridView.Location = new System.Drawing.Point(17, 12);
             this.medicinesGridView.Name = "medicinesGridView";
             this.medicinesGridView.Size = new System.Drawing.Size(1012, 264);
@@ -172,6 +174,7 @@
             // 
             // newOrderGridView
             // 
+            this.newOrderGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.newOrderGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.newOrderGridView.Location = new System.Drawing.Point(23, 20);
             this.newOrderGridView.Name = "newOrderGridView";

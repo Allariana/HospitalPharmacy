@@ -23,10 +23,9 @@ namespace HospitalPharmacy
         public int DepartmentID { get; set; }
         public Nullable<int> PharmacistID { get; set; }
         public System.DateTime OrderDate { get; set; }
-        public System.DateTime RequiredDate { get; set; }
     
         public virtual Department Department { get; set; }
-        public virtual Pharmacist Pharmacist { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual Pharmacist Pharmacist { get; set; }
     }
 }
