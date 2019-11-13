@@ -26,7 +26,7 @@ namespace HospitalPharmacy
         public Nullable<double> Price { get; set; }
         public Nullable<System.DateTime> RealizationDate { get; set; }
     
-        public virtual ICollection<NewMedicineOrderDetail> NewMedicineOrderDetails { get; set; }
         public virtual Pharmacist Pharmacist { get; set; }
+        public virtual ICollection<NewMedicineOrderDetail> NewMedicineOrderDetails { get; set; }
     }
 }

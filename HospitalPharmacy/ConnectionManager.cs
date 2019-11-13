@@ -45,6 +45,24 @@ namespace HospitalPharmacy
             connection.Close();
             return price;
         }
+        public void insertOrder()
+        {
+            try
+            {
+                connection.Open();
+                string insertOrder = "insert into NewMedicineOrders([NewMedicineOrderID]) values (NEXT VALUE FOR dbo.newmedicineorder_id_seq);";
+                new SqlCommand(insertOrder, connection).ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("Order failed");
+            }
+            finally
+            {
+                
+            }
+        }
         /*public void getTableWithCondition(String columnname, String tablename, String condition, String condition2, DataTable dataTable)
         {
             connection.Open();

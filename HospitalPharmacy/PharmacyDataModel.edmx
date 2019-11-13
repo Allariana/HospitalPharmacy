@@ -56,13 +56,8 @@
           </Key>
           <Property Name="NewMedicineOrderDetailsID" Type="int" Nullable="false" />
           <Property Name="NewMedicineOrderID" Type="int" Nullable="false" />
-          <Property Name="TradeName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Dose[mg]" Type="int" Nullable="false" />
-          <Property Name="QuantityPerUnit" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="int" />
-          <Property Name="SupplierID" Type="int" />
+          <Property Name="Amount" Type="int" />
           <Property Name="MedicineID" Type="int" />
-          <Property Name="Price" Type="float" />
         </EntityType>
         <EntityType Name="NewMedicineOrders">
           <Key>
@@ -313,18 +308,6 @@ warning 6002: The table/view 'Pharmacy.dbo.MedicinesView' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="newmedicinedetail_order_fk">
-          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1" />
-          <End Role="NewMedicineOrderDetails" Type="Self.NewMedicineOrderDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Suppliers">
-              <PropertyRef Name="SupplierID" />
-            </Principal>
-            <Dependent Role="NewMedicineOrderDetails">
-              <PropertyRef Name="SupplierID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="order_department_fk">
           <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
@@ -486,10 +469,6 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
             <End Role="Medicines" EntitySet="Medicines" />
             <End Role="NewMedicineOrderDetails" EntitySet="NewMedicineOrderDetails" />
           </AssociationSet>
-          <AssociationSet Name="newmedicinedetail_order_fk" Association="Self.newmedicinedetail_order_fk">
-            <End Role="Suppliers" EntitySet="Suppliers" />
-            <End Role="NewMedicineOrderDetails" EntitySet="NewMedicineOrderDetails" />
-          </AssociationSet>
           <AssociationSet Name="order_department_fk" Association="Self.order_department_fk">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Orders" EntitySet="Orders" />
@@ -615,7 +594,6 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
           <Property Name="Phone" Type="Int32" Nullable="false" />
           <Property Name="HomePage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Medicines" Relationship="Self.medicine_supplier_fk" FromRole="Suppliers" ToRole="Medicines" />
-          <NavigationProperty Name="NewMedicineOrderDetails" Relationship="PharmacyEntity.newmedicinedetail_order_fk" FromRole="Supplier" ToRole="NewMedicineOrderDetail" />
           <NavigationProperty Name="OrderDetails" Relationship="PharmacyEntity.detail_supplier_fk" FromRole="Supplier" ToRole="OrderDetail" />
         </EntityType>
         <EntityType Name="sysdiagram">
@@ -805,15 +783,6 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <EntitySet Name="MedicinesViews" EntityType="PharmacyEntity.MedicinesView" />
-          <EntitySet Name="NewMedicineOrderDetails" EntityType="PharmacyEntity.NewMedicineOrderDetail" />
-          <AssociationSet Name="newdetail_medicine_fk" Association="PharmacyEntity.newdetail_medicine_fk">
-            <End Role="Medicine" EntitySet="Medicines" />
-            <End Role="NewMedicineOrderDetail" EntitySet="NewMedicineOrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="newmedicinedetail_order_fk" Association="PharmacyEntity.newmedicinedetail_order_fk">
-            <End Role="Supplier" EntitySet="Suppliers" />
-            <End Role="NewMedicineOrderDetail" EntitySet="NewMedicineOrderDetails" />
-          </AssociationSet>
           <EntitySet Name="OrderDetails" EntityType="PharmacyEntity.OrderDetail" />
           <AssociationSet Name="detail_order_fk" Association="PharmacyEntity.detail_order_fk">
             <End Role="Order" EntitySet="Orders" />
@@ -829,13 +798,18 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
           </AssociationSet>
           <EntitySet Name="GenerateOrderViews" EntityType="PharmacyEntity.GenerateOrderView" />
           <EntitySet Name="NewMedicineOrders" EntityType="PharmacyEntity.NewMedicineOrder" />
-          <AssociationSet Name="medicinedetail_order_fk" Association="PharmacyEntity.medicinedetail_order_fk">
-            <End Role="NewMedicineOrder" EntitySet="NewMedicineOrders" />
-            <End Role="NewMedicineOrderDetail" EntitySet="NewMedicineOrderDetails" />
-          </AssociationSet>
           <AssociationSet Name="medorder_pharmacist_fk" Association="PharmacyEntity.medorder_pharmacist_fk">
             <End Role="Pharmacist" EntitySet="Pharmacists" />
             <End Role="NewMedicineOrder" EntitySet="NewMedicineOrders" />
+          </AssociationSet>
+          <EntitySet Name="NewMedicineOrderDetails" EntityType="PharmacyEntity.NewMedicineOrderDetail" />
+          <AssociationSet Name="newdetail_medicine_fk" Association="PharmacyEntity.newdetail_medicine_fk">
+            <End Role="Medicine" EntitySet="Medicines" />
+            <End Role="NewMedicineOrderDetail" EntitySet="NewMedicineOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="medicinedetail_order_fk" Association="PharmacyEntity.medicinedetail_order_fk">
+            <End Role="NewMedicineOrder" EntitySet="NewMedicineOrders" />
+            <End Role="NewMedicineOrderDetail" EntitySet="NewMedicineOrderDetails" />
           </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -869,47 +843,6 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
           <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="NewMedicineOrderDetail">
-          <Key>
-            <PropertyRef Name="NewMedicineOrderDetailsID" />
-          </Key>
-          <Property Name="NewMedicineOrderDetailsID" Type="Int32" Nullable="false" />
-          <Property Name="NewMedicineOrderID" Type="Int32" Nullable="false" />
-          <Property Name="TradeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Dose_mg_" Type="Int32" Nullable="false" />
-          <Property Name="QuantityPerUnit" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" />
-          <Property Name="SupplierID" Type="Int32" />
-          <Property Name="MedicineID" Type="Int32" />
-          <NavigationProperty Name="Medicine" Relationship="PharmacyEntity.newdetail_medicine_fk" FromRole="NewMedicineOrderDetail" ToRole="Medicine" />
-          <NavigationProperty Name="Supplier" Relationship="PharmacyEntity.newmedicinedetail_order_fk" FromRole="NewMedicineOrderDetail" ToRole="Supplier" />
-          <Property Name="Price" Type="Double" />
-          <NavigationProperty Name="NewMedicineOrder" Relationship="PharmacyEntity.medicinedetail_order_fk" FromRole="NewMedicineOrderDetail" ToRole="NewMedicineOrder" />
-        </EntityType>
-        <Association Name="newdetail_medicine_fk">
-          <End Type="PharmacyEntity.Medicine" Role="Medicine" Multiplicity="0..1" />
-          <End Type="PharmacyEntity.NewMedicineOrderDetail" Role="NewMedicineOrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Medicine">
-              <PropertyRef Name="MedicineID" />
-            </Principal>
-            <Dependent Role="NewMedicineOrderDetail">
-              <PropertyRef Name="MedicineID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="newmedicinedetail_order_fk">
-          <End Type="PharmacyEntity.Supplier" Role="Supplier" Multiplicity="0..1" />
-          <End Type="PharmacyEntity.NewMedicineOrderDetail" Role="NewMedicineOrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Supplier">
-              <PropertyRef Name="SupplierID" />
-            </Principal>
-            <Dependent Role="NewMedicineOrderDetail">
-              <PropertyRef Name="SupplierID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="OrderDetail">
           <Key>
             <PropertyRef Name="OrderDetailID" />
@@ -989,21 +922,9 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
           <Property Name="RegiuredDate" Type="DateTime" Precision="0" />
           <Property Name="Price" Type="Double" />
           <Property Name="RealizationDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="NewMedicineOrderDetails" Relationship="PharmacyEntity.medicinedetail_order_fk" FromRole="NewMedicineOrder" ToRole="NewMedicineOrderDetail" />
           <NavigationProperty Name="Pharmacist" Relationship="PharmacyEntity.medorder_pharmacist_fk" FromRole="NewMedicineOrder" ToRole="Pharmacist" />
+          <NavigationProperty Name="NewMedicineOrderDetails" Relationship="PharmacyEntity.medicinedetail_order_fk" FromRole="NewMedicineOrder" ToRole="NewMedicineOrderDetail" />
         </EntityType>
-        <Association Name="medicinedetail_order_fk">
-          <End Type="PharmacyEntity.NewMedicineOrder" Role="NewMedicineOrder" Multiplicity="1" />
-          <End Type="PharmacyEntity.NewMedicineOrderDetail" Role="NewMedicineOrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="NewMedicineOrder">
-              <PropertyRef Name="NewMedicineOrderID" />
-            </Principal>
-            <Dependent Role="NewMedicineOrderDetail">
-              <PropertyRef Name="NewMedicineOrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="medorder_pharmacist_fk">
           <End Type="PharmacyEntity.Pharmacist" Role="Pharmacist" Multiplicity="0..1" />
           <End Type="PharmacyEntity.NewMedicineOrder" Role="NewMedicineOrder" Multiplicity="*" />
@@ -1013,6 +934,41 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
             </Principal>
             <Dependent Role="NewMedicineOrder">
               <PropertyRef Name="PharmacistID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="NewMedicineOrderDetail">
+          <Key>
+            <PropertyRef Name="NewMedicineOrderDetailsID" />
+          </Key>
+          <Property Name="NewMedicineOrderDetailsID" Type="Int32" Nullable="false" />
+          <Property Name="NewMedicineOrderID" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="MedicineID" Type="Int32" />
+          <NavigationProperty Name="Medicine" Relationship="PharmacyEntity.newdetail_medicine_fk" FromRole="NewMedicineOrderDetail" ToRole="Medicine" />
+          <NavigationProperty Name="NewMedicineOrder" Relationship="PharmacyEntity.medicinedetail_order_fk" FromRole="NewMedicineOrderDetail" ToRole="NewMedicineOrder" />
+        </EntityType>
+        <Association Name="newdetail_medicine_fk">
+          <End Type="PharmacyEntity.Medicine" Role="Medicine" Multiplicity="0..1" />
+          <End Type="PharmacyEntity.NewMedicineOrderDetail" Role="NewMedicineOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicine">
+              <PropertyRef Name="MedicineID" />
+            </Principal>
+            <Dependent Role="NewMedicineOrderDetail">
+              <PropertyRef Name="MedicineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="medicinedetail_order_fk">
+          <End Type="PharmacyEntity.NewMedicineOrder" Role="NewMedicineOrder" Multiplicity="1" />
+          <End Type="PharmacyEntity.NewMedicineOrderDetail" Role="NewMedicineOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewMedicineOrder">
+              <PropertyRef Name="NewMedicineOrderID" />
+            </Principal>
+            <Dependent Role="NewMedicineOrderDetail">
+              <PropertyRef Name="NewMedicineOrderID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1189,21 +1145,6 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="NewMedicineOrderDetails">
-            <EntityTypeMapping TypeName="PharmacyEntity.NewMedicineOrderDetail">
-              <MappingFragment StoreEntitySet="NewMedicineOrderDetails">
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
-                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="QuantityPerUnit" ColumnName="QuantityPerUnit" />
-                <ScalarProperty Name="Dose_mg_" ColumnName="Dose[mg]" />
-                <ScalarProperty Name="TradeName" ColumnName="TradeName" />
-                <ScalarProperty Name="NewMedicineOrderID" ColumnName="NewMedicineOrderID" />
-                <ScalarProperty Name="NewMedicineOrderDetailsID" ColumnName="NewMedicineOrderDetailsID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="OrderDetails">
             <EntityTypeMapping TypeName="PharmacyEntity.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetails">
@@ -1241,6 +1182,16 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
                 <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
                 <ScalarProperty Name="PharmacistID" ColumnName="PharmacistID" />
                 <ScalarProperty Name="NewMedicineOrderID" ColumnName="NewMedicineOrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewMedicineOrderDetails">
+            <EntityTypeMapping TypeName="PharmacyEntity.NewMedicineOrderDetail">
+              <MappingFragment StoreEntitySet="NewMedicineOrderDetails">
+                <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="NewMedicineOrderID" ColumnName="NewMedicineOrderID" />
+                <ScalarProperty Name="NewMedicineOrderDetailsID" ColumnName="NewMedicineOrderDetailsID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

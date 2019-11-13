@@ -53,7 +53,7 @@ namespace HospitalPharmacy
 
         private void listOfDepartmentsToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-           tabPage2.Show();
+            tabControl.SelectedTab = departmentsPage;
         }
 
         private void departmentsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)

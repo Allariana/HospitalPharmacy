@@ -14,7 +14,7 @@ namespace HospitalPharmacy
     public partial class GenerateOrderForm : Form
     {
         PharmacyEntities pharmacyContext;
-        private ConnectionManager orderConnection;
+                
         public GenerateOrderForm()
         {
             InitializeComponent();
@@ -42,39 +42,8 @@ namespace HospitalPharmacy
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                SqlConnection connection = this.orderConnection.connection;
-                connection.Open();
-                string insertOrder = "insert into NewMedicineOrders([NewMedicineOrderID]) values (1);";
-                new SqlCommand(insertOrder, connection).ExecuteNonQuery();
-                connection.Close();
-                /*
-                 * SqlConnection con = this.tcon.con;
-                con.Open();
-                string getSubjectId = "select id from subjects where subject_name = '" + comboBoxSubject.Text + "'";
-                SqlCommand cmd = new SqlCommand(getSubjectId, con);
-                SqlDataReader reader = cmd.ExecuteReader();
-                reader.Read();
-                string subject_id = reader[0].ToString();
-                reader.Close();
-                string insert = "insert into Marks values ("
-                    + textBoxMark.Text + ", " + comboBoxIndex.Text + ", "
-                    + subject_id + ")";
-                new SqlCommand(insert, con).ExecuteNonQuery();
-                con.Close();
-                this.behind.Show();
-                this.Close();
-                 */
-            }
-            catch (Exception ex)
-            {
-                //do nothing
-            }
-            finally
-            {
-                this.Close();
-            }
+            ConnectionManager connection = new ConnectionManager();
+            connection.insertOrder();
         }
     }
 }
