@@ -716,7 +716,6 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <EntitySet Name="MedicinesViews" EntityType="PharmacyEntity.MedicinesView" />
-          <EntitySet Name="GenerateOrderViews" EntityType="PharmacyEntity.GenerateOrderView" />
           <EntitySet Name="OrderDetails" EntityType="PharmacyEntity.OrderDetail" />
           <AssociationSet Name="detail_package_fk" Association="PharmacyEntity.detail_package_fk">
             <End Role="PackageofMedicine" EntitySet="PackageofMedicines" />
@@ -781,23 +780,6 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
           <Property Name="RequiredQuantity" Type="Int32" />
           <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="GenerateOrderView">
-          <Key>
-            <PropertyRef Name="TradeName" />
-            <PropertyRef Name="ActiveSubstance" />
-            <PropertyRef Name="Dose_mg_" />
-            <PropertyRef Name="QuantityPerUnit" />
-            <PropertyRef Name="CompanyName" />
-          </Key>
-          <Property Name="TradeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ActiveSubstance" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Dose_mg_" Type="Int32" Nullable="false" />
-          <Property Name="QuantityPerUnit" Type="Int32" Nullable="false" />
-          <Property Name="UnitPrice_EUR_" Type="Double" />
-          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Amount" Type="Int32" />
-          <Property Name="Price" Type="Double" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
