@@ -44,7 +44,7 @@ namespace HospitalPharmacy
                 int price;
                 connection.Open();
                 DataTable dt = new DataTable();
-                SqlCommand priceCommand = new SqlCommand("SELECT SUM(Total_price) FROM GenerateOrderView;", connection);
+                SqlCommand priceCommand = new SqlCommand("SELECT SUM(Price) FROM GenerateOrdersView;", connection);
                 SqlDataReader reader = priceCommand.ExecuteReader();
                 dt.Load(reader);
                 DataRow dw = dt.Rows[0];

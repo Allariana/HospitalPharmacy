@@ -37,7 +37,6 @@
             this.departmentsGridView = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.generateButton = new System.Windows.Forms.Button();
-            this.orderButton = new System.Windows.Forms.Button();
             this.medicinesGridView = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.newOrderGridView = new System.Windows.Forms.DataGridView();
@@ -89,8 +88,8 @@
             // 
             // tabControl
             // 
-            this.tabControl.Controls.Add(this.departmentsPage);
             this.tabControl.Controls.Add(this.tabPage3);
+            this.tabControl.Controls.Add(this.departmentsPage);
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Location = new System.Drawing.Point(15, 38);
             this.tabControl.Name = "tabControl";
@@ -123,7 +122,6 @@
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.generateButton);
-            this.tabPage3.Controls.Add(this.orderButton);
             this.tabPage3.Controls.Add(this.medicinesGridView);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -134,7 +132,7 @@
             // 
             // generateButton
             // 
-            this.generateButton.Location = new System.Drawing.Point(17, 300);
+            this.generateButton.Location = new System.Drawing.Point(17, 491);
             this.generateButton.Name = "generateButton";
             this.generateButton.Size = new System.Drawing.Size(88, 23);
             this.generateButton.TabIndex = 2;
@@ -142,22 +140,12 @@
             this.generateButton.UseVisualStyleBackColor = true;
             this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
             // 
-            // orderButton
-            // 
-            this.orderButton.Location = new System.Drawing.Point(132, 300);
-            this.orderButton.Name = "orderButton";
-            this.orderButton.Size = new System.Drawing.Size(88, 23);
-            this.orderButton.TabIndex = 1;
-            this.orderButton.Text = "Make order";
-            this.orderButton.UseVisualStyleBackColor = true;
-            this.orderButton.Click += new System.EventHandler(this.orderButton_Click);
-            // 
             // medicinesGridView
             // 
             this.medicinesGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.medicinesGridView.Location = new System.Drawing.Point(17, 12);
             this.medicinesGridView.Name = "medicinesGridView";
-            this.medicinesGridView.Size = new System.Drawing.Size(1012, 264);
+            this.medicinesGridView.Size = new System.Drawing.Size(1012, 473);
             this.medicinesGridView.TabIndex = 0;
             this.medicinesGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -266,7 +254,6 @@
         private System.Windows.Forms.ToolStripMenuItem inStockToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView medicinesGridView;
-        private System.Windows.Forms.Button orderButton;
         private System.Windows.Forms.Button generateButton;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView newOrderGridView;

@@ -14,6 +14,7 @@ namespace HospitalPharmacy
     
     public partial class GenerateOrdersView
     {
+        public int MedicineID { get; set; }
         public string TradeName { get; set; }
         public string ActiveSubstance { get; set; }
         public int Dose_mg_ { get; set; }
@@ -21,6 +22,6 @@ namespace HospitalPharmacy
         public Nullable<double> UnitPrice_EUR_ { get; set; }
         public string CompanyName { get; set; }
         public Nullable<int> Amount { get; set; }
-        public Nullable<double> Total_price { get; set; }
+        public Nullable<double> Price { get; set; }
     }
 }
