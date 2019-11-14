@@ -18,16 +18,27 @@ namespace HospitalPharmacy
         {
             InitializeComponent();
             this.UserLabel.Text = username;
+            
             try
             {
                 pharmacyContext = new PharmacyEntities();
                 departmentsGridView.DataSource = pharmacyContext.DepartmentsViews.ToList();
                 medicinesGridView.DataSource = pharmacyContext.MedicinesViews.ToList();
                 medicinesOrdersGridView.DataSource = pharmacyContext.MedicinesOrdersViews.ToList();
+                              
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            ConnectionManager connection = new ConnectionManager();
+            DataTable idNameCombo = new DataTable();
+            string columnname = "MedicinesOrderID";
+            string tablename = "MedicinesOrders";
+            connection.getTable(tablename, columnname, idNameCombo);
+            foreach (DataRow row in idNameCombo.Rows)
+            {
+                medicineOrderIDComboBox.Items.Add(row["MedicinesOrderID"]);
             }
         }
         
@@ -55,11 +66,12 @@ namespace HospitalPharmacy
         private void listOfDepartmentsToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             tabControl.SelectedTab = departmentsPage;
+             
         }
 
         private void departmentsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -90,7 +102,22 @@ namespace HospitalPharmacy
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
+            //medicinesOrderDetailsGridView.DataSource = pharmacyContext.MedicineOrderDetails;
+        }
 
+        private void stockPage_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkButton_Click(object sender, EventArgs e)
+        {
+            new MedicinesOrderDetailsForm(medicineOrderIDComboBox.SelectedItem.ToString()).Show();
         }
     }
 }

@@ -36,23 +36,26 @@
             this.stockPage = new System.Windows.Forms.TabPage();
             this.generateButton = new System.Windows.Forms.Button();
             this.medicinesGridView = new System.Windows.Forms.DataGridView();
-            this.departmentsPage = new System.Windows.Forms.TabPage();
-            this.departmentsGridView = new System.Windows.Forms.DataGridView();
             this.medicinesOrdersPage = new System.Windows.Forms.TabPage();
             this.medicinesOrdersGridView = new System.Windows.Forms.DataGridView();
+            this.departmentsPage = new System.Windows.Forms.TabPage();
+            this.departmentsGridView = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.departmentsAndOrToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listOfDepartmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.warehouseAndShoppingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.medicineOrderIDComboBox = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.checkButton = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl.SuspendLayout();
             this.stockPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesGridView)).BeginInit();
-            this.departmentsPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.departmentsGridView)).BeginInit();
             this.medicinesOrdersPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesOrdersGridView)).BeginInit();
+            this.departmentsPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentsGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
@@ -107,6 +110,7 @@
             this.stockPage.TabIndex = 2;
             this.stockPage.Text = "Stock";
             this.stockPage.UseVisualStyleBackColor = true;
+            this.stockPage.Click += new System.EventHandler(this.stockPage_Click);
             // 
             // generateButton
             // 
@@ -126,6 +130,30 @@
             this.medicinesGridView.Size = new System.Drawing.Size(1012, 473);
             this.medicinesGridView.TabIndex = 0;
             this.medicinesGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // medicinesOrdersPage
+            // 
+            this.medicinesOrdersPage.Controls.Add(this.checkButton);
+            this.medicinesOrdersPage.Controls.Add(this.label2);
+            this.medicinesOrdersPage.Controls.Add(this.medicineOrderIDComboBox);
+            this.medicinesOrdersPage.Controls.Add(this.medicinesOrdersGridView);
+            this.medicinesOrdersPage.Location = new System.Drawing.Point(4, 22);
+            this.medicinesOrdersPage.Name = "medicinesOrdersPage";
+            this.medicinesOrdersPage.Padding = new System.Windows.Forms.Padding(3);
+            this.medicinesOrdersPage.Size = new System.Drawing.Size(1220, 532);
+            this.medicinesOrdersPage.TabIndex = 3;
+            this.medicinesOrdersPage.Text = "Medicines Orders";
+            this.medicinesOrdersPage.UseVisualStyleBackColor = true;
+            // 
+            // medicinesOrdersGridView
+            // 
+            this.medicinesOrdersGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.medicinesOrdersGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.medicinesOrdersGridView.Location = new System.Drawing.Point(23, 20);
+            this.medicinesOrdersGridView.Name = "medicinesOrdersGridView";
+            this.medicinesOrdersGridView.Size = new System.Drawing.Size(564, 492);
+            this.medicinesOrdersGridView.TabIndex = 0;
+            this.medicinesOrdersGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
             // 
             // departmentsPage
             // 
@@ -148,27 +176,6 @@
             this.departmentsGridView.Size = new System.Drawing.Size(457, 326);
             this.departmentsGridView.TabIndex = 0;
             this.departmentsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.departmentsGridView_CellContentClick);
-            // 
-            // medicinesOrdersPage
-            // 
-            this.medicinesOrdersPage.Controls.Add(this.medicinesOrdersGridView);
-            this.medicinesOrdersPage.Location = new System.Drawing.Point(4, 22);
-            this.medicinesOrdersPage.Name = "medicinesOrdersPage";
-            this.medicinesOrdersPage.Padding = new System.Windows.Forms.Padding(3);
-            this.medicinesOrdersPage.Size = new System.Drawing.Size(1220, 532);
-            this.medicinesOrdersPage.TabIndex = 3;
-            this.medicinesOrdersPage.Text = "Medicines Orders";
-            this.medicinesOrdersPage.UseVisualStyleBackColor = true;
-            // 
-            // medicinesOrdersGridView
-            // 
-            this.medicinesOrdersGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.medicinesOrdersGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.medicinesOrdersGridView.Location = new System.Drawing.Point(23, 20);
-            this.medicinesOrdersGridView.Name = "medicinesOrdersGridView";
-            this.medicinesOrdersGridView.Size = new System.Drawing.Size(564, 302);
-            this.medicinesOrdersGridView.TabIndex = 0;
-            this.medicinesOrdersGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
             // 
             // menuStrip1
             // 
@@ -210,6 +217,33 @@
             this.inStockToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.inStockToolStripMenuItem.Text = "In stock";
             // 
+            // medicineOrderIDComboBox
+            // 
+            this.medicineOrderIDComboBox.FormattingEnabled = true;
+            this.medicineOrderIDComboBox.Location = new System.Drawing.Point(624, 52);
+            this.medicineOrderIDComboBox.Name = "medicineOrderIDComboBox";
+            this.medicineOrderIDComboBox.Size = new System.Drawing.Size(121, 21);
+            this.medicineOrderIDComboBox.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(621, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(102, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Check Order Details";
+            // 
+            // checkButton
+            // 
+            this.checkButton.Location = new System.Drawing.Point(769, 50);
+            this.checkButton.Name = "checkButton";
+            this.checkButton.Size = new System.Drawing.Size(75, 23);
+            this.checkButton.TabIndex = 5;
+            this.checkButton.Text = "Check";
+            this.checkButton.UseVisualStyleBackColor = true;
+            this.checkButton.Click += new System.EventHandler(this.checkButton_Click);
+            // 
             // MainPageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -227,10 +261,11 @@
             this.tabControl.ResumeLayout(false);
             this.stockPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.medicinesGridView)).EndInit();
+            this.medicinesOrdersPage.ResumeLayout(false);
+            this.medicinesOrdersPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.medicinesOrdersGridView)).EndInit();
             this.departmentsPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.departmentsGridView)).EndInit();
-            this.medicinesOrdersPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.medicinesOrdersGridView)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
@@ -258,5 +293,8 @@
         private System.Windows.Forms.TabPage medicinesOrdersPage;
         private System.Windows.Forms.DataGridView medicinesOrdersGridView;
         private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.ComboBox medicineOrderIDComboBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button checkButton;
     }
 }
