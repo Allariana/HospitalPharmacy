@@ -36,8 +36,7 @@ namespace HospitalPharmacy
             SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
             adapter.Fill(dataTable);
             connection.Close();
-        }
-        
+        }       
         public void getMedicinesOrderDetails(DataTable dataTable, String MedicineOrderID)
         {
             connection.Open();
@@ -85,8 +84,7 @@ namespace HospitalPharmacy
             {
                 price = "0";
                 return price;
-            }
-            
+            }           
         }
         public void insertOrder(String username)
         {
@@ -117,29 +115,7 @@ namespace HospitalPharmacy
             sqlDataReader.Close();
             reader.Close();
             connection.Close();
-        }
-        
-    }
-    
-    /*public void getTableWithCondition(String tablename, String columnname, DataTable dataTable, String condition)
-        {
-            connection.Open();
-            int id = int.Parse(condition.ToString());
-            String command = "select * from " + tablename + " where " + columnname + " = " + id + ";";
-            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-            adapter.Fill(dataTable);
-            connection.Close();
-        }*/
-    /*public void getTableWithCondition(String columnname, String tablename, String condition, String condition2, DataTable dataTable)
-    {
-        connection.Open();
-        //if (condition2 is null) condition2 = "Seronil";
-        //select [Dose(mg)] from Medicines where TradeName = 'Seronil';
-        //String command = "select " + columnname + " from " + tablename + "where " + condition + " = " + condition2 + ";";
-        String command = "select " + columnname + " from " + tablename + "where " + condition + " = 'Seronil';";
-        SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-        adapter.Fill(dataTable);
-        connection.Close();
-    }*/
+        } 
+    }   
 }
 
