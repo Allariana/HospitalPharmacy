@@ -16,6 +16,7 @@ namespace HospitalPharmacy
         PharmacyEntities pharmacyContext;
         public MainPageForm(string username)
         {
+            
             InitializeComponent();
             this.UserLabel.Text = username;
             
@@ -98,7 +99,7 @@ namespace HospitalPharmacy
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            //medicinesOrderDetailsGridView.DataSource = pharmacyContext.MedicineOrderDetails;
+            
         }
 
         private void stockPage_Click(object sender, EventArgs e)
@@ -119,6 +120,18 @@ namespace HospitalPharmacy
         private void button1_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void changeOrderStatusButton_Click(object sender, EventArgs e)
+        {
+            ConnectionManager connection = new ConnectionManager();
+            connection.changeOrderStatus(medicineOrderIDComboBox.SelectedItem.ToString());
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            new MainPageForm(this.UserLabel.Text).Show();
         }
     }
 }

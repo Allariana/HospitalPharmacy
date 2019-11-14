@@ -22,10 +22,9 @@ namespace HospitalPharmacy
 
             InitializeComponent();
             ConnectionManager connection = new ConnectionManager();
-            
-            
-            this.priceLabel.Text = connection.getPrice().ToString();
-            
+
+            this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
+                        
             try
             {
                 pharmacyContext = new PharmacyEntities();

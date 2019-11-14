@@ -50,6 +50,8 @@
             this.inStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.exitButton = new System.Windows.Forms.Button();
+            this.changeOrderStatusButton = new System.Windows.Forms.Button();
+            this.refreshButton = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.stockPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesGridView)).BeginInit();
@@ -64,7 +66,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(775, 17);
+            this.label1.Location = new System.Drawing.Point(686, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 13);
             this.label1.TabIndex = 0;
@@ -73,7 +75,7 @@
             // UserLabel
             // 
             this.UserLabel.AutoSize = true;
-            this.UserLabel.Location = new System.Drawing.Point(849, 17);
+            this.UserLabel.Location = new System.Drawing.Point(760, 17);
             this.UserLabel.Name = "UserLabel";
             this.UserLabel.Size = new System.Drawing.Size(55, 13);
             this.UserLabel.TabIndex = 3;
@@ -134,6 +136,7 @@
             // 
             // medicinesOrdersPage
             // 
+            this.medicinesOrdersPage.Controls.Add(this.changeOrderStatusButton);
             this.medicinesOrdersPage.Controls.Add(this.checkButton);
             this.medicinesOrdersPage.Controls.Add(this.label2);
             this.medicinesOrdersPage.Controls.Add(this.medicineOrderIDComboBox);
@@ -141,29 +144,29 @@
             this.medicinesOrdersPage.Location = new System.Drawing.Point(4, 22);
             this.medicinesOrdersPage.Name = "medicinesOrdersPage";
             this.medicinesOrdersPage.Padding = new System.Windows.Forms.Padding(3);
-            this.medicinesOrdersPage.Size = new System.Drawing.Size(1220, 532);
+            this.medicinesOrdersPage.Size = new System.Drawing.Size(1075, 532);
             this.medicinesOrdersPage.TabIndex = 3;
             this.medicinesOrdersPage.Text = "Medicines Orders";
             this.medicinesOrdersPage.UseVisualStyleBackColor = true;
             // 
             // checkButton
             // 
-            this.checkButton.Location = new System.Drawing.Point(769, 50);
+            this.checkButton.Location = new System.Drawing.Point(624, 91);
             this.checkButton.Name = "checkButton";
-            this.checkButton.Size = new System.Drawing.Size(75, 23);
+            this.checkButton.Size = new System.Drawing.Size(121, 23);
             this.checkButton.TabIndex = 5;
-            this.checkButton.Text = "Check";
+            this.checkButton.Text = "Check Order Details";
             this.checkButton.UseVisualStyleBackColor = true;
             this.checkButton.Click += new System.EventHandler(this.checkButton_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(621, 20);
+            this.label2.Location = new System.Drawing.Point(630, 20);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(102, 13);
+            this.label2.Size = new System.Drawing.Size(87, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Check Order Details";
+            this.label2.Text = "Choose Order Id:";
             // 
             // medicineOrderIDComboBox
             // 
@@ -255,11 +258,32 @@
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.button1_Click);
             // 
+            // changeOrderStatusButton
+            // 
+            this.changeOrderStatusButton.Location = new System.Drawing.Point(624, 130);
+            this.changeOrderStatusButton.Name = "changeOrderStatusButton";
+            this.changeOrderStatusButton.Size = new System.Drawing.Size(121, 23);
+            this.changeOrderStatusButton.TabIndex = 6;
+            this.changeOrderStatusButton.Text = "Mark order as done";
+            this.changeOrderStatusButton.UseVisualStyleBackColor = true;
+            this.changeOrderStatusButton.Click += new System.EventHandler(this.changeOrderStatusButton_Click);
+            // 
+            // refreshButton
+            // 
+            this.refreshButton.Location = new System.Drawing.Point(837, 12);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(75, 23);
+            this.refreshButton.TabIndex = 7;
+            this.refreshButton.Text = "Refresh";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // MainPageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1113, 608);
+            this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.LogOutButton);
@@ -309,5 +333,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button checkButton;
         private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.Button changeOrderStatusButton;
+        private System.Windows.Forms.Button refreshButton;
     }
 }

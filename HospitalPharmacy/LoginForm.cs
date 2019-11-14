@@ -61,5 +61,10 @@ namespace HospitalPharmacy
         {
 
         }
+
+        private void PasswordTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

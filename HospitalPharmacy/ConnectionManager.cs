@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace HospitalPharmacy
 {
@@ -48,26 +49,41 @@ namespace HospitalPharmacy
             adapter.Fill(dataTable);
             connection.Close();
         }
-        public int getPrice()
+        public void changeOrderStatus(String MedicineOrderID)
         {
-            
             try
             {
-                int price;
+                connection.Open();
+                int id = int.Parse(MedicineOrderID.ToString());
+                String changeOrderStatusCommand = "UPDATE MedicinesOrders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()) where MedicinesOrderID = " + id + ";";
+                new SqlCommand(changeOrderStatusCommand, connection).ExecuteNonQuery();
+                MessageBox.Show("Succeed!");
+                connection.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Failed!");
+            }
+        }
+        public String getPrice()
+        {
+            String price;
+            try
+            {
                 connection.Open();
                 DataTable dt = new DataTable();
                 SqlCommand priceCommand = new SqlCommand("SELECT SUM(Price) FROM GenerateOrderView;", connection);
                 SqlDataReader reader = priceCommand.ExecuteReader();
                 dt.Load(reader);
                 DataRow dw = dt.Rows[0];
-                price = int.Parse(dw[0].ToString());
+                price = dw[0].ToString();
                 reader.Close();
                 connection.Close();
                 return price;
             }
-            catch(FormatException formatException)
+            catch(FormatException)
             {
-                int price = 0;
+                price = "0";
                 return price;
             }
             
@@ -102,8 +118,9 @@ namespace HospitalPharmacy
             reader.Close();
             connection.Close();
         }
-            
-        }
+        
+    }
+    
     /*public void getTableWithCondition(String tablename, String columnname, DataTable dataTable, String condition)
         {
             connection.Open();
