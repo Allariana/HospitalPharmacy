@@ -87,12 +87,6 @@
     <Compile Include="MainPageForm.Designer.cs">
       <DependentUpon>MainPageForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MakingOrderForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MakingOrderForm.Designer.cs">
-      <DependentUpon>MakingOrderForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Medicine.cs">
       <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
@@ -107,9 +101,6 @@
     </Compile>
     <Compile Include="MedicinesOrderDetailsForm.Designer.cs">
       <DependentUpon>MedicinesOrderDetailsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MedicinesOrderDetailsView.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MedicinesOrdersView.cs">
       <DependentUpon>PharmacyDataModel.tt</DependentUpon>
@@ -169,9 +160,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainPageForm.resx">
       <DependentUpon>MainPageForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MakingOrderForm.resx">
-      <DependentUpon>MakingOrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MedicinesOrderDetailsForm.resx">
       <DependentUpon>MedicinesOrderDetailsForm.cs</DependentUpon>

@@ -37,6 +37,9 @@
             this.generateButton = new System.Windows.Forms.Button();
             this.medicinesGridView = new System.Windows.Forms.DataGridView();
             this.medicinesOrdersPage = new System.Windows.Forms.TabPage();
+            this.checkButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.medicineOrderIDComboBox = new System.Windows.Forms.ComboBox();
             this.medicinesOrdersGridView = new System.Windows.Forms.DataGridView();
             this.departmentsPage = new System.Windows.Forms.TabPage();
             this.departmentsGridView = new System.Windows.Forms.DataGridView();
@@ -45,10 +48,8 @@
             this.listOfDepartmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.warehouseAndShoppingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.medicineOrderIDComboBox = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.checkButton = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.exitButton = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.stockPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesGridView)).BeginInit();
@@ -63,7 +64,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1033, 14);
+            this.label1.Location = new System.Drawing.Point(775, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 13);
             this.label1.TabIndex = 0;
@@ -72,7 +73,7 @@
             // UserLabel
             // 
             this.UserLabel.AutoSize = true;
-            this.UserLabel.Location = new System.Drawing.Point(1107, 14);
+            this.UserLabel.Location = new System.Drawing.Point(849, 17);
             this.UserLabel.Name = "UserLabel";
             this.UserLabel.Size = new System.Drawing.Size(55, 13);
             this.UserLabel.TabIndex = 3;
@@ -81,7 +82,7 @@
             // 
             // LogOutButton
             // 
-            this.LogOutButton.Location = new System.Drawing.Point(1168, 9);
+            this.LogOutButton.Location = new System.Drawing.Point(931, 12);
             this.LogOutButton.Name = "LogOutButton";
             this.LogOutButton.Size = new System.Drawing.Size(75, 23);
             this.LogOutButton.TabIndex = 4;
@@ -97,7 +98,7 @@
             this.tabControl.Location = new System.Drawing.Point(15, 38);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1228, 558);
+            this.tabControl.Size = new System.Drawing.Size(1083, 558);
             this.tabControl.TabIndex = 5;
             // 
             // stockPage
@@ -106,7 +107,7 @@
             this.stockPage.Controls.Add(this.medicinesGridView);
             this.stockPage.Location = new System.Drawing.Point(4, 22);
             this.stockPage.Name = "stockPage";
-            this.stockPage.Size = new System.Drawing.Size(1220, 532);
+            this.stockPage.Size = new System.Drawing.Size(1075, 532);
             this.stockPage.TabIndex = 2;
             this.stockPage.Text = "Stock";
             this.stockPage.UseVisualStyleBackColor = true;
@@ -144,6 +145,33 @@
             this.medicinesOrdersPage.TabIndex = 3;
             this.medicinesOrdersPage.Text = "Medicines Orders";
             this.medicinesOrdersPage.UseVisualStyleBackColor = true;
+            // 
+            // checkButton
+            // 
+            this.checkButton.Location = new System.Drawing.Point(769, 50);
+            this.checkButton.Name = "checkButton";
+            this.checkButton.Size = new System.Drawing.Size(75, 23);
+            this.checkButton.TabIndex = 5;
+            this.checkButton.Text = "Check";
+            this.checkButton.UseVisualStyleBackColor = true;
+            this.checkButton.Click += new System.EventHandler(this.checkButton_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(621, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(102, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Check Order Details";
+            // 
+            // medicineOrderIDComboBox
+            // 
+            this.medicineOrderIDComboBox.FormattingEnabled = true;
+            this.medicineOrderIDComboBox.Location = new System.Drawing.Point(624, 52);
+            this.medicineOrderIDComboBox.Name = "medicineOrderIDComboBox";
+            this.medicineOrderIDComboBox.Size = new System.Drawing.Size(121, 21);
+            this.medicineOrderIDComboBox.TabIndex = 2;
             // 
             // medicinesOrdersGridView
             // 
@@ -184,7 +212,7 @@
             this.warehouseAndShoppingToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1255, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1113, 24);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -217,38 +245,22 @@
             this.inStockToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.inStockToolStripMenuItem.Text = "In stock";
             // 
-            // medicineOrderIDComboBox
+            // exitButton
             // 
-            this.medicineOrderIDComboBox.FormattingEnabled = true;
-            this.medicineOrderIDComboBox.Location = new System.Drawing.Point(624, 52);
-            this.medicineOrderIDComboBox.Name = "medicineOrderIDComboBox";
-            this.medicineOrderIDComboBox.Size = new System.Drawing.Size(121, 21);
-            this.medicineOrderIDComboBox.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(621, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(102, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Check Order Details";
-            // 
-            // checkButton
-            // 
-            this.checkButton.Location = new System.Drawing.Point(769, 50);
-            this.checkButton.Name = "checkButton";
-            this.checkButton.Size = new System.Drawing.Size(75, 23);
-            this.checkButton.TabIndex = 5;
-            this.checkButton.Text = "Check";
-            this.checkButton.UseVisualStyleBackColor = true;
-            this.checkButton.Click += new System.EventHandler(this.checkButton_Click);
+            this.exitButton.Location = new System.Drawing.Point(1023, 12);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(75, 23);
+            this.exitButton.TabIndex = 7;
+            this.exitButton.Text = "Exit";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainPageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1255, 608);
+            this.ClientSize = new System.Drawing.Size(1113, 608);
+            this.Controls.Add(this.exitButton);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.LogOutButton);
             this.Controls.Add(this.UserLabel);
@@ -296,5 +308,6 @@
         private System.Windows.Forms.ComboBox medicineOrderIDComboBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button checkButton;
+        private System.Windows.Forms.Button exitButton;
     }
 }

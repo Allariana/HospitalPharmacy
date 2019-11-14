@@ -84,11 +84,7 @@ namespace HospitalPharmacy
 
         }
 
-        private void orderButton_Click(object sender, EventArgs e)
-        {
-            new MakingOrderForm().Show();
-        }
-
+        
         private void tabPage2_Click(object sender, EventArgs e)
         {
 
@@ -118,6 +114,11 @@ namespace HospitalPharmacy
         private void checkButton_Click(object sender, EventArgs e)
         {
             new MedicinesOrderDetailsForm(medicineOrderIDComboBox.SelectedItem.ToString()).Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

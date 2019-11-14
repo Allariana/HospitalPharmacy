@@ -19,9 +19,6 @@ namespace HospitalPharmacy
             InitializeComponent();
             ConnectionManager connection = new ConnectionManager();
             DataTable orderDetails = new DataTable();
-            //string columnname = "MedicinesOrderID";
-            //string tablename = "MedicineOrderDetails";
-            //connection.getTableWithCondition(tablename, columnname, orderDetails, MedicinesOrderId);
             connection.getMedicinesOrderDetails(orderDetails, MedicinesOrderId);
             medicinesOrderDetailsGridView.DataSource = orderDetails;
         }

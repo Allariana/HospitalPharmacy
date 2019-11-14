@@ -34,6 +34,7 @@
             // 
             // medicinesOrderDetailsGridView
             // 
+            this.medicinesOrderDetailsGridView.AllowUserToAddRows = false;
             this.medicinesOrderDetailsGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.medicinesOrderDetailsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.medicinesOrderDetailsGridView.Location = new System.Drawing.Point(28, 27);
