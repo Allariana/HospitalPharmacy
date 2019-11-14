@@ -156,8 +156,8 @@ warning 6002: The table/view 'Pharmacy.dbo.DepartmentsView' does not have a prim
           <Property Name="OrdynatorName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Pharmacy.dbo.GenerateOrdersView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="GenerateOrdersView">
+warning 6002: The table/view 'Pharmacy.dbo.GenerateOrderView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GenerateOrderView">
           <Key>
             <PropertyRef Name="MedicineID" />
             <PropertyRef Name="TradeName" />
@@ -176,8 +176,6 @@ warning 6002: The table/view 'Pharmacy.dbo.GenerateOrdersView' does not have a p
           <Property Name="Amount" Type="int" />
           <Property Name="Price" Type="float" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Pharmacy.dbo.GenerateOrderView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Pharmacy.dbo.MedicinesView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="MedicinesView">
@@ -396,18 +394,18 @@ warning 6002: The table/view 'Pharmacy.dbo.MedicinesView' does not have a primar
 [DepartmentsView].[OrdynatorName] AS [OrdynatorName]
 FROM [dbo].[DepartmentsView] AS [DepartmentsView]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="GenerateOrdersView" EntityType="Self.GenerateOrdersView" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="GenerateOrderView" EntityType="Self.GenerateOrderView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-[GenerateOrdersView].[MedicineID] AS [MedicineID], 
-[GenerateOrdersView].[TradeName] AS [TradeName], 
-[GenerateOrdersView].[ActiveSubstance] AS [ActiveSubstance], 
-[GenerateOrdersView].[Dose(mg)] AS [Dose(mg)], 
-[GenerateOrdersView].[QuantityPerUnit] AS [QuantityPerUnit], 
-[GenerateOrdersView].[UnitPrice(EUR)] AS [UnitPrice(EUR)], 
-[GenerateOrdersView].[CompanyName] AS [CompanyName], 
-[GenerateOrdersView].[Amount] AS [Amount], 
-[GenerateOrdersView].[Price] AS [Price]
-FROM [dbo].[GenerateOrdersView] AS [GenerateOrdersView]</DefiningQuery>
+[GenerateOrderView].[MedicineID] AS [MedicineID], 
+[GenerateOrderView].[TradeName] AS [TradeName], 
+[GenerateOrderView].[ActiveSubstance] AS [ActiveSubstance], 
+[GenerateOrderView].[Dose(mg)] AS [Dose(mg)], 
+[GenerateOrderView].[QuantityPerUnit] AS [QuantityPerUnit], 
+[GenerateOrderView].[UnitPrice(EUR)] AS [UnitPrice(EUR)], 
+[GenerateOrderView].[CompanyName] AS [CompanyName], 
+[GenerateOrderView].[Amount] AS [Amount], 
+[GenerateOrderView].[Price] AS [Price]
+FROM [dbo].[GenerateOrderView] AS [GenerateOrderView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="MedicinesView" EntityType="Self.MedicinesView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -753,7 +751,7 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
             <End Role="Pharmacist" EntitySet="Pharmacists" />
             <End Role="MedicinesOrder" EntitySet="MedicinesOrders" />
           </AssociationSet>
-          <EntitySet Name="GenerateOrdersViews" EntityType="PharmacyEntity.GenerateOrdersView" />
+          <EntitySet Name="GenerateOrderViews" EntityType="PharmacyEntity.GenerateOrderView" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -918,7 +916,7 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="GenerateOrdersView">
+        <EntityType Name="GenerateOrderView">
           <Key>
             <PropertyRef Name="MedicineID" />
             <PropertyRef Name="TradeName" />
@@ -1142,9 +1140,9 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="GenerateOrdersViews">
-            <EntityTypeMapping TypeName="PharmacyEntity.GenerateOrdersView">
-              <MappingFragment StoreEntitySet="GenerateOrdersView">
+          <EntitySetMapping Name="GenerateOrderViews">
+            <EntityTypeMapping TypeName="PharmacyEntity.GenerateOrderView">
+              <MappingFragment StoreEntitySet="GenerateOrderView">
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />

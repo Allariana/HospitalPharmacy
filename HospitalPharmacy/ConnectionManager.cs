@@ -44,7 +44,7 @@ namespace HospitalPharmacy
                 int price;
                 connection.Open();
                 DataTable dt = new DataTable();
-                SqlCommand priceCommand = new SqlCommand("SELECT SUM(Price) FROM GenerateOrdersView;", connection);
+                SqlCommand priceCommand = new SqlCommand("SELECT SUM(Price) FROM GenerateOrderView;", connection);
                 SqlDataReader reader = priceCommand.ExecuteReader();
                 dt.Load(reader);
                 DataRow dw = dt.Rows[0];
@@ -80,7 +80,7 @@ namespace HospitalPharmacy
             pharmacistID = int.Parse(data[0].ToString());
             string insertMedicinesOrder = "insert into MedicinesOrders ([MedicinesOrderID],[PharmacistID],[OrderDate],[Price],[RealizationFlag]) select " + orderID + 
                 "," + pharmacistID + ",CONVERT (date, SYSDATETIME())," +
-                "SUM(Total_price),'N' from GenerateOrderView;" +
+                "SUM(Price),'N' from GenerateOrderView;" +
                 "INSERT INTO MedicineOrderDetails " +
                     "select NEXT VALUE FOR medicineOrderDetailsIdSeq MedicineOrderDetailsID," + orderID + " MedicinesOrderID, MedicineId, " +
                     "dbo.Medicines.RequiredQuantity - dbo.Medicines.UnitsInStock Amount, " +

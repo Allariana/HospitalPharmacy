@@ -12,7 +12,7 @@ namespace HospitalPharmacy
     using System;
     using System.Collections.Generic;
     
-    public partial class GenerateOrdersView
+    public partial class GenerateOrderView
     {
         public int MedicineID { get; set; }
         public string TradeName { get; set; }
