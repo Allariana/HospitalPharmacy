@@ -23,6 +23,8 @@ namespace HospitalPharmacy
         public int DepartmentID { get; set; }
         public Nullable<int> PharmacistID { get; set; }
         public System.DateTime OrderDate { get; set; }
+        public string RealizationFlag { get; set; }
+        public Nullable<System.DateTime> RealizationDate { get; set; }
     
         public virtual Department Department { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }

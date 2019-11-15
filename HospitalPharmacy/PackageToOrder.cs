@@ -12,20 +12,13 @@ namespace HospitalPharmacy
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderDetail
+    public partial class PackageToOrder
     {
-        public OrderDetail()
-        {
-            this.PackageToOrders = new HashSet<PackageToOrder>();
-        }
-    
+        public int PackageToOrderID { get; set; }
         public int OrderDetailID { get; set; }
-        public int OrderID { get; set; }
-        public int MedicineID { get; set; }
-        public int Amount { get; set; }
+        public Nullable<int> SerialNumber { get; set; }
     
-        public virtual Order Order { get; set; }
+        public virtual OrderDetail OrderDetail { get; set; }
         public virtual PackageofMedicine PackageofMedicine { get; set; }
-        public virtual ICollection<PackageToOrder> PackageToOrders { get; set; }
     }
 }
