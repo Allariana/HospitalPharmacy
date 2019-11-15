@@ -13,6 +13,19 @@ namespace HospitalPharmacy
     {
         public SqlConnection connection = new SqlConnection("Data Source=.;Initial Catalog=Pharmacy;Integrated Security=True");
 
+        private static ConnectionManager instance; //singleton
+
+        private ConnectionManager() { } //żeby żadna inna klasa nie mogła go stworzyć
+
+        public static ConnectionManager getInstance()
+        {
+            if (instance == null)
+            {
+                instance = new ConnectionManager();
+            }
+            return instance;
+        }
+
         public bool verifyIfUserIsCorrect(String username, String password)
         {
             connection.Open();
@@ -41,30 +54,40 @@ namespace HospitalPharmacy
         {
             connection.Open();
             int id = int.Parse(MedicineOrderID.ToString());
-            String command = "select m.TradeName, m.ActiveSubstance, m.[Dose(mg)], m.QuantityPerUnit, m.[UnitPrice(EUR)], s.CompanyName, d.Amount, d.Price Total_price " +
+            String command = "select m.TradeName, m.ActiveSubstance, m.[Dose(mg)], m.QuantityPerUnit, m.[UnitPrice(EUR)], s.CompanyName, d.Amount, ROUND(d.Price,2) Total_price " +
                 "from MedicineOrderDetails d join Medicines m on d.MedicineID = m.MedicineID join Suppliers s on s.SupplierID = m.SupplierID join MedicinesOrders o" +
                 "    on o.MedicinesOrderID = d.MedicinesOrderID and o.MedicinesOrderID = " + id + ";";
             SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
             adapter.Fill(dataTable);
             connection.Close();
         }
+        
         public void pickUpOrder(String MedicineOrderID)
         {
+            int id = int.Parse(MedicineOrderID.ToString());
+            connection.Open();
             try
             {
-                connection.Open();
-                int id = int.Parse(MedicineOrderID.ToString());
+                
                 String pickUpOrderCommand = "UPDATE MedicinesOrders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()) where MedicinesOrderID " +
                     "= " + id + "; " +
                     " UPDATE Medicines SET UnitsInStock = UnitsInStock + (select d.Amount from MedicineOrderDetails d join Medicines m on m.MedicineID = d.MedicineID join " +
-                    "MedicinesOrders o on d.MedicinesOrderID = o.MedicinesOrderID and o.MedicinesOrderID = " + id + " and m.MedicineID = Medicines.MedicineID); ";
+                    "MedicinesOrders o on d.MedicinesOrderID = o.MedicinesOrderID and o.MedicinesOrderID = " + id + " and m.MedicineID = Medicines.MedicineID)" +
+                    "where MedicineID=(select MedicineID from MedicineOrderDetails); ";
                 new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
                 MessageBox.Show("Succeed!");
-                connection.Close();
+                
             }
-            catch (Exception e)
+            catch (Exception)
             {
+                String pickUpOrderCommand = "UPDATE MedicinesOrders SET RealizationFlag = 'N', RealizationDate = null where MedicinesOrderID " +
+                    "= " + id + "; ";
+                new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
                 MessageBox.Show("Failed!");
+            }
+            finally
+            {
+                connection.Close();
             }
         }
         public String getPrice()
@@ -92,15 +115,21 @@ namespace HospitalPharmacy
         public void insertOrder(String username)
         {
             connection.Open();
-            int orderID,pharmacistID;
+            int orderID,pharmacistID, orderDetailsID;
             DataTable dt = new DataTable();
             DataTable dataTable = new DataTable();
             SqlCommand orderIDCommand = new SqlCommand("select NEXT VALUE FOR medicinesOrderIDSeq;", connection);
+            SqlCommand orderDetailsIDCommand = new SqlCommand("select NEXT VALUE FOR medicinesOrderIDSeq;", connection);
             SqlDataReader reader = orderIDCommand.ExecuteReader();
             dt.Load(reader);
             DataRow dw = dt.Rows[0];
             DataRow data = dt.Rows[0];
             orderID = int.Parse(dw[0].ToString());
+            reader = orderDetailsIDCommand.ExecuteReader();
+            dt.Load(reader);
+            dw = dt.Rows[0];
+            data = dt.Rows[0];
+            orderDetailsID = int.Parse(dw[0].ToString());
             SqlCommand pharmacistIDCommand = new SqlCommand("select p.PharmacistID from Pharmacists p join Users u on p.UserID=u.UserID where u.Username = '" 
                 + username + "';", connection);
             SqlDataReader sqlDataReader = pharmacistIDCommand.ExecuteReader();
@@ -110,10 +139,16 @@ namespace HospitalPharmacy
             string insertMedicinesOrder = "insert into MedicinesOrders ([MedicinesOrderID],[PharmacistID],[OrderDate],[Price],[RealizationFlag]) select " + orderID + 
                 "," + pharmacistID + ",CONVERT (date, SYSDATETIME())," +
                 "SUM(Price),'N' from GenerateOrderView;" +
-                "INSERT INTO MedicineOrderDetails " +
-                    "select NEXT VALUE FOR medicineOrderDetailsIdSeq MedicineOrderDetailsID," + orderID + " MedicinesOrderID, MedicineId, " +
-                    "dbo.Medicines.RequiredQuantity - dbo.Medicines.UnitsInStock Amount, " +
-                    "dbo.Medicines.[UnitPrice(EUR)] * (dbo.Medicines.RequiredQuantity - dbo.Medicines.UnitsInStock) Price from Medicines;";
+                "INSERT INTO MedicineOrderDetails select* from(select " + orderDetailsID + " MedicineOrderDetailsID," + orderID + " MedicinesOrderID, " +
+                "m.MedicineId,CASE WHEN((m.RequiredQuantity - m.UnitsInStock - " +
+                "(select d.Amount from MedicineOrderDetails d join MedicinesOrders o on d.MedicinesOrderID = o.MedicinesOrderID where d.MedicineID = m.MedicineID and o.RealizationFlag = 'N')))IS NULL " +
+                "THEN m.RequiredQuantity - m.UnitsInStock" +
+                " ELSE(m.RequiredQuantity - m.UnitsInStock - (select d.Amount from MedicineOrderDetails d join MedicinesOrders o on d.MedicinesOrderID = o.MedicinesOrderID" +
+                " where d.MedicineID = m.MedicineID and o.RealizationFlag = 'N')) END Amount," +
+                "ROUND	(CASE WHEN((m.RequiredQuantity - m.UnitsInStock - (select d.Amount from MedicineOrderDetails d join MedicinesOrders o on" +
+                " d.MedicinesOrderID = o.MedicinesOrderID where d.MedicineID = m.MedicineID and o.RealizationFlag = 'N')))IS NULL THEN(m.RequiredQuantity - m.UnitsInStock) * m.[UnitPrice(EUR)] " +
+                "ELSE(m.RequiredQuantity - m.UnitsInStock - (select d.Amount from MedicineOrderDetails d join MedicinesOrders o on d.MedicinesOrderID = o.MedicinesOrderID" +
+                " where d.MedicineID = m.MedicineID and o.RealizationFlag = 'N'))*m.[UnitPrice(EUR)] END,2) AS Price from Medicines m)insertOrder where insertOrder.Amount > 0; ";
                 new SqlCommand(insertMedicinesOrder, connection).ExecuteNonQuery();
             sqlDataReader.Close();
             reader.Close();

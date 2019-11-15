@@ -51,7 +51,12 @@
             this.inStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.exitButton = new System.Windows.Forms.Button();
-            this.refreshButton = new System.Windows.Forms.Button();
+            this.generateOrderTabPage = new System.Windows.Forms.TabPage();
+            this.generateOrderViewGrid = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.confirmButton = new System.Windows.Forms.Button();
+            this.priceLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.stockPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesGridView)).BeginInit();
@@ -61,12 +66,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.departmentsGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            this.generateOrderTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.generateOrderViewGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(686, 17);
+            this.label1.Location = new System.Drawing.Point(764, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 13);
             this.label1.TabIndex = 0;
@@ -75,7 +82,7 @@
             // UserLabel
             // 
             this.UserLabel.AutoSize = true;
-            this.UserLabel.Location = new System.Drawing.Point(760, 17);
+            this.UserLabel.Location = new System.Drawing.Point(851, 17);
             this.UserLabel.Name = "UserLabel";
             this.UserLabel.Size = new System.Drawing.Size(55, 13);
             this.UserLabel.TabIndex = 3;
@@ -95,6 +102,7 @@
             // tabControl
             // 
             this.tabControl.Controls.Add(this.stockPage);
+            this.tabControl.Controls.Add(this.generateOrderTabPage);
             this.tabControl.Controls.Add(this.medicinesOrdersPage);
             this.tabControl.Controls.Add(this.departmentsPage);
             this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -109,9 +117,9 @@
             this.stockPage.Controls.Add(this.generateButton);
             this.stockPage.Controls.Add(this.medicinesGridView);
             this.stockPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.stockPage.Location = new System.Drawing.Point(4, 25);
+            this.stockPage.Location = new System.Drawing.Point(4, 22);
             this.stockPage.Name = "stockPage";
-            this.stockPage.Size = new System.Drawing.Size(1075, 529);
+            this.stockPage.Size = new System.Drawing.Size(1075, 532);
             this.stockPage.TabIndex = 2;
             this.stockPage.Text = "Stock";
             this.stockPage.UseVisualStyleBackColor = true;
@@ -188,6 +196,7 @@
             this.medicineOrderIDComboBox.Name = "medicineOrderIDComboBox";
             this.medicineOrderIDComboBox.Size = new System.Drawing.Size(121, 21);
             this.medicineOrderIDComboBox.TabIndex = 2;
+            this.medicineOrderIDComboBox.SelectedIndexChanged += new System.EventHandler(this.medicineOrderIDComboBox_SelectedIndexChanged);
             // 
             // medicinesOrdersGridView
             // 
@@ -202,10 +211,10 @@
             // departmentsPage
             // 
             this.departmentsPage.Controls.Add(this.departmentsGridView);
-            this.departmentsPage.Location = new System.Drawing.Point(4, 25);
+            this.departmentsPage.Location = new System.Drawing.Point(4, 22);
             this.departmentsPage.Name = "departmentsPage";
             this.departmentsPage.Padding = new System.Windows.Forms.Padding(3);
-            this.departmentsPage.Size = new System.Drawing.Size(1075, 529);
+            this.departmentsPage.Size = new System.Drawing.Size(1075, 532);
             this.departmentsPage.TabIndex = 1;
             this.departmentsPage.Text = "Departments";
             this.departmentsPage.UseVisualStyleBackColor = true;
@@ -271,22 +280,77 @@
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // refreshButton
+            // generateOrderTabPage
             // 
-            this.refreshButton.Location = new System.Drawing.Point(837, 12);
-            this.refreshButton.Name = "refreshButton";
-            this.refreshButton.Size = new System.Drawing.Size(75, 23);
-            this.refreshButton.TabIndex = 7;
-            this.refreshButton.Text = "Refresh";
-            this.refreshButton.UseVisualStyleBackColor = true;
-            this.refreshButton.Click += new System.EventHandler(this.button1_Click_1);
+            this.generateOrderTabPage.Controls.Add(this.label3);
+            this.generateOrderTabPage.Controls.Add(this.confirmButton);
+            this.generateOrderTabPage.Controls.Add(this.priceLabel);
+            this.generateOrderTabPage.Controls.Add(this.label4);
+            this.generateOrderTabPage.Controls.Add(this.generateOrderViewGrid);
+            this.generateOrderTabPage.Location = new System.Drawing.Point(4, 22);
+            this.generateOrderTabPage.Name = "generateOrderTabPage";
+            this.generateOrderTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.generateOrderTabPage.Size = new System.Drawing.Size(1075, 532);
+            this.generateOrderTabPage.TabIndex = 4;
+            this.generateOrderTabPage.Text = "Generate Order";
+            this.generateOrderTabPage.UseVisualStyleBackColor = true;
+            // 
+            // generateOrderViewGrid
+            // 
+            this.generateOrderViewGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.generateOrderViewGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.generateOrderViewGrid.Location = new System.Drawing.Point(16, 15);
+            this.generateOrderViewGrid.Name = "generateOrderViewGrid";
+            this.generateOrderViewGrid.Size = new System.Drawing.Size(942, 437);
+            this.generateOrderViewGrid.TabIndex = 1;
+            this.generateOrderViewGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.generateOrderViewGrid_CellContentClick);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(154, 474);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(37, 17);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "EUR";
+            // 
+            // confirmButton
+            // 
+            this.confirmButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.confirmButton.Location = new System.Drawing.Point(397, 474);
+            this.confirmButton.Name = "confirmButton";
+            this.confirmButton.Size = new System.Drawing.Size(114, 32);
+            this.confirmButton.TabIndex = 8;
+            this.confirmButton.Text = "Confirm order";
+            this.confirmButton.UseVisualStyleBackColor = true;
+            this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
+            // 
+            // priceLabel
+            // 
+            this.priceLabel.AutoSize = true;
+            this.priceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.priceLabel.Location = new System.Drawing.Point(109, 474);
+            this.priceLabel.Name = "priceLabel";
+            this.priceLabel.Size = new System.Drawing.Size(39, 17);
+            this.priceLabel.TabIndex = 7;
+            this.priceLabel.Text = "price";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(23, 474);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(80, 17);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Total Price:";
             // 
             // MainPageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1113, 608);
-            this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.LogOutButton);
@@ -308,6 +372,9 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            this.generateOrderTabPage.ResumeLayout(false);
+            this.generateOrderTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.generateOrderViewGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -337,6 +404,11 @@
         private System.Windows.Forms.Button checkButton;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Button changeOrderStatusButton;
-        private System.Windows.Forms.Button refreshButton;
+        private System.Windows.Forms.TabPage generateOrderTabPage;
+        private System.Windows.Forms.DataGridView generateOrderViewGrid;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button confirmButton;
+        private System.Windows.Forms.Label priceLabel;
+        private System.Windows.Forms.Label label4;
     }
 }

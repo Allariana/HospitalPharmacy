@@ -14,9 +14,13 @@ namespace HospitalPharmacy
     public partial class MainPageForm : Form
     {
         PharmacyEntities pharmacyContext;
+        private string username;
+        string columnname = "MedicinesOrderID";
+        string tablename = "MedicinesOrders";
+        DataTable idNameCombo = new DataTable();
         public MainPageForm(string username)
         {
-            
+            this.username = username;
             InitializeComponent();
             this.UserLabel.Text = username;
             
@@ -26,16 +30,18 @@ namespace HospitalPharmacy
                 departmentsGridView.DataSource = pharmacyContext.DepartmentsViews.ToList();
                 medicinesGridView.DataSource = pharmacyContext.MedicinesViews.ToList();
                 medicinesOrdersGridView.DataSource = pharmacyContext.MedicinesOrdersViews.ToList();
-                              
+                generateOrderViewGrid.DataSource = pharmacyContext.GenerateOrderViews.ToList();
+                
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            ConnectionManager connection = new ConnectionManager();
-            DataTable idNameCombo = new DataTable();
-            string columnname = "MedicinesOrderID";
-            string tablename = "MedicinesOrders";
+            ConnectionManager connection = ConnectionManager.getInstance();
+            this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
+            
+            
             connection.getTable(tablename, columnname, idNameCombo);
             foreach (DataRow row in idNameCombo.Rows)
             {
@@ -93,8 +99,14 @@ namespace HospitalPharmacy
 
         private void generateButton_Click(object sender, EventArgs e)
         {
-            string username = this.UserLabel.Text;
-            new GenerateOrderForm(username).Show();
+            tabControl.SelectedTab = generateOrderTabPage;
+            /*try {
+                new GenerateOrderForm(username).Show();
+            }
+            finally {
+                medicinesOrdersGridView.DataSource = pharmacyContext.MedicinesOrdersViews.ToList();
+            }*/
+            
         }
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
@@ -124,14 +136,48 @@ namespace HospitalPharmacy
 
         private void changeOrderStatusButton_Click(object sender, EventArgs e)
         {
-            ConnectionManager connection = new ConnectionManager();
+            ConnectionManager connection = ConnectionManager.getInstance();
             connection.pickUpOrder(medicineOrderIDComboBox.SelectedItem.ToString());
+            medicinesOrdersGridView.DataSource = pharmacyContext.MedicinesOrdersViews.ToList();
+            medicinesGridView.DataSource = pharmacyContext.MedicinesViews.ToList();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
             this.Hide();
             new MainPageForm(this.UserLabel.Text).Show();
+        }
+
+        private void generateOrderViewGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void confirmButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ConnectionManager connection = ConnectionManager.getInstance();
+                connection.insertOrder(username);
+                MessageBox.Show("Order completed!");
+                generateOrderViewGrid.DataSource = pharmacyContext.GenerateOrderViews.ToList();
+                this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
+                medicinesOrdersGridView.DataSource = pharmacyContext.MedicinesOrdersViews.ToList();
+                connection.getTable(tablename, columnname, idNameCombo);
+                foreach (DataRow row in idNameCombo.Rows)
+                {
+                    medicineOrderIDComboBox.Items.Add(row["MedicinesOrderID"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void medicineOrderIDComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

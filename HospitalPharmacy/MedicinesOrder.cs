@@ -26,7 +26,7 @@ namespace HospitalPharmacy
         public string RealizationFlag { get; set; }
         public Nullable<System.DateTime> RealizationDate { get; set; }
     
-        public virtual ICollection<MedicineOrderDetail> MedicineOrderDetails { get; set; }
         public virtual Pharmacist Pharmacist { get; set; }
+        public virtual ICollection<MedicineOrderDetail> MedicineOrderDetails { get; set; }
     }
 }

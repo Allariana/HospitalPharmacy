@@ -43,7 +43,7 @@ namespace HospitalPharmacy
             UsernameTextBox.Text = "";
             PasswordTextBox.Text = "";
 
-            ConnectionManager connection = new ConnectionManager();
+            ConnectionManager connection = ConnectionManager.getInstance();
 
 
             if (connection.verifyIfUserIsCorrect(username, password))

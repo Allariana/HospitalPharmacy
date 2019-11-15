@@ -21,7 +21,7 @@ namespace HospitalPharmacy
             this.username = username;
 
             InitializeComponent();
-            ConnectionManager connection = new ConnectionManager();
+            ConnectionManager connection = ConnectionManager.getInstance();
 
             this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
                         
@@ -45,10 +45,11 @@ namespace HospitalPharmacy
         {
             try
             {
-                ConnectionManager connection = new ConnectionManager();
+                ConnectionManager connection = ConnectionManager.getInstance();
                 connection.insertOrder(username);
                 MessageBox.Show("Order completed!");
-                this.Hide();
+                generateOrderViewGrid.DataSource = pharmacyContext.GenerateOrderViews.ToList();
+                this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
             }
             catch (Exception ex)
             {
@@ -60,6 +61,12 @@ namespace HospitalPharmacy
         private void priceLabel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new MainPageForm(username).Show();
         }
     }
 }

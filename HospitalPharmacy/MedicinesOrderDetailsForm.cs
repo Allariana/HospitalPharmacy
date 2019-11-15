@@ -17,7 +17,7 @@ namespace HospitalPharmacy
         {
             this.MedicinesOrderId = MedicinesOrderId;
             InitializeComponent();
-            ConnectionManager connection = new ConnectionManager();
+            ConnectionManager connection = ConnectionManager.getInstance();
             DataTable orderDetails = new DataTable();
             connection.getMedicinesOrderDetails(orderDetails, MedicinesOrderId);
             medicinesOrderDetailsGridView.DataSource = orderDetails;

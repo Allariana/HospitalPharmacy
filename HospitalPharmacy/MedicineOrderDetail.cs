@@ -18,7 +18,7 @@ namespace HospitalPharmacy
         public int MedicinesOrderID { get; set; }
         public int MedicineID { get; set; }
         public int Amount { get; set; }
-        public int Price { get; set; }
+        public double Price { get; set; }
     
         public virtual Medicine Medicine { get; set; }
         public virtual MedicinesOrder MedicinesOrder { get; set; }
