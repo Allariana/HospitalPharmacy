@@ -31,7 +31,7 @@
         <AssociationConnector Association="PharmacyEntity.medorder_pharmacist_fk" />
         <EntityTypeShape EntityType="PharmacyEntity.GenerateOrderView" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="PharmacyEntity.MedicinesOrdersView" Width="1.5" PointX="10.375" PointY="7.75" />
-        <EntityTypeShape EntityType="PharmacyEntity.PackageofMedicine" Width="1.5" PointX="5.375" PointY="5" />
+        <EntityTypeShape EntityType="PharmacyEntity.PackageofMedicine" Width="1.5" PointX="5.375" PointY="5.125" />
         <AssociationConnector Association="PharmacyEntity.package_medicine_fk" />
         <AssociationConnector Association="PharmacyEntity.detail_package_fk" />
         </Diagram>

@@ -21,7 +21,6 @@ namespace HospitalPharmacy
     
         public int SerialNumber { get; set; }
         public int MedicineID { get; set; }
-        public string TradeName { get; set; }
         public System.DateTime TermofValidity { get; set; }
     
         public virtual Medicine Medicine { get; set; }

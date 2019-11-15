@@ -95,7 +95,6 @@
           </Key>
           <Property Name="SerialNumber" Type="int" Nullable="false" />
           <Property Name="MedicineID" Type="int" Nullable="false" />
-          <Property Name="TradeName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="TermofValidity" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Pharmacists">
@@ -952,7 +951,6 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
           </Key>
           <Property Name="SerialNumber" Type="Int32" Nullable="false" />
           <Property Name="MedicineID" Type="Int32" Nullable="false" />
-          <Property Name="TradeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TermofValidity" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Medicine" Relationship="PharmacyEntity.package_medicine_fk" FromRole="PackageofMedicine" ToRole="Medicine" />
           <NavigationProperty Name="OrderDetails" Relationship="PharmacyEntity.detail_package_fk" FromRole="PackageofMedicine" ToRole="OrderDetail" />
@@ -1207,7 +1205,6 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
             <EntityTypeMapping TypeName="PharmacyEntity.PackageofMedicine">
               <MappingFragment StoreEntitySet="PackageofMedicine">
                 <ScalarProperty Name="TermofValidity" ColumnName="TermofValidity" />
-                <ScalarProperty Name="TradeName" ColumnName="TradeName" />
                 <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
                 <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
               </MappingFragment>
