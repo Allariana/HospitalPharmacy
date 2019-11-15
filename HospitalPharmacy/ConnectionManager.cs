@@ -48,14 +48,17 @@ namespace HospitalPharmacy
             adapter.Fill(dataTable);
             connection.Close();
         }
-        public void changeOrderStatus(String MedicineOrderID)
+        public void pickUpOrder(String MedicineOrderID)
         {
             try
             {
                 connection.Open();
                 int id = int.Parse(MedicineOrderID.ToString());
-                String changeOrderStatusCommand = "UPDATE MedicinesOrders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()) where MedicinesOrderID = " + id + ";";
-                new SqlCommand(changeOrderStatusCommand, connection).ExecuteNonQuery();
+                String pickUpOrderCommand = "UPDATE MedicinesOrders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()) where MedicinesOrderID " +
+                    "= " + id + "; " +
+                    " UPDATE Medicines SET UnitsInStock = UnitsInStock + (select d.Amount from MedicineOrderDetails d join Medicines m on m.MedicineID = d.MedicineID join " +
+                    "MedicinesOrders o on d.MedicinesOrderID = o.MedicinesOrderID and o.MedicinesOrderID = " + id + " and m.MedicineID = Medicines.MedicineID); ";
+                new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
                 MessageBox.Show("Succeed!");
                 connection.Close();
             }

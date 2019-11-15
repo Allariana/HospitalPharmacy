@@ -23,7 +23,6 @@ namespace HospitalPharmacy
         public int MedicineID { get; set; }
         public string TradeName { get; set; }
         public System.DateTime TermofValidity { get; set; }
-        public int SeriesNumber { get; set; }
     
         public virtual Medicine Medicine { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }

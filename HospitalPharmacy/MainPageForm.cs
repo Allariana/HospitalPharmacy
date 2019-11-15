@@ -125,7 +125,7 @@ namespace HospitalPharmacy
         private void changeOrderStatusButton_Click(object sender, EventArgs e)
         {
             ConnectionManager connection = new ConnectionManager();
-            connection.changeOrderStatus(medicineOrderIDComboBox.SelectedItem.ToString());
+            connection.pickUpOrder(medicineOrderIDComboBox.SelectedItem.ToString());
         }
 
         private void button1_Click_1(object sender, EventArgs e)
