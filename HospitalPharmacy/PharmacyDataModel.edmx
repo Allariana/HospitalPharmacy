@@ -227,10 +227,12 @@ warning 6002: The table/view 'Pharmacy.dbo.MedicinesView' does not have a primar
 warning 6002: The table/view 'Pharmacy.dbo.OrdersView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="OrdersView">
           <Key>
+            <PropertyRef Name="OrderID" />
             <PropertyRef Name="DepartmentName" />
             <PropertyRef Name="OrderDate" />
             <PropertyRef Name="Order_status" />
           </Key>
+          <Property Name="OrderID" Type="int" Nullable="false" />
           <Property Name="DepartmentName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="OrderDate" Type="date" Nullable="false" />
           <Property Name="Order_status" Type="varchar" MaxLength="7" Nullable="false" />
@@ -496,6 +498,7 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="OrdersView" EntityType="Self.OrdersView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
+[OrdersView].[OrderID] AS [OrderID], 
 [OrdersView].[DepartmentName] AS [DepartmentName], 
 [OrdersView].[OrderDate] AS [OrderDate], 
 [OrdersView].[Order_status] AS [Order_status], 
@@ -1090,10 +1093,12 @@ FROM [dbo].[OrdersView] AS [OrdersView]</DefiningQuery>
         </EntityType>
         <EntityType Name="OrdersView">
           <Key>
+            <PropertyRef Name="OrderID" />
             <PropertyRef Name="DepartmentName" />
             <PropertyRef Name="OrderDate" />
             <PropertyRef Name="Order_status" />
           </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
           <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Order_status" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
@@ -1349,6 +1354,7 @@ FROM [dbo].[OrdersView] AS [OrdersView]</DefiningQuery>
                 <ScalarProperty Name="Order_status" ColumnName="Order_status" />
                 <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
                 <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

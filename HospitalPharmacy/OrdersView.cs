@@ -14,6 +14,7 @@ namespace HospitalPharmacy
     
     public partial class OrdersView
     {
+        public int OrderID { get; set; }
         public string DepartmentName { get; set; }
         public System.DateTime OrderDate { get; set; }
         public string Order_status { get; set; }

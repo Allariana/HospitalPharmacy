@@ -108,8 +108,8 @@
             this.tabControl.Controls.Add(this.stockPage);
             this.tabControl.Controls.Add(this.generateOrderTabPage);
             this.tabControl.Controls.Add(this.medicinesOrdersPage);
-            this.tabControl.Controls.Add(this.departmentsPage);
             this.tabControl.Controls.Add(this.orderTabPage);
+            this.tabControl.Controls.Add(this.departmentsPage);
             this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tabControl.Location = new System.Drawing.Point(15, 38);
             this.tabControl.Name = "tabControl";
@@ -121,7 +121,7 @@
             // 
             this.stockPage.Controls.Add(this.generateButton);
             this.stockPage.Controls.Add(this.medicinesGridView);
-            this.stockPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.stockPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.stockPage.Location = new System.Drawing.Point(4, 22);
             this.stockPage.Name = "stockPage";
             this.stockPage.Size = new System.Drawing.Size(1075, 532);
