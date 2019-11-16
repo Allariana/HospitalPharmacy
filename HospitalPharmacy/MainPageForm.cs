@@ -16,8 +16,11 @@ namespace HospitalPharmacy
         PharmacyEntities pharmacyContext;
         private string username;
         string columnname = "MedicinesOrderID";
+        string ordercolumnname = "OrderID";
         string tablename = "MedicinesOrders";
+        string ordertablename = "Orders";
         DataTable idNameCombo = new DataTable();
+        DataTable orderNameCombo = new DataTable();
         public MainPageForm(string username)
         {
             this.username = username;
@@ -39,12 +42,16 @@ namespace HospitalPharmacy
             }
             ConnectionManager connection = ConnectionManager.getInstance();
             this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
-            
-            
+                        
             connection.getTable(tablename, columnname, idNameCombo);
             foreach (DataRow row in idNameCombo.Rows)
             {
                 medicineOrderIDComboBox.Items.Add(row["MedicinesOrderID"]);
+            }
+            connection.getTable(ordertablename, ordercolumnname, orderNameCombo);
+            foreach (DataRow row in orderNameCombo.Rows)
+            {
+                ordersComboBox.Items.Add(row["OrderID"]);
             }
         }
         
@@ -177,6 +184,11 @@ namespace HospitalPharmacy
         private void medicineOrderIDComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            new OrderDetailsForm(ordersComboBox.SelectedItem.ToString()).Show();
         }
     }
 }

@@ -93,6 +93,9 @@
     <Compile Include="MedicineOrderDetail.cs">
       <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MedicineOrderDetailsView.cs">
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="MedicinesOrder.cs">
       <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
@@ -113,6 +116,12 @@
     </Compile>
     <Compile Include="OrderDetail.cs">
       <DependentUpon>PharmacyDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderDetailsForm.Designer.cs">
+      <DependentUpon>OrderDetailsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="OrdersView.cs">
       <DependentUpon>PharmacyDataModel.tt</DependentUpon>
@@ -169,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MedicinesOrderDetailsForm.resx">
       <DependentUpon>MedicinesOrderDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderDetailsForm.resx">
+      <DependentUpon>OrderDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

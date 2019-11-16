@@ -48,6 +48,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.medicineOrderIDComboBox = new System.Windows.Forms.ComboBox();
             this.medicinesOrdersGridView = new System.Windows.Forms.DataGridView();
+            this.orderTabPage = new System.Windows.Forms.TabPage();
+            this.orderGridView = new System.Windows.Forms.DataGridView();
             this.departmentsPage = new System.Windows.Forms.TabPage();
             this.departmentsGridView = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -55,10 +57,11 @@
             this.listOfDepartmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.warehouseAndShoppingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.exitButton = new System.Windows.Forms.Button();
-            this.orderTabPage = new System.Windows.Forms.TabPage();
-            this.orderGridView = new System.Windows.Forms.DataGridView();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ordersComboBox = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl.SuspendLayout();
             this.stockPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesGridView)).BeginInit();
@@ -66,12 +69,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.generateOrderViewGrid)).BeginInit();
             this.medicinesOrdersPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesOrdersGridView)).BeginInit();
+            this.orderTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.orderGridView)).BeginInit();
             this.departmentsPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.departmentsGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            this.orderTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.orderGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -279,6 +282,29 @@
             this.medicinesOrdersGridView.TabIndex = 0;
             this.medicinesOrdersGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
             // 
+            // orderTabPage
+            // 
+            this.orderTabPage.Controls.Add(this.button1);
+            this.orderTabPage.Controls.Add(this.ordersComboBox);
+            this.orderTabPage.Controls.Add(this.label5);
+            this.orderTabPage.Controls.Add(this.orderGridView);
+            this.orderTabPage.Location = new System.Drawing.Point(4, 22);
+            this.orderTabPage.Name = "orderTabPage";
+            this.orderTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.orderTabPage.Size = new System.Drawing.Size(1075, 532);
+            this.orderTabPage.TabIndex = 5;
+            this.orderTabPage.Text = "Orders";
+            this.orderTabPage.UseVisualStyleBackColor = true;
+            // 
+            // orderGridView
+            // 
+            this.orderGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.orderGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.orderGridView.Location = new System.Drawing.Point(17, 15);
+            this.orderGridView.Name = "orderGridView";
+            this.orderGridView.Size = new System.Drawing.Size(651, 492);
+            this.orderGridView.TabIndex = 1;
+            // 
             // departmentsPage
             // 
             this.departmentsPage.Controls.Add(this.departmentsGridView);
@@ -351,25 +377,32 @@
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // orderTabPage
+            // label5
             // 
-            this.orderTabPage.Controls.Add(this.orderGridView);
-            this.orderTabPage.Location = new System.Drawing.Point(4, 22);
-            this.orderTabPage.Name = "orderTabPage";
-            this.orderTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.orderTabPage.Size = new System.Drawing.Size(1075, 532);
-            this.orderTabPage.TabIndex = 5;
-            this.orderTabPage.Text = "Orders";
-            this.orderTabPage.UseVisualStyleBackColor = true;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(745, 170);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(99, 15);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Choose Order Id:";
             // 
-            // orderGridView
+            // ordersComboBox
             // 
-            this.orderGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.orderGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.orderGridView.Location = new System.Drawing.Point(17, 15);
-            this.orderGridView.Name = "orderGridView";
-            this.orderGridView.Size = new System.Drawing.Size(651, 492);
-            this.orderGridView.TabIndex = 1;
+            this.ordersComboBox.FormattingEnabled = true;
+            this.ordersComboBox.Location = new System.Drawing.Point(866, 167);
+            this.ordersComboBox.Name = "ordersComboBox";
+            this.ordersComboBox.Size = new System.Drawing.Size(121, 21);
+            this.ordersComboBox.TabIndex = 5;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(809, 228);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(132, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Check Order Details";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
             // 
             // MainPageForm
             // 
@@ -395,13 +428,14 @@
             this.medicinesOrdersPage.ResumeLayout(false);
             this.medicinesOrdersPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesOrdersGridView)).EndInit();
+            this.orderTabPage.ResumeLayout(false);
+            this.orderTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.orderGridView)).EndInit();
             this.departmentsPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.departmentsGridView)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            this.orderTabPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.orderGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -439,5 +473,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TabPage orderTabPage;
         private System.Windows.Forms.DataGridView orderGridView;
+        private System.Windows.Forms.ComboBox ordersComboBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button1;
     }
 }

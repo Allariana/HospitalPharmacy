@@ -61,7 +61,17 @@ namespace HospitalPharmacy
             adapter.Fill(dataTable);
             connection.Close();
         }
-        
+        public void getOrderDetails(DataTable dataTable, String MedicineOrderID)
+        {
+            connection.Open();
+            int id = int.Parse(MedicineOrderID.ToString());
+            String command = "select m.TradeName, m.ActiveSubstance, m.[Dose(mg)], m.QuantityPerUnit, s.CompanyName, d.Amount " +
+                "from OrderDetails d join Medicines m on d.MedicineID = m.MedicineID join Suppliers s on s.SupplierID = m.SupplierID join Orders o " +
+                "on o.OrderID = d.OrderID and o.OrderID = " + id + ";";
+            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
+            adapter.Fill(dataTable);
+            connection.Close();
+        }
         public void pickUpOrder(String MedicineOrderID)
         {
             int id = int.Parse(MedicineOrderID.ToString());
