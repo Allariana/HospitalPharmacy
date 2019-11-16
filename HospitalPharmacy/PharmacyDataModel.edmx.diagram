@@ -21,7 +21,6 @@
         <EntityTypeShape EntityType="PharmacyEntity.MedicinesView" Width="1.5" PointX="9.25" PointY="0.5" />
         <EntityTypeShape EntityType="PharmacyEntity.MedicinesOrder" Width="1.5" PointX="5.375" PointY="12" />
         <AssociationConnector Association="PharmacyEntity.medorder_pharmacist_fk" />
-        <EntityTypeShape EntityType="PharmacyEntity.GenerateOrderView" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="PharmacyEntity.MedicinesOrdersView" Width="1.5" PointX="10.375" PointY="7.75" />
         <EntityTypeShape EntityType="PharmacyEntity.PackageofMedicine" Width="1.5" PointX="5.375" PointY="5.125" />
         <AssociationConnector Association="PharmacyEntity.package_medicine_fk" />
@@ -37,6 +36,7 @@
         <EntityTypeShape EntityType="PharmacyEntity.MedicineOrderDetail" Width="1.5" PointX="7.625" PointY="5.25" />
         <AssociationConnector Association="PharmacyEntity.detail_medicine_fk" />
         <AssociationConnector Association="PharmacyEntity.medicinedetail_order_fk" />
+        <EntityTypeShape EntityType="PharmacyEntity.GenerateOrderView" Width="1.5" PointX="5.375" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

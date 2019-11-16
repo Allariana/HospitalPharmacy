@@ -167,14 +167,12 @@ warning 6002: The table/view 'Pharmacy.dbo.DepartmentsView' does not have a prim
 warning 6002: The table/view 'Pharmacy.dbo.GenerateOrderView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="GenerateOrderView">
           <Key>
-            <PropertyRef Name="MedicineID" />
             <PropertyRef Name="TradeName" />
             <PropertyRef Name="ActiveSubstance" />
             <PropertyRef Name="Dose(mg)" />
             <PropertyRef Name="QuantityPerUnit" />
             <PropertyRef Name="CompanyName" />
           </Key>
-          <Property Name="MedicineID" Type="int" Nullable="false" />
           <Property Name="TradeName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ActiveSubstance" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Dose(mg)" Type="int" Nullable="false" />
@@ -448,7 +446,6 @@ FROM [dbo].[DepartmentsView] AS [DepartmentsView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="GenerateOrderView" EntityType="Self.GenerateOrderView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-[GenerateOrderView].[MedicineID] AS [MedicineID], 
 [GenerateOrderView].[TradeName] AS [TradeName], 
 [GenerateOrderView].[ActiveSubstance] AS [ActiveSubstance], 
 [GenerateOrderView].[Dose(mg)] AS [Dose(mg)], 
@@ -766,7 +763,6 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
             <End Role="Pharmacist" EntitySet="Pharmacists" />
             <End Role="MedicinesOrder" EntitySet="MedicinesOrders" />
           </AssociationSet>
-          <EntitySet Name="GenerateOrderViews" EntityType="PharmacyEntity.GenerateOrderView" />
           <EntitySet Name="MedicinesOrdersViews" EntityType="PharmacyEntity.MedicinesOrdersView" />
           <EntitySet Name="PackageofMedicines" EntityType="PharmacyEntity.PackageofMedicine" />
           <AssociationSet Name="package_medicine_fk" Association="PharmacyEntity.package_medicine_fk">
@@ -809,6 +805,7 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
             <End Role="MedicinesOrder" EntitySet="MedicinesOrders" />
             <End Role="MedicineOrderDetail" EntitySet="MedicineOrderDetails" />
           </AssociationSet>
+          <EntitySet Name="GenerateOrderViews" EntityType="PharmacyEntity.GenerateOrderView" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -866,25 +863,6 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="GenerateOrderView">
-          <Key>
-            <PropertyRef Name="MedicineID" />
-            <PropertyRef Name="TradeName" />
-            <PropertyRef Name="ActiveSubstance" />
-            <PropertyRef Name="Dose_mg_" />
-            <PropertyRef Name="QuantityPerUnit" />
-            <PropertyRef Name="CompanyName" />
-          </Key>
-          <Property Name="MedicineID" Type="Int32" Nullable="false" />
-          <Property Name="TradeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ActiveSubstance" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Dose_mg_" Type="Int32" Nullable="false" />
-          <Property Name="QuantityPerUnit" Type="Int32" Nullable="false" />
-          <Property Name="UnitPrice_EUR_" Type="Double" />
-          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Amount" Type="Int32" />
-          <Property Name="Price" Type="Double" />
-        </EntityType>
         <EntityType Name="MedicinesOrdersView">
           <Key>
             <PropertyRef Name="MedicinesOrderID" />
@@ -1069,6 +1047,23 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="GenerateOrderView">
+          <Key>
+            <PropertyRef Name="TradeName" />
+            <PropertyRef Name="ActiveSubstance" />
+            <PropertyRef Name="Dose_mg_" />
+            <PropertyRef Name="QuantityPerUnit" />
+            <PropertyRef Name="CompanyName" />
+          </Key>
+          <Property Name="TradeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ActiveSubstance" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dose_mg_" Type="Int32" Nullable="false" />
+          <Property Name="QuantityPerUnit" Type="Int32" Nullable="false" />
+          <Property Name="UnitPrice_EUR_" Type="Double" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="Price" Type="Double" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1232,21 +1227,6 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="GenerateOrderViews">
-            <EntityTypeMapping TypeName="PharmacyEntity.GenerateOrderView">
-              <MappingFragment StoreEntitySet="GenerateOrderView">
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="UnitPrice_EUR_" ColumnName="UnitPrice(EUR)" />
-                <ScalarProperty Name="QuantityPerUnit" ColumnName="QuantityPerUnit" />
-                <ScalarProperty Name="Dose_mg_" ColumnName="Dose(mg)" />
-                <ScalarProperty Name="ActiveSubstance" ColumnName="ActiveSubstance" />
-                <ScalarProperty Name="TradeName" ColumnName="TradeName" />
-                <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="MedicinesOrdersViews">
             <EntityTypeMapping TypeName="PharmacyEntity.MedicinesOrdersView">
               <MappingFragment StoreEntitySet="MedicinesOrdersView">
@@ -1308,6 +1288,20 @@ FROM [dbo].[MedicinesView] AS [MedicinesView]</DefiningQuery>
                 <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
                 <ScalarProperty Name="MedicinesOrderID" ColumnName="MedicinesOrderID" />
                 <ScalarProperty Name="MedicineOrderDetailsID" ColumnName="MedicineOrderDetailsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GenerateOrderViews">
+            <EntityTypeMapping TypeName="PharmacyEntity.GenerateOrderView">
+              <MappingFragment StoreEntitySet="GenerateOrderView">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="UnitPrice_EUR_" ColumnName="UnitPrice(EUR)" />
+                <ScalarProperty Name="QuantityPerUnit" ColumnName="QuantityPerUnit" />
+                <ScalarProperty Name="Dose_mg_" ColumnName="Dose(mg)" />
+                <ScalarProperty Name="ActiveSubstance" ColumnName="ActiveSubstance" />
+                <ScalarProperty Name="TradeName" ColumnName="TradeName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

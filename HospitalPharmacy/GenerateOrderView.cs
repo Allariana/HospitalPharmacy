@@ -14,7 +14,6 @@ namespace HospitalPharmacy
     
     public partial class GenerateOrderView
     {
-        public int MedicineID { get; set; }
         public string TradeName { get; set; }
         public string ActiveSubstance { get; set; }
         public int Dose_mg_ { get; set; }
