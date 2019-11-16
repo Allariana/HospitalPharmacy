@@ -114,6 +114,9 @@
     <Compile Include="OrderDetail.cs">
       <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="OrdersView.cs">
+      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PackageofMedicine.cs">
       <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>

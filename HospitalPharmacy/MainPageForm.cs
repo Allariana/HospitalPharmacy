@@ -31,8 +31,7 @@ namespace HospitalPharmacy
                 medicinesGridView.DataSource = pharmacyContext.MedicinesViews.ToList();
                 medicinesOrdersGridView.DataSource = pharmacyContext.MedicinesOrdersViews.ToList();
                 generateOrderViewGrid.DataSource = pharmacyContext.GenerateOrderViews.ToList();
-                
-
+                orderGridView.DataSource = pharmacyContext.OrdersViews.ToList();
             }
             catch (Exception ex)
             {

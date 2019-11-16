@@ -37,6 +37,7 @@
         <AssociationConnector Association="PharmacyEntity.detail_medicine_fk" />
         <AssociationConnector Association="PharmacyEntity.medicinedetail_order_fk" />
         <EntityTypeShape EntityType="PharmacyEntity.GenerateOrderView" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PharmacyEntity.OrdersView" Width="1.5" PointX="10.375" PointY="4.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
