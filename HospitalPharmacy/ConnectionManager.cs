@@ -80,7 +80,7 @@ namespace HospitalPharmacy
             try
             {
                 connection.Open();
-                SqlCommand checkOrderStatus = new SqlCommand(" select RealizationFlag from MedicinesOrders where MedicinesOrderID = " + id + ";", connection);
+                SqlCommand checkOrderStatus = new SqlCommand("select RealizationFlag from MedicinesOrders where MedicinesOrderID = " + id + ";", connection);
                 SqlDataReader reader = checkOrderStatus.ExecuteReader();
                 DataTable dt = new DataTable();
                 dt.Load(reader);
@@ -118,10 +118,20 @@ namespace HospitalPharmacy
         public void completeOrder(String OrderID, int pharmacistID)
         {
             int id = int.Parse(OrderID.ToString());
+            char status;
             connection.Open();
-            try
+                try
             {
-                String completeOrderCommand = "UPDATE Orders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()), PharmacistID = " + pharmacistID
+                SqlCommand checkOrderStatus = new SqlCommand("select RealizationFlag from Orders where OrderID = " + id + ";", connection);
+                SqlDataReader reader = checkOrderStatus.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(reader);
+                DataRow dw = dt.Rows[0];
+                status = char.Parse(dw[0].ToString());
+                reader.Close();
+                if (status == 'N')
+                {
+                    String completeOrderCommand = "UPDATE Orders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()), PharmacistID = " + pharmacistID
                     + " where OrderID = " + id + ";"  +
                     " UPDATE Medicines SET UnitsInStock = UnitsInStock - " +
                     "(select a.Amount from(select d.MedicineID MedicineID, d.Amount Amount from OrderDetails d join Medicines m on m.MedicineID = d.MedicineID " +
@@ -130,6 +140,8 @@ namespace HospitalPharmacy
                     "d.OrderID = o.OrderID and d.OrderID = " + id + "); ";
                 new SqlCommand(completeOrderCommand, connection).ExecuteNonQuery();
                 MessageBox.Show("Succeed!");
+                }
+                else MessageBox.Show("This order is already completed!");
             }
             catch (Exception ex)
             {
