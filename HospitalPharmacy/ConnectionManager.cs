@@ -76,10 +76,20 @@ namespace HospitalPharmacy
         public void pickUpOrder(String MedicineOrderID)
         {
             int id = int.Parse(MedicineOrderID.ToString());
-            connection.Open();
+            char status;
             try
             {
-                String pickUpOrderCommand = "UPDATE MedicinesOrders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()) where MedicinesOrderID " +
+                connection.Open();
+                SqlCommand checkOrderStatus = new SqlCommand(" select RealizationFlag from MedicinesOrders where MedicinesOrderID = " + id + ";", connection);
+                SqlDataReader reader = checkOrderStatus.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(reader);
+                DataRow dw = dt.Rows[0];
+                status = char.Parse(dw[0].ToString());
+                reader.Close();
+                if (status == 'N')
+                {
+                    String pickUpOrderCommand = "UPDATE MedicinesOrders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()) where MedicinesOrderID " +
                     "= " + id + "; " +
                     " UPDATE Medicines SET UnitsInStock = UnitsInStock + " +
                     "(select a.Amount from(select d.MedicineID MedicineID, d.Amount Amount from MedicineOrderDetails d join Medicines m on m.MedicineID = d.MedicineID " +
@@ -88,19 +98,22 @@ namespace HospitalPharmacy
                     "d.MedicinesOrderID = o.MedicinesOrderID and d.MedicinesOrderID = " + id + "); ";
                 new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
                 MessageBox.Show("Succeed!");
-                
+                }
+                else MessageBox.Show("This order is already completed!");
             }
             catch (Exception ex)
             {
+                
                 String pickUpOrderCommand = "UPDATE MedicinesOrders SET RealizationFlag = 'N', RealizationDate = null where MedicinesOrderID " +
                     "= " + id + "; ";
                 new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
                 MessageBox.Show(ex.Message);
+                
             }
-            finally
-            {
+            finally {
                 connection.Close();
             }
+            
         }
         public void completeOrder(String OrderID, int pharmacistID)
         {
