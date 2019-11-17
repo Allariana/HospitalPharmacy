@@ -123,23 +123,34 @@ namespace HospitalPharmacy
                 try
             {
                 SqlCommand checkOrderStatus = new SqlCommand("select RealizationFlag from Orders where OrderID = " + id + ";", connection);
+                SqlCommand checkIfEnoughMedicines = new SqlCommand("select TOP (1) Units from (select UnitsInStock - (select a.Amount from(select d.MedicineID MedicineID, " +
+                    "d.Amount Amount from OrderDetails d join Medicines m on m.MedicineID = d.MedicineID join Orders o on d.OrderID = o.OrderID and o.OrderID = " + id + ")a " +
+                    "join Medicines m on a.MedicineID = m.MedicineID and a.MedicineID = Medicines.MedicineID) Units from Medicines where MedicineID in " +
+                    "(select d.MedicineID from OrderDetails d join Orders o on d.OrderID = o.OrderID and d.OrderID = " + id + "))b where Units < 0; ", connection);
                 SqlDataReader reader = checkOrderStatus.ExecuteReader();
                 DataTable dt = new DataTable();
                 dt.Load(reader);
                 DataRow dw = dt.Rows[0];
                 status = char.Parse(dw[0].ToString());
-                reader.Close();
+                SqlDataReader reader2 = checkIfEnoughMedicines.ExecuteReader();
+                DataTable dataTable = new DataTable();
+                dataTable.Load(reader2);
+                reader2.Close();
                 if (status == 'N')
                 {
-                    String completeOrderCommand = "UPDATE Orders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()), PharmacistID = " + pharmacistID
-                    + " where OrderID = " + id + ";"  +
-                    " UPDATE Medicines SET UnitsInStock = UnitsInStock - " +
-                    "(select a.Amount from(select d.MedicineID MedicineID, d.Amount Amount from OrderDetails d join Medicines m on m.MedicineID = d.MedicineID " +
-                    "join Orders o on d.OrderID = o.OrderID and o.OrderID = " + id + ")a join Medicines m on a.MedicineID = m.MedicineID " +
-                    "and a.MedicineID = Medicines.MedicineID)where MedicineID in (select d.MedicineID from OrderDetails d join Orders o on " +
-                    "d.OrderID = o.OrderID and d.OrderID = " + id + "); ";
-                new SqlCommand(completeOrderCommand, connection).ExecuteNonQuery();
-                MessageBox.Show("Succeed!");
+                    if (dataTable == null)
+                    {
+                        String completeOrderCommand = "UPDATE Orders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()), PharmacistID = " + pharmacistID
+                        + " where OrderID = " + id + ";" +
+                        " UPDATE Medicines SET UnitsInStock = UnitsInStock - " +
+                        "(select a.Amount from(select d.MedicineID MedicineID, d.Amount Amount from OrderDetails d join Medicines m on m.MedicineID = d.MedicineID " +
+                        "join Orders o on d.OrderID = o.OrderID and o.OrderID = " + id + ")a join Medicines m on a.MedicineID = m.MedicineID " +
+                        "and a.MedicineID = Medicines.MedicineID)where MedicineID in (select d.MedicineID from OrderDetails d join Orders o on " +
+                        "d.OrderID = o.OrderID and d.OrderID = " + id + "); ";
+                        new SqlCommand(completeOrderCommand, connection).ExecuteNonQuery();
+                        MessageBox.Show("Succeed!");
+                    }
+                    else MessageBox.Show("There is not enough medicines to complete this order!");
                 }
                 else MessageBox.Show("This order is already completed!");
             }
@@ -147,7 +158,8 @@ namespace HospitalPharmacy
             {
                  String rollbackOrder = "UPDATE Orders SET RealizationFlag = 'N', RealizationDate = null, PharmacistID = NULL WHERE OrderID = " + id + ";";
                  new SqlCommand(rollbackOrder, connection).ExecuteNonQuery();
-                 MessageBox.Show(ex.Message);
+                
+                MessageBox.Show(ex.Message);
             }
             finally
             {
