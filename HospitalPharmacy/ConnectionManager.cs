@@ -110,8 +110,11 @@ namespace HospitalPharmacy
             {
                 String completeOrderCommand = "UPDATE Orders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()), PharmacistID = " + pharmacistID
                     + " where OrderID = " + id + ";"  +
-                    "UPDATE Medicines SET UnitsInStock = UnitsInStock - (select d.Amount from OrderDetails d join Medicines m on m.MedicineID = d.MedicineID join" +
-                    " Orders o on d.OrderID = o.OrderID and o.OrderID = " + id + " and m.MedicineID = Medicines.MedicineID); ";
+                    " UPDATE Medicines SET UnitsInStock = UnitsInStock - " +
+                    "(select a.Amount from(select d.MedicineID MedicineID, d.Amount Amount from OrderDetails d join Medicines m on m.MedicineID = d.MedicineID " +
+                    "join Orders o on d.OrderID = o.OrderID and o.OrderID = " + id + ")a join Medicines m on a.MedicineID = m.MedicineID " +
+                    "and a.MedicineID = Medicines.MedicineID)where MedicineID in (select d.MedicineID from OrderDetails d join Orders o on " +
+                    "d.OrderID = o.OrderID and d.OrderID = " + id + "); ";
                 new SqlCommand(completeOrderCommand, connection).ExecuteNonQuery();
                 MessageBox.Show("Succeed!");
             }

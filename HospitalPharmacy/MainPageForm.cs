@@ -197,6 +197,7 @@ namespace HospitalPharmacy
              ConnectionManager connection = ConnectionManager.getInstance();
                 connection.completeOrder(ordersComboBox.SelectedItem.ToString(), pharmacistID);
                 orderGridView.DataSource = pharmacyContext.OrdersViews.ToList();
+                medicinesGridView.DataSource = pharmacyContext.MedicinesViews.ToList();
         }
             
        
