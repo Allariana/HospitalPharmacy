@@ -25,7 +25,7 @@ namespace HospitalPharmacy
             }
             return instance;
         }
-
+        
         public bool verifyIfUserIsCorrect(String username, String password)
         {
             connection.Open();
@@ -45,6 +45,7 @@ namespace HospitalPharmacy
         public void getTable(String tablename,String columnname, DataTable dataTable)
         {
             connection.Open();
+            dataTable.Clear();
             String command = "select " + columnname + " from " + tablename + ";";
             SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
             adapter.Fill(dataTable);
@@ -78,11 +79,13 @@ namespace HospitalPharmacy
             connection.Open();
             try
             {
-                
                 String pickUpOrderCommand = "UPDATE MedicinesOrders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()) where MedicinesOrderID " +
                     "= " + id + "; " +
-                    " UPDATE Medicines SET UnitsInStock = UnitsInStock + (select d.Amount from MedicineOrderDetails d join Medicines m on m.MedicineID = d.MedicineID join " +
-                    "MedicinesOrders o on d.MedicinesOrderID = o.MedicinesOrderID and o.MedicinesOrderID = " + id + " and m.MedicineID = Medicines.MedicineID);"                   ;
+                    " UPDATE Medicines SET UnitsInStock = UnitsInStock + " +
+                    "(select a.Amount from(select d.MedicineID MedicineID, d.Amount Amount from MedicineOrderDetails d join Medicines m on m.MedicineID = d.MedicineID " +
+                    "join MedicinesOrders o on     d.MedicinesOrderID = o.MedicinesOrderID and o.MedicinesOrderID = " + id + ")a join Medicines m on a.MedicineID = m.MedicineID " +
+                    "and a.MedicineID = Medicines.MedicineID)where MedicineID in (select d.MedicineID from MedicineOrderDetails d join MedicinesOrders o on " +
+                    "d.MedicinesOrderID = o.MedicinesOrderID and d.MedicinesOrderID = " + id + "); ";
                 new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
                 MessageBox.Show("Succeed!");
                 
@@ -93,6 +96,30 @@ namespace HospitalPharmacy
                     "= " + id + "; ";
                 new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        public void completeOrder(String OrderID, int pharmacistID)
+        {
+            int id = int.Parse(OrderID.ToString());
+            connection.Open();
+            try
+            {
+                String completeOrderCommand = "UPDATE Orders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()), PharmacistID = " + pharmacistID
+                    + " where OrderID = " + id + ";"  +
+                    "UPDATE Medicines SET UnitsInStock = UnitsInStock - (select d.Amount from OrderDetails d join Medicines m on m.MedicineID = d.MedicineID join" +
+                    " Orders o on d.OrderID = o.OrderID and o.OrderID = " + id + " and m.MedicineID = Medicines.MedicineID); ";
+                new SqlCommand(completeOrderCommand, connection).ExecuteNonQuery();
+                MessageBox.Show("Succeed!");
+            }
+            catch (Exception ex)
+            {
+                 String rollbackOrder = "UPDATE Orders SET RealizationFlag = 'N', RealizationDate = null, PharmacistID = NULL WHERE OrderID = " + id + ";";
+                 new SqlCommand(rollbackOrder, connection).ExecuteNonQuery();
+                 MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -121,24 +148,30 @@ namespace HospitalPharmacy
                 return price;
             }           
         }
-        public void insertOrder(String username)
+        public int getPharmacistID(String username)
         {
             connection.Open();
-            int orderID,pharmacistID;
-            DataTable dt = new DataTable();
+            int pharmacistID;
             DataTable dataTable = new DataTable();
+            SqlCommand pharmacistIDCommand = new SqlCommand("select p.PharmacistID from Pharmacists p join Users u on p.UserID=u.UserID where u.Username = '"
+                + username + "';", connection);
+            SqlDataReader sqlDataReader = pharmacistIDCommand.ExecuteReader();
+            dataTable.Load(sqlDataReader);
+            DataRow data = dataTable.Rows[0];
+            pharmacistID = int.Parse(data[0].ToString());
+            connection.Close();
+            return pharmacistID;
+        }
+        public void insertOrder(int pharmacistID)
+        {
+            connection.Open();
+            int orderID;
+            DataTable dt = new DataTable();
             SqlCommand orderIDCommand = new SqlCommand("select NEXT VALUE FOR medicinesOrderIDSeq;", connection);
             SqlDataReader reader = orderIDCommand.ExecuteReader();
             dt.Load(reader);
             DataRow dw = dt.Rows[0];
-            DataRow data = dt.Rows[0];
             orderID = int.Parse(dw[0].ToString());   
-            SqlCommand pharmacistIDCommand = new SqlCommand("select p.PharmacistID from Pharmacists p join Users u on p.UserID=u.UserID where u.Username = '" 
-                + username + "';", connection);
-            SqlDataReader sqlDataReader = pharmacistIDCommand.ExecuteReader();
-            dataTable.Load(sqlDataReader);
-            data = dataTable.Rows[0];
-            pharmacistID = int.Parse(data[0].ToString());
             string insertMedicinesOrder = "insert into MedicinesOrders ([MedicinesOrderID],[PharmacistID],[OrderDate],[Price],[RealizationFlag]) select " + orderID +
                 "," + pharmacistID + ",CONVERT (date, SYSDATETIME()),SUM(Price),'N' from GenerateOrderView;" +
                 "INSERT INTO MedicineOrderDetails select NEXT VALUE FOR medicineOrderDetailsIdSeq MedicineOrderDetailsID, * from" +
@@ -155,7 +188,6 @@ namespace HospitalPharmacy
                 " where insertOrder.Amount > 0;";
 
             new SqlCommand(insertMedicinesOrder, connection).ExecuteNonQuery();
-            sqlDataReader.Close();
             reader.Close();
             connection.Close();
         } 

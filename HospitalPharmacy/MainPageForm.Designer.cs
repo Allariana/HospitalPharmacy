@@ -62,6 +62,7 @@
             this.ordersComboBox = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.completeButton = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.stockPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesGridView)).BeginInit();
@@ -284,6 +285,7 @@
             // 
             // orderTabPage
             // 
+            this.orderTabPage.Controls.Add(this.completeButton);
             this.orderTabPage.Controls.Add(this.button1);
             this.orderTabPage.Controls.Add(this.ordersComboBox);
             this.orderTabPage.Controls.Add(this.label5);
@@ -404,6 +406,16 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_2);
             // 
+            // completeButton
+            // 
+            this.completeButton.Location = new System.Drawing.Point(809, 277);
+            this.completeButton.Name = "completeButton";
+            this.completeButton.Size = new System.Drawing.Size(132, 23);
+            this.completeButton.TabIndex = 7;
+            this.completeButton.Text = "Complete order";
+            this.completeButton.UseVisualStyleBackColor = true;
+            this.completeButton.Click += new System.EventHandler(this.button2_Click);
+            // 
             // MainPageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -476,5 +488,6 @@
         private System.Windows.Forms.ComboBox ordersComboBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button completeButton;
     }
 }

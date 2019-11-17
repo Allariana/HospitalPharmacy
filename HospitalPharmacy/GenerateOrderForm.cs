@@ -14,11 +14,11 @@ namespace HospitalPharmacy
     public partial class GenerateOrderForm : Form
     {
         PharmacyEntities pharmacyContext;
-        string username;
+        int id;
                 
-        public GenerateOrderForm(string username)
+        public GenerateOrderForm(string id)
         {
-            this.username = username;
+            //this.id = id;
 
             InitializeComponent();
             ConnectionManager connection = ConnectionManager.getInstance();
@@ -46,7 +46,7 @@ namespace HospitalPharmacy
             try
             {
                 ConnectionManager connection = ConnectionManager.getInstance();
-                connection.insertOrder(username);
+                connection.insertOrder(id);
                 MessageBox.Show("Order completed!");
                 generateOrderViewGrid.DataSource = pharmacyContext.GenerateOrderViews.ToList();
                 this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
@@ -66,7 +66,7 @@ namespace HospitalPharmacy
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new MainPageForm(username).Show();
+            //new MainPageForm(username).Show();
         }
     }
 }

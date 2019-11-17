@@ -15,6 +15,7 @@ namespace HospitalPharmacy
     {
         PharmacyEntities pharmacyContext;
         private string username;
+        int pharmacistID;
         string columnname = "MedicinesOrderID";
         string ordercolumnname = "OrderID";
         string tablename = "MedicinesOrders";
@@ -42,7 +43,7 @@ namespace HospitalPharmacy
             }
             ConnectionManager connection = ConnectionManager.getInstance();
             this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
-                        
+            pharmacistID = connection.getPharmacistID(username);
             connection.getTable(tablename, columnname, idNameCombo);
             foreach (DataRow row in idNameCombo.Rows)
             {
@@ -164,7 +165,7 @@ namespace HospitalPharmacy
             try
             {
                 ConnectionManager connection = ConnectionManager.getInstance();
-                connection.insertOrder(username);
+                connection.insertOrder(pharmacistID);
                 MessageBox.Show("Order completed!");
                 generateOrderViewGrid.DataSource = pharmacyContext.GenerateOrderViews.ToList();
                 this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
@@ -190,5 +191,14 @@ namespace HospitalPharmacy
         {
             new OrderDetailsForm(ordersComboBox.SelectedItem.ToString()).Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+             ConnectionManager connection = ConnectionManager.getInstance();
+                connection.completeOrder(ordersComboBox.SelectedItem.ToString(), pharmacistID);
+                orderGridView.DataSource = pharmacyContext.OrdersViews.ToList();
+        }
+            
+       
     }
 }
