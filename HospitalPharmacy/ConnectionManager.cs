@@ -99,7 +99,7 @@ namespace HospitalPharmacy
                 new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
                 MessageBox.Show("Succeed!");
                 }
-                else MessageBox.Show("This order is already completed!");
+                else MessageBox.Show("This order has already been completed!");
             }
             catch (Exception ex)
             {
@@ -138,7 +138,7 @@ namespace HospitalPharmacy
                 reader2.Close();
                 if (status == 'N')
                 {
-                    if (dataTable == null)
+                    if (dataTable.Rows.Count == 0)
                     {
                         String completeOrderCommand = "UPDATE Orders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()), PharmacistID = " + pharmacistID
                         + " where OrderID = " + id + ";" +
