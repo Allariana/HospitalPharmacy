@@ -16,16 +16,15 @@ namespace HospitalPharmacy
     {
         public PackageofMedicine()
         {
-            this.OrderDetails = new HashSet<OrderDetail>();
             this.PackageToOrders = new HashSet<PackageToOrder>();
         }
     
-        public int SerialNumber { get; set; }
+        public int SerialNumber_SN_ { get; set; }
         public int MedicineID { get; set; }
-        public System.DateTime TermofValidity { get; set; }
+        public System.DateTime TermofValidity_EXP_ { get; set; }
+        public Nullable<int> LOT { get; set; }
     
         public virtual Medicine Medicine { get; set; }
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ICollection<PackageToOrder> PackageToOrders { get; set; }
     }
 }

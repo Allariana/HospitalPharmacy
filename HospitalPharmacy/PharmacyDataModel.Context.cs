@@ -40,13 +40,13 @@ namespace HospitalPharmacy
         public DbSet<MedicinesView> MedicinesViews { get; set; }
         public DbSet<MedicinesOrder> MedicinesOrders { get; set; }
         public DbSet<MedicinesOrdersView> MedicinesOrdersViews { get; set; }
-        public DbSet<PackageofMedicine> PackageofMedicines { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<PackageToOrder> PackageToOrders { get; set; }
         public DbSet<MedicineOrderDetail> MedicineOrderDetails { get; set; }
         public DbSet<GenerateOrderView> GenerateOrderViews { get; set; }
         public DbSet<OrdersView> OrdersViews { get; set; }
+        public DbSet<PackageofMedicine> PackageofMedicines { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
