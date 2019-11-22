@@ -191,19 +191,19 @@ namespace HospitalPharmacy
                 return price;
             }           
         }
-        public int getPharmacistID(String username)
+        public int getUserID(String username)
         {
             connection.Open();
-            int pharmacistID;
+            int UserID;
             DataTable dataTable = new DataTable();
-            SqlCommand pharmacistIDCommand = new SqlCommand("select p.PharmacistID from Pharmacists p join Users u on p.UserID=u.UserID where u.Username = '"
+            SqlCommand userIDCommand = new SqlCommand("select UserID from Users where Username = '"
                 + username + "';", connection);
-            SqlDataReader sqlDataReader = pharmacistIDCommand.ExecuteReader();
+            SqlDataReader sqlDataReader = userIDCommand.ExecuteReader();
             dataTable.Load(sqlDataReader);
             DataRow data = dataTable.Rows[0];
-            pharmacistID = int.Parse(data[0].ToString());
+            UserID = int.Parse(data[0].ToString());
             connection.Close();
-            return pharmacistID;
+            return UserID;
         }
         public void insertOrder(int pharmacistID)
         {

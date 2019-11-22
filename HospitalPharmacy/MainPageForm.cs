@@ -13,9 +13,8 @@ namespace HospitalPharmacy
 {
     public partial class MainPageForm : Form
     {
-        PharmacyEntities pharmacyContext;
         private string username;
-        int pharmacistID;
+        int userID;
         string columnname = "MedicinesOrderID";
         string ordercolumnname = "OrderID";
         string tablename = "MedicinesOrders";
@@ -28,22 +27,10 @@ namespace HospitalPharmacy
             InitializeComponent();
             this.UserLabel.Text = username;
             
-            try
-            {
-                pharmacyContext = new PharmacyEntities();
-                departmentsGridView.DataSource = pharmacyContext.DepartmentsViews.ToList();
-                medicinesGridView.DataSource = pharmacyContext.MedicinesViews.ToList();
-                medicinesOrdersGridView.DataSource = pharmacyContext.MedicinesOrdersViews.ToList();
-                generateOrderViewGrid.DataSource = pharmacyContext.GenerateOrderViews.ToList();
-                orderGridView.DataSource = pharmacyContext.OrdersViews.ToList();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            
             ConnectionManager connection = ConnectionManager.getInstance();
             this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
-            pharmacistID = connection.getPharmacistID(username);
+            userID = connection.getUserID(username);
             connection.getTable(tablename, columnname, idNameCombo);
             foreach (DataRow row in idNameCombo.Rows)
             {
@@ -58,6 +45,18 @@ namespace HospitalPharmacy
         
                 private void MainPagecs_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'pharmacyDataSet.OrdersView' table. You can move, or remove it, as needed.
+            this.ordersViewTableAdapter.Fill(this.pharmacyDataSet.OrdersView);
+            // TODO: This line of code loads data into the 'pharmacyDataSet.MedicinesOrdersView' table. You can move, or remove it, as needed.
+            this.medicinesOrdersViewTableAdapter.Fill(this.pharmacyDataSet.MedicinesOrdersView);
+            // TODO: This line of code loads data into the 'pharmacyDataSet.Departments' table. You can move, or remove it, as needed.
+            this.departmentsTableAdapter.Fill(this.pharmacyDataSet.Departments);
+            // TODO: This line of code loads data into the 'pharmacyDataSet.GenerateOrderView' table. You can move, or remove it, as needed.
+            this.generateOrderViewTableAdapter.Fill(this.pharmacyDataSet.GenerateOrderView);
+            // TODO: This line of code loads data into the 'pharmacyDataSet.MedicinesView' table. You can move, or remove it, as needed.
+            this.medicinesViewTableAdapter.Fill(this.pharmacyDataSet.MedicinesView);
+            // TODO: This line of code loads data into the 'pharmacyDataSet.Medicines' table. You can move, or remove it, as needed.
+            this.medicinesTableAdapter.Fill(this.pharmacyDataSet.Medicines);
 
         }
 
@@ -106,7 +105,10 @@ namespace HospitalPharmacy
 
         private void generateButton_Click(object sender, EventArgs e)
         {
-            tabControl.SelectedTab = generateOrderTabPage;
+            int id;
+            id = this.userID;
+            new GenerateOrderForm(id).Show();
+            //tabControl.SelectedTab = generateOrderTabPage;
             /*try {
                 new GenerateOrderForm(username).Show();
             }
@@ -145,8 +147,6 @@ namespace HospitalPharmacy
         {
             ConnectionManager connection = ConnectionManager.getInstance();
             connection.pickUpOrder(medicineOrderIDComboBox.SelectedItem.ToString());
-            medicinesOrdersGridView.DataSource = pharmacyContext.MedicinesOrdersViews.ToList();
-            medicinesGridView.DataSource = pharmacyContext.MedicinesViews.ToList();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -165,11 +165,9 @@ namespace HospitalPharmacy
             try
             {
                 ConnectionManager connection = ConnectionManager.getInstance();
-                connection.insertOrder(pharmacistID);
+                connection.insertOrder(userID);
                 MessageBox.Show("Order completed!");
-                generateOrderViewGrid.DataSource = pharmacyContext.GenerateOrderViews.ToList();
                 this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
-                medicinesOrdersGridView.DataSource = pharmacyContext.MedicinesOrdersViews.ToList();
                 connection.getTable(tablename, columnname, idNameCombo);
                 foreach (DataRow row in idNameCombo.Rows)
                 {
@@ -195,9 +193,7 @@ namespace HospitalPharmacy
         private void button2_Click(object sender, EventArgs e)
         {
              ConnectionManager connection = ConnectionManager.getInstance();
-                connection.completeOrder(ordersComboBox.SelectedItem.ToString(), pharmacistID);
-                orderGridView.DataSource = pharmacyContext.OrdersViews.ToList();
-                medicinesGridView.DataSource = pharmacyContext.MedicinesViews.ToList();
+                connection.completeOrder(ordersComboBox.SelectedItem.ToString(), userID);
         }
             
        

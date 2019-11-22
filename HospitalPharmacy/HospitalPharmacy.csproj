@@ -53,27 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administrator.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Category.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="ConnectionManager.cs" />
-    <Compile Include="Department.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DepartmentsView.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="GenerateOrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GenerateOrderForm.Designer.cs">
       <DependentUpon>GenerateOrderForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GenerateOrderView.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -87,32 +72,11 @@
     <Compile Include="MainPageForm.Designer.cs">
       <DependentUpon>MainPageForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Medicine.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MedicineOrderDetail.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MedicinesOrder.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="MedicinesOrderDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MedicinesOrderDetailsForm.Designer.cs">
       <DependentUpon>MedicinesOrderDetailsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MedicinesOrdersView.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MedicinesView.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Order.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="OrderDetail.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderDetailsForm.cs">
       <SubType>Form</SubType>
@@ -120,50 +84,13 @@
     <Compile Include="OrderDetailsForm.Designer.cs">
       <DependentUpon>OrderDetailsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="OrdersView.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PackageofMedicine.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PackageToOrder.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Pharmacist.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PharmacyDataModel.Context.cs">
+    <Compile Include="PharmacyDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PharmacyDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PharmacyDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PharmacyDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PharmacyDataModel.edmx</DependentUpon>
+      <DependentUpon>PharmacyDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Supplier.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>PharmacyDataModel.tt</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="GenerateOrderForm.resx">
       <DependentUpon>GenerateOrderForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -189,12 +116,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
-    <EntityDeploy Include="PharmacyDataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PharmacyDataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="PharmacyDataModel.edmx.diagram">
-      <DependentUpon>PharmacyDataModel.edmx</DependentUpon>
+    <None Include="PharmacyDataSet.xsc">
+      <DependentUpon>PharmacyDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PharmacyDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PharmacyDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="PharmacyDataSet.xss">
+      <DependentUpon>PharmacyDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -213,18 +144,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="PharmacyDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PharmacyDataModel.edmx</DependentUpon>
-      <LastGenOutput>PharmacyDataModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="PharmacyDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PharmacyDataModel.edmx</DependentUpon>
-      <LastGenOutput>PharmacyDataModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
