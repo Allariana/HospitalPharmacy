@@ -38,8 +38,8 @@ namespace HospitalPharmacy
         {
             string username = UsernameTextBox.Text;
             string password = PasswordTextBox.Text;
-
-
+            int userID, roleID;
+            DataRow dataRow;
             UsernameTextBox.Text = "";
             PasswordTextBox.Text = "";
 
@@ -48,8 +48,19 @@ namespace HospitalPharmacy
 
             if (connection.verifyIfUserIsCorrect(username, password))
             {
-                this.Hide();
-                new MainPageForm(username).Show();
+                dataRow = connection.getID(username);
+                userID = int.Parse(dataRow[0].ToString());
+                roleID = int.Parse(dataRow[1].ToString());
+                if(roleID == 1)
+                {
+                    this.Hide();
+                    new AdministratorPanelForm(userID, username).Show();
+                }
+                if(roleID == 2) {
+                    this.Hide();
+                    new MainPageForm(userID, username).Show();
+                }
+                
             }
             else
             {

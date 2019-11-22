@@ -42,6 +42,7 @@ namespace HospitalPharmacy
             connection.Close();
             return result;
         }
+        
         public void getTable(String tablename,String columnname, DataTable dataTable)
         {
             connection.Open();
@@ -191,19 +192,16 @@ namespace HospitalPharmacy
                 return price;
             }           
         }
-        public int getUserID(String username)
+        public DataRow getID(String username)
         {
             connection.Open();
-            int UserID;
             DataTable dataTable = new DataTable();
-            SqlCommand userIDCommand = new SqlCommand("select UserID from Users where Username = '"
-                + username + "';", connection);
+            SqlCommand userIDCommand = new SqlCommand("select UserID, RoleID from Users where Username = '" + username + "';", connection);
             SqlDataReader sqlDataReader = userIDCommand.ExecuteReader();
             dataTable.Load(sqlDataReader);
-            DataRow data = dataTable.Rows[0];
-            UserID = int.Parse(data[0].ToString());
+            DataRow dataRow = dataTable.Rows[0];
             connection.Close();
-            return UserID;
+            return dataRow;
         }
         public void insertOrder(int pharmacistID)
         {

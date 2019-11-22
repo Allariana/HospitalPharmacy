@@ -19,18 +19,18 @@ namespace HospitalPharmacy
         string ordercolumnname = "OrderID";
         string tablename = "MedicinesOrders";
         string ordertablename = "Orders";
+        
         DataTable idNameCombo = new DataTable();
         DataTable orderNameCombo = new DataTable();
-        public MainPageForm(string username)
+        public MainPageForm(int userID, String username)
         {
             this.username = username;
+            this.userID = userID;
             InitializeComponent();
             this.UserLabel.Text = username;
-            
-            
+                        
             ConnectionManager connection = ConnectionManager.getInstance();
-            this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
-            userID = connection.getUserID(username);
+            //this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
             connection.getTable(tablename, columnname, idNameCombo);
             foreach (DataRow row in idNameCombo.Rows)
             {
@@ -107,15 +107,7 @@ namespace HospitalPharmacy
         {
             int id;
             id = this.userID;
-            new GenerateOrderForm(id).Show();
-            //tabControl.SelectedTab = generateOrderTabPage;
-            /*try {
-                new GenerateOrderForm(username).Show();
-            }
-            finally {
-                medicinesOrdersGridView.DataSource = pharmacyContext.MedicinesOrdersViews.ToList();
-            }*/
-            
+            new GenerateOrderForm(id).Show();            
         }
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
@@ -152,7 +144,7 @@ namespace HospitalPharmacy
         private void button1_Click_1(object sender, EventArgs e)
         {
             this.Hide();
-            new MainPageForm(this.UserLabel.Text).Show();
+           // new MainPageForm(this.UserLabel.Text).Show();
         }
 
         private void generateOrderViewGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -167,7 +159,7 @@ namespace HospitalPharmacy
                 ConnectionManager connection = ConnectionManager.getInstance();
                 connection.insertOrder(userID);
                 MessageBox.Show("Order completed!");
-                this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
+                //this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
                 connection.getTable(tablename, columnname, idNameCombo);
                 foreach (DataRow row in idNameCombo.Rows)
                 {
