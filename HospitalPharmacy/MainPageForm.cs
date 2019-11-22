@@ -19,7 +19,7 @@ namespace HospitalPharmacy
         string ordercolumnname = "OrderID";
         string tablename = "MedicinesOrders";
         string ordertablename = "Orders";
-        
+        bool changeData = false;
         DataTable idNameCombo = new DataTable();
         DataTable orderNameCombo = new DataTable();
         public MainPageForm(int userID, String username)
@@ -60,10 +60,7 @@ namespace HospitalPharmacy
 
         }
 
-        private void UserLabel_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void UserLabel_Click(object sender, EventArgs e) { }
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
@@ -94,7 +91,7 @@ namespace HospitalPharmacy
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            
         }
 
         
@@ -107,7 +104,8 @@ namespace HospitalPharmacy
         {
             int id;
             id = this.userID;
-            new GenerateOrderForm(id).Show();            
+            new GenerateOrderForm(id).Show(); 
+            
         }
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
@@ -187,7 +185,38 @@ namespace HospitalPharmacy
              ConnectionManager connection = ConnectionManager.getInstance();
                 connection.completeOrder(ordersComboBox.SelectedItem.ToString(), userID);
         }
-            
-       
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            if (!changeData) return;
+            switch (MessageBox.Show("Czy zapisać dane w bazie danych?", "Komunikat", MessageBoxButtons.YesNo))
+            {
+                case DialogResult.Yes:
+                    try
+                    {
+                        this.Validate();
+                        //this.pharmacyDataSet.Medicines.End
+                        //    db.Dispose();
+                        MessageBox.Show("Dane zapisane - OK", "Komunikat");
+                    }
+                    catch (Exception exc)
+                    {
+                        MessageBox.Show("Zapisanie danych nie powiodło się : " + exc.Message);
+                    }
+                    break;
+                case DialogResult.No:
+                    break;
+            }
+        }
+
+        private void medicinesGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            changeData = true;
+        }
+
+        private void makeOrderButton_Click(object sender, EventArgs e)
+        {
+            new MakeOrderForm().Show();
+        }
     }
 }

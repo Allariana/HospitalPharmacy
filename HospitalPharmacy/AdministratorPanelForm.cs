@@ -23,6 +23,20 @@ namespace HospitalPharmacy
 
         private void AdministratorPanelForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'pharmacyDataSet.Suppliers' table. You can move, or remove it, as needed.
+            this.suppliersTableAdapter.Fill(this.pharmacyDataSet.Suppliers);
+            // TODO: This line of code loads data into the 'pharmacyDataSet.Medicines' table. You can move, or remove it, as needed.
+            this.medicinesTableAdapter.Fill(this.pharmacyDataSet.Medicines);
+            // TODO: This line of code loads data into the 'pharmacyDataSet.Categories' table. You can move, or remove it, as needed.
+            this.categoriesTableAdapter.Fill(this.pharmacyDataSet.Categories);
+
+        }
+
+        private void categoriesBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.categoriesBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.pharmacyDataSet);
 
         }
     }

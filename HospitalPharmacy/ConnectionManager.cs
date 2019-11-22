@@ -41,8 +41,7 @@ namespace HospitalPharmacy
             }
             connection.Close();
             return result;
-        }
-        
+        }    
         public void getTable(String tablename,String columnname, DataTable dataTable)
         {
             connection.Open();
