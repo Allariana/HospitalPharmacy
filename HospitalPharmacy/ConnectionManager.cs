@@ -155,7 +155,7 @@ namespace HospitalPharmacy
                     }
                     else MessageBox.Show("There is not enough medicines to complete this order!");
                 }
-                else MessageBox.Show("This order is already completed!");
+                else MessageBox.Show("This order has already been completed!");
             }
             catch (Exception ex)
             {

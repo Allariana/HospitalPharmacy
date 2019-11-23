@@ -218,5 +218,33 @@ namespace HospitalPharmacy
         {
             new MakeOrderForm().Show();
         }
+
+        private void medicinesOrdersGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void orderGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (orderGridView.Rows[e.RowIndex].Cells[0].Value != null)
+            {
+                try
+                {
+                    if (actionComboBox.SelectedItem.ToString() == "Check Order Details")
+                    {
+                        new OrderDetailsForm(orderGridView.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
+                    }
+                    else if (actionComboBox.SelectedItem.ToString() == "Complete Order")
+                    {
+                        ConnectionManager connection = ConnectionManager.getInstance();
+                        connection.completeOrder(orderGridView.Rows[e.RowIndex].Cells[0].Value.ToString(), userID);
+                    }
+                }
+                catch (System.NullReferenceException) { MessageBox.Show("Choose what to do!"); }
+            }
+            
+             
+        }
     }
 }

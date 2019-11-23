@@ -42,6 +42,7 @@
             this.orderDetailsGridView.RowTemplate.ReadOnly = true;
             this.orderDetailsGridView.Size = new System.Drawing.Size(766, 414);
             this.orderDetailsGridView.TabIndex = 0;
+            this.orderDetailsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.orderDetailsGridView_CellContentClick);
             // 
             // OrderDetailsForm
             // 

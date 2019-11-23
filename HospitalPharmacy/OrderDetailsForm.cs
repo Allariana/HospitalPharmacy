@@ -22,5 +22,10 @@ namespace HospitalPharmacy
             connection.getOrderDetails(orderDetails, OrderId);
             orderDetailsGridView.DataSource = orderDetails;
         }
+
+        private void orderDetailsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
