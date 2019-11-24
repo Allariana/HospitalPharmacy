@@ -122,51 +122,61 @@
             this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
             this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
             this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // amountDataGridViewTextBoxColumn
             // 
             this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
             this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
             this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
+            this.amountDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // companyNameDataGridViewTextBoxColumn
             // 
             this.companyNameDataGridViewTextBoxColumn.DataPropertyName = "CompanyName";
             this.companyNameDataGridViewTextBoxColumn.HeaderText = "CompanyName";
             this.companyNameDataGridViewTextBoxColumn.Name = "companyNameDataGridViewTextBoxColumn";
+            this.companyNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // unitPriceEURDataGridViewTextBoxColumn
             // 
             this.unitPriceEURDataGridViewTextBoxColumn.DataPropertyName = "UnitPrice(EUR)";
             this.unitPriceEURDataGridViewTextBoxColumn.HeaderText = "UnitPrice(EUR)";
             this.unitPriceEURDataGridViewTextBoxColumn.Name = "unitPriceEURDataGridViewTextBoxColumn";
+            this.unitPriceEURDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // quantityPerUnitDataGridViewTextBoxColumn
             // 
             this.quantityPerUnitDataGridViewTextBoxColumn.DataPropertyName = "QuantityPerUnit";
             this.quantityPerUnitDataGridViewTextBoxColumn.HeaderText = "QuantityPerUnit";
             this.quantityPerUnitDataGridViewTextBoxColumn.Name = "quantityPerUnitDataGridViewTextBoxColumn";
+            this.quantityPerUnitDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // dosemgDataGridViewTextBoxColumn
             // 
             this.dosemgDataGridViewTextBoxColumn.DataPropertyName = "Dose(mg)";
             this.dosemgDataGridViewTextBoxColumn.HeaderText = "Dose(mg)";
             this.dosemgDataGridViewTextBoxColumn.Name = "dosemgDataGridViewTextBoxColumn";
+            this.dosemgDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // activeSubstanceDataGridViewTextBoxColumn
             // 
             this.activeSubstanceDataGridViewTextBoxColumn.DataPropertyName = "ActiveSubstance";
             this.activeSubstanceDataGridViewTextBoxColumn.HeaderText = "ActiveSubstance";
             this.activeSubstanceDataGridViewTextBoxColumn.Name = "activeSubstanceDataGridViewTextBoxColumn";
+            this.activeSubstanceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // tradeNameDataGridViewTextBoxColumn
             // 
             this.tradeNameDataGridViewTextBoxColumn.DataPropertyName = "TradeName";
             this.tradeNameDataGridViewTextBoxColumn.HeaderText = "TradeName";
             this.tradeNameDataGridViewTextBoxColumn.Name = "tradeNameDataGridViewTextBoxColumn";
+            this.tradeNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // generateOrderViewGrid
             // 
+            this.generateOrderViewGrid.AllowUserToAddRows = false;
+            this.generateOrderViewGrid.AllowUserToDeleteRows = false;
             this.generateOrderViewGrid.AutoGenerateColumns = false;
             this.generateOrderViewGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.generateOrderViewGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -182,6 +192,7 @@
             this.generateOrderViewGrid.DataSource = this.generateOrderViewBindingSource;
             this.generateOrderViewGrid.Location = new System.Drawing.Point(12, 23);
             this.generateOrderViewGrid.Name = "generateOrderViewGrid";
+            this.generateOrderViewGrid.ReadOnly = true;
             this.generateOrderViewGrid.Size = new System.Drawing.Size(871, 298);
             this.generateOrderViewGrid.TabIndex = 0;
             this.generateOrderViewGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);

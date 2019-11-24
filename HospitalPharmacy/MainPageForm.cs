@@ -22,33 +22,33 @@ namespace HospitalPharmacy
         bool changeData = false;
         DataTable idNameCombo = new DataTable();
         DataTable orderNameCombo = new DataTable();
+
         public MainPageForm(int userID, String username)
         {
             this.username = username;
             this.userID = userID;
             InitializeComponent();
             this.UserLabel.Text = username;
-                        
+
             ConnectionManager connection = ConnectionManager.getInstance();
             //this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
-            connection.getTable(tablename, columnname, idNameCombo);
+            connection.getColumn(tablename, columnname, idNameCombo);
             foreach (DataRow row in idNameCombo.Rows)
             {
                 medicineOrderIDComboBox.Items.Add(row["MedicinesOrderID"]);
             }
-            connection.getTable(ordertablename, ordercolumnname, orderNameCombo);
+            connection.getColumn(ordertablename, ordercolumnname, orderNameCombo);
             foreach (DataRow row in orderNameCombo.Rows)
             {
                 ordersComboBox.Items.Add(row["OrderID"]);
             }
         }
-        
-                private void MainPagecs_Load(object sender, EventArgs e)
+
+        private void MainPagecs_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'pharmacyDataSet.OrdersView' table. You can move, or remove it, as needed.
             this.ordersViewTableAdapter.Fill(this.pharmacyDataSet.OrdersView);
-            // TODO: This line of code loads data into the 'pharmacyDataSet.MedicinesOrdersView' table. You can move, or remove it, as needed.
-            this.medicinesOrdersViewTableAdapter.Fill(this.pharmacyDataSet.MedicinesOrdersView);
+            
             // TODO: This line of code loads data into the 'pharmacyDataSet.Departments' table. You can move, or remove it, as needed.
             this.departmentsTableAdapter.Fill(this.pharmacyDataSet.Departments);
             // TODO: This line of code loads data into the 'pharmacyDataSet.GenerateOrderView' table. You can move, or remove it, as needed.
@@ -70,18 +70,18 @@ namespace HospitalPharmacy
 
         private void listOfDepartmentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void listOfDepartmentsToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             tabControl.SelectedTab = departmentsPage;
-             
+
         }
 
         private void departmentsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -91,10 +91,10 @@ namespace HospitalPharmacy
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
-        
+
         private void tabPage2_Click(object sender, EventArgs e)
         {
 
@@ -104,18 +104,18 @@ namespace HospitalPharmacy
         {
             int id;
             id = this.userID;
-            new GenerateOrderForm(id).Show(); 
-            
+            new GenerateOrderForm(id).Show();
+
         }
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
         private void stockPage_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -142,7 +142,7 @@ namespace HospitalPharmacy
         private void button1_Click_1(object sender, EventArgs e)
         {
             this.Hide();
-           // new MainPageForm(this.UserLabel.Text).Show();
+            // new MainPageForm(this.UserLabel.Text).Show();
         }
 
         private void generateOrderViewGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -158,7 +158,7 @@ namespace HospitalPharmacy
                 connection.insertOrder(userID);
                 MessageBox.Show("Order completed!");
                 //this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
-                connection.getTable(tablename, columnname, idNameCombo);
+                connection.getColumn(tablename, columnname, idNameCombo);
                 foreach (DataRow row in idNameCombo.Rows)
                 {
                     medicineOrderIDComboBox.Items.Add(row["MedicinesOrderID"]);
@@ -182,8 +182,8 @@ namespace HospitalPharmacy
 
         private void button2_Click(object sender, EventArgs e)
         {
-             ConnectionManager connection = ConnectionManager.getInstance();
-                connection.completeOrder(ordersComboBox.SelectedItem.ToString(), userID);
+            ConnectionManager connection = ConnectionManager.getInstance();
+            connection.completeOrder(ordersComboBox.SelectedItem.ToString(), userID);
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -221,7 +221,22 @@ namespace HospitalPharmacy
 
         private void medicinesOrdersGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+            if (medicinesOrdersGridView.Rows[e.RowIndex].Cells[0].Value != null)
+            {
+                try
+                {
+                    if (chooseActionComboBox.SelectedItem.ToString() == "Check Order Details")
+                    {
+                        new MedicinesOrderDetailsForm(medicinesOrdersGridView.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
+                    }
+                    else if (actionComboBox.SelectedItem.ToString() == "Receipt of Order")
+                    {
+                        ConnectionManager connection = ConnectionManager.getInstance();
+                        connection.pickUpOrder(medicinesOrdersGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    }
+                }
+                catch (System.NullReferenceException) { MessageBox.Show("Choose what to do!"); }
+            }
         }
 
         private void orderGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -243,8 +258,39 @@ namespace HospitalPharmacy
                 }
                 catch (System.NullReferenceException) { MessageBox.Show("Choose what to do!"); }
             }
-            
-             
+
+
+        }
+
+        private void orderTabPage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void medicinesOrdersPage_Click(object sender, EventArgs e)
+        {
+            medicinesOrdersGridView.Update();
+            medicinesOrdersGridView.Refresh();
+        }
+
+        private void orderGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+      
+
+        private void medicinesOrdersGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void medicinesViewDataGridView_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (medicinesViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
+            {
+                new PackageForm(medicinesViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
+            }
         }
     }
 }

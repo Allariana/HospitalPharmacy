@@ -42,7 +42,7 @@ namespace HospitalPharmacy
             connection.Close();
             return result;
         }    
-        public void getTable(String tablename,String columnname, DataTable dataTable)
+        public void getColumn(String tablename,String columnname, DataTable dataTable)
         {
             connection.Open();
             dataTable.Clear();
@@ -73,6 +73,15 @@ namespace HospitalPharmacy
             adapter.Fill(dataTable);
             connection.Close();
         }
+        public void getPackage(DataTable dataTable, String medicineID)
+        {
+            connection.Open();
+            int id = int.Parse(medicineID.ToString());
+            String command = "select [SerialNumber(SN)],[TermofValidity(EXP)],[SerialNumber(LOT)] from PackageofMedicine where OrderDetailsID is null and MedicineID =" + id + ";";
+            SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
+            adapter.Fill(dataTable);
+            connection.Close();
+        }
         public void pickUpOrder(String MedicineOrderID)
         {
             int id = int.Parse(MedicineOrderID.ToString());
@@ -95,10 +104,12 @@ namespace HospitalPharmacy
                     "(select a.Amount from(select d.MedicineID MedicineID, d.Amount Amount from MedicineOrderDetails d join Medicines m on m.MedicineID = d.MedicineID " +
                     "join MedicinesOrders o on     d.MedicinesOrderID = o.MedicinesOrderID and o.MedicinesOrderID = " + id + ")a join Medicines m on a.MedicineID = m.MedicineID " +
                     "and a.MedicineID = Medicines.MedicineID)where MedicineID in (select d.MedicineID from MedicineOrderDetails d join MedicinesOrders o on " +
-                    "d.MedicinesOrderID = o.MedicinesOrderID and d.MedicinesOrderID = " + id + "); " /*+
-                    "INSERT INTO PackageofMedicine SELECT CONVERT(INT, a.SerialNumber),CONVERT(INT, RIGHT(a.SerialNumber, 3)),a.TermofValidity, CONVERT(INT, a.LOT) " +
-                    "FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0','Excel 12.0;Database=D:\Kinga\Studies\IV rok\Semestr 7\Praca dyplomowa\Files\Faktura_elektroniczna.xlsx', " +
-                    "'SELECT * from [Arkusz1$]')a"   */                 ;
+                    "d.MedicinesOrderID = o.MedicinesOrderID and d.MedicinesOrderID = " + id + "); " +
+                    "INSERT INTO PackageofMedicine ([SerialNumber(SN)],[MedicineID],[TermofValidity(EXP)],[SerialNumber(LOT)],[MedicineOrderDetailsID])" +
+                    "SELECT CONVERT(INT, a.SerialNumber),CONVERT(INT, RIGHT(a.SerialNumber, 3)),a.TermofValidity, CONVERT(INT, a.LOT), d.MedicineOrderDetailsID " +
+                    "FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0','Excel 12.0;Database=D:\\Invoices\\" + id + ".xlsx','SELECT * from [Arkusz1$]')a join MedicineOrderDetails d on CONVERT(INT, RIGHT(a.SerialNumber,3))= MedicineID " +
+                    "join MedicinesOrders o on o.MedicinesOrderID = d.MedicinesOrderID and o.RealizationFlag = 'N';";
+                 
                 new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
                 MessageBox.Show("Succeed!");
                 }
@@ -212,7 +223,7 @@ namespace HospitalPharmacy
             dt.Load(reader);
             DataRow dw = dt.Rows[0];
             orderID = int.Parse(dw[0].ToString());   
-            string insertMedicinesOrder = "insert into MedicinesOrders ([MedicinesOrderID],[PharmacistID],[OrderDate],[Price],[RealizationFlag]) select " + orderID +
+            string insertMedicinesOrder = "insert into MedicinesOrders ([MedicinesOrderID],[UserID],[OrderDate],[Price],[RealizationFlag]) select " + orderID +
                 "," + pharmacistID + ",CONVERT (date, SYSDATETIME()),SUM(Price),'N' from GenerateOrderView;" +
                 "INSERT INTO MedicineOrderDetails select NEXT VALUE FOR medicineOrderDetailsIdSeq MedicineOrderDetailsID, * from" +
                 "(select " + orderID + " MedicinesOrderID, m.MedicineId,CASE WHEN((m.RequiredQuantity - m.UnitsInStock - " +
@@ -231,6 +242,10 @@ namespace HospitalPharmacy
             reader.Close();
             connection.Close();
         } 
+        public void makeOrder(DataTable orderTable)
+        {
+
+        }
     }   
 }
 

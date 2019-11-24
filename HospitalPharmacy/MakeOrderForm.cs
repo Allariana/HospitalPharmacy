@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,17 @@ namespace HospitalPharmacy
 {
     public partial class MakeOrderForm : Form
     {
+        
         bool changeData = false;
+        ObjectsController objectsController = ObjectsController.getInstance();
         public MakeOrderForm()
         {
             InitializeComponent();
+            this.basketGridView.DataSource = objectsController.basketDataTable;
+            foreach (DataGridViewColumn column in this.basketGridView.Columns)
+            {
+                column.ValueType = typeof(int);
+            }
         }
 
         private void MakeOrderForm_Load(object sender, EventArgs e)
@@ -69,6 +77,40 @@ namespace HospitalPharmacy
         {
             //if (medicinesDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
         }
+        private void orderButton_Click(object sender, EventArgs e)
+        {
+            //Adding the Columns.
+            foreach (DataGridViewColumn column in basketGridView.Columns)
+            {
+                objectsController.basketDataTable.Columns.Add(column.HeaderText, column.ValueType);
+            }
+
+            //Adding the Rows.
+            foreach (DataGridViewRow row in basketGridView.Rows)
+            {
+                objectsController.basketDataTable.Rows.Add();
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    objectsController.basketDataTable.Rows[objectsController.basketDataTable.Rows.Count - 1][cell.ColumnIndex] = int.Parse(cell.Value.ToString());
+                }
+            }
+            /*foreach (DataGridViewColumn column in medicinesDataGridView.Columns)
+            {
+                objectsController.basketDataTable.Columns.Add(column.HeaderText, column.ValueType);
+            }
+
+            //Adding the Rows.
+            foreach (DataGridViewRow row in medicinesDataGridView.Rows)
+            {
+                objectsController.basketDataTable.Rows.Add();
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    objectsController.basketDataTable.Rows[objectsController.basketDataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
+                }
+            }*/
+            ConnectionManager connection = ConnectionManager.getInstance();
+            connection.makeOrder(objectsController.basketDataTable);
+        }
         private void BasketGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             changeData = true;
@@ -76,6 +118,24 @@ namespace HospitalPharmacy
         
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            
+            
+            
+            //Adding the Columns.
+            foreach (DataGridViewColumn column in basketGridView.Columns)
+            {
+                objectsController.basketDataTable.Columns.Add(column.HeaderText, column.ValueType);
+            }
+
+            //Adding the Rows.
+            foreach (DataGridViewRow row in basketGridView.Rows)
+            {
+                objectsController.basketDataTable.Rows.Add();
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    objectsController.basketDataTable.Rows[objectsController.basketDataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
+                }
+            }
             /*switch (MessageBox.Show("Do you want to save basket?", "Message", MessageBoxButtons.YesNo))
             {
                 case DialogResult.Yes:
@@ -119,29 +179,31 @@ namespace HospitalPharmacy
             }*/
 
         }
+
+        
         /*private void saveButton_Click(object sender, EventArgs e)
 {
-   if (changeData==false) MessageBox.Show("Nothing to save");
-   switch (MessageBox.Show("Do you want to save basket?", "Message", MessageBoxButtons.YesNo))
-   {
-       case DialogResult.Yes:
-           try
-           {
-               this.Validate();
-               this.basketGridView.EndEdit();
+if (changeData==false) MessageBox.Show("Nothing to save");
+switch (MessageBox.Show("Do you want to save basket?", "Message", MessageBoxButtons.YesNo))
+{
+case DialogResult.Yes:
+  try
+  {
+      this.Validate();
+      this.basketGridView.EndEdit();
 
-               //this.pharmacyDataSet.Medicines.End
-               //    db.Dispose();
-               MessageBox.Show("Saved", "Message");
-           }
-           catch (Exception exc)
-           {
-               MessageBox.Show("Failed" + exc.Message);
-           }
-           break;
-       case DialogResult.No:
-           break;
-   }
+      //this.pharmacyDataSet.Medicines.End
+      //    db.Dispose();
+      MessageBox.Show("Saved", "Message");
+  }
+  catch (Exception exc)
+  {
+      MessageBox.Show("Failed" + exc.Message);
+  }
+  break;
+case DialogResult.No:
+  break;
+}
 }*/
 
 

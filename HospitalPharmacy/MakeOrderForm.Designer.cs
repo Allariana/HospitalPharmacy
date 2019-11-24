@@ -258,6 +258,7 @@
             this.orderButton.TabIndex = 13;
             this.orderButton.Text = "Order";
             this.orderButton.UseVisualStyleBackColor = true;
+            this.orderButton.Click += new System.EventHandler(this.orderButton_Click);
             // 
             // MakeOrderForm
             // 
