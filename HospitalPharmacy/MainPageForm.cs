@@ -28,6 +28,7 @@ namespace HospitalPharmacy
             this.username = username;
             this.userID = userID;
             InitializeComponent();
+            tabControl.TabPages.Remove(departmentsPage);
             this.UserLabel.Text = username;
 
             ConnectionManager connection = ConnectionManager.getInstance();
@@ -60,7 +61,7 @@ namespace HospitalPharmacy
 
         }
 
-        private void UserLabel_Click(object sender, EventArgs e) { }
+      
 
         private void ExitButton_Click(object sender, EventArgs e)
         {
@@ -68,33 +69,23 @@ namespace HospitalPharmacy
             new LoginForm().Show();
         }
 
-        private void listOfDepartmentsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ListOfDepartmentsToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
+            if(tabControl.TabPages.Contains(departmentsPage)) tabControl.SelectedTab = departmentsPage;
+            else {
+                tabControl.TabPages.Insert(0, departmentsPage);
+                tabControl.SelectedTab = departmentsPage;
+            }
+           
 
         }
-
-        private void listOfDepartmentsToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            tabControl.SelectedTab = departmentsPage;
-
-        }
-
-        private void departmentsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
+        
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-
+        
         private void tabPage2_Click(object sender, EventArgs e)
         {
 
@@ -105,11 +96,6 @@ namespace HospitalPharmacy
             int id;
             id = this.userID;
             new GenerateOrderForm(id).Show();
-
-        }
-
-        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
 
         }
 
@@ -145,10 +131,7 @@ namespace HospitalPharmacy
             // new MainPageForm(this.UserLabel.Text).Show();
         }
 
-        private void generateOrderViewGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
@@ -209,10 +192,7 @@ namespace HospitalPharmacy
             }
         }
 
-        private void medicinesGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            changeData = true;
-        }
+        
 
         private void makeOrderButton_Click(object sender, EventArgs e)
         {
@@ -221,22 +201,7 @@ namespace HospitalPharmacy
 
         private void medicinesOrdersGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (medicinesOrdersGridView.Rows[e.RowIndex].Cells[0].Value != null)
-            {
-                try
-                {
-                    if (chooseActionComboBox.SelectedItem.ToString() == "Check Order Details")
-                    {
-                        new MedicinesOrderDetailsForm(medicinesOrdersGridView.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
-                    }
-                    else if (actionComboBox.SelectedItem.ToString() == "Receipt of Order")
-                    {
-                        ConnectionManager connection = ConnectionManager.getInstance();
-                        connection.pickUpOrder(medicinesOrdersGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
-                    }
-                }
-                catch (System.NullReferenceException) { MessageBox.Show("Choose what to do!"); }
-            }
+            
         }
 
         private void orderGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -269,8 +234,7 @@ namespace HospitalPharmacy
 
         private void medicinesOrdersPage_Click(object sender, EventArgs e)
         {
-            medicinesOrdersGridView.Update();
-            medicinesOrdersGridView.Refresh();
+            
         }
 
         private void orderGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -291,6 +255,49 @@ namespace HospitalPharmacy
             {
                 new PackageForm(medicinesViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
             }
+        }
+
+        private void medicinesOrdersViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (medicinesOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
+            {
+                try
+                {
+                    if (chooseActionComboBox.SelectedItem.ToString() == "Check Order Details")
+                    {
+                        new MedicinesOrderDetailsForm(medicinesOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
+                    }
+                    else if (actionComboBox.SelectedItem.ToString() == "Receipt of Order")
+                    {
+                        ConnectionManager connection = ConnectionManager.getInstance();
+                        connection.pickUpOrder(medicinesOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    }
+                }
+                catch (System.NullReferenceException) { MessageBox.Show("Choose what to do!"); }
+            }
+        }
+
+        private void tabControl_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+                if (e.Button == MouseButtons.Right)
+                {
+                    for (int ix = 0; ix < tabControl.TabCount; ++ix)
+                    {
+                        if (tabControl.GetTabRect(ix).Contains(e.Location))
+                        {
+                            //tabControl.TabPages[ix].Dispose();
+                            //tabControl.TabPages.Remove([ix]);
+                            tabControl.TabPages.Remove(tabControl.SelectedTab);
+                            break;
+                        }
+                    }
+                }
+    /*MouseEventArgs me = (MouseEventArgs)e;
+        if (sender == tabControl.SelectedTab && me.Button == MouseButtons.Right)
+        {
+            tabControl.TabPages.Remove(tabControl.SelectedTab);
+        }*/
         }
     }
 }

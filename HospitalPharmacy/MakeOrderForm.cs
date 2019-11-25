@@ -14,16 +14,16 @@ namespace HospitalPharmacy
     public partial class MakeOrderForm : Form
     {
         
-        bool changeData = false;
+        //bool changeData = false;
         ObjectsController objectsController = ObjectsController.getInstance();
         public MakeOrderForm()
         {
             InitializeComponent();
             this.basketGridView.DataSource = objectsController.basketDataTable;
-            foreach (DataGridViewColumn column in this.basketGridView.Columns)
+            /*foreach (DataGridViewColumn column in this.basketGridView.Columns)
             {
                 column.ValueType = typeof(int);
-            }
+            }*/
         }
 
         private void MakeOrderForm_Load(object sender, EventArgs e)
@@ -79,48 +79,47 @@ namespace HospitalPharmacy
         }
         private void orderButton_Click(object sender, EventArgs e)
         {
+            
             //Adding the Columns.
-            foreach (DataGridViewColumn column in basketGridView.Columns)
+            /*foreach (DataGridViewColumn column in basketGridView.Columns)
             {
-                objectsController.basketDataTable.Columns.Add(column.HeaderText, column.ValueType);
-            }
+                objectsController.basketDataTable.Columns.Add(column.HeaderText, typeof(String));
+            }*/
+            /*objectsController.basketDataTable.Columns.Add("MedicineID", typeof(String));
+        objectsController.basketDataTable.Columns.Add("Amount", typeof(String));
+        //Adding the Rows.
+        /*foreach (DataGridViewRow row in basketGridView.Rows)
+        {
+            if (row == null) basketGridView.Rows.Remove(row);
+        }*/
 
-            //Adding the Rows.
+            /*
             foreach (DataGridViewRow row in basketGridView.Rows)
             {
                 objectsController.basketDataTable.Rows.Add();
                 foreach (DataGridViewCell cell in row.Cells)
                 {
-                    objectsController.basketDataTable.Rows[objectsController.basketDataTable.Rows.Count - 1][cell.ColumnIndex] = int.Parse(cell.Value.ToString());
+                    try
+                    {
+                        objectsController.basketDataTable.Rows[objectsController.basketDataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
+                    }
+                    catch (NullReferenceException) { }
                 }
             }
-            /*foreach (DataGridViewColumn column in medicinesDataGridView.Columns)
-            {
-                objectsController.basketDataTable.Columns.Add(column.HeaderText, column.ValueType);
-            }
-
-            //Adding the Rows.
-            foreach (DataGridViewRow row in medicinesDataGridView.Rows)
-            {
-                objectsController.basketDataTable.Rows.Add();
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    objectsController.basketDataTable.Rows[objectsController.basketDataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
-                }
-            }*/
+            
             ConnectionManager connection = ConnectionManager.getInstance();
-            connection.makeOrder(objectsController.basketDataTable);
+            connection.makeOrder(objectsController.basketDataTable);*/
         }
         private void BasketGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            changeData = true;
+            
         }
         
         private void SaveButton_Click(object sender, EventArgs e)
         {
             
             
-            
+            /*
             //Adding the Columns.
             foreach (DataGridViewColumn column in basketGridView.Columns)
             {

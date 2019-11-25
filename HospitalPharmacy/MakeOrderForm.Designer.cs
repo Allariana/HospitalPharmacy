@@ -216,11 +216,13 @@
             // 
             this.MedicineID.HeaderText = "MedicineID";
             this.MedicineID.Name = "MedicineID";
+            this.MedicineID.ReadOnly = true;
             // 
             // Amount
             // 
             this.Amount.HeaderText = "Amount";
             this.Amount.Name = "Amount";
+            this.Amount.ReadOnly = true;
             // 
             // saveButton
             // 

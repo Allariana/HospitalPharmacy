@@ -70,24 +70,19 @@
             this.realizationDateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.whoIssuedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.medicinesOrdersPage = new System.Windows.Forms.TabPage();
+            this.medicinesOrdersViewDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chooseActionComboBox = new System.Windows.Forms.ComboBox();
             this.changeOrderStatusButton = new System.Windows.Forms.Button();
             this.checkButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.medicineOrderIDComboBox = new System.Windows.Forms.ComboBox();
-            this.medicinesOrdersGridView = new System.Windows.Forms.DataGridView();
-            this.orderDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderstatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.realizationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.whoOrderedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stockPage = new System.Windows.Forms.TabPage();
-            this.makeOrderButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
-            this.generateButton = new System.Windows.Forms.Button();
-            this.tabControl = new System.Windows.Forms.TabControl();
-            this.tableAdapterManager = new HospitalPharmacy.PharmacyDataSetTableAdapters.TableAdapterManager();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.medicinesViewDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -99,6 +94,13 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.makeOrderButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.generateButton = new System.Windows.Forms.Button();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tableAdapterManager = new HospitalPharmacy.PharmacyDataSetTableAdapters.TableAdapterManager();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.medicinesOrdersViewTableAdapter = new HospitalPharmacy.PharmacyDataSetTableAdapters.MedicinesOrdersViewTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pharmacyDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.generateOrderViewBindingSource)).BeginInit();
@@ -112,11 +114,11 @@
             this.orderTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.orderGridView)).BeginInit();
             this.medicinesOrdersPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.medicinesOrdersGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medicinesOrdersViewDataGridView)).BeginInit();
             this.stockPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.medicinesViewDataGridView)).BeginInit();
             this.tabControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.medicinesViewDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -136,7 +138,6 @@
             this.UserLabel.Size = new System.Drawing.Size(55, 13);
             this.UserLabel.TabIndex = 3;
             this.UserLabel.Text = "Username";
-            this.UserLabel.Click += new System.EventHandler(this.UserLabel_Click);
             // 
             // LogOutButton
             // 
@@ -202,7 +203,7 @@
             this.listOfDepartmentsToolStripMenuItem.Name = "listOfDepartmentsToolStripMenuItem";
             this.listOfDepartmentsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.listOfDepartmentsToolStripMenuItem.Text = "List of Departments";
-            this.listOfDepartmentsToolStripMenuItem.Click += new System.EventHandler(this.listOfDepartmentsToolStripMenuItem_Click_1);
+            this.listOfDepartmentsToolStripMenuItem.Click += new System.EventHandler(this.ListOfDepartmentsToolStripMenuItem_Click_1);
             // 
             // warehouseAndShoppingToolStripMenuItem
             // 
@@ -280,7 +281,6 @@
             this.departmentsGridView.Name = "departmentsGridView";
             this.departmentsGridView.Size = new System.Drawing.Size(504, 326);
             this.departmentsGridView.TabIndex = 0;
-            this.departmentsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.departmentsGridView_CellContentClick);
             // 
             // departmentIDDataGridViewTextBoxColumn
             // 
@@ -439,12 +439,12 @@
             // 
             // medicinesOrdersPage
             // 
+            this.medicinesOrdersPage.Controls.Add(this.medicinesOrdersViewDataGridView);
             this.medicinesOrdersPage.Controls.Add(this.chooseActionComboBox);
             this.medicinesOrdersPage.Controls.Add(this.changeOrderStatusButton);
             this.medicinesOrdersPage.Controls.Add(this.checkButton);
             this.medicinesOrdersPage.Controls.Add(this.label2);
             this.medicinesOrdersPage.Controls.Add(this.medicineOrderIDComboBox);
-            this.medicinesOrdersPage.Controls.Add(this.medicinesOrdersGridView);
             this.medicinesOrdersPage.Location = new System.Drawing.Point(4, 22);
             this.medicinesOrdersPage.Name = "medicinesOrdersPage";
             this.medicinesOrdersPage.Padding = new System.Windows.Forms.Padding(3);
@@ -453,6 +453,69 @@
             this.medicinesOrdersPage.Text = "Medicines Orders";
             this.medicinesOrdersPage.UseVisualStyleBackColor = true;
             this.medicinesOrdersPage.Click += new System.EventHandler(this.medicinesOrdersPage_Click);
+            // 
+            // medicinesOrdersViewDataGridView
+            // 
+            this.medicinesOrdersViewDataGridView.AllowUserToAddRows = false;
+            this.medicinesOrdersViewDataGridView.AllowUserToDeleteRows = false;
+            this.medicinesOrdersViewDataGridView.AutoGenerateColumns = false;
+            this.medicinesOrdersViewDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.medicinesOrdersViewDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn12,
+            this.dataGridViewTextBoxColumn13,
+            this.dataGridViewTextBoxColumn14,
+            this.dataGridViewTextBoxColumn15,
+            this.dataGridViewTextBoxColumn16});
+            this.medicinesOrdersViewDataGridView.DataSource = this.medicinesOrdersViewBindingSource;
+            this.medicinesOrdersViewDataGridView.Location = new System.Drawing.Point(23, 65);
+            this.medicinesOrdersViewDataGridView.Name = "medicinesOrdersViewDataGridView";
+            this.medicinesOrdersViewDataGridView.ReadOnly = true;
+            this.medicinesOrdersViewDataGridView.Size = new System.Drawing.Size(543, 220);
+            this.medicinesOrdersViewDataGridView.TabIndex = 9;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "MedicinesOrderID";
+            this.dataGridViewTextBoxColumn11.HeaderText = "MedicinesOrderID";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            this.dataGridViewTextBoxColumn11.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "OrderDate";
+            this.dataGridViewTextBoxColumn12.HeaderText = "OrderDate";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.DataPropertyName = "Price";
+            this.dataGridViewTextBoxColumn13.HeaderText = "Price";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.DataPropertyName = "Order_status";
+            this.dataGridViewTextBoxColumn14.HeaderText = "Order_status";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            this.dataGridViewTextBoxColumn15.DataPropertyName = "RealizationDate";
+            this.dataGridViewTextBoxColumn15.HeaderText = "RealizationDate";
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn16
+            // 
+            this.dataGridViewTextBoxColumn16.DataPropertyName = "WhoOrdered";
+            this.dataGridViewTextBoxColumn16.HeaderText = "WhoOrdered";
+            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
+            this.dataGridViewTextBoxColumn16.ReadOnly = true;
             // 
             // chooseActionComboBox
             // 
@@ -503,64 +566,6 @@
             this.medicineOrderIDComboBox.TabIndex = 2;
             this.medicineOrderIDComboBox.SelectedIndexChanged += new System.EventHandler(this.medicineOrderIDComboBox_SelectedIndexChanged);
             // 
-            // medicinesOrdersGridView
-            // 
-            this.medicinesOrdersGridView.AllowUserToAddRows = false;
-            this.medicinesOrdersGridView.AllowUserToDeleteRows = false;
-            this.medicinesOrdersGridView.AutoGenerateColumns = false;
-            this.medicinesOrdersGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.medicinesOrdersGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.medicinesOrdersGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.orderDateDataGridViewTextBoxColumn,
-            this.priceDataGridViewTextBoxColumn1,
-            this.orderstatusDataGridViewTextBoxColumn,
-            this.realizationDateDataGridViewTextBoxColumn,
-            this.whoOrderedDataGridViewTextBoxColumn});
-            this.medicinesOrdersGridView.DataSource = this.medicinesOrdersViewBindingSource;
-            this.medicinesOrdersGridView.Location = new System.Drawing.Point(23, 63);
-            this.medicinesOrdersGridView.Name = "medicinesOrdersGridView";
-            this.medicinesOrdersGridView.ReadOnly = true;
-            this.medicinesOrdersGridView.Size = new System.Drawing.Size(551, 449);
-            this.medicinesOrdersGridView.TabIndex = 0;
-            this.medicinesOrdersGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
-            this.medicinesOrdersGridView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.medicinesOrdersGridView_CellContentDoubleClick);
-            this.medicinesOrdersGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.medicinesOrdersGridView_CellDoubleClick);
-            // 
-            // orderDateDataGridViewTextBoxColumn
-            // 
-            this.orderDateDataGridViewTextBoxColumn.DataPropertyName = "OrderDate";
-            this.orderDateDataGridViewTextBoxColumn.HeaderText = "OrderDate";
-            this.orderDateDataGridViewTextBoxColumn.Name = "orderDateDataGridViewTextBoxColumn";
-            this.orderDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // priceDataGridViewTextBoxColumn1
-            // 
-            this.priceDataGridViewTextBoxColumn1.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn1.HeaderText = "Price";
-            this.priceDataGridViewTextBoxColumn1.Name = "priceDataGridViewTextBoxColumn1";
-            this.priceDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // orderstatusDataGridViewTextBoxColumn
-            // 
-            this.orderstatusDataGridViewTextBoxColumn.DataPropertyName = "Order_status";
-            this.orderstatusDataGridViewTextBoxColumn.HeaderText = "Order_status";
-            this.orderstatusDataGridViewTextBoxColumn.Name = "orderstatusDataGridViewTextBoxColumn";
-            this.orderstatusDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // realizationDateDataGridViewTextBoxColumn
-            // 
-            this.realizationDateDataGridViewTextBoxColumn.DataPropertyName = "RealizationDate";
-            this.realizationDateDataGridViewTextBoxColumn.HeaderText = "RealizationDate";
-            this.realizationDateDataGridViewTextBoxColumn.Name = "realizationDateDataGridViewTextBoxColumn";
-            this.realizationDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // whoOrderedDataGridViewTextBoxColumn
-            // 
-            this.whoOrderedDataGridViewTextBoxColumn.DataPropertyName = "WhoOrdered";
-            this.whoOrderedDataGridViewTextBoxColumn.HeaderText = "WhoOrdered";
-            this.whoOrderedDataGridViewTextBoxColumn.Name = "whoOrderedDataGridViewTextBoxColumn";
-            this.whoOrderedDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // stockPage
             // 
             this.stockPage.Controls.Add(this.medicinesViewDataGridView);
@@ -575,6 +580,102 @@
             this.stockPage.Text = "Stock";
             this.stockPage.UseVisualStyleBackColor = true;
             this.stockPage.Click += new System.EventHandler(this.stockPage_Click);
+            // 
+            // medicinesViewDataGridView
+            // 
+            this.medicinesViewDataGridView.AllowUserToAddRows = false;
+            this.medicinesViewDataGridView.AllowUserToDeleteRows = false;
+            this.medicinesViewDataGridView.AutoGenerateColumns = false;
+            this.medicinesViewDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.medicinesViewDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10});
+            this.medicinesViewDataGridView.DataSource = this.medicinesViewBindingSource;
+            this.medicinesViewDataGridView.Location = new System.Drawing.Point(14, 22);
+            this.medicinesViewDataGridView.Name = "medicinesViewDataGridView";
+            this.medicinesViewDataGridView.ReadOnly = true;
+            this.medicinesViewDataGridView.Size = new System.Drawing.Size(943, 220);
+            this.medicinesViewDataGridView.TabIndex = 8;
+            this.medicinesViewDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.medicinesViewDataGridView_CellDoubleClick_1);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "MedicineID";
+            this.dataGridViewTextBoxColumn1.HeaderText = "MedicineID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "TradeName";
+            this.dataGridViewTextBoxColumn2.HeaderText = "TradeName";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "ActiveSubstance";
+            this.dataGridViewTextBoxColumn3.HeaderText = "ActiveSubstance";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Dose(mg)";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Dose(mg)";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "QuantityPerUnit";
+            this.dataGridViewTextBoxColumn5.HeaderText = "QuantityPerUnit";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "UnitPrice(EUR)";
+            this.dataGridViewTextBoxColumn6.HeaderText = "UnitPrice(EUR)";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "UnitsInStock";
+            this.dataGridViewTextBoxColumn7.HeaderText = "UnitsInStock";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "RequiredQuantity";
+            this.dataGridViewTextBoxColumn8.HeaderText = "RequiredQuantity";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "CategoryName";
+            this.dataGridViewTextBoxColumn9.HeaderText = "CategoryName";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "CompanyName";
+            this.dataGridViewTextBoxColumn10.HeaderText = "CompanyName";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
             // 
             // makeOrderButton
             // 
@@ -619,6 +720,7 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(1083, 558);
             this.tabControl.TabIndex = 5;
+            this.tabControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tabControl_MouseClick);
             // 
             // tableAdapterManager
             // 
@@ -637,91 +739,9 @@
             this.tableAdapterManager.UserDetailsTableAdapter = null;
             this.tableAdapterManager.UsersTableAdapter = null;
             // 
-            // medicinesViewDataGridView
+            // medicinesOrdersViewTableAdapter
             // 
-            this.medicinesViewDataGridView.AllowUserToAddRows = false;
-            this.medicinesViewDataGridView.AllowUserToDeleteRows = false;
-            this.medicinesViewDataGridView.AutoGenerateColumns = false;
-            this.medicinesViewDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.medicinesViewDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10});
-            this.medicinesViewDataGridView.DataSource = this.medicinesViewBindingSource;
-            this.medicinesViewDataGridView.Location = new System.Drawing.Point(14, 22);
-            this.medicinesViewDataGridView.Name = "medicinesViewDataGridView";
-            this.medicinesViewDataGridView.ReadOnly = true;
-            this.medicinesViewDataGridView.Size = new System.Drawing.Size(943, 220);
-            this.medicinesViewDataGridView.TabIndex = 8;
-            this.medicinesViewDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.medicinesViewDataGridView_CellDoubleClick_1);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "MedicineID";
-            this.dataGridViewTextBoxColumn1.HeaderText = "MedicineID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "TradeName";
-            this.dataGridViewTextBoxColumn2.HeaderText = "TradeName";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "ActiveSubstance";
-            this.dataGridViewTextBoxColumn3.HeaderText = "ActiveSubstance";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Dose(mg)";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Dose(mg)";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "QuantityPerUnit";
-            this.dataGridViewTextBoxColumn5.HeaderText = "QuantityPerUnit";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "UnitPrice(EUR)";
-            this.dataGridViewTextBoxColumn6.HeaderText = "UnitPrice(EUR)";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "UnitsInStock";
-            this.dataGridViewTextBoxColumn7.HeaderText = "UnitsInStock";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "RequiredQuantity";
-            this.dataGridViewTextBoxColumn8.HeaderText = "RequiredQuantity";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "CategoryName";
-            this.dataGridViewTextBoxColumn9.HeaderText = "CategoryName";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "CompanyName";
-            this.dataGridViewTextBoxColumn10.HeaderText = "CompanyName";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.medicinesOrdersViewTableAdapter.ClearBeforeFill = true;
             // 
             // MainPageForm
             // 
@@ -754,11 +774,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.orderGridView)).EndInit();
             this.medicinesOrdersPage.ResumeLayout(false);
             this.medicinesOrdersPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.medicinesOrdersGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medicinesOrdersViewDataGridView)).EndInit();
             this.stockPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.medicinesViewDataGridView)).EndInit();
             this.tabControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.medicinesViewDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -805,12 +825,6 @@
         private System.Windows.Forms.Button checkButton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox medicineOrderIDComboBox;
-        private System.Windows.Forms.DataGridView medicinesOrdersGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn orderDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn orderstatusDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn realizationDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn whoOrderedDataGridViewTextBoxColumn;
         private System.Windows.Forms.TabPage stockPage;
         private System.Windows.Forms.Button generateButton;
         private System.Windows.Forms.TabControl tabControl;
@@ -836,5 +850,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private PharmacyDataSetTableAdapters.MedicinesOrdersViewTableAdapter medicinesOrdersViewTableAdapter;
+        private System.Windows.Forms.DataGridView medicinesOrdersViewDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
     }
 }
