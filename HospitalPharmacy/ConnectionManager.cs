@@ -222,10 +222,10 @@ namespace HospitalPharmacy
             SqlDataReader reader = orderIDCommand.ExecuteReader();
             dt.Load(reader);
             DataRow dw = dt.Rows[0];
-            orderID = int.Parse(dw[0].ToString());   
-            string insertMedicinesOrder = "insert into MedicinesOrders ([MedicinesOrderID],[UserID],[OrderDate],[Price],[RealizationFlag]) select " + orderID +
-                "," + pharmacistID + ",CONVERT (date, SYSDATETIME()),SUM(Price),'N' from GenerateOrderView;" +
-                "INSERT INTO MedicineOrderDetails select NEXT VALUE FOR medicineOrderDetailsIdSeq MedicineOrderDetailsID, * from" +
+            orderID = int.Parse(dw[0].ToString());
+            string insertMedicinesOrder = "insert into MedicinesOrders ([MedicinesOrderID],[UserID],[OrderDate],[RealizationFlag]) select " + orderID +
+                "," + pharmacistID + ",CONVERT (date, SYSDATETIME()),'N' from GenerateOrderView;" +
+                /*"INSERT INTO MedicineOrderDetails select NEXT VALUE FOR medicineOrderDetailsIdSeq MedicineOrderDetailsID, * from" +
                 "(select " + orderID + " MedicinesOrderID, m.MedicineId,CASE WHEN((m.RequiredQuantity - m.UnitsInStock - " +
                 "(select d.Amount from MedicineOrderDetails d join MedicinesOrders o on d.MedicinesOrderID = o.MedicinesOrderID" +
                 " where d.MedicineID = m.MedicineID and o.RealizationFlag = 'N')))IS NULL THEN m.RequiredQuantity - m.UnitsInStock" +
@@ -236,7 +236,9 @@ namespace HospitalPharmacy
                 " THEN(m.RequiredQuantity - m.UnitsInStock) * m.[UnitPrice(EUR)] ELSE(m.RequiredQuantity - m.UnitsInStock -" +
                 "(select d.Amount from MedicineOrderDetails d join MedicinesOrders o on d.MedicinesOrderID = o.MedicinesOrderID " +
                 " where d.MedicineID = m.MedicineID and o.RealizationFlag = 'N'))*m.[UnitPrice(EUR)] END,2) AS Price from Medicines m)insertOrder" +
-                " where insertOrder.Amount > 0;";
+                " where insertOrder.Amount > 0;";*/
+                "INSERT INTO MedicineOrderDetails ([MedicineOrderDetailsID],[MedicinesOrderID],[MedicineID],[Amount]) select NEXT VALUE FOR medicineOrderDetailsIdSeq MedicineOrderDetailsID, " + orderID +
+                 " MedicinesOrderID, g.MedicineId MedicineID, g.Amount Amount from GenerateOrderView g;";
 
             new SqlCommand(insertMedicinesOrder, connection).ExecuteNonQuery();
             reader.Close();

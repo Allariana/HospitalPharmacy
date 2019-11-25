@@ -37,9 +37,9 @@
             this.medicinesOrderDetailsGridView.AllowUserToAddRows = false;
             this.medicinesOrderDetailsGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.medicinesOrderDetailsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.medicinesOrderDetailsGridView.Location = new System.Drawing.Point(28, 27);
+            this.medicinesOrderDetailsGridView.Location = new System.Drawing.Point(12, 12);
             this.medicinesOrderDetailsGridView.Name = "medicinesOrderDetailsGridView";
-            this.medicinesOrderDetailsGridView.Size = new System.Drawing.Size(954, 393);
+            this.medicinesOrderDetailsGridView.Size = new System.Drawing.Size(986, 393);
             this.medicinesOrderDetailsGridView.TabIndex = 0;
             this.medicinesOrderDetailsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -47,7 +47,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1010, 450);
+            this.ClientSize = new System.Drawing.Size(1010, 426);
             this.Controls.Add(this.medicinesOrderDetailsGridView);
             this.Name = "MedicinesOrderDetailsForm";
             this.Text = "Medicines Order Details";

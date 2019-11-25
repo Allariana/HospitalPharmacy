@@ -28,6 +28,8 @@ namespace HospitalPharmacy
 
         private void MakeOrderForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'pharmacyDataSet.MedicinesView' table. You can move, or remove it, as needed.
+            this.medicinesViewTableAdapter.Fill(this.pharmacyDataSet.MedicinesView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.Medicines' table. You can move, or remove it, as needed.
             this.medicinesTableAdapter.Fill(this.pharmacyDataSet.Medicines);
             // TODO: This line of code loads data into the 'pharmacyDataSet.Medicines' table. You can move, or remove it, as needed.
@@ -55,16 +57,16 @@ namespace HospitalPharmacy
         private void MedicinesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (medicinesDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
+            if (medicinesViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
             {
                 
                 //new AmountForm((medicinesDataGridView.Rows[e.RowIndex].Cells[0].Value).ToString()).Show();
-                using (AmountForm amountForm = new AmountForm(medicinesDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()))
+                using (AmountForm amountForm = new AmountForm(medicinesViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()))
                 {
                     //amountForm.Show();
                     if(amountForm.ShowDialog() == DialogResult.OK)
                        {
-                        this.basketGridView.Rows.Add(medicinesDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString(), amountForm.value);
+                        this.basketGridView.Rows.Add(medicinesViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString(), amountForm.value);
                         //this.basketGridView.
                     }
                     

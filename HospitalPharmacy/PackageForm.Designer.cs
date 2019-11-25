@@ -75,10 +75,10 @@
             this.packageOfMedicineDataGridView.AllowUserToAddRows = false;
             this.packageOfMedicineDataGridView.AllowUserToDeleteRows = false;
             this.packageOfMedicineDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.packageOfMedicineDataGridView.Location = new System.Drawing.Point(12, 43);
+            this.packageOfMedicineDataGridView.Location = new System.Drawing.Point(12, 12);
             this.packageOfMedicineDataGridView.Name = "packageOfMedicineDataGridView";
             this.packageOfMedicineDataGridView.ReadOnly = true;
-            this.packageOfMedicineDataGridView.Size = new System.Drawing.Size(490, 276);
+            this.packageOfMedicineDataGridView.Size = new System.Drawing.Size(414, 426);
             this.packageOfMedicineDataGridView.TabIndex = 1;
             this.packageOfMedicineDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.packageOfMedicineDataGridView_CellContentClick);
             // 
@@ -86,7 +86,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(441, 450);
             this.Controls.Add(this.packageOfMedicineDataGridView);
             this.Name = "PackageForm";
             this.Text = "PackageForm";
