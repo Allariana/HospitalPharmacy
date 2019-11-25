@@ -55,7 +55,7 @@ namespace HospitalPharmacy
         {
             connection.Open();
             int id = int.Parse(MedicineOrderID.ToString());
-            String command = "select m.TradeName, m.ActiveSubstance, m.[Dose(mg)], m.QuantityPerUnit, m.[UnitPrice(EUR)], s.CompanyName, d.Amount, ROUND(d.Price,2) Total_price " +
+            String command = "select m.TradeName, m.ActiveSubstance, m.[Dose(mg)], m.QuantityPerUnit, s.CompanyName, d.Amount " +
                 "from MedicineOrderDetails d join Medicines m on d.MedicineID = m.MedicineID join Suppliers s on s.SupplierID = m.SupplierID join MedicinesOrders o" +
                 "    on o.MedicinesOrderID = d.MedicinesOrderID and o.MedicinesOrderID = " + id + ";";
             SqlDataAdapter adapter = new SqlDataAdapter(command, connection);

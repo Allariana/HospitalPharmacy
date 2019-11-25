@@ -56,6 +56,7 @@ namespace HospitalPharmacy
             this.medicinesViewTableAdapter.Fill(this.pharmacyDataSet.MedicinesView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.Medicines' table. You can move, or remove it, as needed.
             this.medicinesTableAdapter.Fill(this.pharmacyDataSet.Medicines);
+            this.medicinesOrdersViewTableAdapter.Fill(this.pharmacyDataSet.MedicinesOrdersView);
 
         }
    
@@ -90,6 +91,7 @@ namespace HospitalPharmacy
 
         private void checkButton_Click(object sender, EventArgs e)
         {
+
             new MedicinesOrderDetailsForm(medicineOrderIDComboBox.SelectedItem.ToString()).Show();
         }
 
@@ -290,7 +292,29 @@ namespace HospitalPharmacy
 
         private void listOfPurchaseOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            openTabPage(medicinesOrdersPage);
+            openTabPage(MedicinesOrders);
+        }
+
+        private void purchaseOrderDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openTabPage(purchaseDetailsPage);
+        }
+
+        private void medicinesOrdersViewDataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (medicinesOrdersViewDataGridView1.Rows[e.RowIndex].Cells[0].Value != null) {
+                ConnectionManager connection = ConnectionManager.getInstance();
+                DataTable orderDetails = new DataTable();
+                connection.getMedicinesOrderDetails(orderDetails, medicinesOrdersViewDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+                medicineOrderDetailsGridView.DataSource = orderDetails;
+            }
+                //new MedicinesOrderDetailsForm(medicinesOrdersViewDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();                  
         }
     }
 }
+/*
+ * ConnectionManager connection = ConnectionManager.getInstance();
+            DataTable orderDetails = new DataTable();
+            connection.getMedicinesOrderDetails(orderDetails, MedicinesOrderId);
+            medicinesOrderDetailsGridView.DataSource = orderDetails;
+ * */
