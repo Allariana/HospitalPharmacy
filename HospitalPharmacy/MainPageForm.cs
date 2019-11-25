@@ -266,7 +266,16 @@ namespace HospitalPharmacy
                     }
                 }
         }
-        
+        private void medicinesOrdersViewDataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (medicinesOrdersViewDataGridView1.Rows[e.RowIndex].Cells[0].Value != null)
+            {
+                ConnectionManager connection = ConnectionManager.getInstance();
+                DataTable orderDetails = new DataTable();
+                connection.getMedicinesOrderDetails(orderDetails, medicinesOrdersViewDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
+                medicineOrderDetailsGridView.DataSource = orderDetails;
+            }                 
+        }
         private void openTabPage(TabPage tabPage)
         {
             if (tabControl.TabPages.Contains(tabPage)) tabControl.SelectedTab = tabPage;
@@ -299,22 +308,28 @@ namespace HospitalPharmacy
         {
             openTabPage(purchaseDetailsPage);
         }
-
-        private void medicinesOrdersViewDataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+       
+        private void receiptOfOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (medicinesOrdersViewDataGridView1.Rows[e.RowIndex].Cells[0].Value != null) {
-                ConnectionManager connection = ConnectionManager.getInstance();
-                DataTable orderDetails = new DataTable();
-                connection.getMedicinesOrderDetails(orderDetails, medicinesOrdersViewDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
-                medicineOrderDetailsGridView.DataSource = orderDetails;
+            openTabPage(recepitOrderTabPage);
+        }
+
+        private void medicinesOrdersViewDataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            switch (MessageBox.Show("Are you sure you want to mark this order as done?", "Confirmation", MessageBoxButtons.YesNo))
+            {
+                case DialogResult.Yes:
+                    
+                    ConnectionManager connection = ConnectionManager.getInstance();
+                    connection.pickUpOrder(medicinesOrdersViewDataGridView2.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    medicinesOrdersViewDataGridView.DataSource = medicinesOrdersViewBindingSource;
+                    medicinesOrdersViewDataGridView1.DataSource = medicinesOrdersViewBindingSource;
+                    medicinesOrdersViewDataGridView2.DataSource = medicinesOrdersViewBindingSource;
+                    break;
+                case DialogResult.No:
+                    break;
             }
-                //new MedicinesOrderDetailsForm(medicinesOrdersViewDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();                  
         }
     }
 }
-/*
- * ConnectionManager connection = ConnectionManager.getInstance();
-            DataTable orderDetails = new DataTable();
-            connection.getMedicinesOrderDetails(orderDetails, MedicinesOrderId);
-            medicinesOrderDetailsGridView.DataSource = orderDetails;
- * */
+

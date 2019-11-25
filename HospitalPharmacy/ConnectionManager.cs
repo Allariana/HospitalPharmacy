@@ -104,11 +104,11 @@ namespace HospitalPharmacy
                     "(select a.Amount from(select d.MedicineID MedicineID, d.Amount Amount from MedicineOrderDetails d join Medicines m on m.MedicineID = d.MedicineID " +
                     "join MedicinesOrders o on     d.MedicinesOrderID = o.MedicinesOrderID and o.MedicinesOrderID = " + id + ")a join Medicines m on a.MedicineID = m.MedicineID " +
                     "and a.MedicineID = Medicines.MedicineID)where MedicineID in (select d.MedicineID from MedicineOrderDetails d join MedicinesOrders o on " +
-                    "d.MedicinesOrderID = o.MedicinesOrderID and d.MedicinesOrderID = " + id + "); " +
+                    "d.MedicinesOrderID = o.MedicinesOrderID and d.MedicinesOrderID = " + id + "); " /*+
                     "INSERT INTO PackageofMedicine ([SerialNumber(SN)],[MedicineID],[TermofValidity(EXP)],[SerialNumber(LOT)],[MedicineOrderDetailsID])" +
                     "SELECT CONVERT(INT, a.SerialNumber),CONVERT(INT, RIGHT(a.SerialNumber, 3)),a.TermofValidity, CONVERT(INT, a.LOT), d.MedicineOrderDetailsID " +
                     "FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0','Excel 12.0;Database=D:\\Invoices\\" + id + ".xlsx','SELECT * from [Arkusz1$]')a join MedicineOrderDetails d on CONVERT(INT, RIGHT(a.SerialNumber,3))= MedicineID " +
-                    "join MedicinesOrders o on o.MedicinesOrderID = d.MedicinesOrderID and o.RealizationFlag = 'N';";
+                    "join MedicinesOrders o on o.MedicinesOrderID = d.MedicinesOrderID and o.RealizationFlag = 'N';"*/;
                  
                 new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
                 MessageBox.Show("Succeed!");
