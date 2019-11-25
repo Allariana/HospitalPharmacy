@@ -13,26 +13,25 @@ namespace HospitalPharmacy
 {
     public partial class MainPageForm : Form
     {
+        private int userID;
         private string username;
-        int userID;
-        string columnname = "MedicinesOrderID";
-        string ordercolumnname = "OrderID";
-        string tablename = "MedicinesOrders";
-        string ordertablename = "Orders";
-        bool changeData = false;
-        DataTable idNameCombo = new DataTable();
-        DataTable orderNameCombo = new DataTable();
+        private string columnname = "MedicinesOrderID";
+        private string ordercolumnname = "OrderID";
+        private string tablename = "MedicinesOrders";
+        private string ordertablename = "Orders";
+        private DataTable idNameCombo = new DataTable();
+        private DataTable orderNameCombo = new DataTable();
 
         public MainPageForm(int userID, String username)
         {
+            InitializeComponent();
             this.username = username;
             this.userID = userID;
-            InitializeComponent();
-            tabControl.TabPages.Remove(departmentsPage);
-            this.UserLabel.Text = username;
+            tabControl.TabPages.Clear();
+            tabControl.TabPages.Insert(0, stockPage);
+            UserLabel.Text = username;
 
             ConnectionManager connection = ConnectionManager.getInstance();
-            //this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
             connection.getColumn(tablename, columnname, idNameCombo);
             foreach (DataRow row in idNameCombo.Rows)
             {
@@ -49,7 +48,6 @@ namespace HospitalPharmacy
         {
             // TODO: This line of code loads data into the 'pharmacyDataSet.OrdersView' table. You can move, or remove it, as needed.
             this.ordersViewTableAdapter.Fill(this.pharmacyDataSet.OrdersView);
-            
             // TODO: This line of code loads data into the 'pharmacyDataSet.Departments' table. You can move, or remove it, as needed.
             this.departmentsTableAdapter.Fill(this.pharmacyDataSet.Departments);
             // TODO: This line of code loads data into the 'pharmacyDataSet.GenerateOrderView' table. You can move, or remove it, as needed.
@@ -60,32 +58,13 @@ namespace HospitalPharmacy
             this.medicinesTableAdapter.Fill(this.pharmacyDataSet.Medicines);
 
         }
-
-      
-
+   
         private void ExitButton_Click(object sender, EventArgs e)
         {
             this.Hide();
             new LoginForm().Show();
         }
-
-        private void ListOfDepartmentsToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            if(tabControl.TabPages.Contains(departmentsPage)) tabControl.SelectedTab = departmentsPage;
-            else {
-                tabControl.TabPages.Insert(0, departmentsPage);
-                tabControl.SelectedTab = departmentsPage;
-            }
-           
-
-        }
-        
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        
+                 
         private void tabPage2_Click(object sender, EventArgs e)
         {
 
@@ -128,11 +107,8 @@ namespace HospitalPharmacy
         private void button1_Click_1(object sender, EventArgs e)
         {
             this.Hide();
-            // new MainPageForm(this.UserLabel.Text).Show();
         }
-
         
-
         private void confirmButton_Click(object sender, EventArgs e)
         {
             try
@@ -171,7 +147,7 @@ namespace HospitalPharmacy
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (!changeData) return;
+            /*if (!changeData) return;
             switch (MessageBox.Show("Czy zapisać dane w bazie danych?", "Komunikat", MessageBoxButtons.YesNo))
             {
                 case DialogResult.Yes:
@@ -189,11 +165,9 @@ namespace HospitalPharmacy
                     break;
                 case DialogResult.No:
                     break;
-            }
+            }*/
         }
-
         
-
         private void makeOrderButton_Click(object sender, EventArgs e)
         {
             new MakeOrderForm().Show();
@@ -241,9 +215,7 @@ namespace HospitalPharmacy
         {
 
         }
-
       
-
         private void medicinesOrdersGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -286,18 +258,39 @@ namespace HospitalPharmacy
                     {
                         if (tabControl.GetTabRect(ix).Contains(e.Location))
                         {
-                            //tabControl.TabPages[ix].Dispose();
-                            //tabControl.TabPages.Remove([ix]);
                             tabControl.TabPages.Remove(tabControl.SelectedTab);
                             break;
                         }
                     }
                 }
-    /*MouseEventArgs me = (MouseEventArgs)e;
-        if (sender == tabControl.SelectedTab && me.Button == MouseButtons.Right)
+        }
+        
+        private void openTabPage(TabPage tabPage)
         {
-            tabControl.TabPages.Remove(tabControl.SelectedTab);
-        }*/
+            if (tabControl.TabPages.Contains(tabPage)) tabControl.SelectedTab = tabPage;
+            else
+            {
+                tabControl.TabPages.Insert(0, tabPage);
+                tabControl.SelectedTab = tabPage;
+            }
+        }
+        private void inStockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openTabPage(stockPage);
+        }
+
+        private void listOfOrdersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openTabPage(orderTabPage);
+        }
+        private void ListOfDepartmentsToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            openTabPage(departmentsPage);
+        }
+
+        private void listOfPurchaseOrdersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openTabPage(medicinesOrdersPage);
         }
     }
 }

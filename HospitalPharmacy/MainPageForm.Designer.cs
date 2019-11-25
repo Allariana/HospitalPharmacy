@@ -41,6 +41,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.departmentsAndOrToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listOfDepartmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listOfOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.warehouseAndShoppingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitButton = new System.Windows.Forms.Button();
@@ -101,6 +102,7 @@
             this.tableAdapterManager = new HospitalPharmacy.PharmacyDataSetTableAdapters.TableAdapterManager();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.medicinesOrdersViewTableAdapter = new HospitalPharmacy.PharmacyDataSetTableAdapters.MedicinesOrdersViewTableAdapter();
+            this.listOfPurchaseOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pharmacyDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.generateOrderViewBindingSource)).BeginInit();
@@ -193,7 +195,8 @@
             // departmentsAndOrToolStripMenuItem
             // 
             this.departmentsAndOrToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listOfDepartmentsToolStripMenuItem});
+            this.listOfDepartmentsToolStripMenuItem,
+            this.listOfOrdersToolStripMenuItem});
             this.departmentsAndOrToolStripMenuItem.Name = "departmentsAndOrToolStripMenuItem";
             this.departmentsAndOrToolStripMenuItem.Size = new System.Drawing.Size(146, 20);
             this.departmentsAndOrToolStripMenuItem.Text = "Departments and orders";
@@ -201,14 +204,22 @@
             // listOfDepartmentsToolStripMenuItem
             // 
             this.listOfDepartmentsToolStripMenuItem.Name = "listOfDepartmentsToolStripMenuItem";
-            this.listOfDepartmentsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.listOfDepartmentsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listOfDepartmentsToolStripMenuItem.Text = "List of Departments";
             this.listOfDepartmentsToolStripMenuItem.Click += new System.EventHandler(this.ListOfDepartmentsToolStripMenuItem_Click_1);
+            // 
+            // listOfOrdersToolStripMenuItem
+            // 
+            this.listOfOrdersToolStripMenuItem.Name = "listOfOrdersToolStripMenuItem";
+            this.listOfOrdersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listOfOrdersToolStripMenuItem.Text = "List of Orders";
+            this.listOfOrdersToolStripMenuItem.Click += new System.EventHandler(this.listOfOrdersToolStripMenuItem_Click);
             // 
             // warehouseAndShoppingToolStripMenuItem
             // 
             this.warehouseAndShoppingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.inStockToolStripMenuItem});
+            this.inStockToolStripMenuItem,
+            this.listOfPurchaseOrdersToolStripMenuItem});
             this.warehouseAndShoppingToolStripMenuItem.Name = "warehouseAndShoppingToolStripMenuItem";
             this.warehouseAndShoppingToolStripMenuItem.Size = new System.Drawing.Size(154, 20);
             this.warehouseAndShoppingToolStripMenuItem.Text = "Warehouse and shopping";
@@ -216,8 +227,9 @@
             // inStockToolStripMenuItem
             // 
             this.inStockToolStripMenuItem.Name = "inStockToolStripMenuItem";
-            this.inStockToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
-            this.inStockToolStripMenuItem.Text = "In stock";
+            this.inStockToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.inStockToolStripMenuItem.Text = "Stock";
+            this.inStockToolStripMenuItem.Click += new System.EventHandler(this.inStockToolStripMenuItem_Click);
             // 
             // exitButton
             // 
@@ -743,6 +755,13 @@
             // 
             this.medicinesOrdersViewTableAdapter.ClearBeforeFill = true;
             // 
+            // listOfPurchaseOrdersToolStripMenuItem
+            // 
+            this.listOfPurchaseOrdersToolStripMenuItem.Name = "listOfPurchaseOrdersToolStripMenuItem";
+            this.listOfPurchaseOrdersToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.listOfPurchaseOrdersToolStripMenuItem.Text = "List of purchase orders";
+            this.listOfPurchaseOrdersToolStripMenuItem.Click += new System.EventHandler(this.listOfPurchaseOrdersToolStripMenuItem_Click);
+            // 
             // MainPageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -858,5 +877,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
+        private System.Windows.Forms.ToolStripMenuItem listOfOrdersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem listOfPurchaseOrdersToolStripMenuItem;
     }
 }
