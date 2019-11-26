@@ -19,7 +19,8 @@ namespace HospitalPharmacy
         public MakeOrderForm()
         {
             InitializeComponent();
-            this.basketGridView.DataSource = objectsController.basketDataTable;
+            objectsController.addColumn(objectsController.basketDataTable);
+            basketGridView.DataSource = objectsController.basketDataTable;
             /*foreach (DataGridViewColumn column in this.basketGridView.Columns)
             {
                 column.ValueType = typeof(int);
@@ -29,45 +30,22 @@ namespace HospitalPharmacy
         private void MakeOrderForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'pharmacyDataSet.MedicinesView' table. You can move, or remove it, as needed.
-            this.medicinesViewTableAdapter.Fill(this.pharmacyDataSet.MedicinesView);
-            // TODO: This line of code loads data into the 'pharmacyDataSet.Medicines' table. You can move, or remove it, as needed.
-            this.medicinesTableAdapter.Fill(this.pharmacyDataSet.Medicines);
-            // TODO: This line of code loads data into the 'pharmacyDataSet.Medicines' table. You can move, or remove it, as needed.
-            this.medicinesTableAdapter.Fill(this.pharmacyDataSet.Medicines);
-            // TODO: This line of code loads data into the 'pharmacyDataSet.GenerateOrderView' table. You can move, or remove it, as needed.
-            this.generateOrderViewTableAdapter.Fill(this.pharmacyDataSet.GenerateOrderView);
-
+            this.medicinesViewTableAdapter.Fill(this.pharmacyDataSet.MedicinesView);       
         }
 
-        private void MedicinesComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void MedicinesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
-        private void MedicinesDataGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //new AmountForm().Show();
-        }
-
-        private void MedicinesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void medicinesViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
             if (medicinesViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
             {
                 
-                //new AmountForm((medicinesDataGridView.Rows[e.RowIndex].Cells[0].Value).ToString()).Show();
                 using (AmountForm amountForm = new AmountForm(medicinesViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()))
                 {
-                    //amountForm.Show();
                     if(amountForm.ShowDialog() == DialogResult.OK)
                        {
-                        this.basketGridView.Rows.Add(medicinesViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString(), amountForm.value);
-                        //this.basketGridView.
+                        objectsController.basketDataTable.Rows.Add(medicinesViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString(), amountForm.value);
+                        basketGridView.DataSource = objectsController.basketDataTable;
+                        basketGridView.Refresh();                       
                     }
                     
                 }
@@ -182,6 +160,8 @@ namespace HospitalPharmacy
         }
 
         
+
+
         /*private void saveButton_Click(object sender, EventArgs e)
 {
 if (changeData==false) MessageBox.Show("Nothing to save");

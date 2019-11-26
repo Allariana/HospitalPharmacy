@@ -130,6 +130,7 @@
             this.ordersViewTableAdapter = new HospitalPharmacy.PharmacyDataSetTableAdapters.OrdersViewTableAdapter();
             this.tableAdapterManager = new HospitalPharmacy.PharmacyDataSetTableAdapters.TableAdapterManager();
             this.medicinesOrdersViewTableAdapter = new HospitalPharmacy.PharmacyDataSetTableAdapters.MedicinesOrdersViewTableAdapter();
+            this.listOfSuppliersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.departmentsPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.departmentsGridView)).BeginInit();
@@ -284,6 +285,8 @@
             // 
             // suppliersToolStripMenuItem
             // 
+            this.suppliersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.listOfSuppliersToolStripMenuItem});
             this.suppliersToolStripMenuItem.Name = "suppliersToolStripMenuItem";
             this.suppliersToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.suppliersToolStripMenuItem.Text = "Suppliers";
@@ -324,6 +327,8 @@
             // 
             // departmentsGridView
             // 
+            this.departmentsGridView.AllowUserToAddRows = false;
+            this.departmentsGridView.AllowUserToDeleteRows = false;
             this.departmentsGridView.AutoGenerateColumns = false;
             this.departmentsGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.departmentsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -335,6 +340,7 @@
             this.departmentsGridView.DataSource = this.departmentsBindingSource;
             this.departmentsGridView.Location = new System.Drawing.Point(17, 19);
             this.departmentsGridView.Name = "departmentsGridView";
+            this.departmentsGridView.ReadOnly = true;
             this.departmentsGridView.Size = new System.Drawing.Size(504, 326);
             this.departmentsGridView.TabIndex = 0;
             // 
@@ -601,7 +607,7 @@
             this.chooseActionComboBox.Items.AddRange(new object[] {
             "Check Order Details",
             "Receipt of Order"});
-            this.chooseActionComboBox.Location = new System.Drawing.Point(775, 65);
+            this.chooseActionComboBox.Location = new System.Drawing.Point(778, 67);
             this.chooseActionComboBox.Name = "chooseActionComboBox";
             this.chooseActionComboBox.Size = new System.Drawing.Size(165, 21);
             this.chooseActionComboBox.TabIndex = 9;
@@ -1038,6 +1044,12 @@
             // 
             this.medicinesOrdersViewTableAdapter.ClearBeforeFill = true;
             // 
+            // listOfSuppliersToolStripMenuItem
+            // 
+            this.listOfSuppliersToolStripMenuItem.Name = "listOfSuppliersToolStripMenuItem";
+            this.listOfSuppliersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listOfSuppliersToolStripMenuItem.Text = "List of Suppliers";
+            // 
             // MainPageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1190,5 +1202,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn28;
+        private System.Windows.Forms.ToolStripMenuItem listOfSuppliersToolStripMenuItem;
     }
 }

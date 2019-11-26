@@ -29,7 +29,6 @@ namespace HospitalPharmacy
 
         private void addToBasketButton_Click(object sender, EventArgs e)
         {
-            
             DialogResult = DialogResult.OK;
             this.Hide();
         }

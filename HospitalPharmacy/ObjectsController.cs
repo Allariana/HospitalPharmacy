@@ -22,5 +22,15 @@ namespace HospitalPharmacy
             return instance;
         }
         public DataTable basketDataTable = new DataTable();
+        public void addColumn (DataTable basketDataTable)
+        {
+            DataColumnCollection columns = basketDataTable.Columns;
+            if (columns.Contains("MedicineID")) { }
+            else
+            {
+                basketDataTable.Columns.Add("MedicineID", typeof(String));
+                basketDataTable.Columns.Add("Amount", typeof(String));
+            }
+        }
     }
 }

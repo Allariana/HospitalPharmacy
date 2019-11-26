@@ -322,9 +322,15 @@ namespace HospitalPharmacy
                     
                     ConnectionManager connection = ConnectionManager.getInstance();
                     connection.pickUpOrder(medicinesOrdersViewDataGridView2.Rows[e.RowIndex].Cells[0].Value.ToString());
-                    medicinesOrdersViewDataGridView.DataSource = medicinesOrdersViewBindingSource;
-                    medicinesOrdersViewDataGridView1.DataSource = medicinesOrdersViewBindingSource;
-                    medicinesOrdersViewDataGridView2.DataSource = medicinesOrdersViewBindingSource;
+
+                    medicinesOrdersViewDataGridView.DataSource = medicinesOrdersViewTableAdapter;
+                    medicinesOrdersViewDataGridView.Refresh();
+                    medicinesOrdersViewDataGridView1.DataSource = medicinesOrdersViewTableAdapter;
+                    medicinesOrdersViewDataGridView1.Refresh();
+                    medicinesOrdersViewDataGridView2.DataSource = medicinesOrdersViewTableAdapter;
+                    medicinesOrdersViewDataGridView2.Refresh();
+                    medicinesViewDataGridView.DataSource = medicinesViewTableAdapter;
+                    medicinesViewDataGridView.Refresh();
                     break;
                 case DialogResult.No:
                     break;
