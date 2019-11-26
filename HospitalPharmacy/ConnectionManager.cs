@@ -244,9 +244,29 @@ namespace HospitalPharmacy
             reader.Close();
             connection.Close();
         } 
-        public void makeOrder(DataTable orderTable)
+        public void makeOrder(int pharmacistID, DataTable orderTable)
         {
-
+            connection.Open();
+            int orderID;
+            DataTable dt = new DataTable();
+            SqlCommand orderIDCommand = new SqlCommand("select NEXT VALUE FOR medicinesOrderIDSeq;", connection);
+            SqlDataReader reader = orderIDCommand.ExecuteReader();
+            dt.Load(reader);
+            DataRow dw = dt.Rows[0];
+            orderID = int.Parse(dw[0].ToString());
+            string insertMedicinesOrder = "insert into MedicinesOrders ([MedicinesOrderID],[UserID],[OrderDate],[RealizationFlag]) select " + orderID +
+                "," + pharmacistID + ",CONVERT (date, SYSDATETIME()),'N';";
+            new SqlCommand(insertMedicinesOrder, connection).ExecuteNonQuery();
+            for (int i = 0; i < orderTable.Rows.Count; i++)
+            {
+                string insertMedicineOrderDetail = "INSERT INTO MedicineOrderDetails ([MedicineOrderDetailsID],[MedicinesOrderID],[MedicineID],[Amount]) " +
+                  "select NEXT VALUE FOR medicineOrderDetailsIdSeq MedicineOrderDetailsID, " + orderID + " MedicinesOrderID," 
+                  + int.Parse(orderTable.Rows[i].ItemArray[0].ToString()) + " MedicineID," + int.Parse(orderTable.Rows[i].ItemArray[1].ToString()) + " Amount;";
+                    new SqlCommand(insertMedicineOrderDetail, connection).ExecuteNonQuery();                
+            }
+            orderTable.Clear();
+            reader.Close();
+            connection.Close();
         }
     }   
 }

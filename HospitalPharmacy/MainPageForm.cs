@@ -172,7 +172,7 @@ namespace HospitalPharmacy
         
         private void makeOrderButton_Click(object sender, EventArgs e)
         {
-            new MakeOrderForm().Show();
+            new MakeOrderForm(userID).Show();
         }
 
         private void medicinesOrdersGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

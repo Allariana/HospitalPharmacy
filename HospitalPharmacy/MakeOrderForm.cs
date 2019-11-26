@@ -13,11 +13,12 @@ namespace HospitalPharmacy
 {
     public partial class MakeOrderForm : Form
     {
-        
+        int id;
         //bool changeData = false;
         ObjectsController objectsController = ObjectsController.getInstance();
-        public MakeOrderForm()
+        public MakeOrderForm(int id)
         {
+            this.id = id;
             InitializeComponent();
             objectsController.addColumn(objectsController.basketDataTable);
             basketGridView.DataSource = objectsController.basketDataTable;
@@ -35,7 +36,6 @@ namespace HospitalPharmacy
 
         private void medicinesViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
             if (medicinesViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
             {
                 
@@ -50,16 +50,23 @@ namespace HospitalPharmacy
                     
                 }
             }
-                //ew AmountForm(int.Parse(medicinesDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString())).Show();
         }
 
-        private void AddToBasketButton_Click(object sender, EventArgs e)
-        {
-            //if (medicinesDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
-        }
         private void orderButton_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                ConnectionManager connection = ConnectionManager.getInstance();
+                connection.makeOrder(id, objectsController.basketDataTable);
+                basketGridView.DataSource = objectsController.basketDataTable;
+                basketGridView.Refresh();
+                MessageBox.Show("Order completed!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
             //Adding the Columns.
             /*foreach (DataGridViewColumn column in basketGridView.Columns)
             {
@@ -87,8 +94,7 @@ namespace HospitalPharmacy
                 }
             }
             
-            ConnectionManager connection = ConnectionManager.getInstance();
-            connection.makeOrder(objectsController.basketDataTable);*/
+            */
         }
         private void BasketGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {

@@ -36,7 +36,6 @@
             this.medicinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.medicinesTableAdapter = new HospitalPharmacy.PharmacyDataSetTableAdapters.MedicinesTableAdapter();
             this.basketGridView = new System.Windows.Forms.DataGridView();
-            this.saveButton = new System.Windows.Forms.Button();
             this.basketLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.orderButton = new System.Windows.Forms.Button();
@@ -107,21 +106,11 @@
             this.basketGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.basketGridView.Location = new System.Drawing.Point(793, 54);
             this.basketGridView.Name = "basketGridView";
-            this.basketGridView.Size = new System.Drawing.Size(241, 97);
+            this.basketGridView.Size = new System.Drawing.Size(241, 332);
             this.basketGridView.TabIndex = 9;
             this.basketGridView.AllowUserToAddRowsChanged += new System.EventHandler(this.SaveButton_Click);
             this.basketGridView.AllowUserToDeleteRowsChanged += new System.EventHandler(this.SaveButton_Click);
             this.basketGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.BasketGridView_CellValueChanged);
-            // 
-            // saveButton
-            // 
-            this.saveButton.Location = new System.Drawing.Point(821, 371);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 10;
-            this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // basketLabel
             // 
@@ -143,7 +132,7 @@
             // 
             // orderButton
             // 
-            this.orderButton.Location = new System.Drawing.Point(933, 371);
+            this.orderButton.Location = new System.Drawing.Point(879, 404);
             this.orderButton.Name = "orderButton";
             this.orderButton.Size = new System.Drawing.Size(75, 23);
             this.orderButton.TabIndex = 13;
@@ -259,7 +248,6 @@
             this.Controls.Add(this.orderButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.basketLabel);
-            this.Controls.Add(this.saveButton);
             this.Controls.Add(this.basketGridView);
             this.Name = "MakeOrderForm";
             this.Text = "MakeOrderForm";
@@ -284,7 +272,6 @@
         private System.Windows.Forms.BindingSource medicinesBindingSource;
         private PharmacyDataSetTableAdapters.MedicinesTableAdapter medicinesTableAdapter;
         private System.Windows.Forms.DataGridView basketGridView;
-        private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Label basketLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button orderButton;
