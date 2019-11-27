@@ -77,7 +77,7 @@ namespace HospitalPharmacy
         {
             connection.Open();
             int id = int.Parse(medicineID.ToString());
-            String command = "select [SerialNumber(SN)],[TermofValidity(EXP)],[SerialNumber(LOT)] from PackageofMedicine where OrderDetailsID is null and MedicineID =" + id + ";";
+            String command = "select [SerialNumber(SN)],[TermofValidity(EXP)],[SerialNumber(LOT)] from PackageofMedicine where OrderDetailID is null and MedicineID =" + id + ";";
             SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
             adapter.Fill(dataTable);
             connection.Close();
@@ -85,19 +85,10 @@ namespace HospitalPharmacy
         public void pickUpOrder(String MedicineOrderID)
         {
             int id = int.Parse(MedicineOrderID.ToString());
-            char status;
             try
             {
                 connection.Open();
-                SqlCommand checkOrderStatus = new SqlCommand("select RealizationFlag from MedicinesOrders where MedicinesOrderID = " + id + ";", connection);
-                SqlDataReader reader = checkOrderStatus.ExecuteReader();
-                DataTable dt = new DataTable();
-                dt.Load(reader);
-                DataRow dw = dt.Rows[0];
-                status = char.Parse(dw[0].ToString());
-                reader.Close();
-                if (status == 'N')
-                {
+                
                     String pickUpOrderCommand = "UPDATE MedicinesOrders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()) where MedicinesOrderID " +
                     "= " + id + "; " +
                     " UPDATE Medicines SET UnitsInStock = UnitsInStock + " +
@@ -107,13 +98,11 @@ namespace HospitalPharmacy
                     "d.MedicinesOrderID = o.MedicinesOrderID and d.MedicinesOrderID = " + id + "); " /*+
                     "INSERT INTO PackageofMedicine ([SerialNumber(SN)],[MedicineID],[TermofValidity(EXP)],[SerialNumber(LOT)],[MedicineOrderDetailsID])" +
                     "SELECT CONVERT(INT, a.SerialNumber),CONVERT(INT, RIGHT(a.SerialNumber, 3)),a.TermofValidity, CONVERT(INT, a.LOT), d.MedicineOrderDetailsID " +
-                    "FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0','Excel 12.0;Database=D:\\Invoices\\" + id + ".xlsx','SELECT * from [Arkusz1$]')a join MedicineOrderDetails d on CONVERT(INT, RIGHT(a.SerialNumber,3))= MedicineID " +
+                    "FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0','Excel 12.0;Database=D:\\Kinga\\Studies\\IV rok\\Semestr 7\\Praca dyplomowa\\Invoices\\" + id + ".xlsx','SELECT * from [Arkusz1$]')a join MedicineOrderDetails d on CONVERT(INT, RIGHT(a.SerialNumber,3))= MedicineID " +
                     "join MedicinesOrders o on o.MedicinesOrderID = d.MedicinesOrderID and o.RealizationFlag = 'N';"*/;
                  
                 new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
                 MessageBox.Show("Succeed!");
-                }
-                else MessageBox.Show("This order has already been completed!");
             }
             catch (Exception ex)
             {

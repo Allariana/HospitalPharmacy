@@ -34,19 +34,19 @@
             this.LogOutButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.departmentsAndOrToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listOfDepartmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listOfOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.orderDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.completeOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listOfDepartmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.warehouseAndShoppingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listOfPurchaseOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.purchaseOrderDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptOfOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pharmacistsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listOfPharmacistsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.detailedInformationAboutPharmacistsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.suppliersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.invoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.raportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listOfSuppliersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitButton = new System.Windows.Forms.Button();
             this.departmentsPage = new System.Windows.Forms.TabPage();
             this.departmentsGridView = new System.Windows.Forms.DataGridView();
@@ -97,13 +97,10 @@
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.medicinesViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.makeOrderButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
             this.generateButton = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.purchaseDetailsPage = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.medicineOrderDetailsGridView = new System.Windows.Forms.DataGridView();
             this.medicinesOrdersViewDataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -113,13 +110,18 @@
             this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.medicinesOrdersViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.recepitOrderTabPage = new System.Windows.Forms.TabPage();
-            this.medicinesOrdersViewDataGridView2 = new System.Windows.Forms.DataGridView();
+            this.receiptMedicinesOrdersViewDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.receiptMedicinesOrdersViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.currentOrderTabPage = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.currentOrdersViewDataGridView = new System.Windows.Forms.DataGridView();
+            this.currentOrdersViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.generateOrderViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.medicinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -130,7 +132,14 @@
             this.ordersViewTableAdapter = new HospitalPharmacy.PharmacyDataSetTableAdapters.OrdersViewTableAdapter();
             this.tableAdapterManager = new HospitalPharmacy.PharmacyDataSetTableAdapters.TableAdapterManager();
             this.medicinesOrdersViewTableAdapter = new HospitalPharmacy.PharmacyDataSetTableAdapters.MedicinesOrdersViewTableAdapter();
-            this.listOfSuppliersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.currentOrdersViewTableAdapter = new HospitalPharmacy.PharmacyDataSetTableAdapters.CurrentOrdersViewTableAdapter();
+            this.receiptMedicinesOrdersViewTableAdapter = new HospitalPharmacy.PharmacyDataSetTableAdapters.ReceiptMedicinesOrdersViewTableAdapter();
+            this.dataGridViewTextBoxColumn29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.departmentsPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.departmentsGridView)).BeginInit();
@@ -147,11 +156,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.medicinesViewBindingSource)).BeginInit();
             this.tabControl.SuspendLayout();
             this.purchaseDetailsPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.medicineOrderDetailsGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesOrdersViewDataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesOrdersViewBindingSource)).BeginInit();
             this.recepitOrderTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.medicinesOrdersViewDataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.receiptMedicinesOrdersViewDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.receiptMedicinesOrdersViewBindingSource)).BeginInit();
+            this.currentOrderTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.currentOrdersViewDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currentOrdersViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.generateOrderViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesBindingSource)).BeginInit();
@@ -191,9 +203,7 @@
             this.departmentsAndOrToolStripMenuItem,
             this.warehouseAndShoppingToolStripMenuItem,
             this.pharmacistsToolStripMenuItem,
-            this.suppliersToolStripMenuItem,
-            this.invoicesToolStripMenuItem,
-            this.raportsToolStripMenuItem});
+            this.suppliersToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1118, 24);
@@ -203,32 +213,46 @@
             // departmentsAndOrToolStripMenuItem
             // 
             this.departmentsAndOrToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listOfDepartmentsToolStripMenuItem,
-            this.listOfOrdersToolStripMenuItem});
+            this.listOfOrdersToolStripMenuItem,
+            this.orderDetailsToolStripMenuItem,
+            this.completeOrderToolStripMenuItem,
+            this.listOfDepartmentsToolStripMenuItem});
             this.departmentsAndOrToolStripMenuItem.Name = "departmentsAndOrToolStripMenuItem";
-            this.departmentsAndOrToolStripMenuItem.Size = new System.Drawing.Size(146, 20);
-            this.departmentsAndOrToolStripMenuItem.Text = "Departments and orders";
-            // 
-            // listOfDepartmentsToolStripMenuItem
-            // 
-            this.listOfDepartmentsToolStripMenuItem.Name = "listOfDepartmentsToolStripMenuItem";
-            this.listOfDepartmentsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.listOfDepartmentsToolStripMenuItem.Text = "List of Departments";
-            this.listOfDepartmentsToolStripMenuItem.Click += new System.EventHandler(this.ListOfDepartmentsToolStripMenuItem_Click_1);
+            this.departmentsAndOrToolStripMenuItem.Size = new System.Drawing.Size(148, 20);
+            this.departmentsAndOrToolStripMenuItem.Text = "Departments and Orders";
+            this.departmentsAndOrToolStripMenuItem.Click += new System.EventHandler(this.departmentsAndOrToolStripMenuItem_Click);
             // 
             // listOfOrdersToolStripMenuItem
             // 
             this.listOfOrdersToolStripMenuItem.Name = "listOfOrdersToolStripMenuItem";
-            this.listOfOrdersToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.listOfOrdersToolStripMenuItem.Text = "List of Orders";
+            this.listOfOrdersToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.listOfOrdersToolStripMenuItem.Text = "Current Orders";
             this.listOfOrdersToolStripMenuItem.Click += new System.EventHandler(this.listOfOrdersToolStripMenuItem_Click);
+            // 
+            // orderDetailsToolStripMenuItem
+            // 
+            this.orderDetailsToolStripMenuItem.Name = "orderDetailsToolStripMenuItem";
+            this.orderDetailsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.orderDetailsToolStripMenuItem.Text = "Order Details";
+            // 
+            // completeOrderToolStripMenuItem
+            // 
+            this.completeOrderToolStripMenuItem.Name = "completeOrderToolStripMenuItem";
+            this.completeOrderToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.completeOrderToolStripMenuItem.Text = "Complete Order";
+            // 
+            // listOfDepartmentsToolStripMenuItem
+            // 
+            this.listOfDepartmentsToolStripMenuItem.Name = "listOfDepartmentsToolStripMenuItem";
+            this.listOfDepartmentsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.listOfDepartmentsToolStripMenuItem.Text = "List of departments";
+            this.listOfDepartmentsToolStripMenuItem.Click += new System.EventHandler(this.listOfDepartmentsToolStripMenuItem_Click);
             // 
             // warehouseAndShoppingToolStripMenuItem
             // 
             this.warehouseAndShoppingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inStockToolStripMenuItem,
             this.listOfPurchaseOrdersToolStripMenuItem,
-            this.purchaseOrderDetailsToolStripMenuItem,
             this.receiptOfOrdersToolStripMenuItem});
             this.warehouseAndShoppingToolStripMenuItem.Name = "warehouseAndShoppingToolStripMenuItem";
             this.warehouseAndShoppingToolStripMenuItem.Size = new System.Drawing.Size(154, 20);
@@ -238,7 +262,7 @@
             // 
             this.inStockToolStripMenuItem.Name = "inStockToolStripMenuItem";
             this.inStockToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.inStockToolStripMenuItem.Text = "Stock";
+            this.inStockToolStripMenuItem.Text = "Warehouse";
             this.inStockToolStripMenuItem.Click += new System.EventHandler(this.inStockToolStripMenuItem_Click);
             // 
             // listOfPurchaseOrdersToolStripMenuItem
@@ -247,13 +271,6 @@
             this.listOfPurchaseOrdersToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.listOfPurchaseOrdersToolStripMenuItem.Text = "List of purchase orders";
             this.listOfPurchaseOrdersToolStripMenuItem.Click += new System.EventHandler(this.listOfPurchaseOrdersToolStripMenuItem_Click);
-            // 
-            // purchaseOrderDetailsToolStripMenuItem
-            // 
-            this.purchaseOrderDetailsToolStripMenuItem.Name = "purchaseOrderDetailsToolStripMenuItem";
-            this.purchaseOrderDetailsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.purchaseOrderDetailsToolStripMenuItem.Text = "Purchase order details";
-            this.purchaseOrderDetailsToolStripMenuItem.Click += new System.EventHandler(this.purchaseOrderDetailsToolStripMenuItem_Click);
             // 
             // receiptOfOrdersToolStripMenuItem
             // 
@@ -291,17 +308,11 @@
             this.suppliersToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.suppliersToolStripMenuItem.Text = "Suppliers";
             // 
-            // invoicesToolStripMenuItem
+            // listOfSuppliersToolStripMenuItem
             // 
-            this.invoicesToolStripMenuItem.Name = "invoicesToolStripMenuItem";
-            this.invoicesToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
-            this.invoicesToolStripMenuItem.Text = "Invoices";
-            // 
-            // raportsToolStripMenuItem
-            // 
-            this.raportsToolStripMenuItem.Name = "raportsToolStripMenuItem";
-            this.raportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.raportsToolStripMenuItem.Text = "Raports";
+            this.listOfSuppliersToolStripMenuItem.Name = "listOfSuppliersToolStripMenuItem";
+            this.listOfSuppliersToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.listOfSuppliersToolStripMenuItem.Text = "List of suppliers";
             // 
             // exitButton
             // 
@@ -349,6 +360,7 @@
             this.departmentIDDataGridViewTextBoxColumn.DataPropertyName = "DepartmentID";
             this.departmentIDDataGridViewTextBoxColumn.HeaderText = "DepartmentID";
             this.departmentIDDataGridViewTextBoxColumn.Name = "departmentIDDataGridViewTextBoxColumn";
+            this.departmentIDDataGridViewTextBoxColumn.ReadOnly = true;
             this.departmentIDDataGridViewTextBoxColumn.Visible = false;
             // 
             // departmentNameDataGridViewTextBoxColumn
@@ -356,18 +368,21 @@
             this.departmentNameDataGridViewTextBoxColumn.DataPropertyName = "DepartmentName";
             this.departmentNameDataGridViewTextBoxColumn.HeaderText = "DepartmentName";
             this.departmentNameDataGridViewTextBoxColumn.Name = "departmentNameDataGridViewTextBoxColumn";
+            this.departmentNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // phoneDataGridViewTextBoxColumn
             // 
             this.phoneDataGridViewTextBoxColumn.DataPropertyName = "Phone";
             this.phoneDataGridViewTextBoxColumn.HeaderText = "Phone";
             this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
+            this.phoneDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // ordynatorNameDataGridViewTextBoxColumn
             // 
             this.ordynatorNameDataGridViewTextBoxColumn.DataPropertyName = "OrdynatorName";
             this.ordynatorNameDataGridViewTextBoxColumn.HeaderText = "OrdynatorName";
             this.ordynatorNameDataGridViewTextBoxColumn.Name = "ordynatorNameDataGridViewTextBoxColumn";
+            this.ordynatorNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // departmentsBindingSource
             // 
@@ -654,14 +669,13 @@
             // 
             this.stockPage.Controls.Add(this.medicinesViewDataGridView);
             this.stockPage.Controls.Add(this.makeOrderButton);
-            this.stockPage.Controls.Add(this.saveButton);
             this.stockPage.Controls.Add(this.generateButton);
             this.stockPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.stockPage.Location = new System.Drawing.Point(4, 22);
             this.stockPage.Name = "stockPage";
             this.stockPage.Size = new System.Drawing.Size(1075, 532);
             this.stockPage.TabIndex = 2;
-            this.stockPage.Text = "Stock";
+            this.stockPage.Text = "Warehouse";
             this.stockPage.UseVisualStyleBackColor = true;
             this.stockPage.Click += new System.EventHandler(this.stockPage_Click);
             // 
@@ -688,6 +702,7 @@
             this.medicinesViewDataGridView.ReadOnly = true;
             this.medicinesViewDataGridView.Size = new System.Drawing.Size(1041, 383);
             this.medicinesViewDataGridView.TabIndex = 8;
+            this.medicinesViewDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.medicinesViewDataGridView_CellDoubleClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -760,28 +775,19 @@
             // 
             // makeOrderButton
             // 
-            this.makeOrderButton.Location = new System.Drawing.Point(175, 473);
+            this.makeOrderButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.makeOrderButton.Location = new System.Drawing.Point(368, 461);
             this.makeOrderButton.Name = "makeOrderButton";
-            this.makeOrderButton.Size = new System.Drawing.Size(83, 23);
+            this.makeOrderButton.Size = new System.Drawing.Size(140, 46);
             this.makeOrderButton.TabIndex = 8;
             this.makeOrderButton.Text = "Make order";
             this.makeOrderButton.UseVisualStyleBackColor = true;
             this.makeOrderButton.Click += new System.EventHandler(this.makeOrderButton_Click);
             // 
-            // saveButton
-            // 
-            this.saveButton.Location = new System.Drawing.Point(902, 474);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(118, 23);
-            this.saveButton.TabIndex = 3;
-            this.saveButton.Text = "Save changes";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
-            // 
             // generateButton
             // 
             this.generateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.generateButton.Location = new System.Drawing.Point(437, 461);
+            this.generateButton.Location = new System.Drawing.Point(620, 461);
             this.generateButton.Name = "generateButton";
             this.generateButton.Size = new System.Drawing.Size(140, 46);
             this.generateButton.TabIndex = 2;
@@ -797,6 +803,7 @@
             this.tabControl.Controls.Add(this.departmentsPage);
             this.tabControl.Controls.Add(this.purchaseDetailsPage);
             this.tabControl.Controls.Add(this.recepitOrderTabPage);
+            this.tabControl.Controls.Add(this.currentOrderTabPage);
             this.tabControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tabControl.Location = new System.Drawing.Point(15, 38);
             this.tabControl.Name = "tabControl";
@@ -807,46 +814,25 @@
             // 
             // purchaseDetailsPage
             // 
-            this.purchaseDetailsPage.Controls.Add(this.label4);
             this.purchaseDetailsPage.Controls.Add(this.label3);
-            this.purchaseDetailsPage.Controls.Add(this.medicineOrderDetailsGridView);
             this.purchaseDetailsPage.Controls.Add(this.medicinesOrdersViewDataGridView1);
             this.purchaseDetailsPage.Location = new System.Drawing.Point(4, 22);
             this.purchaseDetailsPage.Name = "purchaseDetailsPage";
             this.purchaseDetailsPage.Padding = new System.Windows.Forms.Padding(3);
             this.purchaseDetailsPage.Size = new System.Drawing.Size(1075, 532);
             this.purchaseDetailsPage.TabIndex = 6;
-            this.purchaseDetailsPage.Text = "Purchase Order Details";
+            this.purchaseDetailsPage.Text = "Purchase Orders";
             this.purchaseDetailsPage.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(609, 19);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(169, 15);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Check purchase order details:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 19);
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(302, 14);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(204, 15);
+            this.label3.Size = new System.Drawing.Size(352, 21);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Choose purchase order from the list:";
-            // 
-            // medicineOrderDetailsGridView
-            // 
-            this.medicineOrderDetailsGridView.AllowUserToAddRows = false;
-            this.medicineOrderDetailsGridView.AllowUserToDeleteRows = false;
-            this.medicineOrderDetailsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.medicineOrderDetailsGridView.Location = new System.Drawing.Point(609, 49);
-            this.medicineOrderDetailsGridView.Name = "medicineOrderDetailsGridView";
-            this.medicineOrderDetailsGridView.ReadOnly = true;
-            this.medicineOrderDetailsGridView.Size = new System.Drawing.Size(427, 453);
-            this.medicineOrderDetailsGridView.TabIndex = 1;
+            this.label3.Text = "Double click on record to check order details:";
             // 
             // medicinesOrdersViewDataGridView1
             // 
@@ -863,10 +849,10 @@
             this.dataGridViewTextBoxColumn21,
             this.dataGridViewTextBoxColumn22});
             this.medicinesOrdersViewDataGridView1.DataSource = this.medicinesOrdersViewBindingSource;
-            this.medicinesOrdersViewDataGridView1.Location = new System.Drawing.Point(27, 49);
+            this.medicinesOrdersViewDataGridView1.Location = new System.Drawing.Point(176, 47);
             this.medicinesOrdersViewDataGridView1.Name = "medicinesOrdersViewDataGridView1";
             this.medicinesOrdersViewDataGridView1.ReadOnly = true;
-            this.medicinesOrdersViewDataGridView1.Size = new System.Drawing.Size(544, 453);
+            this.medicinesOrdersViewDataGridView1.Size = new System.Drawing.Size(654, 453);
             this.medicinesOrdersViewDataGridView1.TabIndex = 0;
             this.medicinesOrdersViewDataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.medicinesOrdersViewDataGridView1_CellDoubleClick);
             // 
@@ -920,7 +906,7 @@
             // 
             // recepitOrderTabPage
             // 
-            this.recepitOrderTabPage.Controls.Add(this.medicinesOrdersViewDataGridView2);
+            this.recepitOrderTabPage.Controls.Add(this.receiptMedicinesOrdersViewDataGridView);
             this.recepitOrderTabPage.Location = new System.Drawing.Point(4, 22);
             this.recepitOrderTabPage.Name = "recepitOrderTabPage";
             this.recepitOrderTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -929,27 +915,27 @@
             this.recepitOrderTabPage.Text = "Receipt of orders";
             this.recepitOrderTabPage.UseVisualStyleBackColor = true;
             // 
-            // medicinesOrdersViewDataGridView2
+            // receiptMedicinesOrdersViewDataGridView
             // 
-            this.medicinesOrdersViewDataGridView2.AllowUserToAddRows = false;
-            this.medicinesOrdersViewDataGridView2.AllowUserToDeleteRows = false;
-            this.medicinesOrdersViewDataGridView2.AutoGenerateColumns = false;
-            this.medicinesOrdersViewDataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.medicinesOrdersViewDataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.medicinesOrdersViewDataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.receiptMedicinesOrdersViewDataGridView.AllowUserToAddRows = false;
+            this.receiptMedicinesOrdersViewDataGridView.AllowUserToDeleteRows = false;
+            this.receiptMedicinesOrdersViewDataGridView.AutoGenerateColumns = false;
+            this.receiptMedicinesOrdersViewDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.receiptMedicinesOrdersViewDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.receiptMedicinesOrdersViewDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn23,
             this.dataGridViewTextBoxColumn24,
             this.dataGridViewTextBoxColumn25,
             this.dataGridViewTextBoxColumn26,
             this.dataGridViewTextBoxColumn27,
             this.dataGridViewTextBoxColumn28});
-            this.medicinesOrdersViewDataGridView2.DataSource = this.medicinesOrdersViewBindingSource;
-            this.medicinesOrdersViewDataGridView2.Location = new System.Drawing.Point(16, 18);
-            this.medicinesOrdersViewDataGridView2.Name = "medicinesOrdersViewDataGridView2";
-            this.medicinesOrdersViewDataGridView2.ReadOnly = true;
-            this.medicinesOrdersViewDataGridView2.Size = new System.Drawing.Size(653, 253);
-            this.medicinesOrdersViewDataGridView2.TabIndex = 0;
-            this.medicinesOrdersViewDataGridView2.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.medicinesOrdersViewDataGridView2_CellDoubleClick);
+            this.receiptMedicinesOrdersViewDataGridView.DataSource = this.receiptMedicinesOrdersViewBindingSource;
+            this.receiptMedicinesOrdersViewDataGridView.Location = new System.Drawing.Point(23, 19);
+            this.receiptMedicinesOrdersViewDataGridView.Name = "receiptMedicinesOrdersViewDataGridView";
+            this.receiptMedicinesOrdersViewDataGridView.ReadOnly = true;
+            this.receiptMedicinesOrdersViewDataGridView.Size = new System.Drawing.Size(662, 288);
+            this.receiptMedicinesOrdersViewDataGridView.TabIndex = 0;
+            this.receiptMedicinesOrdersViewDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.receiptMedicinesOrdersViewDataGridView_CellDoubleClick);
             // 
             // dataGridViewTextBoxColumn23
             // 
@@ -992,6 +978,60 @@
             this.dataGridViewTextBoxColumn28.HeaderText = "WhoOrdered";
             this.dataGridViewTextBoxColumn28.Name = "dataGridViewTextBoxColumn28";
             this.dataGridViewTextBoxColumn28.ReadOnly = true;
+            // 
+            // receiptMedicinesOrdersViewBindingSource
+            // 
+            this.receiptMedicinesOrdersViewBindingSource.DataMember = "ReceiptMedicinesOrdersView";
+            this.receiptMedicinesOrdersViewBindingSource.DataSource = this.pharmacyDataSet;
+            // 
+            // currentOrderTabPage
+            // 
+            this.currentOrderTabPage.BackColor = System.Drawing.Color.Transparent;
+            this.currentOrderTabPage.Controls.Add(this.label6);
+            this.currentOrderTabPage.Controls.Add(this.currentOrdersViewDataGridView);
+            this.currentOrderTabPage.Location = new System.Drawing.Point(4, 22);
+            this.currentOrderTabPage.Name = "currentOrderTabPage";
+            this.currentOrderTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.currentOrderTabPage.Size = new System.Drawing.Size(1075, 532);
+            this.currentOrderTabPage.TabIndex = 8;
+            this.currentOrderTabPage.Text = "Current orders";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.Location = new System.Drawing.Point(350, 25);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(352, 21);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Double click on record to check order details:";
+            // 
+            // currentOrdersViewDataGridView
+            // 
+            this.currentOrdersViewDataGridView.AllowUserToAddRows = false;
+            this.currentOrdersViewDataGridView.AllowUserToDeleteRows = false;
+            this.currentOrdersViewDataGridView.AutoGenerateColumns = false;
+            this.currentOrdersViewDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.currentOrdersViewDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.currentOrdersViewDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn29,
+            this.dataGridViewTextBoxColumn30,
+            this.dataGridViewTextBoxColumn31,
+            this.dataGridViewTextBoxColumn32,
+            this.dataGridViewTextBoxColumn33,
+            this.dataGridViewTextBoxColumn34});
+            this.currentOrdersViewDataGridView.DataSource = this.currentOrdersViewBindingSource;
+            this.currentOrdersViewDataGridView.Location = new System.Drawing.Point(281, 63);
+            this.currentOrdersViewDataGridView.Name = "currentOrdersViewDataGridView";
+            this.currentOrdersViewDataGridView.ReadOnly = true;
+            this.currentOrdersViewDataGridView.Size = new System.Drawing.Size(532, 463);
+            this.currentOrdersViewDataGridView.TabIndex = 0;
+            this.currentOrdersViewDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.currentOrdersViewDataGridView_CellDoubleClick);
+            // 
+            // currentOrdersViewBindingSource
+            // 
+            this.currentOrdersViewBindingSource.DataMember = "CurrentOrdersView";
+            this.currentOrdersViewBindingSource.DataSource = this.pharmacyDataSet;
             // 
             // generateOrderViewBindingSource
             // 
@@ -1044,11 +1084,58 @@
             // 
             this.medicinesOrdersViewTableAdapter.ClearBeforeFill = true;
             // 
-            // listOfSuppliersToolStripMenuItem
+            // currentOrdersViewTableAdapter
             // 
-            this.listOfSuppliersToolStripMenuItem.Name = "listOfSuppliersToolStripMenuItem";
-            this.listOfSuppliersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.listOfSuppliersToolStripMenuItem.Text = "List of Suppliers";
+            this.currentOrdersViewTableAdapter.ClearBeforeFill = true;
+            // 
+            // receiptMedicinesOrdersViewTableAdapter
+            // 
+            this.receiptMedicinesOrdersViewTableAdapter.ClearBeforeFill = true;
+            // 
+            // dataGridViewTextBoxColumn29
+            // 
+            this.dataGridViewTextBoxColumn29.DataPropertyName = "OrderID";
+            this.dataGridViewTextBoxColumn29.HeaderText = "OrderID";
+            this.dataGridViewTextBoxColumn29.Name = "dataGridViewTextBoxColumn29";
+            this.dataGridViewTextBoxColumn29.ReadOnly = true;
+            this.dataGridViewTextBoxColumn29.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn30
+            // 
+            this.dataGridViewTextBoxColumn30.DataPropertyName = "DepartmentName";
+            this.dataGridViewTextBoxColumn30.HeaderText = "DepartmentName";
+            this.dataGridViewTextBoxColumn30.Name = "dataGridViewTextBoxColumn30";
+            this.dataGridViewTextBoxColumn30.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn31
+            // 
+            this.dataGridViewTextBoxColumn31.DataPropertyName = "OrderDate";
+            this.dataGridViewTextBoxColumn31.HeaderText = "OrderDate";
+            this.dataGridViewTextBoxColumn31.Name = "dataGridViewTextBoxColumn31";
+            this.dataGridViewTextBoxColumn31.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn32
+            // 
+            this.dataGridViewTextBoxColumn32.DataPropertyName = "Order_status";
+            this.dataGridViewTextBoxColumn32.HeaderText = "Order_status";
+            this.dataGridViewTextBoxColumn32.Name = "dataGridViewTextBoxColumn32";
+            this.dataGridViewTextBoxColumn32.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn33
+            // 
+            this.dataGridViewTextBoxColumn33.DataPropertyName = "RealizationDate";
+            this.dataGridViewTextBoxColumn33.HeaderText = "RealizationDate";
+            this.dataGridViewTextBoxColumn33.Name = "dataGridViewTextBoxColumn33";
+            this.dataGridViewTextBoxColumn33.ReadOnly = true;
+            this.dataGridViewTextBoxColumn33.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn34
+            // 
+            this.dataGridViewTextBoxColumn34.DataPropertyName = "WhoIssued";
+            this.dataGridViewTextBoxColumn34.HeaderText = "WhoIssued";
+            this.dataGridViewTextBoxColumn34.Name = "dataGridViewTextBoxColumn34";
+            this.dataGridViewTextBoxColumn34.ReadOnly = true;
+            this.dataGridViewTextBoxColumn34.Visible = false;
             // 
             // MainPageForm
             // 
@@ -1085,11 +1172,15 @@
             this.tabControl.ResumeLayout(false);
             this.purchaseDetailsPage.ResumeLayout(false);
             this.purchaseDetailsPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.medicineOrderDetailsGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesOrdersViewDataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesOrdersViewBindingSource)).EndInit();
             this.recepitOrderTabPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.medicinesOrdersViewDataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.receiptMedicinesOrdersViewDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.receiptMedicinesOrdersViewBindingSource)).EndInit();
+            this.currentOrderTabPage.ResumeLayout(false);
+            this.currentOrderTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.currentOrdersViewDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.currentOrdersViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.generateOrderViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesBindingSource)).EndInit();
@@ -1105,7 +1196,6 @@
         private System.Windows.Forms.Button LogOutButton;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem departmentsAndOrToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem listOfDepartmentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem warehouseAndShoppingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inStockToolStripMenuItem;
         private System.Windows.Forms.BindingSource bindingSource1;
@@ -1138,7 +1228,6 @@
         private System.Windows.Forms.TabPage stockPage;
         private System.Windows.Forms.Button generateButton;
         private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.Button saveButton;
         private PharmacyDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.Button makeOrderButton;
         private System.Windows.Forms.ComboBox actionComboBox;
@@ -1160,9 +1249,6 @@
         private System.Windows.Forms.ToolStripMenuItem pharmacistsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listOfPharmacistsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem detailedInformationAboutPharmacistsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem suppliersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem invoicesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem raportsToolStripMenuItem;
         private System.Windows.Forms.DataGridView medicinesViewDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -1181,13 +1267,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.BindingSource medicinesOrdersViewBindingSource1;
-        private System.Windows.Forms.ToolStripMenuItem purchaseOrderDetailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem receiptOfOrdersToolStripMenuItem;
         private System.Windows.Forms.TabPage purchaseDetailsPage;
         private System.Windows.Forms.DataGridView medicinesOrdersViewDataGridView1;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView medicineOrderDetailsGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
@@ -1195,13 +1278,30 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
         private System.Windows.Forms.TabPage recepitOrderTabPage;
-        private System.Windows.Forms.DataGridView medicinesOrdersViewDataGridView2;
+        private System.Windows.Forms.ToolStripMenuItem orderDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem completeOrderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem suppliersToolStripMenuItem;
+        private System.Windows.Forms.TabPage currentOrderTabPage;
+        private System.Windows.Forms.BindingSource currentOrdersViewBindingSource;
+        private PharmacyDataSetTableAdapters.CurrentOrdersViewTableAdapter currentOrdersViewTableAdapter;
+        private System.Windows.Forms.DataGridView currentOrdersViewDataGridView;
+        private System.Windows.Forms.ToolStripMenuItem listOfDepartmentsToolStripMenuItem;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ToolStripMenuItem listOfSuppliersToolStripMenuItem;
+        private System.Windows.Forms.BindingSource receiptMedicinesOrdersViewBindingSource;
+        private PharmacyDataSetTableAdapters.ReceiptMedicinesOrdersViewTableAdapter receiptMedicinesOrdersViewTableAdapter;
+        private System.Windows.Forms.DataGridView receiptMedicinesOrdersViewDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn28;
-        private System.Windows.Forms.ToolStripMenuItem listOfSuppliersToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn29;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn30;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn31;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn32;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn33;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn34;
     }
 }

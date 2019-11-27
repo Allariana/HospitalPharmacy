@@ -28,7 +28,7 @@ namespace HospitalPharmacy
             this.username = username;
             this.userID = userID;
             tabControl.TabPages.Clear();
-            tabControl.TabPages.Insert(0, stockPage);
+            tabControl.TabPages.Insert(0, currentOrderTabPage);
             UserLabel.Text = username;
 
             ConnectionManager connection = ConnectionManager.getInstance();
@@ -46,6 +46,10 @@ namespace HospitalPharmacy
 
         private void MainPagecs_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'pharmacyDataSet.ReceiptMedicinesOrdersView' table. You can move, or remove it, as needed.
+            this.receiptMedicinesOrdersViewTableAdapter.Fill(this.pharmacyDataSet.ReceiptMedicinesOrdersView);
+            // TODO: This line of code loads data into the 'pharmacyDataSet.CurrentOrdersView' table. You can move, or remove it, as needed.
+            this.currentOrdersViewTableAdapter.Fill(this.pharmacyDataSet.CurrentOrdersView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.OrdersView' table. You can move, or remove it, as needed.
             this.ordersViewTableAdapter.Fill(this.pharmacyDataSet.OrdersView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.Departments' table. You can move, or remove it, as needed.
@@ -175,11 +179,6 @@ namespace HospitalPharmacy
             new MakeOrderForm(userID).Show();
         }
 
-        private void medicinesOrdersGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
         private void orderGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -270,10 +269,11 @@ namespace HospitalPharmacy
         {
             if (medicinesOrdersViewDataGridView1.Rows[e.RowIndex].Cells[0].Value != null)
             {
-                ConnectionManager connection = ConnectionManager.getInstance();
+                new MedicinesOrderDetailsForm(medicinesOrdersViewDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
+                /*ConnectionManager connection = ConnectionManager.getInstance();
                 DataTable orderDetails = new DataTable();
                 connection.getMedicinesOrderDetails(orderDetails, medicinesOrdersViewDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
-                medicineOrderDetailsGridView.DataSource = orderDetails;
+                medicineOrderDetailsGridView.DataSource = orderDetails;*/
             }                 
         }
         private void openTabPage(TabPage tabPage)
@@ -292,7 +292,7 @@ namespace HospitalPharmacy
 
         private void listOfOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            openTabPage(orderTabPage);
+            openTabPage(currentOrderTabPage);
         }
         private void ListOfDepartmentsToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -301,7 +301,7 @@ namespace HospitalPharmacy
 
         private void listOfPurchaseOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            openTabPage(MedicinesOrders);
+            openTabPage(purchaseDetailsPage);
         }
 
         private void purchaseOrderDetailsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -314,15 +314,60 @@ namespace HospitalPharmacy
             openTabPage(recepitOrderTabPage);
         }
 
-        private void medicinesOrdersViewDataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void medicinesViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            try
+            {
+                if (medicinesViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
+                {
+                    new PackageForm(medicinesViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
+                }
+            }
+            catch (ArgumentOutOfRangeException) { }
+        }
+
+        private void suppliersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void departmentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openTabPage(departmentsPage);
+        }
+
+        private void departmentsAndOrToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listOfDepartmentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openTabPage(departmentsPage);
+        }
+
+        private void currentOrdersViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (currentOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
+            {
+                new OrderDetailsForm(currentOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
+                /*ConnectionManager connection = ConnectionManager.getInstance();
+                DataTable orderDetails = new DataTable();
+                connection.getOrderDetails(orderDetails, currentOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
+                currentOrdersViewDataGridView.DataSource = orderDetails;*/
+            }
+        }
+
+        private void receiptMedicinesOrdersViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ConnectionManager connection = ConnectionManager.getInstance();
             switch (MessageBox.Show("Are you sure you want to mark this order as done?", "Confirmation", MessageBoxButtons.YesNo))
             {
                 case DialogResult.Yes:
-                    
-                    ConnectionManager connection = ConnectionManager.getInstance();
-                    connection.pickUpOrder(medicinesOrdersViewDataGridView2.Rows[e.RowIndex].Cells[0].Value.ToString());
 
+
+                    connection.pickUpOrder(receiptMedicinesOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    /*
                     medicinesOrdersViewDataGridView.DataSource = medicinesOrdersViewTableAdapter;
                     medicinesOrdersViewDataGridView.Refresh();
                     medicinesOrdersViewDataGridView1.DataSource = medicinesOrdersViewTableAdapter;
@@ -330,7 +375,7 @@ namespace HospitalPharmacy
                     medicinesOrdersViewDataGridView2.DataSource = medicinesOrdersViewTableAdapter;
                     medicinesOrdersViewDataGridView2.Refresh();
                     medicinesViewDataGridView.DataSource = medicinesViewTableAdapter;
-                    medicinesViewDataGridView.Refresh();
+                    medicinesViewDataGridView.Refresh();*/
                     break;
                 case DialogResult.No:
                     break;
