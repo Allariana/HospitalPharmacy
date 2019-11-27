@@ -35,25 +35,28 @@
             // 
             // amountTextBox
             // 
+            this.amountTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.amountTextBox.Location = new System.Drawing.Point(99, 49);
             this.amountTextBox.Name = "amountTextBox";
-            this.amountTextBox.Size = new System.Drawing.Size(100, 20);
+            this.amountTextBox.Size = new System.Drawing.Size(100, 26);
             this.amountTextBox.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.Location = new System.Drawing.Point(24, 52);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
+            this.label1.Size = new System.Drawing.Size(60, 19);
             this.label1.TabIndex = 4;
             this.label1.Text = "Amount:";
             // 
             // addToBasketButton
             // 
-            this.addToBasketButton.Location = new System.Drawing.Point(60, 102);
+            this.addToBasketButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.addToBasketButton.Location = new System.Drawing.Point(54, 100);
             this.addToBasketButton.Name = "addToBasketButton";
-            this.addToBasketButton.Size = new System.Drawing.Size(106, 23);
+            this.addToBasketButton.Size = new System.Drawing.Size(106, 27);
             this.addToBasketButton.TabIndex = 6;
             this.addToBasketButton.Text = "Add to basket";
             this.addToBasketButton.UseVisualStyleBackColor = true;
@@ -63,6 +66,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(228, 165);
             this.Controls.Add(this.addToBasketButton);
             this.Controls.Add(this.amountTextBox);

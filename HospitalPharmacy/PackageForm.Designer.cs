@@ -74,6 +74,7 @@
             // 
             this.packageOfMedicineDataGridView.AllowUserToAddRows = false;
             this.packageOfMedicineDataGridView.AllowUserToDeleteRows = false;
+            this.packageOfMedicineDataGridView.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.packageOfMedicineDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.packageOfMedicineDataGridView.Location = new System.Drawing.Point(12, 12);
             this.packageOfMedicineDataGridView.Name = "packageOfMedicineDataGridView";

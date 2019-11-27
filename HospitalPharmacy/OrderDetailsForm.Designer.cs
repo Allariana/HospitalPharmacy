@@ -36,6 +36,7 @@
             // 
             this.orderDetailsGridView.AllowUserToAddRows = false;
             this.orderDetailsGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.orderDetailsGridView.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.orderDetailsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.orderDetailsGridView.Location = new System.Drawing.Point(13, 24);
             this.orderDetailsGridView.Name = "orderDetailsGridView";

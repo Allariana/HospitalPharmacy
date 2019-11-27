@@ -49,6 +49,7 @@ namespace HospitalPharmacy
         {
             panel.BackColor = Color.FromArgb(100, 255, 255, 255);
             panel1.BackColor = Color.FromArgb(100, 255, 255, 255);
+            panel2.BackColor = Color.FromArgb(100, 255, 255, 255);
             // panel.BackColor = Color.FromArgb(100, 0, 0, 0);
             // TODO: This line of code loads data into the 'pharmacyDataSet.ReceiptMedicinesOrdersView' table. You can move, or remove it, as needed.
             this.receiptMedicinesOrdersViewTableAdapter.Fill(this.pharmacyDataSet.ReceiptMedicinesOrdersView);

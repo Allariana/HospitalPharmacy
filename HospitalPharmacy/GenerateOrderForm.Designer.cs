@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.generateOrderViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pharmacyDataSet = new HospitalPharmacy.PharmacyDataSet();
             this.confirmButton = new System.Windows.Forms.Button();
@@ -60,10 +62,10 @@
             // 
             // confirmButton
             // 
-            this.confirmButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.confirmButton.Location = new System.Drawing.Point(386, 337);
+            this.confirmButton.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.confirmButton.Location = new System.Drawing.Point(368, 337);
             this.confirmButton.Name = "confirmButton";
-            this.confirmButton.Size = new System.Drawing.Size(114, 32);
+            this.confirmButton.Size = new System.Drawing.Size(163, 36);
             this.confirmButton.TabIndex = 4;
             this.confirmButton.Text = "Confirm order";
             this.confirmButton.UseVisualStyleBackColor = true;
@@ -71,9 +73,10 @@
             // 
             // backButton
             // 
-            this.backButton.Location = new System.Drawing.Point(768, 346);
+            this.backButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.backButton.Location = new System.Drawing.Point(741, 337);
             this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(115, 23);
+            this.backButton.Size = new System.Drawing.Size(142, 36);
             this.backButton.TabIndex = 6;
             this.backButton.Text = "Back to Main Page";
             this.backButton.UseVisualStyleBackColor = true;
@@ -107,6 +110,15 @@
             this.generateOrderViewDataGridView.AllowUserToDeleteRows = false;
             this.generateOrderViewDataGridView.AutoGenerateColumns = false;
             this.generateOrderViewDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.generateOrderViewDataGridView.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.generateOrderViewDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.generateOrderViewDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.generateOrderViewDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -120,6 +132,14 @@
             this.generateOrderViewDataGridView.Location = new System.Drawing.Point(12, 12);
             this.generateOrderViewDataGridView.Name = "generateOrderViewDataGridView";
             this.generateOrderViewDataGridView.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.generateOrderViewDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.generateOrderViewDataGridView.Size = new System.Drawing.Size(871, 307);
             this.generateOrderViewDataGridView.TabIndex = 6;
             // 
@@ -128,6 +148,7 @@
             this.dataGridViewTextBoxColumn1.DataPropertyName = "MedicineID";
             this.dataGridViewTextBoxColumn1.HeaderText = "MedicineID";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             this.dataGridViewTextBoxColumn1.Visible = false;
             // 
             // dataGridViewTextBoxColumn2
@@ -135,36 +156,42 @@
             this.dataGridViewTextBoxColumn2.DataPropertyName = "TradeName";
             this.dataGridViewTextBoxColumn2.HeaderText = "TradeName";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.DataPropertyName = "ActiveSubstance";
             this.dataGridViewTextBoxColumn3.HeaderText = "ActiveSubstance";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.DataPropertyName = "Dose(mg)";
             this.dataGridViewTextBoxColumn4.HeaderText = "Dose(mg)";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "QuantityPerUnit";
             this.dataGridViewTextBoxColumn5.HeaderText = "QuantityPerUnit";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.DataPropertyName = "CompanyName";
             this.dataGridViewTextBoxColumn6.HeaderText = "CompanyName";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.DataPropertyName = "Amount";
             this.dataGridViewTextBoxColumn7.HeaderText = "Amount";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
             // 
             // GenerateOrderForm
             // 
