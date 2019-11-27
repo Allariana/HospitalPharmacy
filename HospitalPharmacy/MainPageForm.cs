@@ -30,7 +30,8 @@ namespace HospitalPharmacy
             tabControl.TabPages.Clear();
             tabControl.TabPages.Insert(0, currentOrderTabPage);
             UserLabel.Text = username;
-
+            //pictureBox1.BackColor = Color.Transparent;
+            
             ConnectionManager connection = ConnectionManager.getInstance();
             connection.getColumn(tablename, columnname, idNameCombo);
             foreach (DataRow row in idNameCombo.Rows)
@@ -46,6 +47,8 @@ namespace HospitalPharmacy
 
         private void MainPagecs_Load(object sender, EventArgs e)
         {
+            panel.BackColor = Color.FromArgb(100, 255, 255, 255);
+            
             // TODO: This line of code loads data into the 'pharmacyDataSet.ReceiptMedicinesOrdersView' table. You can move, or remove it, as needed.
             this.receiptMedicinesOrdersViewTableAdapter.Fill(this.pharmacyDataSet.ReceiptMedicinesOrdersView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.CurrentOrdersView' table. You can move, or remove it, as needed.
@@ -380,6 +383,16 @@ namespace HospitalPharmacy
                 case DialogResult.No:
                     break;
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void currentOrderTabPage_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
