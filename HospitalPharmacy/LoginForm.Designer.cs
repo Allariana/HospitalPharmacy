@@ -66,7 +66,7 @@
             // 
             this.ExitButton.Font = new System.Drawing.Font("Times New Roman", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ExitButton.ForeColor = System.Drawing.Color.Black;
-            this.ExitButton.Location = new System.Drawing.Point(321, 186);
+            this.ExitButton.Location = new System.Drawing.Point(333, 187);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(79, 31);
             this.ExitButton.TabIndex = 13;
@@ -79,7 +79,7 @@
             this.LoginButton.BackColor = System.Drawing.SystemColors.ControlLight;
             this.LoginButton.Font = new System.Drawing.Font("Times New Roman", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.LoginButton.ForeColor = System.Drawing.Color.Black;
-            this.LoginButton.Location = new System.Drawing.Point(321, 133);
+            this.LoginButton.Location = new System.Drawing.Point(333, 132);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(79, 28);
             this.LoginButton.TabIndex = 12;
@@ -111,7 +111,7 @@
             // 
             // UsernameTextBox
             // 
-            this.UsernameTextBox.Location = new System.Drawing.Point(321, 49);
+            this.UsernameTextBox.Location = new System.Drawing.Point(321, 48);
             this.UsernameTextBox.Name = "UsernameTextBox";
             this.UsernameTextBox.Size = new System.Drawing.Size(100, 20);
             this.UsernameTextBox.TabIndex = 16;

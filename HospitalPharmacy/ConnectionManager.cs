@@ -88,20 +88,37 @@ namespace HospitalPharmacy
             try
             {
                 connection.Open();
-                
-                    String pickUpOrderCommand = "UPDATE MedicinesOrders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()) where MedicinesOrderID " +
-                    "= " + id + "; " +
-                    " UPDATE Medicines SET UnitsInStock = UnitsInStock + " +
-                    "(select a.Amount from(select d.MedicineID MedicineID, d.Amount Amount from MedicineOrderDetails d join Medicines m on m.MedicineID = d.MedicineID " +
-                    "join MedicinesOrders o on     d.MedicinesOrderID = o.MedicinesOrderID and o.MedicinesOrderID = " + id + ")a join Medicines m on a.MedicineID = m.MedicineID " +
-                    "and a.MedicineID = Medicines.MedicineID)where MedicineID in (select d.MedicineID from MedicineOrderDetails d join MedicinesOrders o on " +
-                    "d.MedicinesOrderID = o.MedicinesOrderID and d.MedicinesOrderID = " + id + "); " /*+
-                    "INSERT INTO PackageofMedicine ([SerialNumber(SN)],[MedicineID],[TermofValidity(EXP)],[SerialNumber(LOT)],[MedicineOrderDetailsID])" +
-                    "SELECT CONVERT(INT, a.SerialNumber),CONVERT(INT, RIGHT(a.SerialNumber, 3)),a.TermofValidity, CONVERT(INT, a.LOT), d.MedicineOrderDetailsID " +
-                    "FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0','Excel 12.0;Database=D:\\Kinga\\Studies\\IV rok\\Semestr 7\\Praca dyplomowa\\Invoices\\" + id + ".xlsx','SELECT * from [Arkusz1$]')a join MedicineOrderDetails d on CONVERT(INT, RIGHT(a.SerialNumber,3))= MedicineID " +
-                    "join MedicinesOrders o on o.MedicinesOrderID = d.MedicinesOrderID and o.RealizationFlag = 'N';"*/;
-                 
+
+                String pickUpOrderCommand = "UPDATE MedicinesOrders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()) where MedicinesOrderID " +
+                "= " + id + "; " +
+                " UPDATE Medicines SET UnitsInStock = UnitsInStock + " +
+                "(select a.Amount from(select d.MedicineID MedicineID, d.Amount Amount from MedicineOrderDetails d join Medicines m on m.MedicineID = d.MedicineID " +
+                "join MedicinesOrders o on     d.MedicinesOrderID = o.MedicinesOrderID and o.MedicinesOrderID = " + id + ")a join Medicines m on a.MedicineID = m.MedicineID " +
+                "and a.MedicineID = Medicines.MedicineID)where MedicineID in (select d.MedicineID from MedicineOrderDetails d join MedicinesOrders o on " +
+                "d.MedicinesOrderID = o.MedicinesOrderID and d.MedicinesOrderID = " + id + "); " +
+                "INSERT INTO PackageofMedicine ([SerialNumber(SN)],[MedicineID],[TermofValidity(EXP)],[SerialNumber(LOT)],[MedicineOrderDetailsID])" +
+                    "SELECT a.[SerialNumber(SN)],RIGHT(a.[SerialNumber(SN)],3),CONVERT(DATE,a.[TermOfValidity(EXP)]),a.[SerialNumber(LOT)], d.MedicineOrderDetailsID " +
+                    "FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0','Excel 12.0;Database=D:\\Kinga\\Studies\\IV rok\\Semestr 7\\Praca dyplomowa\\Invoices\\" +
+                    MedicineOrderID + ".xlsx','SELECT * from [Arkusz1$]')a join MedicineOrderDetails d on RIGHT(a.[SerialNumber(SN)],3)= d.MedicineID " +
+                    "join MedicinesOrders o on o.MedicinesOrderID = d.MedicinesOrderID and d.MedicinesOrderID = " + id + ";";
+                 //dziala
+                String a = "INSERT INTO [dbo].[PackageOfMedicine]([SerialNumber(SN)],[MedicineID],[TermofValidity(EXP)],[SerialNumber(LOT)])" +
+                    "SELECT [SerialNumber(SN)],RIGHT([SerialNumber(SN)],3),CONVERT(DATE,[TermOfValidity(EXP)]),[SerialNumber(LOT)] FROM OPENROWSET(" +
+                    "'Microsoft.ACE.OLEDB.12.0','Excel 12.0;Database=D:\\Kinga\\Studies\\IV rok\\Semestr 7\\Praca dyplomowa\\Invoices\\88.xlsx'," +
+                    "'SELECT * from [Arkusz1$]'); ";
+                String b = "INSERT INTO [dbo].[PackageOfMedicine]([SerialNumber(SN)],[MedicineID],[TermofValidity(EXP)],[SerialNumber(LOT)])" +
+                    "SELECT [SerialNumber(SN)],RIGHT([SerialNumber(SN)],3),CONVERT(DATE,[TermOfValidity(EXP)]),[SerialNumber(LOT)] FROM OPENROWSET(" +
+                    "'Microsoft.ACE.OLEDB.12.0','Excel 12.0;Database=D:\\Kinga\\Studies\\IV rok\\Semestr 7\\Praca dyplomowa\\Invoices\\" +
+                    MedicineOrderID + ".xlsx','SELECT * from [Arkusz1$]'); ";
+                String c = "INSERT INTO PackageofMedicine ([SerialNumber(SN)],[MedicineID],[TermofValidity(EXP)],[SerialNumber(LOT)],[MedicineOrderDetailsID])" +
+                    "SELECT a.[SerialNumber(SN)],RIGHT(a.[SerialNumber(SN)],3),CONVERT(DATE,a.[TermOfValidity(EXP)]),a.[SerialNumber(LOT)], d.MedicineOrderDetailsID " +
+                    "FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0','Excel 12.0;Database=D:\\Kinga\\Studies\\IV rok\\Semestr 7\\Praca dyplomowa\\Invoices\\" +
+                    MedicineOrderID + ".xlsx','SELECT * from [Arkusz1$]')a join MedicineOrderDetails d on RIGHT(a.[SerialNumber(SN)],3)= d.MedicineID " +
+                    "join MedicinesOrders o on o.MedicinesOrderID = d.MedicinesOrderID and d.MedicinesOrderID = " + id + ";";
+                //String insertCommand2 = ""
+                //MessageBox.Show(insertCommand1);
                 new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
+                //new SqlCommand(c, connection).ExecuteNonQuery();
                 MessageBox.Show("Succeed!");
             }
             catch (Exception ex)

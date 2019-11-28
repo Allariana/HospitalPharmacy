@@ -396,6 +396,16 @@ namespace HospitalPharmacy
         {
 
         }
+
+        private void completeOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openTabPage(orderTabPage);
+        }
+
+        private void orderDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openTabPage(orderTabPage);
+        }
     }
 }
 

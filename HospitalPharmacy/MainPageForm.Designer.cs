@@ -30,10 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPageForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.LogOutButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -240,12 +236,14 @@
             this.orderDetailsToolStripMenuItem.Name = "orderDetailsToolStripMenuItem";
             this.orderDetailsToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
             this.orderDetailsToolStripMenuItem.Text = "Order Details";
+            this.orderDetailsToolStripMenuItem.Click += new System.EventHandler(this.orderDetailsToolStripMenuItem_Click);
             // 
             // completeOrderToolStripMenuItem
             // 
             this.completeOrderToolStripMenuItem.Name = "completeOrderToolStripMenuItem";
             this.completeOrderToolStripMenuItem.Size = new System.Drawing.Size(211, 24);
             this.completeOrderToolStripMenuItem.Text = "Complete Order";
+            this.completeOrderToolStripMenuItem.Click += new System.EventHandler(this.completeOrderToolStripMenuItem_Click);
             // 
             // listOfDepartmentsToolStripMenuItem
             // 
@@ -353,14 +351,6 @@
             this.departmentsGridView.AutoGenerateColumns = false;
             this.departmentsGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.departmentsGridView.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.departmentsGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.departmentsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.departmentsGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.departmentIDDataGridViewTextBoxColumn,
@@ -422,6 +412,7 @@
             // 
             // orderTabPage
             // 
+            this.orderTabPage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("orderTabPage.BackgroundImage")));
             this.orderTabPage.Controls.Add(this.actionComboBox);
             this.orderTabPage.Controls.Add(this.completeButton);
             this.orderTabPage.Controls.Add(this.button1);
@@ -491,6 +482,7 @@
             this.orderGridView.AllowUserToDeleteRows = false;
             this.orderGridView.AutoGenerateColumns = false;
             this.orderGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.orderGridView.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.orderGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.orderGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.orderIDDataGridViewTextBoxColumn,
@@ -712,14 +704,6 @@
             this.medicinesViewDataGridView.AutoGenerateColumns = false;
             this.medicinesViewDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.medicinesViewDataGridView.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.medicinesViewDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.medicinesViewDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.medicinesViewDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -732,14 +716,6 @@
             this.dataGridViewTextBoxColumn9,
             this.dataGridViewTextBoxColumn10});
             this.medicinesViewDataGridView.DataSource = this.medicinesViewBindingSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.medicinesViewDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.medicinesViewDataGridView.Location = new System.Drawing.Point(3, 23);
             this.medicinesViewDataGridView.Name = "medicinesViewDataGridView";
             this.medicinesViewDataGridView.ReadOnly = true;
@@ -1083,14 +1059,6 @@
             this.currentOrdersViewDataGridView.AutoGenerateColumns = false;
             this.currentOrdersViewDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.currentOrdersViewDataGridView.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.currentOrdersViewDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.currentOrdersViewDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.currentOrdersViewDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn29,
