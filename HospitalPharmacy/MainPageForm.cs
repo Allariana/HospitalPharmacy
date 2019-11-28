@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
 
 namespace HospitalPharmacy
 {
@@ -16,9 +10,7 @@ namespace HospitalPharmacy
         private int userID;
         private string username;
         private string columnname = "MedicinesOrderID";
-        private string ordercolumnname = "OrderID";
         private string tablename = "MedicinesOrders";
-        private string ordertablename = "Orders";
         private DataTable idNameCombo = new DataTable();
         private DataTable orderNameCombo = new DataTable();
 
@@ -29,10 +21,7 @@ namespace HospitalPharmacy
             this.userID = userID;
             tabControl.TabPages.Clear();
             tabControl.TabPages.Insert(0, currentOrderTabPage);
-            UserLabel.Text = username;
-            //pictureBox1.BackColor = Color.Transparent;
-            
-                       
+            UserLabel.Text = username;                                
         }
 
         private void MainPagecs_Load(object sender, EventArgs e)
@@ -41,15 +30,12 @@ namespace HospitalPharmacy
             panel1.BackColor = Color.FromArgb(100, 255, 255, 255);
             panel2.BackColor = Color.FromArgb(100, 255, 255, 255);
             panel3.BackColor = Color.FromArgb(100, 255, 255, 255);
-            // panel.BackColor = Color.FromArgb(100, 0, 0, 0);
-            // TODO: This line of code loads data into the 'pharmacyDataSet.ReceiptMedicinesOrdersView' table. You can move, or remove it, as needed.
-            this.receiptMedicinesOrdersViewTableAdapter.Fill(this.pharmacyDataSet.ReceiptMedicinesOrdersView);
-            // TODO: This line of code loads data into the 'pharmacyDataSet.CurrentOrdersView' table. You can move, or remove it, as needed.
-            this.currentOrdersViewTableAdapter.Fill(this.pharmacyDataSet.CurrentOrdersView);
-            // TODO: This line of code loads data into the 'pharmacyDataSet.OrdersView' table. You can move, or remove it, as needed.
-            this.ordersViewTableAdapter.Fill(this.pharmacyDataSet.OrdersView);
+
             // TODO: This line of code loads data into the 'pharmacyDataSet.Departments' table. You can move, or remove it, as needed.
-            this.departmentsTableAdapter.Fill(this.pharmacyDataSet.Departments);
+            departmentsTableAdapter.Fill(pharmacyDataSet.Departments);
+            receiptMedicinesOrdersViewTableAdapter.Fill(pharmacyDataSet.ReceiptMedicinesOrdersView);
+            currentOrdersViewTableAdapter.Fill(pharmacyDataSet.CurrentOrdersView);
+            ordersViewTableAdapter.Fill(pharmacyDataSet.OrdersView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.GenerateOrderView' table. You can move, or remove it, as needed.
             this.generateOrderViewTableAdapter.Fill(this.pharmacyDataSet.GenerateOrderView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.MedicinesView' table. You can move, or remove it, as needed.
@@ -84,11 +70,6 @@ namespace HospitalPharmacy
 
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void checkButton_Click(object sender, EventArgs e)
         {
 
@@ -118,7 +99,6 @@ namespace HospitalPharmacy
                 ConnectionManager connection = ConnectionManager.getInstance();
                 connection.insertOrder(userID);
                 MessageBox.Show("Order completed!");
-                //this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
                 connection.getColumn(tablename, columnname, idNameCombo);
                 foreach (DataRow row in idNameCombo.Rows)
                 {
@@ -135,41 +115,12 @@ namespace HospitalPharmacy
         {
 
         }
-
-        
-
-        
-
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-            /*if (!changeData) return;
-            switch (MessageBox.Show("Czy zapisać dane w bazie danych?", "Komunikat", MessageBoxButtons.YesNo))
-            {
-                case DialogResult.Yes:
-                    try
-                    {
-                        this.Validate();
-                        //this.pharmacyDataSet.Medicines.End
-                        //    db.Dispose();
-                        MessageBox.Show("Dane zapisane - OK", "Komunikat");
-                    }
-                    catch (Exception exc)
-                    {
-                        MessageBox.Show("Zapisanie danych nie powiodło się : " + exc.Message);
-                    }
-                    break;
-                case DialogResult.No:
-                    break;
-            }*/
-        }
-        
+                       
         private void makeOrderButton_Click(object sender, EventArgs e)
         {
             new MakeOrderForm(userID).Show();
         }
-
-        
-
+       
         private void orderTabPage_Click(object sender, EventArgs e)
         {
 
@@ -197,7 +148,6 @@ namespace HospitalPharmacy
                 new PackageForm(medicinesViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
             }
         }
-
         
         private void tabControl_MouseClick(object sender, MouseEventArgs e)
         {
@@ -219,10 +169,6 @@ namespace HospitalPharmacy
             if (medicinesOrdersViewDataGridView1.Rows[e.RowIndex].Cells[0].Value != null)
             {
                 new MedicinesOrderDetailsForm(medicinesOrdersViewDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
-                /*ConnectionManager connection = ConnectionManager.getInstance();
-                DataTable orderDetails = new DataTable();
-                connection.getMedicinesOrderDetails(orderDetails, medicinesOrdersViewDataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString());
-                medicineOrderDetailsGridView.DataSource = orderDetails;*/
             }                 
         }
         private void openTabPage(TabPage tabPage)
@@ -312,6 +258,10 @@ namespace HospitalPharmacy
 
 
                     connection.pickUpOrder(receiptMedicinesOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    receiptMedicinesOrdersViewDataGridView.DataSource = receiptMedicinesOrdersViewTableAdapter;
+                    receiptMedicinesOrdersViewDataGridView.Refresh();
+                    /*medicinesViewDataGridView.DataSource = medicinesViewTableAdapter;
+                    medicinesViewDataGridView.Refresh();*/
                     /*
                     medicinesOrdersViewDataGridView.DataSource = medicinesOrdersViewTableAdapter;
                     medicinesOrdersViewDataGridView.Refresh();

@@ -41,7 +41,6 @@ namespace HospitalPharmacy
                 generateOrderViewDataGridView.DataSource = generateOrderViewTableAdapter;
                 generateOrderViewDataGridView.Refresh();
                 MessageBox.Show("Order completed!");
-                //this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
             }
             catch (Exception ex)
             {

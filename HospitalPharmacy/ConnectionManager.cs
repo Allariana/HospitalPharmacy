@@ -145,7 +145,20 @@ namespace HospitalPharmacy
                         "and a.MedicineID = Medicines.MedicineID)where MedicineID in (select d.MedicineID from OrderDetails d join Orders o on " +
                         "d.OrderID = o.OrderID and d.OrderID = " + id + "); ";
                         new SqlCommand(completeOrderCommand, connection).ExecuteNonQuery();
+                    SqlCommand getOrderDetailsID = new SqlCommand("select OrderDetailID from OrderDetails where OrderID=" + id + ";", connection);
+                    SqlDataReader idReader = getOrderDetailsID.ExecuteReader();
+                    DataTable data = new DataTable();
+                    data.Load(idReader);
+                    for (int i = 0; i < data.Rows.Count; i++)
+                    {
+                        String updatePackage = "UPDATE PackageOfMedicine SET OrderDetailID = " + int.Parse(data.Rows[i].ItemArray[0].ToString()) +
+                        "where[SerialNumber(SN)] in (select TOP(select Amount from OrderDetails where OrderDetailID = " + int.Parse(data.Rows[i].ItemArray[0].ToString()) +
+                        ")[SerialNumber(SN)] from PackageOfMedicine p join OrderDetails o on p.MedicineID = o.MedicineID and o.OrderDetailID = " +
+                        int.Parse(data.Rows[i].ItemArray[0].ToString()) + " ORDER BY p.[TermofValidity(EXP)]); ";
+                        new SqlCommand(updatePackage, connection).ExecuteNonQuery();
+                    }
                         MessageBox.Show("Succeed!");
+                    idReader.Close();
                     }
                     else MessageBox.Show("There is not enough medicines to complete this order!");
 
@@ -207,19 +220,7 @@ namespace HospitalPharmacy
             orderID = int.Parse(dw[0].ToString());
             string insertMedicinesOrder = "insert into MedicinesOrders ([MedicinesOrderID],[UserID],[OrderDate],[RealizationFlag]) select " + orderID +
                 "," + pharmacistID + ",CONVERT (date, SYSDATETIME()),'N' from GenerateOrderView;" +
-                /*"INSERT INTO MedicineOrderDetails select NEXT VALUE FOR medicineOrderDetailsIdSeq MedicineOrderDetailsID, * from" +
-                "(select " + orderID + " MedicinesOrderID, m.MedicineId,CASE WHEN((m.RequiredQuantity - m.UnitsInStock - " +
-                "(select d.Amount from MedicineOrderDetails d join MedicinesOrders o on d.MedicinesOrderID = o.MedicinesOrderID" +
-                " where d.MedicineID = m.MedicineID and o.RealizationFlag = 'N')))IS NULL THEN m.RequiredQuantity - m.UnitsInStock" +
-                " ELSE(m.RequiredQuantity - m.UnitsInStock - (select d.Amount from MedicineOrderDetails d join MedicinesOrders o on d.MedicinesOrderID = o.MedicinesOrderID" +
-                " where d.MedicineID = m.MedicineID and o.RealizationFlag = 'N'))   END Amount," +
-                " ROUND(CASE WHEN((m.RequiredQuantity - m.UnitsInStock - (select d.Amount from MedicineOrderDetails d join MedicinesOrders o on" +
-                " d.MedicinesOrderID = o.MedicinesOrderID where d.MedicineID = m.MedicineID and o.RealizationFlag = 'N')))IS NULL" +
-                " THEN(m.RequiredQuantity - m.UnitsInStock) * m.[UnitPrice(EUR)] ELSE(m.RequiredQuantity - m.UnitsInStock -" +
-                "(select d.Amount from MedicineOrderDetails d join MedicinesOrders o on d.MedicinesOrderID = o.MedicinesOrderID " +
-                " where d.MedicineID = m.MedicineID and o.RealizationFlag = 'N'))*m.[UnitPrice(EUR)] END,2) AS Price from Medicines m)insertOrder" +
-                " where insertOrder.Amount > 0;";*/
-                "INSERT INTO MedicineOrderDetails ([MedicineOrderDetailsID],[MedicinesOrderID],[MedicineID],[Amount]) select NEXT VALUE FOR medicineOrderDetailsIdSeq MedicineOrderDetailsID, " + orderID +
+                 "INSERT INTO MedicineOrderDetails ([MedicineOrderDetailsID],[MedicinesOrderID],[MedicineID],[Amount]) select NEXT VALUE FOR medicineOrderDetailsIdSeq MedicineOrderDetailsID, " + orderID +
                  " MedicinesOrderID, g.MedicineId MedicineID, g.Amount Amount from GenerateOrderView g;";
 
             new SqlCommand(insertMedicinesOrder, connection).ExecuteNonQuery();
