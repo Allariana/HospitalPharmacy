@@ -349,7 +349,10 @@ namespace HospitalPharmacy
 
         private void ordersViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+            if (ordersViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
+            {
+                new OrderDetailsForm(ordersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
+            }
         }
 
         private void completeOrdersViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

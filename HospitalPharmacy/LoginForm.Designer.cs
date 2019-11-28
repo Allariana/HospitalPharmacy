@@ -79,7 +79,7 @@
             this.LoginButton.BackColor = System.Drawing.SystemColors.ControlLight;
             this.LoginButton.Font = new System.Drawing.Font("Times New Roman", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.LoginButton.ForeColor = System.Drawing.Color.Black;
-            this.LoginButton.Location = new System.Drawing.Point(333, 132);
+            this.LoginButton.Location = new System.Drawing.Point(333, 137);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(79, 28);
             this.LoginButton.TabIndex = 12;
@@ -111,16 +111,18 @@
             // 
             // UsernameTextBox
             // 
-            this.UsernameTextBox.Location = new System.Drawing.Point(321, 48);
+            this.UsernameTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.UsernameTextBox.Location = new System.Drawing.Point(321, 46);
             this.UsernameTextBox.Name = "UsernameTextBox";
-            this.UsernameTextBox.Size = new System.Drawing.Size(100, 20);
+            this.UsernameTextBox.Size = new System.Drawing.Size(100, 26);
             this.UsernameTextBox.TabIndex = 16;
             // 
             // PasswordTextBox
             // 
-            this.PasswordTextBox.Location = new System.Drawing.Point(321, 90);
+            this.PasswordTextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.PasswordTextBox.Location = new System.Drawing.Point(321, 86);
             this.PasswordTextBox.Name = "PasswordTextBox";
-            this.PasswordTextBox.Size = new System.Drawing.Size(100, 20);
+            this.PasswordTextBox.Size = new System.Drawing.Size(100, 26);
             this.PasswordTextBox.TabIndex = 17;
             // 
             // LoginForm
