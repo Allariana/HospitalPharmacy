@@ -32,17 +32,7 @@ namespace HospitalPharmacy
             UserLabel.Text = username;
             //pictureBox1.BackColor = Color.Transparent;
             
-            ConnectionManager connection = ConnectionManager.getInstance();
-            connection.getColumn(tablename, columnname, idNameCombo);
-            foreach (DataRow row in idNameCombo.Rows)
-            {
-                medicineOrderIDComboBox.Items.Add(row["MedicinesOrderID"]);
-            }
-            connection.getColumn(ordertablename, ordercolumnname, orderNameCombo);
-            foreach (DataRow row in orderNameCombo.Rows)
-            {
-                ordersComboBox.Items.Add(row["OrderID"]);
-            }
+                       
         }
 
         private void MainPagecs_Load(object sender, EventArgs e)
@@ -50,6 +40,7 @@ namespace HospitalPharmacy
             panel.BackColor = Color.FromArgb(100, 255, 255, 255);
             panel1.BackColor = Color.FromArgb(100, 255, 255, 255);
             panel2.BackColor = Color.FromArgb(100, 255, 255, 255);
+            panel3.BackColor = Color.FromArgb(100, 255, 255, 255);
             // panel.BackColor = Color.FromArgb(100, 0, 0, 0);
             // TODO: This line of code loads data into the 'pharmacyDataSet.ReceiptMedicinesOrdersView' table. You can move, or remove it, as needed.
             this.receiptMedicinesOrdersViewTableAdapter.Fill(this.pharmacyDataSet.ReceiptMedicinesOrdersView);
@@ -145,16 +136,9 @@ namespace HospitalPharmacy
 
         }
 
-        private void button1_Click_2(object sender, EventArgs e)
-        {
-            new OrderDetailsForm(ordersComboBox.SelectedItem.ToString()).Show();
-        }
+        
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ConnectionManager connection = ConnectionManager.getInstance();
-            connection.completeOrder(ordersComboBox.SelectedItem.ToString(), userID);
-        }
+        
 
         private void saveButton_Click(object sender, EventArgs e)
         {
@@ -184,28 +168,7 @@ namespace HospitalPharmacy
             new MakeOrderForm(userID).Show();
         }
 
-        private void orderGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            if (orderGridView.Rows[e.RowIndex].Cells[0].Value != null)
-            {
-                try
-                {
-                    if (actionComboBox.SelectedItem.ToString() == "Check Order Details")
-                    {
-                        new OrderDetailsForm(orderGridView.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
-                    }
-                    else if (actionComboBox.SelectedItem.ToString() == "Complete Order")
-                    {
-                        ConnectionManager connection = ConnectionManager.getInstance();
-                        connection.completeOrder(orderGridView.Rows[e.RowIndex].Cells[0].Value.ToString(), userID);
-                    }
-                }
-                catch (System.NullReferenceException) { MessageBox.Show("Choose what to do!"); }
-            }
-
-
-        }
+        
 
         private void orderTabPage_Click(object sender, EventArgs e)
         {
@@ -235,26 +198,7 @@ namespace HospitalPharmacy
             }
         }
 
-        private void medicinesOrdersViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (medicinesOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
-            {
-                try
-                {
-                    if (chooseActionComboBox.SelectedItem.ToString() == "Check Order Details")
-                    {
-                        new MedicinesOrderDetailsForm(medicinesOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
-                    }
-                    else if (actionComboBox.SelectedItem.ToString() == "Receipt of Order")
-                    {
-                        ConnectionManager connection = ConnectionManager.getInstance();
-                        connection.pickUpOrder(medicinesOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
-                    }
-                }
-                catch (System.NullReferenceException) { MessageBox.Show("Choose what to do!"); }
-            }
-        }
-
+        
         private void tabControl_MouseClick(object sender, MouseEventArgs e)
         {
             
@@ -356,10 +300,6 @@ namespace HospitalPharmacy
             if (currentOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
             {
                 new OrderDetailsForm(currentOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
-                /*ConnectionManager connection = ConnectionManager.getInstance();
-                DataTable orderDetails = new DataTable();
-                connection.getOrderDetails(orderDetails, currentOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
-                currentOrdersViewDataGridView.DataSource = orderDetails;*/
             }
         }
 
@@ -404,7 +344,23 @@ namespace HospitalPharmacy
 
         private void orderDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            openTabPage(orderTabPage);
+            openTabPage(historyOrdersTabPage);
+        }
+
+        private void ordersViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void completeOrdersViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (completeOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
+            {
+                int id;
+                id = this.userID;
+                ConnectionManager connection = ConnectionManager.getInstance();
+                connection.completeOrder(completeOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString(),id);
+            }
         }
     }
 }

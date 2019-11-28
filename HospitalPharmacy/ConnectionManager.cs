@@ -101,25 +101,8 @@ namespace HospitalPharmacy
                     "FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0','Excel 12.0;Database=D:\\Kinga\\Studies\\IV rok\\Semestr 7\\Praca dyplomowa\\Invoices\\" +
                     MedicineOrderID + ".xlsx','SELECT * from [Arkusz1$]')a join MedicineOrderDetails d on RIGHT(a.[SerialNumber(SN)],3)= d.MedicineID " +
                     "join MedicinesOrders o on o.MedicinesOrderID = d.MedicinesOrderID and d.MedicinesOrderID = " + id + ";";
-                 //dziala
-                String a = "INSERT INTO [dbo].[PackageOfMedicine]([SerialNumber(SN)],[MedicineID],[TermofValidity(EXP)],[SerialNumber(LOT)])" +
-                    "SELECT [SerialNumber(SN)],RIGHT([SerialNumber(SN)],3),CONVERT(DATE,[TermOfValidity(EXP)]),[SerialNumber(LOT)] FROM OPENROWSET(" +
-                    "'Microsoft.ACE.OLEDB.12.0','Excel 12.0;Database=D:\\Kinga\\Studies\\IV rok\\Semestr 7\\Praca dyplomowa\\Invoices\\88.xlsx'," +
-                    "'SELECT * from [Arkusz1$]'); ";
-                String b = "INSERT INTO [dbo].[PackageOfMedicine]([SerialNumber(SN)],[MedicineID],[TermofValidity(EXP)],[SerialNumber(LOT)])" +
-                    "SELECT [SerialNumber(SN)],RIGHT([SerialNumber(SN)],3),CONVERT(DATE,[TermOfValidity(EXP)]),[SerialNumber(LOT)] FROM OPENROWSET(" +
-                    "'Microsoft.ACE.OLEDB.12.0','Excel 12.0;Database=D:\\Kinga\\Studies\\IV rok\\Semestr 7\\Praca dyplomowa\\Invoices\\" +
-                    MedicineOrderID + ".xlsx','SELECT * from [Arkusz1$]'); ";
-                String c = "INSERT INTO PackageofMedicine ([SerialNumber(SN)],[MedicineID],[TermofValidity(EXP)],[SerialNumber(LOT)],[MedicineOrderDetailsID])" +
-                    "SELECT a.[SerialNumber(SN)],RIGHT(a.[SerialNumber(SN)],3),CONVERT(DATE,a.[TermOfValidity(EXP)]),a.[SerialNumber(LOT)], d.MedicineOrderDetailsID " +
-                    "FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0','Excel 12.0;Database=D:\\Kinga\\Studies\\IV rok\\Semestr 7\\Praca dyplomowa\\Invoices\\" +
-                    MedicineOrderID + ".xlsx','SELECT * from [Arkusz1$]')a join MedicineOrderDetails d on RIGHT(a.[SerialNumber(SN)],3)= d.MedicineID " +
-                    "join MedicinesOrders o on o.MedicinesOrderID = d.MedicinesOrderID and d.MedicinesOrderID = " + id + ";";
-                //String insertCommand2 = ""
-                //MessageBox.Show(insertCommand1);
-                new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
-                //new SqlCommand(c, connection).ExecuteNonQuery();
-                MessageBox.Show("Succeed!");
+                 new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
+                 MessageBox.Show("Succeed!");
             }
             catch (Exception ex)
             {
@@ -138,29 +121,23 @@ namespace HospitalPharmacy
         public void completeOrder(String OrderID, int pharmacistID)
         {
             int id = int.Parse(OrderID.ToString());
-            char status;
             connection.Open();
                 try
             {
-                SqlCommand checkOrderStatus = new SqlCommand("select RealizationFlag from Orders where OrderID = " + id + ";", connection);
+                
                 SqlCommand checkIfEnoughMedicines = new SqlCommand("select TOP (1) Units from (select UnitsInStock - (select a.Amount from(select d.MedicineID MedicineID, " +
                     "d.Amount Amount from OrderDetails d join Medicines m on m.MedicineID = d.MedicineID join Orders o on d.OrderID = o.OrderID and o.OrderID = " + id + ")a " +
                     "join Medicines m on a.MedicineID = m.MedicineID and a.MedicineID = Medicines.MedicineID) Units from Medicines where MedicineID in " +
                     "(select d.MedicineID from OrderDetails d join Orders o on d.OrderID = o.OrderID and d.OrderID = " + id + "))b where Units < 0; ", connection);
-                SqlDataReader reader = checkOrderStatus.ExecuteReader();
-                DataTable dt = new DataTable();
-                dt.Load(reader);
-                DataRow dw = dt.Rows[0];
-                status = char.Parse(dw[0].ToString());
+                         
                 SqlDataReader reader2 = checkIfEnoughMedicines.ExecuteReader();
                 DataTable dataTable = new DataTable();
                 dataTable.Load(reader2);
                 reader2.Close();
-                if (status == 'N')
-                {
+               
                     if (dataTable.Rows.Count == 0)
                     {
-                        String completeOrderCommand = "UPDATE Orders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()), PharmacistID = " + pharmacistID
+                        String completeOrderCommand = "UPDATE Orders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()), UserID = " + pharmacistID
                         + " where OrderID = " + id + ";" +
                         " UPDATE Medicines SET UnitsInStock = UnitsInStock - " +
                         "(select a.Amount from(select d.MedicineID MedicineID, d.Amount Amount from OrderDetails d join Medicines m on m.MedicineID = d.MedicineID " +
@@ -171,12 +148,11 @@ namespace HospitalPharmacy
                         MessageBox.Show("Succeed!");
                     }
                     else MessageBox.Show("There is not enough medicines to complete this order!");
-                }
-                else MessageBox.Show("This order has already been completed!");
+
             }
             catch (Exception ex)
             {
-                 String rollbackOrder = "UPDATE Orders SET RealizationFlag = 'N', RealizationDate = null, PharmacistID = NULL WHERE OrderID = " + id + ";";
+                 String rollbackOrder = "UPDATE Orders SET RealizationFlag = 'N', RealizationDate = null, UserID = NULL WHERE OrderID = " + id + ";";
                  new SqlCommand(rollbackOrder, connection).ExecuteNonQuery();
                 
                 MessageBox.Show(ex.Message);
