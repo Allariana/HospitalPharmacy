@@ -315,6 +315,11 @@ namespace HospitalPharmacy
                 connection.completeOrder(completeOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString(),id);
             }
         }
+
+        private void archivesButton_Click(object sender, EventArgs e)
+        {
+            new ArchivesForm().Show();
+        }
     }
 }
 
