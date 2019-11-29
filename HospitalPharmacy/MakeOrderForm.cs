@@ -67,34 +67,6 @@ namespace HospitalPharmacy
                 MessageBox.Show(ex.Message);
             }
 
-            //Adding the Columns.
-            /*foreach (DataGridViewColumn column in basketGridView.Columns)
-            {
-                objectsController.basketDataTable.Columns.Add(column.HeaderText, typeof(String));
-            }*/
-            /*objectsController.basketDataTable.Columns.Add("MedicineID", typeof(String));
-        objectsController.basketDataTable.Columns.Add("Amount", typeof(String));
-        //Adding the Rows.
-        /*foreach (DataGridViewRow row in basketGridView.Rows)
-        {
-            if (row == null) basketGridView.Rows.Remove(row);
-        }*/
-
-            /*
-            foreach (DataGridViewRow row in basketGridView.Rows)
-            {
-                objectsController.basketDataTable.Rows.Add();
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    try
-                    {
-                        objectsController.basketDataTable.Rows[objectsController.basketDataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
-                    }
-                    catch (NullReferenceException) { }
-                }
-            }
-            
-            */
         }
         private void BasketGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
@@ -102,98 +74,8 @@ namespace HospitalPharmacy
         }
         
         private void SaveButton_Click(object sender, EventArgs e)
-        {
-            
-            
-            /*
-            //Adding the Columns.
-            foreach (DataGridViewColumn column in basketGridView.Columns)
-            {
-                objectsController.basketDataTable.Columns.Add(column.HeaderText, column.ValueType);
-            }
-
-            //Adding the Rows.
-            foreach (DataGridViewRow row in basketGridView.Rows)
-            {
-                objectsController.basketDataTable.Rows.Add();
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    objectsController.basketDataTable.Rows[objectsController.basketDataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
-                }
-            }
-            /*switch (MessageBox.Show("Do you want to save basket?", "Message", MessageBoxButtons.YesNo))
-            {
-                case DialogResult.Yes:
-                    try
-                    {
-                        
-                        MessageBox.Show("Saved", "Message");
-                    }
-                    catch (Exception exc)
-                    {
-                        MessageBox.Show("Failed" + exc.Message);
-                    }
-                    break;
-                case DialogResult.No:
-                    break;
-            }
-            //this.basketGridView.U
-            //if (!changeData)MessageBox.Show("Nothing to save");
-            /*else
-            {
-                switch (MessageBox.Show("Do you want to save basket?", "Message", MessageBoxButtons.YesNo))
-                {
-                    case DialogResult.Yes:
-                        try
-                        {
-                            this.Validate();
-                            this.basketGridView.EndEdit();
-                            this.basketGridView.Update();
-                            //this.pharmacyDataSet.Medicines.End
-                            //    db.Dispose();
-                            MessageBox.Show("Saved", "Message");
-                        }
-                        catch (Exception exc)
-                        {
-                            MessageBox.Show("Failed" + exc.Message);
-                        }
-                        break;
-                    case DialogResult.No:
-                        break;
-                }
-            }*/
-
+        {                            
         }
-
-        
-
-
-        /*private void saveButton_Click(object sender, EventArgs e)
-{
-if (changeData==false) MessageBox.Show("Nothing to save");
-switch (MessageBox.Show("Do you want to save basket?", "Message", MessageBoxButtons.YesNo))
-{
-case DialogResult.Yes:
-  try
-  {
-      this.Validate();
-      this.basketGridView.EndEdit();
-
-      //this.pharmacyDataSet.Medicines.End
-      //    db.Dispose();
-      MessageBox.Show("Saved", "Message");
-  }
-  catch (Exception exc)
-  {
-      MessageBox.Show("Failed" + exc.Message);
-  }
-  break;
-case DialogResult.No:
-  break;
-}
-}*/
-
-
     }
 }
 

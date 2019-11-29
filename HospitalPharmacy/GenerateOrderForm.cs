@@ -18,13 +18,7 @@ namespace HospitalPharmacy
         public GenerateOrderForm(int id)
         {
             this.id = id;
-
-            InitializeComponent();
-            ConnectionManager connection = ConnectionManager.getInstance();
-
-            //this.priceLabel.Text = (string.Format("{0:0.00}", connection.getPrice().ToString()));
-                        
-            
+            InitializeComponent();                                  
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -57,14 +51,12 @@ namespace HospitalPharmacy
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            //new MainPageForm(username).Show();
         }
 
         private void GenerateOrderForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'pharmacyDataSet.GenerateOrderView' table. You can move, or remove it, as needed.
-            this.generateOrderViewTableAdapter.Fill(this.pharmacyDataSet.GenerateOrderView);
-
+            generateOrderViewTableAdapter.Fill(pharmacyDataSet.GenerateOrderView);
         }
     }
 }

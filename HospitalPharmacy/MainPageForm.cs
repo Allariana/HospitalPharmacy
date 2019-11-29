@@ -26,6 +26,8 @@ namespace HospitalPharmacy
 
         private void MainPagecs_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'pharmacyDataSet.Suppliers' table. You can move, or remove it, as needed.
+            this.suppliersTableAdapter.Fill(this.pharmacyDataSet.Suppliers);
             panel.BackColor = Color.FromArgb(100, 255, 255, 255);
             panel1.BackColor = Color.FromArgb(100, 255, 255, 255);
             panel2.BackColor = Color.FromArgb(100, 255, 255, 255);
@@ -313,12 +315,21 @@ namespace HospitalPharmacy
                 id = this.userID;
                 ConnectionManager connection = ConnectionManager.getInstance();
                 connection.completeOrder(completeOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString(),id);
+                currentOrdersViewDataGridView.DataSource = currentOrdersViewTableAdapter;
+                currentOrdersViewDataGridView.Refresh();
+                completeOrdersViewDataGridView.DataSource = currentOrdersViewTableAdapter;
+                completeOrdersViewDataGridView.Refresh();
             }
         }
 
         private void archivesButton_Click(object sender, EventArgs e)
         {
             new ArchivesForm().Show();
+        }
+
+        private void listOfSuppliersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openTabPage(suppliersTabPage);
         }
     }
 }

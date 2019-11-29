@@ -65,6 +65,12 @@
     <Compile Include="AmountForm.Designer.cs">
       <DependentUpon>AmountForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ArchivesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ArchivesForm.Designer.cs">
+      <DependentUpon>ArchivesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConnectionManager.cs" />
     <Compile Include="GenerateOrderForm.cs">
       <SubType>Form</SubType>
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AmountForm.resx">
       <DependentUpon>AmountForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ArchivesForm.resx">
+      <DependentUpon>ArchivesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerateOrderForm.resx">
       <DependentUpon>GenerateOrderForm.cs</DependentUpon>
