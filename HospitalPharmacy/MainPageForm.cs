@@ -26,6 +26,8 @@ namespace HospitalPharmacy
 
         private void MainPagecs_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'pharmacyDataSet.PharmacistsView' table. You can move, or remove it, as needed.
+            this.pharmacistsViewTableAdapter.Fill(this.pharmacyDataSet.PharmacistsView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.Suppliers' table. You can move, or remove it, as needed.
             this.suppliersTableAdapter.Fill(this.pharmacyDataSet.Suppliers);
             panel.BackColor = Color.FromArgb(100, 255, 255, 255);
@@ -330,6 +332,16 @@ namespace HospitalPharmacy
         private void listOfSuppliersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openTabPage(suppliersTabPage);
+        }
+
+        private void profileButton_Click(object sender, EventArgs e)
+        {
+            openTabPage(profileTabPage);
+        }
+
+        private void listOfPharmacistsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openTabPage(pharmacistTabPage);
         }
     }
 }
