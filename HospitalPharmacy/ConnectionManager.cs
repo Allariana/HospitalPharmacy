@@ -51,6 +51,19 @@ namespace HospitalPharmacy
             adapter.Fill(dataTable);
             connection.Close();
         }       
+        public String getRecord(String columnname, int id)
+        {
+            connection.Open();
+            DataTable valueTable = new DataTable();
+            String value;
+            SqlCommand getValue = new SqlCommand("select " + columnname + " from ProfileView where UserID = " + id + ";", connection);
+            SqlDataReader reader = getValue.ExecuteReader();
+            valueTable.Load(reader);
+            DataRow dw = valueTable.Rows[0];
+            value = dw[0].ToString();
+            connection.Close();
+            return value;
+        }
         public void getMedicinesOrderDetails(DataTable dataTable, String MedicineOrderID)
         {
             connection.Open();
@@ -174,28 +187,6 @@ namespace HospitalPharmacy
             {
                 connection.Close();
             }
-        }
-        public String getPrice()
-        {
-            String price;
-            try
-            {
-                connection.Open();
-                DataTable dt = new DataTable();
-                SqlCommand priceCommand = new SqlCommand("SELECT SUM(Price) FROM GenerateOrderView;", connection);
-                SqlDataReader reader = priceCommand.ExecuteReader();
-                dt.Load(reader);
-                DataRow dw = dt.Rows[0];
-                price = dw[0].ToString();
-                reader.Close();
-                connection.Close();
-                return price;
-            }
-            catch(FormatException)
-            {
-                price = "0";
-                return price;
-            }           
         }
         public DataRow getID(String username)
         {

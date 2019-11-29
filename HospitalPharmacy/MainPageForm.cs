@@ -26,6 +26,8 @@ namespace HospitalPharmacy
 
         private void MainPagecs_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'pharmacyDataSet.ProfileView' table. You can move, or remove it, as needed.
+            this.profileViewTableAdapter.Fill(this.pharmacyDataSet.ProfileView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.PharmacistsView' table. You can move, or remove it, as needed.
             this.pharmacistsViewTableAdapter.Fill(this.pharmacyDataSet.PharmacistsView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.Suppliers' table. You can move, or remove it, as needed.
@@ -336,12 +338,22 @@ namespace HospitalPharmacy
 
         private void profileButton_Click(object sender, EventArgs e)
         {
-            openTabPage(profileTabPage);
+            new ProfileForm(userID).Show();
         }
 
         private void listOfPharmacistsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openTabPage(pharmacistTabPage);
+        }
+
+        private void userIDTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void userIDLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
