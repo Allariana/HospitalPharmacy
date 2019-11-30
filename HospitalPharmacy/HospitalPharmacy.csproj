@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddMedicineForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddMedicineForm.Designer.cs">
+      <DependentUpon>AddMedicineForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdministratorMedicinesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +144,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddMedicineForm.resx">
+      <DependentUpon>AddMedicineForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdministratorMedicinesForm.resx">
       <DependentUpon>AdministratorMedicinesForm.cs</DependentUpon>
     </EmbeddedResource>

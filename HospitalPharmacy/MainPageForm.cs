@@ -38,7 +38,7 @@ namespace HospitalPharmacy
             currentOrdersViewTableAdapter.Fill(pharmacyDataSet.CurrentOrdersView);
             ordersViewTableAdapter.Fill(pharmacyDataSet.OrdersView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.GenerateOrderView' table. You can move, or remove it, as needed.
-            this.generateOrderViewTableAdapter.Fill(this.pharmacyDataSet.GenerateOrderView);
+            generateOrderViewTableAdapter.Fill(pharmacyDataSet.GenerateOrderView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.MedicinesView' table. You can move, or remove it, as needed.
             this.medicinesViewTableAdapter.Fill(this.pharmacyDataSet.MedicinesView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.Medicines' table. You can move, or remove it, as needed.
@@ -61,18 +61,7 @@ namespace HospitalPharmacy
 
         private void generateButton_Click(object sender, EventArgs e)
         {
-            int id;
-            id = this.userID;
-            using (GenerateOrderForm generateOrderForm = new GenerateOrderForm(id))
-            {
-                if (generateOrderForm.ShowDialog() == DialogResult.OK)
-                {
-                    medicinesOrdersViewDataGridView1.DataSource = medicinesOrdersViewTableAdapter;
-                    medicinesOrdersViewDataGridView1.Refresh();
-                    receiptMedicinesOrdersViewDataGridView.DataSource = receiptMedicinesOrdersViewTableAdapter;
-                    receiptMedicinesOrdersViewDataGridView.Refresh();
-                }
-            }
+            
         }
 
         private void stockPage_Click(object sender, EventArgs e)
@@ -97,7 +86,7 @@ namespace HospitalPharmacy
                        
         private void makeOrderButton_Click(object sender, EventArgs e)
         {
-            new MakeOrderForm(userID).Show();
+            
         }
        
         private void orderTabPage_Click(object sender, EventArgs e)
@@ -237,7 +226,8 @@ namespace HospitalPharmacy
 
 
                     connection.pickUpOrder(receiptMedicinesOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
-                    receiptMedicinesOrdersViewDataGridView.DataSource = receiptMedicinesOrdersViewTableAdapter;
+                    //receiptMedicinesOrdersViewDataGridView.DataSource = receiptMedicinesOrdersViewTableAdapter;
+                    receiptMedicinesOrdersViewDataGridView.Update();
                     receiptMedicinesOrdersViewDataGridView.Refresh();
                     /*medicinesViewDataGridView.DataSource = medicinesViewTableAdapter;
                     medicinesViewDataGridView.Refresh();*/
@@ -301,7 +291,7 @@ namespace HospitalPharmacy
 
         private void archivesButton_Click(object sender, EventArgs e)
         {
-            new ArchivesForm().Show();
+            
         }
 
         private void listOfSuppliersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -335,6 +325,39 @@ namespace HospitalPharmacy
         }
 
         private void button1_Click_2(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void makeOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new MakeOrderForm(userID).Show();
+        }
+
+        private void generateOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int id;
+            id = this.userID;
+            using (GenerateOrderForm generateOrderForm = new GenerateOrderForm(id))
+            {
+                if (generateOrderForm.ShowDialog() == DialogResult.OK)
+                {
+                    //medicinesOrdersViewDataGridView1.DataSource = medicinesOrdersViewTableAdapter;
+                    medicinesOrdersViewDataGridView1.Update();
+                    medicinesOrdersViewDataGridView1.Refresh();
+                    //receiptMedicinesOrdersViewDataGridView.DataSource = receiptMedicinesOrdersViewTableAdapter;
+                    receiptMedicinesOrdersViewDataGridView.Update();
+                    receiptMedicinesOrdersViewDataGridView.Refresh();
+                }
+            }
+        }
+
+        private void archivesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ArchivesForm().Show();
+        }
+
+        private void addNewMedicineToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new AddMedicineForm().Show();
         }
