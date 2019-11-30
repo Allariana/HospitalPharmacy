@@ -9,11 +9,6 @@ namespace HospitalPharmacy
     {
         private int userID;
         private string username;
-        private string columnname = "MedicinesOrderID";
-        private string tablename = "MedicinesOrders";
-        private DataTable idNameCombo = new DataTable();
-        private DataTable orderNameCombo = new DataTable();
-
         public MainPageForm(int userID, String username)
         {
             InitializeComponent();
@@ -337,6 +332,11 @@ namespace HospitalPharmacy
         private void receiptMedicinesOrdersViewDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            new AddMedicineForm().Show();
         }
     }
 }
