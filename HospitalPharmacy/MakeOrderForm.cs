@@ -14,7 +14,6 @@ namespace HospitalPharmacy
     public partial class MakeOrderForm : Form
     {
         int id;
-        //bool changeData = false;
         ObjectsController objectsController = ObjectsController.getInstance();
         public MakeOrderForm(int id)
         {
@@ -22,10 +21,6 @@ namespace HospitalPharmacy
             InitializeComponent();
             objectsController.addColumn(objectsController.basketDataTable);
             basketGridView.DataSource = objectsController.basketDataTable;
-            /*foreach (DataGridViewColumn column in this.basketGridView.Columns)
-            {
-                column.ValueType = typeof(int);
-            }*/
         }
 
         private void MakeOrderForm_Load(object sender, EventArgs e)

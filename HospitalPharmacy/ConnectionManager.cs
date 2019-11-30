@@ -68,7 +68,7 @@ namespace HospitalPharmacy
         {
             connection.Open();
             int id = int.Parse(MedicineOrderID.ToString());
-            String command = "select m.TradeName, m.ActiveSubstance, m.[Dose(mg)], m.QuantityPerUnit, s.CompanyName, d.Amount " +
+            String command = "select m.TradeName, m.ActiveSubstance, m.[Dose(mg)], m.QuantityPerUnit, s.CompanyName, d.Amount, d.Price " +
                 "from MedicineOrderDetails d join Medicines m on d.MedicineID = m.MedicineID join Suppliers s on s.SupplierID = m.SupplierID join MedicinesOrders o" +
                 "    on o.MedicinesOrderID = d.MedicinesOrderID and o.MedicinesOrderID = " + id + ";";
             SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
@@ -102,18 +102,22 @@ namespace HospitalPharmacy
             {
                 connection.Open();
 
-                String pickUpOrderCommand = "UPDATE MedicinesOrders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()) where MedicinesOrderID " +
-                "= " + id + "; " +
+                String pickUpOrderCommand = "UPDATE MedicinesOrders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()) " +
+                "where MedicinesOrderID = " + id + "; " +
                 " UPDATE Medicines SET UnitsInStock = UnitsInStock + " +
                 "(select a.Amount from(select d.MedicineID MedicineID, d.Amount Amount from MedicineOrderDetails d join Medicines m on m.MedicineID = d.MedicineID " +
-                "join MedicinesOrders o on     d.MedicinesOrderID = o.MedicinesOrderID and o.MedicinesOrderID = " + id + ")a join Medicines m on a.MedicineID = m.MedicineID " +
+                "join MedicinesOrders o on d.MedicinesOrderID = o.MedicinesOrderID and o.MedicinesOrderID = " + id + ")a join Medicines m on a.MedicineID = m.MedicineID " +
                 "and a.MedicineID = Medicines.MedicineID)where MedicineID in (select d.MedicineID from MedicineOrderDetails d join MedicinesOrders o on " +
                 "d.MedicinesOrderID = o.MedicinesOrderID and d.MedicinesOrderID = " + id + "); " +
-                "INSERT INTO PackageofMedicine ([SerialNumber(SN)],[MedicineID],[TermofValidity(EXP)],[SerialNumber(LOT)],[MedicineOrderDetailsID])" +
-                    "SELECT a.[SerialNumber(SN)],RIGHT(a.[SerialNumber(SN)],3),CONVERT(DATE,a.[TermOfValidity(EXP)]),a.[SerialNumber(LOT)], d.MedicineOrderDetailsID " +
+                "INSERT INTO PackageofMedicine ([SerialNumber(SN)],[MedicineID],[TermofValidity(EXP)],[SerialNumber(LOT)],[Price(EUR)],[MedicineOrderDetailsID])" +
+                    "SELECT a.[SerialNumber(SN)],RIGHT(a.[SerialNumber(SN)],3),CONVERT(DATE,a.[TermOfValidity(EXP)]),a.[SerialNumber(LOT)], CONVERT(FLOAT,a.[Price(EUR)]), d.MedicineOrderDetailsID " +
                     "FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0','Excel 12.0;Database=D:\\Kinga\\Studies\\IV rok\\Semestr 7\\Praca dyplomowa\\Invoices\\" +
                     MedicineOrderID + ".xlsx','SELECT * from [Arkusz1$]')a join MedicineOrderDetails d on RIGHT(a.[SerialNumber(SN)],3)= d.MedicineID " +
-                    "join MedicinesOrders o on o.MedicinesOrderID = d.MedicinesOrderID and d.MedicinesOrderID = " + id + ";";
+                    "join MedicinesOrders o on o.MedicinesOrderID = d.MedicinesOrderID and d.MedicinesOrderID = " + id + ";" +
+                    "UPDATE MedicineOrderDetails SET Price = s.sumPRICE from (select SUM([Price(EUR)]) as sumPrice from PackageOfMedicine p where " +
+                    "p.MedicineOrderDetailsID = MedicineOrderDetailsID) s where MedicinesOrderID = " + id + "; " +
+                    "UPDATE MedicinesOrders SET Price = s.sumPRICE from (select SUM(Price) as sumPrice from MedicineOrderDetails d " +
+                    "where d.MedicinesOrderID = MedicinesOrderID)s where MedicinesOrderID = " + id + ";";
                  new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
                  MessageBox.Show("Succeed!");
             }

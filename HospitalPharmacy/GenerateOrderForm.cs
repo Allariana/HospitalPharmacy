@@ -14,11 +14,15 @@ namespace HospitalPharmacy
     public partial class GenerateOrderForm : Form
     {
         int id;
-                
+        /*bool ifOrderWasGenerate = false;
+        public bool ifOrder
+        {
+            get { return ifOrderWasGenerate; }
+        }*/
         public GenerateOrderForm(int id)
         {
             this.id = id;
-            InitializeComponent();                                  
+            InitializeComponent();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -35,6 +39,8 @@ namespace HospitalPharmacy
                 generateOrderViewDataGridView.DataSource = generateOrderViewTableAdapter;
                 generateOrderViewDataGridView.Refresh();
                 MessageBox.Show("Order completed!");
+                //ifOrderWasGenerate = true;
+                DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
             {

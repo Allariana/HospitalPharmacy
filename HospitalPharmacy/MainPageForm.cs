@@ -49,6 +49,7 @@ namespace HospitalPharmacy
             // TODO: This line of code loads data into the 'pharmacyDataSet.Medicines' table. You can move, or remove it, as needed.
             this.medicinesTableAdapter.Fill(this.pharmacyDataSet.Medicines);
             this.medicinesOrdersViewTableAdapter.Fill(this.pharmacyDataSet.MedicinesOrdersView);
+            
 
         }
    
@@ -67,8 +68,16 @@ namespace HospitalPharmacy
         {
             int id;
             id = this.userID;
-            new GenerateOrderForm(id).Show();
-
+            using (GenerateOrderForm generateOrderForm = new GenerateOrderForm(id))
+            {
+                if (generateOrderForm.ShowDialog() == DialogResult.OK)
+                {
+                    medicinesOrdersViewDataGridView1.DataSource = medicinesOrdersViewTableAdapter;
+                    medicinesOrdersViewDataGridView1.Refresh();
+                    receiptMedicinesOrdersViewDataGridView.DataSource = receiptMedicinesOrdersViewTableAdapter;
+                    receiptMedicinesOrdersViewDataGridView.Refresh();
+                }
+            }
         }
 
         private void stockPage_Click(object sender, EventArgs e)
@@ -76,21 +85,9 @@ namespace HospitalPharmacy
 
         }
 
-        private void checkButton_Click(object sender, EventArgs e)
-        {
-
-            new MedicinesOrderDetailsForm(medicineOrderIDComboBox.SelectedItem.ToString()).Show();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void changeOrderStatusButton_Click(object sender, EventArgs e)
-        {
-            ConnectionManager connection = ConnectionManager.getInstance();
-            connection.pickUpOrder(medicineOrderIDComboBox.SelectedItem.ToString());
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -98,25 +95,6 @@ namespace HospitalPharmacy
             this.Hide();
         }
         
-        private void confirmButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                ConnectionManager connection = ConnectionManager.getInstance();
-                connection.insertOrder(userID);
-                MessageBox.Show("Order completed!");
-                connection.getColumn(tablename, columnname, idNameCombo);
-                foreach (DataRow row in idNameCombo.Rows)
-                {
-                    medicineOrderIDComboBox.Items.Add(row["MedicinesOrderID"]);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         private void medicineOrderIDComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -352,6 +330,11 @@ namespace HospitalPharmacy
         }
 
         private void userIDLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void receiptMedicinesOrdersViewDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
