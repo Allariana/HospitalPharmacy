@@ -39,5 +39,14 @@ namespace HospitalPharmacy
             this.tableAdapterManager.UpdateAll(this.pharmacyDataSet);
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (tableListBox.SelectedItem.ToString() == "Medicines")
+            {
+                new AdministratorMedicinesForm().Show();
+            }
+            else MessageBox.Show("Choose table!");
+        }
     }
 }
