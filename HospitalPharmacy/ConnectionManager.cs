@@ -214,7 +214,7 @@ namespace HospitalPharmacy
             DataRow dw = dt.Rows[0];
             orderID = int.Parse(dw[0].ToString());
             string insertMedicinesOrder = "insert into MedicinesOrders ([MedicinesOrderID],[UserID],[OrderDate],[RealizationFlag]) select " + orderID +
-                "," + pharmacistID + ",CONVERT (date, SYSDATETIME()),'N' from GenerateOrderView;" +
+                "," + pharmacistID + ",CONVERT (date, SYSDATETIME()),'N';" +
                  "INSERT INTO MedicineOrderDetails ([MedicineOrderDetailsID],[MedicinesOrderID],[MedicineID],[Amount]) select NEXT VALUE FOR medicineOrderDetailsIdSeq MedicineOrderDetailsID, " + orderID +
                  " MedicinesOrderID, g.MedicineId MedicineID, g.Amount Amount from GenerateOrderView g;";
 

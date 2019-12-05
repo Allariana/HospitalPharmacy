@@ -12,6 +12,7 @@ namespace HospitalPharmacy
         public MainPageForm(int userID, String username)
         {
             InitializeComponent();
+            var topLeftHeaderCell = currentOrdersViewDataGridView.TopLeftHeaderCell;
             this.username = username;
             this.userID = userID;
             tabControl.TabPages.Clear();
@@ -211,10 +212,7 @@ namespace HospitalPharmacy
 
         private void currentOrdersViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (currentOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
-            {
-                new OrderDetailsForm(currentOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
-            }
+            
         }
 
         private void receiptMedicinesOrdersViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -360,6 +358,14 @@ namespace HospitalPharmacy
         private void addNewMedicineToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new AddMedicineForm().Show();
+        }
+
+        private void currentOrdersViewDataGridView_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (currentOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
+            {
+                new OrderDetailsForm(currentOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
+            }
         }
     }
 }
