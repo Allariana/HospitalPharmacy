@@ -41,7 +41,7 @@ namespace HospitalPharmacy
             // TODO: This line of code loads data into the 'pharmacyDataSet.GenerateOrderView' table. You can move, or remove it, as needed.
             generateOrderViewTableAdapter.Fill(pharmacyDataSet.GenerateOrderView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.MedicinesView' table. You can move, or remove it, as needed.
-            this.medicinesViewTableAdapter.Fill(this.pharmacyDataSet.MedicinesView);
+            medicinesViewTableAdapter.Fill(pharmacyDataSet.MedicinesView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.Medicines' table. You can move, or remove it, as needed.
             this.medicinesTableAdapter.Fill(this.pharmacyDataSet.Medicines);
             this.medicinesOrdersViewTableAdapter.Fill(this.pharmacyDataSet.MedicinesOrdersView);
@@ -98,11 +98,6 @@ namespace HospitalPharmacy
         private void medicinesOrdersPage_Click(object sender, EventArgs e)
         {
             
-        }
-
-        private void orderGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
       
         private void medicinesOrdersGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -224,20 +219,15 @@ namespace HospitalPharmacy
 
 
                     connection.pickUpOrder(receiptMedicinesOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
-                    //receiptMedicinesOrdersViewDataGridView.DataSource = receiptMedicinesOrdersViewTableAdapter;
-                    receiptMedicinesOrdersViewDataGridView.Update();
+                    //nie dziala
+                    //receiptMedicinesOrdersViewDataGridView.Update();
+                    //receiptMedicinesOrdersViewDataGridView.Refresh();
+                    receiptMedicinesOrdersViewDataGridView.DataSource = receiptMedicinesOrdersViewTableAdapter; 
                     receiptMedicinesOrdersViewDataGridView.Refresh();
-                    /*medicinesViewDataGridView.DataSource = medicinesViewTableAdapter;
-                    medicinesViewDataGridView.Refresh();*/
-                    /*
-                    medicinesOrdersViewDataGridView.DataSource = medicinesOrdersViewTableAdapter;
-                    medicinesOrdersViewDataGridView.Refresh();
                     medicinesOrdersViewDataGridView1.DataSource = medicinesOrdersViewTableAdapter;
                     medicinesOrdersViewDataGridView1.Refresh();
-                    medicinesOrdersViewDataGridView2.DataSource = medicinesOrdersViewTableAdapter;
-                    medicinesOrdersViewDataGridView2.Refresh();
                     medicinesViewDataGridView.DataSource = medicinesViewTableAdapter;
-                    medicinesViewDataGridView.Refresh();*/
+                    medicinesViewDataGridView.Refresh();
                     break;
                 case DialogResult.No:
                     break;
@@ -277,13 +267,16 @@ namespace HospitalPharmacy
             if (completeOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
             {
                 int id;
-                id = this.userID;
+                id = userID;
                 ConnectionManager connection = ConnectionManager.getInstance();
                 connection.completeOrder(completeOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString(),id);
-                currentOrdersViewDataGridView.DataSource = currentOrdersViewTableAdapter;
+                currentOrdersViewDataGridView.DataSource = currentOrdersViewTableAdapter; //dziala
                 currentOrdersViewDataGridView.Refresh();
                 completeOrdersViewDataGridView.DataSource = currentOrdersViewTableAdapter;
-                completeOrdersViewDataGridView.Refresh();
+                completeOrdersViewDataGridView.Refresh();//
+                
+                medicinesViewDataGridView.DataSource = medicinesViewTableAdapter;
+                medicinesViewDataGridView.Refresh();
             }
         }
 
@@ -313,11 +306,6 @@ namespace HospitalPharmacy
         }
 
         private void userIDLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void receiptMedicinesOrdersViewDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

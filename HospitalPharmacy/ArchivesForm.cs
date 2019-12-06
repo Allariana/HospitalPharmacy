@@ -19,8 +19,8 @@ namespace HospitalPharmacy
 
         private void ArchivesForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'pharmacyDataSet.OldPackagesOfMedicinesView' table. You can move, or remove it, as needed.
-            this.oldPackagesOfMedicinesViewTableAdapter.Fill(this.pharmacyDataSet.OldPackagesOfMedicinesView);
+            // TODO: This line of code loads data into the 'pharmacyDataSet.OldPackagesView' table. You can move, or remove it, as needed.
+            this.oldPackagesViewTableAdapter.Fill(this.pharmacyDataSet.OldPackagesView);
 
         }
     }

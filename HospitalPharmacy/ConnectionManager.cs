@@ -113,13 +113,28 @@ namespace HospitalPharmacy
                     "SELECT a.[SerialNumber(SN)],RIGHT(a.[SerialNumber(SN)],3),CONVERT(DATE,a.[TermOfValidity(EXP)]),a.[SerialNumber(LOT)], CONVERT(FLOAT,a.[Price(EUR)]), d.MedicineOrderDetailsID " +
                     "FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0','Excel 12.0;Database=D:\\Kinga\\Studies\\IV rok\\Semestr 7\\Praca dyplomowa\\Invoices\\" +
                     MedicineOrderID + ".xlsx','SELECT * from [Arkusz1$]')a join MedicineOrderDetails d on RIGHT(a.[SerialNumber(SN)],3)= d.MedicineID " +
-                    "join MedicinesOrders o on o.MedicinesOrderID = d.MedicinesOrderID and d.MedicinesOrderID = " + id + ";" +
+                    "join MedicinesOrders o on o.MedicinesOrderID = d.MedicinesOrderID and d.MedicinesOrderID = " + id + ";"; /*+
                     "UPDATE MedicineOrderDetails SET Price = s.sumPRICE from (select SUM([Price(EUR)]) as sumPrice from PackageOfMedicine p where " +
                     "p.MedicineOrderDetailsID = MedicineOrderDetailsID) s where MedicinesOrderID = " + id + "; " +
                     "UPDATE MedicinesOrders SET Price = s.sumPRICE from (select SUM(Price) as sumPrice from MedicineOrderDetails d " +
-                    "where d.MedicinesOrderID = MedicinesOrderID)s where MedicinesOrderID = " + id + ";";
+                    "where d.MedicinesOrderID = MedicinesOrderID)s where MedicinesOrderID = " + id + ";";*/
                  new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
-                 MessageBox.Show("Succeed!");
+                SqlCommand detailsID = new SqlCommand("select MedicineOrderDetailsID from MedicineOrderDetails where MedicinesOrderID = " + id + ";", connection);
+                SqlDataReader reader = detailsID.ExecuteReader();
+                DataTable dataTable = new DataTable();
+                dataTable.Load(reader);
+                reader.Close();
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    String insertPrice = "UPDATE MedicineOrderDetails SET Price = s.sumPRICE from (select SUM([Price(EUR)]) as sumPrice " +
+                        "from PackageOfMedicine p where p.MedicineOrderDetailsID = " + int.Parse(dataTable.Rows[i].ItemArray[0].ToString()) + ")s " +
+                        "where MedicineOrderDetailsID = " + int.Parse(dataTable.Rows[i].ItemArray[0].ToString()) + "; ";
+                    new SqlCommand(insertPrice, connection).ExecuteNonQuery();
+                }
+                String sumPrice = "UPDATE MedicinesOrders SET Price = s.sumPRICE from (select SUM(Price) as sumPrice from MedicineOrderDetails d " +
+                    "where d.MedicinesOrderID = " + id + ")s where MedicinesOrderID = " + id + ";";
+                new SqlCommand(sumPrice, connection).ExecuteNonQuery();
+                    MessageBox.Show("Succeed!");
             }
             catch (Exception ex)
             {
