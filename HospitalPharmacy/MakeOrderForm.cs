@@ -64,14 +64,7 @@ namespace HospitalPharmacy
             }
 
         }
-        private void BasketGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-        
-        private void SaveButton_Click(object sender, EventArgs e)
-        {                            
-        }
+                
     }
 }
 

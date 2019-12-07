@@ -129,9 +129,7 @@
             this.basketGridView.Name = "basketGridView";
             this.basketGridView.Size = new System.Drawing.Size(241, 332);
             this.basketGridView.TabIndex = 9;
-            this.basketGridView.AllowUserToAddRowsChanged += new System.EventHandler(this.SaveButton_Click);
-            this.basketGridView.AllowUserToDeleteRowsChanged += new System.EventHandler(this.SaveButton_Click);
-            this.basketGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.BasketGridView_CellValueChanged);
+          
             // 
             // basketLabel
             // 

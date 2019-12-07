@@ -22,6 +22,7 @@ namespace HospitalPharmacy
             return instance;
         }
         public DataTable basketDataTable = new DataTable();
+        public DataTable packagesBasketDataTable = new DataTable();
         public void addColumn (DataTable basketDataTable)
         {
             DataColumnCollection columns = basketDataTable.Columns;
@@ -30,6 +31,15 @@ namespace HospitalPharmacy
             {
                 basketDataTable.Columns.Add("MedicineID", typeof(String));
                 basketDataTable.Columns.Add("Amount", typeof(String));
+            }
+        }
+        public void addBasketColumn(DataTable packagesBasketDataTable)
+        {
+            DataColumnCollection columns = packagesBasketDataTable.Columns;
+            if (columns.Contains("SerialNumber(SN)")) { }
+            else
+            {
+                packagesBasketDataTable.Columns.Add("SerialNumber(SN)", typeof(String));              
             }
         }
     }

@@ -147,14 +147,13 @@ namespace HospitalPharmacy
             }
             
         }
-        public void completeOrder(String OrderID, int pharmacistID)
+        public void completeOrder(int id, int pharmacistID)
         {
-            int id = int.Parse(OrderID.ToString());
             connection.Open();
                 try
             {
                 
-                SqlCommand checkIfEnoughMedicines = new SqlCommand("select TOP (1) Units from (select UnitsInStock - (select a.Amount from(select d.MedicineID MedicineID, " +
+               /* SqlCommand checkIfEnoughMedicines = new SqlCommand("select TOP (1) Units from (select UnitsInStock - (select a.Amount from(select d.MedicineID MedicineID, " +
                     "d.Amount Amount from OrderDetails d join Medicines m on m.MedicineID = d.MedicineID join Orders o on d.OrderID = o.OrderID and o.OrderID = " + id + ")a " +
                     "join Medicines m on a.MedicineID = m.MedicineID and a.MedicineID = Medicines.MedicineID) Units from Medicines where MedicineID in " +
                     "(select d.MedicineID from OrderDetails d join Orders o on d.OrderID = o.OrderID and d.OrderID = " + id + "))b where Units < 0; ", connection);
@@ -165,7 +164,7 @@ namespace HospitalPharmacy
                 reader2.Close();
                
                     if (dataTable.Rows.Count == 0)
-                    {
+                    {*/
                         String completeOrderCommand = "UPDATE Orders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()), UserID = " + pharmacistID
                         + " where OrderID = " + id + ";" +
                         " UPDATE Medicines SET UnitsInStock = UnitsInStock - " +
@@ -188,8 +187,8 @@ namespace HospitalPharmacy
                     }
                         MessageBox.Show("Succeed!");
                     idReader.Close();
-                    }
-                    else MessageBox.Show("There is not enough medicines to complete this order!");
+                    /*}
+                    else MessageBox.Show("There is not enough medicines to complete this order!");*/
 
             }
             catch (Exception ex)
@@ -203,6 +202,49 @@ namespace HospitalPharmacy
             {
                 connection.Close();
             }
+        }
+        public bool checkIfEnoughMedicines(String OrderID)
+        {
+            bool enough = false;
+            int id = int.Parse(OrderID.ToString());
+            connection.Open();
+            SqlCommand checkIfEnoughMedicines = new SqlCommand("select TOP (1) Units from (select UnitsInStock - (select a.Amount from(select d.MedicineID MedicineID, " +
+                    "d.Amount Amount from OrderDetails d join Medicines m on m.MedicineID = d.MedicineID join Orders o on d.OrderID = o.OrderID and o.OrderID = " + id + ")a " +
+                    "join Medicines m on a.MedicineID = m.MedicineID and a.MedicineID = Medicines.MedicineID) Units from Medicines where MedicineID in " +
+                    "(select d.MedicineID from OrderDetails d join Orders o on d.OrderID = o.OrderID and d.OrderID = " + id + "))b where Units < 0; ", connection);
+
+                SqlDataReader reader2 = checkIfEnoughMedicines.ExecuteReader();
+                DataTable dataTable = new DataTable();
+                dataTable.Load(reader2);
+                reader2.Close();
+
+                if (dataTable.Rows.Count == 0)
+            {
+                enough = true;
+            }
+            connection.Close();
+            return enough;
+        }
+        public void fillPackagesBasket(DataTable packagesTable,int orderID)
+        {
+            connection.Open();
+            ObjectsController objectsController = ObjectsController.getInstance();
+            objectsController.addColumn(objectsController.packagesBasketDataTable);
+            SqlCommand getOrderDetailsID = new SqlCommand("select OrderDetailID from OrderDetails where OrderID=" + orderID + ";", connection);
+            SqlDataReader idReader = getOrderDetailsID.ExecuteReader();
+            DataTable data = new DataTable();
+            data.Load(idReader);
+            for (int i = 0; i < data.Rows.Count; i++)
+            {
+                String command = "select TOP(select Amount from OrderDetails where OrderDetailID = " + int.Parse(data.Rows[i].ItemArray[0].ToString()) +
+                        ")[SerialNumber(SN)] from PackageOfMedicine p join OrderDetails o on p.MedicineID = o.MedicineID and o.OrderDetailID = " +
+                        int.Parse(data.Rows[i].ItemArray[0].ToString()) + " ORDER BY p.[TermofValidity(EXP)];";
+                SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
+                adapter.Fill(packagesTable);
+         
+            }
+            idReader.Close();
+            connection.Close();
         }
         public DataRow getID(String username)
         {

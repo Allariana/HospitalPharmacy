@@ -190,6 +190,25 @@ namespace HospitalPharmacy
 
         private void completeOrdersViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            bool enough=false;
+            ConnectionManager connection = ConnectionManager.getInstance();
+            if (completeOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
+            {
+                enough = connection.checkIfEnoughMedicines(completeOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
+            }
+            if (enough == true)
+            {
+                using (PackagesToIssueForm packagesToIssueForm = new PackagesToIssueForm(int.Parse(completeOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()), userID))
+                {
+                    if (packagesToIssueForm.ShowDialog() == DialogResult.OK)
+                    {
+                        MainPagecs_Load(null, null);
+                    }
+                }
+                //new PackagesToIssueForm(int.Parse(completeOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()),userID).Show();
+            }
+            else MessageBox.Show("There is not enough medicines to complete this order!");
+            /*
             if (completeOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
             {
                 int id;
@@ -197,7 +216,7 @@ namespace HospitalPharmacy
                 ConnectionManager connection = ConnectionManager.getInstance();
                 connection.completeOrder(completeOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString(),id);
                 MainPagecs_Load(null, null);
-            }
+            }*/
         }
 
         private void listOfSuppliersToolStripMenuItem_Click(object sender, EventArgs e)

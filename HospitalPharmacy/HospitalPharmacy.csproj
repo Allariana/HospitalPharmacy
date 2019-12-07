@@ -65,6 +65,12 @@
     <Compile Include="AdministratorCategoriesForm.Designer.cs">
       <DependentUpon>AdministratorCategoriesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdministratorDepartmentsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdministratorDepartmentsForm.Designer.cs">
+      <DependentUpon>AdministratorDepartmentsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdministratorMedicinesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,7 +120,6 @@
     <Compile Include="MakeOrderForm.Designer.cs">
       <DependentUpon>MakeOrderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MakeOrderViewModel.cs" />
     <Compile Include="MedicinesOrderDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +138,12 @@
     </Compile>
     <Compile Include="PackageForm.Designer.cs">
       <DependentUpon>PackageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PackagesToIssueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PackagesToIssueForm.Designer.cs">
+      <DependentUpon>PackagesToIssueForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PharmacyDataSet.cs">
       <DependentUpon>PharmacyDataSet.xsd</DependentUpon>
@@ -155,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdministratorCategoriesForm.resx">
       <DependentUpon>AdministratorCategoriesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdministratorDepartmentsForm.resx">
+      <DependentUpon>AdministratorDepartmentsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdministratorMedicinesForm.resx">
       <DependentUpon>AdministratorMedicinesForm.cs</DependentUpon>
@@ -188,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PackageForm.resx">
       <DependentUpon>PackageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PackagesToIssueForm.resx">
+      <DependentUpon>PackagesToIssueForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProfileForm.resx">
       <DependentUpon>ProfileForm.cs</DependentUpon>
