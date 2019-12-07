@@ -27,6 +27,7 @@ namespace HospitalPharmacy
             phoneLabel.Text = connection.getRecord("Phone", id);
             usernameLabel.Text = connection.getRecord("Username", id);
             emailLabel.Text = connection.getRecord("Email", id);
+            //photoPictureBox.Image = connection.GetImage(id);
         }
 
         private void ProfileForm_Load(object sender, EventArgs e)
@@ -38,6 +39,11 @@ namespace HospitalPharmacy
         }
 
         private void userIDLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void photoPictureBox_Click(object sender, EventArgs e)
         {
 
         }

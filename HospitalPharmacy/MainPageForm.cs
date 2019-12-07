@@ -54,21 +54,7 @@ namespace HospitalPharmacy
             this.Hide();
             new LoginForm().Show();
         }
-                 
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void generateButton_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void stockPage_Click(object sender, EventArgs e)
-        {
-
-        }
+               
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -78,33 +64,8 @@ namespace HospitalPharmacy
         private void button1_Click_1(object sender, EventArgs e)
         {
             this.Hide();
-        }
-        
-        private void medicineOrderIDComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-                       
-        private void makeOrderButton_Click(object sender, EventArgs e)
-        {
-            
-        }
-       
-        private void orderTabPage_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void medicinesOrdersPage_Click(object sender, EventArgs e)
-        {
-            
-        }
-      
-        private void medicinesOrdersGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
+        }      
+                        
         private void medicinesViewDataGridView_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (medicinesViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
@@ -185,29 +146,14 @@ namespace HospitalPharmacy
             catch (ArgumentOutOfRangeException) { }
         }
 
-        private void suppliersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void departmentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openTabPage(departmentsPage);
         }
 
-        private void departmentsAndOrToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void listOfDepartmentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openTabPage(departmentsPage);
-        }
-
-        private void currentOrdersViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
         }
 
         private void receiptMedicinesOrdersViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -219,29 +165,21 @@ namespace HospitalPharmacy
 
 
                     connection.pickUpOrder(receiptMedicinesOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    medicinesViewDataGridView.Update();
+                    medicinesViewDataGridView.Refresh();
                     //nie dziala
                     //receiptMedicinesOrdersViewDataGridView.Update();
                     //receiptMedicinesOrdersViewDataGridView.Refresh();
-                    receiptMedicinesOrdersViewDataGridView.DataSource = receiptMedicinesOrdersViewTableAdapter; 
+                    /*receiptMedicinesOrdersViewDataGridView.DataSource = receiptMedicinesOrdersViewTableAdapter; 
                     receiptMedicinesOrdersViewDataGridView.Refresh();
                     medicinesOrdersViewDataGridView1.DataSource = medicinesOrdersViewTableAdapter;
                     medicinesOrdersViewDataGridView1.Refresh();
                     medicinesViewDataGridView.DataSource = medicinesViewTableAdapter;
-                    medicinesViewDataGridView.Refresh();
+                    medicinesViewDataGridView.Refresh();*/
                     break;
                 case DialogResult.No:
                     break;
             }
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void currentOrderTabPage_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void completeOrderToolStripMenuItem_Click(object sender, EventArgs e)
@@ -270,19 +208,14 @@ namespace HospitalPharmacy
                 id = userID;
                 ConnectionManager connection = ConnectionManager.getInstance();
                 connection.completeOrder(completeOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString(),id);
-                currentOrdersViewDataGridView.DataSource = currentOrdersViewTableAdapter; //dziala
+                /*currentOrdersViewDataGridView.DataSource = currentOrdersViewTableAdapter;
                 currentOrdersViewDataGridView.Refresh();
                 completeOrdersViewDataGridView.DataSource = currentOrdersViewTableAdapter;
                 completeOrdersViewDataGridView.Refresh();//
                 
                 medicinesViewDataGridView.DataSource = medicinesViewTableAdapter;
-                medicinesViewDataGridView.Refresh();
+                medicinesViewDataGridView.Refresh();*/
             }
-        }
-
-        private void archivesButton_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void listOfSuppliersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -298,21 +231,6 @@ namespace HospitalPharmacy
         private void listOfPharmacistsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openTabPage(pharmacistTabPage);
-        }
-
-        private void userIDTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void userIDLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click_2(object sender, EventArgs e)
-        {
-            
         }
 
         private void makeOrderToolStripMenuItem_Click(object sender, EventArgs e)
