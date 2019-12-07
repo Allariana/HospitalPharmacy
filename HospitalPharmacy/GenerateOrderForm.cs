@@ -32,8 +32,7 @@ namespace HospitalPharmacy
             {
                 ConnectionManager connection = ConnectionManager.getInstance();
                 connection.insertOrder(id);
-                generateOrderViewDataGridView.DataSource = generateOrderViewTableAdapter;
-                generateOrderViewDataGridView.Refresh();
+                GenerateOrderForm_Load(null, null);
                 MessageBox.Show("Order completed!");
                 DialogResult = DialogResult.OK;
             }

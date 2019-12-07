@@ -19,6 +19,7 @@ namespace HospitalPharmacy
             this.username = username;
             this.userID = userID;
             InitializeComponent();
+            UserLabel.Text = username;
         }
 
         private void AdministratorPanelForm_Load(object sender, EventArgs e)
@@ -42,11 +43,32 @@ namespace HospitalPharmacy
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (tableListBox.SelectedItem.ToString() == "Medicines")
+            try
             {
-                new AdministratorMedicinesForm().Show();
+                if (tableListBox.SelectedItem.ToString() == "Medicines")
+                {
+                    new AdministratorMedicinesForm().Show();
+                }
+                else if (tableListBox.SelectedItem.ToString() == "Categories")
+                {
+                    new AdministratorCategoriesForm().Show();
+                }
             }
-            else MessageBox.Show("Choose table!");
+            catch (NullReferenceException) { 
+            
+            MessageBox.Show("Choose table!");
+            }
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void LogOutButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new LoginForm().Show();
         }
     }
 }
