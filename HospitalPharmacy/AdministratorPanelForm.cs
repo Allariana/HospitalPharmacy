@@ -53,6 +53,22 @@ namespace HospitalPharmacy
                 {
                     new AdministratorCategoriesForm().Show();
                 }
+                else if (tableListBox.SelectedItem.ToString() == "Departments")
+                {
+                    new AdministratorDepartmentsForm().Show();
+                }
+                else if (tableListBox.SelectedItem.ToString() == "Users")
+                {
+                    new AdministratorUsersForm().Show();
+                }
+                else if (tableListBox.SelectedItem.ToString() == "User Details")
+                {
+                    new AdministratorUserDetailsForm().Show();
+                }
+                else if (tableListBox.SelectedItem.ToString() == "Suppliers")
+                {
+                    new AdministratorSuppliersForm().Show();
+                }
             }
             catch (NullReferenceException) { 
             
