@@ -14,12 +14,7 @@ namespace HospitalPharmacy
     public partial class GenerateOrderForm : Form
     {
         int id;
-        bool ifOrderWasGenerate = false;
-        public bool ifOrder
-        {
-            get { return ifOrderWasGenerate; }
-        }
-
+        
         public GenerateOrderForm(int id)
         {
             this.id = id;
@@ -40,7 +35,6 @@ namespace HospitalPharmacy
                 generateOrderViewDataGridView.DataSource = generateOrderViewTableAdapter;
                 generateOrderViewDataGridView.Refresh();
                 MessageBox.Show("Order completed!");
-                ifOrderWasGenerate = true;
                 DialogResult = DialogResult.OK;
             }
             catch (Exception ex)

@@ -55,6 +55,7 @@ namespace HospitalPharmacy
                 connection.makeOrder(id, objectsController.basketDataTable);
                 basketGridView.DataSource = objectsController.basketDataTable;
                 basketGridView.Refresh();
+                DialogResult = DialogResult.OK;
                 MessageBox.Show("Order completed!");
             }
             catch (Exception ex)

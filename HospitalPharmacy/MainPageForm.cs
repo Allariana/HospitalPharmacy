@@ -23,16 +23,11 @@ namespace HospitalPharmacy
         private void MainPagecs_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'pharmacyDataSet.ProfileView' table. You can move, or remove it, as needed.
-            this.profileViewTableAdapter.Fill(this.pharmacyDataSet.ProfileView);
+            profileViewTableAdapter.Fill(pharmacyDataSet.ProfileView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.PharmacistsView' table. You can move, or remove it, as needed.
-            this.pharmacistsViewTableAdapter.Fill(this.pharmacyDataSet.PharmacistsView);
+            pharmacistsViewTableAdapter.Fill(pharmacyDataSet.PharmacistsView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.Suppliers' table. You can move, or remove it, as needed.
-            this.suppliersTableAdapter.Fill(this.pharmacyDataSet.Suppliers);
-            panel.BackColor = Color.FromArgb(100, 255, 255, 255);
-            panel1.BackColor = Color.FromArgb(100, 255, 255, 255);
-            panel2.BackColor = Color.FromArgb(100, 255, 255, 255);
-            panel3.BackColor = Color.FromArgb(100, 255, 255, 255);
-
+            suppliersTableAdapter.Fill(pharmacyDataSet.Suppliers);
             // TODO: This line of code loads data into the 'pharmacyDataSet.Departments' table. You can move, or remove it, as needed.
             departmentsTableAdapter.Fill(pharmacyDataSet.Departments);
             receiptMedicinesOrdersViewTableAdapter.Fill(pharmacyDataSet.ReceiptMedicinesOrdersView);
@@ -43,9 +38,14 @@ namespace HospitalPharmacy
             // TODO: This line of code loads data into the 'pharmacyDataSet.MedicinesView' table. You can move, or remove it, as needed.
             medicinesViewTableAdapter.Fill(pharmacyDataSet.MedicinesView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.Medicines' table. You can move, or remove it, as needed.
-            this.medicinesTableAdapter.Fill(this.pharmacyDataSet.Medicines);
-            this.medicinesOrdersViewTableAdapter.Fill(this.pharmacyDataSet.MedicinesOrdersView);
-            
+            medicinesTableAdapter.Fill(pharmacyDataSet.Medicines);
+            medicinesOrdersViewTableAdapter.Fill(pharmacyDataSet.MedicinesOrdersView);
+
+            panel.BackColor = Color.FromArgb(100, 255, 255, 255);
+            panel1.BackColor = Color.FromArgb(100, 255, 255, 255);
+            panel2.BackColor = Color.FromArgb(100, 255, 255, 255);
+            panel3.BackColor = Color.FromArgb(100, 255, 255, 255);
+
 
         }
    
@@ -162,20 +162,8 @@ namespace HospitalPharmacy
             switch (MessageBox.Show("Are you sure you want to mark this order as done?", "Confirmation", MessageBoxButtons.YesNo))
             {
                 case DialogResult.Yes:
-
-
                     connection.pickUpOrder(receiptMedicinesOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
-                    medicinesViewDataGridView.Update();
-                    medicinesViewDataGridView.Refresh();
-                    //nie dziala
-                    //receiptMedicinesOrdersViewDataGridView.Update();
-                    //receiptMedicinesOrdersViewDataGridView.Refresh();
-                    /*receiptMedicinesOrdersViewDataGridView.DataSource = receiptMedicinesOrdersViewTableAdapter; 
-                    receiptMedicinesOrdersViewDataGridView.Refresh();
-                    medicinesOrdersViewDataGridView1.DataSource = medicinesOrdersViewTableAdapter;
-                    medicinesOrdersViewDataGridView1.Refresh();
-                    medicinesViewDataGridView.DataSource = medicinesViewTableAdapter;
-                    medicinesViewDataGridView.Refresh();*/
+                    MainPagecs_Load(null, null);
                     break;
                 case DialogResult.No:
                     break;
@@ -208,13 +196,7 @@ namespace HospitalPharmacy
                 id = userID;
                 ConnectionManager connection = ConnectionManager.getInstance();
                 connection.completeOrder(completeOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString(),id);
-                /*currentOrdersViewDataGridView.DataSource = currentOrdersViewTableAdapter;
-                currentOrdersViewDataGridView.Refresh();
-                completeOrdersViewDataGridView.DataSource = currentOrdersViewTableAdapter;
-                completeOrdersViewDataGridView.Refresh();//
-                
-                medicinesViewDataGridView.DataSource = medicinesViewTableAdapter;
-                medicinesViewDataGridView.Refresh();*/
+                MainPagecs_Load(null, null);
             }
         }
 
@@ -235,23 +217,22 @@ namespace HospitalPharmacy
 
         private void makeOrderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new MakeOrderForm(userID).Show();
+            using (MakeOrderForm makeOrderForm = new MakeOrderForm(userID))
+            {
+                if (makeOrderForm.ShowDialog() == DialogResult.OK)
+                {
+                    MainPagecs_Load(null, null);
+                }
+            }
         }
 
         private void generateOrderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int id;
-            id = this.userID;
-            using (GenerateOrderForm generateOrderForm = new GenerateOrderForm(id))
+            using (GenerateOrderForm generateOrderForm = new GenerateOrderForm(userID))
             {
                 if (generateOrderForm.ShowDialog() == DialogResult.OK)
                 {
-                    //medicinesOrdersViewDataGridView1.DataSource = medicinesOrdersViewTableAdapter;
-                    medicinesOrdersViewDataGridView1.Update();
-                    medicinesOrdersViewDataGridView1.Refresh();
-                    //receiptMedicinesOrdersViewDataGridView.DataSource = receiptMedicinesOrdersViewTableAdapter;
-                    receiptMedicinesOrdersViewDataGridView.Update();
-                    receiptMedicinesOrdersViewDataGridView.Refresh();
+                    MainPagecs_Load(null, null);
                 }
             }
         }
@@ -263,7 +244,13 @@ namespace HospitalPharmacy
 
         private void addNewMedicineToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new AddMedicineForm().Show();
+            using (AddMedicineForm addMedicineForm = new AddMedicineForm())
+            {
+                if (addMedicineForm.ShowDialog() == DialogResult.OK)
+                {
+                    MainPagecs_Load(null, null);
+                }
+            }
         }
 
         private void currentOrdersViewDataGridView_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
