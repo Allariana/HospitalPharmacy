@@ -139,8 +139,9 @@ namespace HospitalPharmacy
                 String pickUpOrderCommand = "UPDATE MedicinesOrders SET RealizationFlag = 'N', RealizationDate = null where MedicinesOrderID " +
                     "= " + id + "; ";
                 new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
-                MessageBox.Show(ex.Message);
-                
+                MessageBox.Show("Could not pick up the order!");
+
+
             }
             finally {
                 connection.Close();

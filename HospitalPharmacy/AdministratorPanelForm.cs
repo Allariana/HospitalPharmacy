@@ -69,6 +69,10 @@ namespace HospitalPharmacy
                 {
                     new AdministratorSuppliersForm().Show();
                 }
+                else if (tableListBox.SelectedItem.ToString() == "Orders")
+                {
+                    new AdministratorOrderForm().Show();
+                }
             }
             catch (NullReferenceException) { 
             
