@@ -61,6 +61,8 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.searchTextBox = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pharmacyDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesBindingNavigator)).BeginInit();
@@ -261,9 +263,9 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.medicinesDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
-            this.medicinesDataGridView.Location = new System.Drawing.Point(12, 44);
+            this.medicinesDataGridView.Location = new System.Drawing.Point(12, 73);
             this.medicinesDataGridView.Name = "medicinesDataGridView";
-            this.medicinesDataGridView.Size = new System.Drawing.Size(1123, 527);
+            this.medicinesDataGridView.Size = new System.Drawing.Size(1123, 498);
             this.medicinesDataGridView.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
@@ -325,11 +327,30 @@
             this.categoriesBindingSource.DataMember = "Categories";
             this.categoriesBindingSource.DataSource = this.pharmacyDataSet;
             // 
+            // searchTextBox
+            // 
+            this.searchTextBox.Location = new System.Drawing.Point(386, 47);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(100, 20);
+            this.searchTextBox.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(524, 45);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Search";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // AdministratorMedicinesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1147, 583);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.searchTextBox);
             this.Controls.Add(this.medicinesDataGridView);
             this.Controls.Add(this.medicinesBindingNavigator);
             this.Name = "AdministratorMedicinesForm";
@@ -378,5 +399,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private PharmacyDataSetTableAdapters.CategoriesTableAdapter categoriesTableAdapter;
         private System.Windows.Forms.BindingSource categoriesBindingSource;
+        private System.Windows.Forms.TextBox searchTextBox;
+        private System.Windows.Forms.Button button1;
     }
 }

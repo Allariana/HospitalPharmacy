@@ -182,10 +182,14 @@ namespace HospitalPharmacy
 
         private void ordersViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (ordersViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
+            try
             {
-                new OrderDetailsForm(ordersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
+                if (ordersViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
+                {
+                    new OrderDetailsForm(ordersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
+                }
             }
+            catch (Exception) { }
         }
 
         private void completeOrdersViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

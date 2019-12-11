@@ -133,7 +133,7 @@ namespace HospitalPharmacy
                 new SqlCommand(sumPrice, connection).ExecuteNonQuery();
                     MessageBox.Show("Succeed!");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 
                 String pickUpOrderCommand = "UPDATE MedicinesOrders SET RealizationFlag = 'N', RealizationDate = null where MedicinesOrderID " +

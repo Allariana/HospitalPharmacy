@@ -33,5 +33,39 @@ namespace HospitalPharmacy
             this.medicinesTableAdapter.Fill(this.pharmacyDataSet.Medicines);
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string searchValue = searchTextBox.Text;
+            medicinesDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            try
+            {
+                bool valueResult = false;
+                foreach (DataGridViewRow row in medicinesDataGridView.Rows)
+                {
+                    for (int i = 0; i < row.Cells.Count; i++)
+                    {
+                        if (row.Cells[i].Value != null && row.Cells[i].Value.ToString().Equals(searchValue))
+                        {
+                            int rowIndex = row.Index;
+                            medicinesDataGridView.Rows[rowIndex].Selected = true;
+                            valueResult = true;
+                            break;
+                        }
+                    }
+
+                }
+                if (!valueResult)
+                {
+                    MessageBox.Show("Unable to find " + searchTextBox.Text, "Not Found");
+                    return;
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
     }
+
 }
