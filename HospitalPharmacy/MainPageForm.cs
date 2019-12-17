@@ -22,6 +22,8 @@ namespace HospitalPharmacy
 
         private void MainPagecs_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'pharmacyDataSet.StatisticView' table. You can move, or remove it, as needed.
+            this.statisticViewTableAdapter.Fill(this.pharmacyDataSet.StatisticView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.ProfileView' table. You can move, or remove it, as needed.
             profileViewTableAdapter.Fill(pharmacyDataSet.ProfileView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.PharmacistsView' table. You can move, or remove it, as needed.
