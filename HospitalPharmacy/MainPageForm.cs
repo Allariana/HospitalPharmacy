@@ -17,7 +17,7 @@ namespace HospitalPharmacy
             this.userID = userID;
             tabControl.TabPages.Clear();
             tabControl.TabPages.Insert(0, currentOrderTabPage);
-            UserLabel.Text = username;                                
+            UserLabel.Text = username;
         }
 
         private void MainPagecs_Load(object sender, EventArgs e)
@@ -282,6 +282,16 @@ namespace HospitalPharmacy
             {
                 new OrderDetailsForm(currentOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()).Show();
             }
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void statisticsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openTabPage(statisticTabPage);
         }
     }
 }

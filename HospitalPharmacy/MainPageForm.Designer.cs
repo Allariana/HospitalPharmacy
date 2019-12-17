@@ -34,7 +34,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.LogOutButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -167,6 +169,9 @@
             this.addNewMedicineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.statisticTabPage = new System.Windows.Forms.TabPage();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.statisticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.departmentsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pharmacyDataSet)).BeginInit();
@@ -205,6 +210,8 @@
             this.menuStrip2.SuspendLayout();
             this.tabControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            this.statisticTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -212,7 +219,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(650, 7);
+            this.label1.Location = new System.Drawing.Point(743, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(84, 19);
             this.label1.TabIndex = 0;
@@ -221,7 +228,7 @@
             // LogOutButton
             // 
             this.LogOutButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.LogOutButton.Location = new System.Drawing.Point(928, 3);
+            this.LogOutButton.Location = new System.Drawing.Point(1011, 3);
             this.LogOutButton.Name = "LogOutButton";
             this.LogOutButton.Size = new System.Drawing.Size(80, 27);
             this.LogOutButton.TabIndex = 4;
@@ -237,10 +244,11 @@
             this.departmentsAndOrToolStripMenuItem,
             this.warehouseAndShoppingToolStripMenuItem,
             this.suppliersToolStripMenuItem,
-            this.pharmacistsToolStripMenuItem});
+            this.pharmacistsToolStripMenuItem,
+            this.statisticsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1118, 27);
+            this.menuStrip1.Size = new System.Drawing.Size(1189, 27);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -347,7 +355,7 @@
             // exitButton
             // 
             this.exitButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.exitButton.Location = new System.Drawing.Point(1014, 4);
+            this.exitButton.Location = new System.Drawing.Point(1097, 3);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(80, 27);
             this.exitButton.TabIndex = 7;
@@ -420,7 +428,7 @@
             // 
             this.UserLabel.AutoSize = true;
             this.UserLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.UserLabel.Location = new System.Drawing.Point(740, 7);
+            this.UserLabel.Location = new System.Drawing.Point(833, 7);
             this.UserLabel.Name = "UserLabel";
             this.UserLabel.Size = new System.Drawing.Size(70, 19);
             this.UserLabel.TabIndex = 8;
@@ -429,7 +437,7 @@
             // profileButton
             // 
             this.profileButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.profileButton.Location = new System.Drawing.Point(826, 4);
+            this.profileButton.Location = new System.Drawing.Point(909, 3);
             this.profileButton.Name = "profileButton";
             this.profileButton.Size = new System.Drawing.Size(96, 26);
             this.profileButton.TabIndex = 9;
@@ -514,7 +522,7 @@
             this.pharmacistTabPage.Location = new System.Drawing.Point(4, 26);
             this.pharmacistTabPage.Name = "pharmacistTabPage";
             this.pharmacistTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.pharmacistTabPage.Size = new System.Drawing.Size(1057, 544);
+            this.pharmacistTabPage.Size = new System.Drawing.Size(1154, 544);
             this.pharmacistTabPage.TabIndex = 12;
             this.pharmacistTabPage.Text = "Pharmacists";
             this.pharmacistTabPage.UseVisualStyleBackColor = true;
@@ -589,7 +597,7 @@
             this.suppliersTabPage.Location = new System.Drawing.Point(4, 26);
             this.suppliersTabPage.Name = "suppliersTabPage";
             this.suppliersTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.suppliersTabPage.Size = new System.Drawing.Size(1057, 544);
+            this.suppliersTabPage.Size = new System.Drawing.Size(1154, 544);
             this.suppliersTabPage.TabIndex = 10;
             this.suppliersTabPage.Text = "Suppliers";
             this.suppliersTabPage.UseVisualStyleBackColor = true;
@@ -660,7 +668,7 @@
             this.historyOrdersTabPage.Location = new System.Drawing.Point(4, 26);
             this.historyOrdersTabPage.Name = "historyOrdersTabPage";
             this.historyOrdersTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.historyOrdersTabPage.Size = new System.Drawing.Size(1057, 544);
+            this.historyOrdersTabPage.Size = new System.Drawing.Size(1154, 544);
             this.historyOrdersTabPage.TabIndex = 9;
             this.historyOrdersTabPage.Text = "History of orders";
             this.historyOrdersTabPage.UseVisualStyleBackColor = true;
@@ -761,7 +769,7 @@
             this.currentOrderTabPage.Location = new System.Drawing.Point(4, 26);
             this.currentOrderTabPage.Name = "currentOrderTabPage";
             this.currentOrderTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.currentOrderTabPage.Size = new System.Drawing.Size(1057, 544);
+            this.currentOrderTabPage.Size = new System.Drawing.Size(1154, 544);
             this.currentOrderTabPage.TabIndex = 8;
             this.currentOrderTabPage.Text = "Current orders";
             // 
@@ -772,7 +780,7 @@
             this.panel.Controls.Add(this.label6);
             this.panel.Location = new System.Drawing.Point(-4, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(1061, 544);
+            this.panel.Size = new System.Drawing.Size(1158, 544);
             this.panel.TabIndex = 4;
             // 
             // currentOrdersViewDataGridView
@@ -782,14 +790,6 @@
             this.currentOrdersViewDataGridView.AutoGenerateColumns = false;
             this.currentOrdersViewDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.currentOrdersViewDataGridView.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.currentOrdersViewDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.currentOrdersViewDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.currentOrdersViewDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn11,
@@ -809,8 +809,8 @@
             // dataGridViewTextBoxColumn11
             // 
             this.dataGridViewTextBoxColumn11.DataPropertyName = "OrderID";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewTextBoxColumn11.HeaderText = "OrderID";
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             this.dataGridViewTextBoxColumn11.ReadOnly = true;
@@ -819,8 +819,8 @@
             // dataGridViewTextBoxColumn12
             // 
             this.dataGridViewTextBoxColumn12.DataPropertyName = "DepartmentName";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dataGridViewTextBoxColumn12.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dataGridViewTextBoxColumn12.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn12.HeaderText = "Department Name";
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             this.dataGridViewTextBoxColumn12.ReadOnly = true;
@@ -828,8 +828,8 @@
             // dataGridViewTextBoxColumn13
             // 
             this.dataGridViewTextBoxColumn13.DataPropertyName = "OrderDate";
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dataGridViewTextBoxColumn13.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dataGridViewTextBoxColumn13.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxColumn13.HeaderText = "Order Date";
             this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
             this.dataGridViewTextBoxColumn13.ReadOnly = true;
@@ -837,8 +837,8 @@
             // dataGridViewTextBoxColumn14
             // 
             this.dataGridViewTextBoxColumn14.DataPropertyName = "Order_status";
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewTextBoxColumn14.HeaderText = "Order Status";
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.ReadOnly = true;
@@ -877,7 +877,7 @@
             this.recepitOrderTabPage.Location = new System.Drawing.Point(4, 26);
             this.recepitOrderTabPage.Name = "recepitOrderTabPage";
             this.recepitOrderTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.recepitOrderTabPage.Size = new System.Drawing.Size(1057, 544);
+            this.recepitOrderTabPage.Size = new System.Drawing.Size(1154, 544);
             this.recepitOrderTabPage.TabIndex = 7;
             this.recepitOrderTabPage.Text = "Receipt of orders";
             this.recepitOrderTabPage.UseVisualStyleBackColor = true;
@@ -954,7 +954,7 @@
             this.purchaseDetailsPage.Location = new System.Drawing.Point(4, 26);
             this.purchaseDetailsPage.Name = "purchaseDetailsPage";
             this.purchaseDetailsPage.Padding = new System.Windows.Forms.Padding(3);
-            this.purchaseDetailsPage.Size = new System.Drawing.Size(1057, 544);
+            this.purchaseDetailsPage.Size = new System.Drawing.Size(1154, 544);
             this.purchaseDetailsPage.TabIndex = 6;
             this.purchaseDetailsPage.Text = "Purchase Orders";
             this.purchaseDetailsPage.UseVisualStyleBackColor = true;
@@ -965,7 +965,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Location = new System.Drawing.Point(-4, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1061, 544);
+            this.panel1.Size = new System.Drawing.Size(1162, 544);
             this.panel1.TabIndex = 3;
             // 
             // medicinesOrdersViewDataGridView1
@@ -1055,7 +1055,7 @@
             this.departmentsPage.Location = new System.Drawing.Point(4, 26);
             this.departmentsPage.Name = "departmentsPage";
             this.departmentsPage.Padding = new System.Windows.Forms.Padding(3);
-            this.departmentsPage.Size = new System.Drawing.Size(1057, 544);
+            this.departmentsPage.Size = new System.Drawing.Size(1154, 544);
             this.departmentsPage.TabIndex = 1;
             this.departmentsPage.Text = "Departments";
             this.departmentsPage.UseVisualStyleBackColor = true;
@@ -1113,7 +1113,7 @@
             // 
             this.panel2.Location = new System.Drawing.Point(-4, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1079, 544);
+            this.panel2.Size = new System.Drawing.Size(1158, 544);
             this.panel2.TabIndex = 1;
             // 
             // orderTabPage
@@ -1125,7 +1125,7 @@
             this.orderTabPage.Location = new System.Drawing.Point(4, 26);
             this.orderTabPage.Name = "orderTabPage";
             this.orderTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.orderTabPage.Size = new System.Drawing.Size(1057, 544);
+            this.orderTabPage.Size = new System.Drawing.Size(1154, 544);
             this.orderTabPage.TabIndex = 5;
             this.orderTabPage.Text = "Complete order";
             this.orderTabPage.UseVisualStyleBackColor = true;
@@ -1214,7 +1214,7 @@
             this.stockPage.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.stockPage.Location = new System.Drawing.Point(4, 26);
             this.stockPage.Name = "stockPage";
-            this.stockPage.Size = new System.Drawing.Size(1057, 544);
+            this.stockPage.Size = new System.Drawing.Size(1154, 544);
             this.stockPage.TabIndex = 2;
             this.stockPage.Text = "Warehouse";
             this.stockPage.UseVisualStyleBackColor = true;
@@ -1318,7 +1318,7 @@
             this.addNewMedicineToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(1057, 27);
+            this.menuStrip2.Size = new System.Drawing.Size(1154, 27);
             this.menuStrip2.TabIndex = 11;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -1365,19 +1365,58 @@
             this.tabControl.Controls.Add(this.historyOrdersTabPage);
             this.tabControl.Controls.Add(this.suppliersTabPage);
             this.tabControl.Controls.Add(this.pharmacistTabPage);
+            this.tabControl.Controls.Add(this.statisticTabPage);
             this.tabControl.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tabControl.Location = new System.Drawing.Point(15, 38);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1065, 574);
+            this.tabControl.Size = new System.Drawing.Size(1162, 574);
             this.tabControl.TabIndex = 5;
             this.tabControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tabControl_MouseClick);
+            // 
+            // statisticTabPage
+            // 
+            this.statisticTabPage.Controls.Add(this.chart1);
+            this.statisticTabPage.Location = new System.Drawing.Point(4, 26);
+            this.statisticTabPage.Name = "statisticTabPage";
+            this.statisticTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.statisticTabPage.Size = new System.Drawing.Size(1154, 544);
+            this.statisticTabPage.TabIndex = 13;
+            this.statisticTabPage.Text = "Statistics";
+            this.statisticTabPage.UseVisualStyleBackColor = true;
+            // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            this.chart1.DataSource = this.medicinesOrdersViewBindingSource1;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(22, 26);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "MedicinesOrderID";
+            series1.XValueMember = "MedicinesOrderID";
+            series1.YValueMembers = "Price";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(1016, 499);
+            this.chart1.TabIndex = 0;
+            this.chart1.Text = "chart1";
+            this.chart1.Click += new System.EventHandler(this.chart1_Click);
+            // 
+            // statisticsToolStripMenuItem
+            // 
+            this.statisticsToolStripMenuItem.Name = "statisticsToolStripMenuItem";
+            this.statisticsToolStripMenuItem.Size = new System.Drawing.Size(84, 23);
+            this.statisticsToolStripMenuItem.Text = "Statistics";
+            this.statisticsToolStripMenuItem.Click += new System.EventHandler(this.statisticsToolStripMenuItem_Click);
             // 
             // MainPageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1118, 616);
+            this.ClientSize = new System.Drawing.Size(1189, 616);
             this.Controls.Add(this.profileButton);
             this.Controls.Add(this.UserLabel);
             this.Controls.Add(this.exitButton);
@@ -1434,6 +1473,8 @@
             this.menuStrip2.PerformLayout();
             this.tabControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            this.statisticTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1576,5 +1617,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
+        private System.Windows.Forms.TabPage statisticTabPage;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.ToolStripMenuItem statisticsToolStripMenuItem;
     }
 }
