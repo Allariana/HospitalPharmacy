@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,7 @@ namespace HospitalPharmacy
             DataTable orderDetails = new DataTable();
             connection.getMedicinesOrderDetails(orderDetails, MedicinesOrderId);
             medicinesOrderDetailsGridView.DataSource = orderDetails;
+            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -31,6 +33,18 @@ namespace HospitalPharmacy
         private void MedicinesOrderDetailsForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void invoiceButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start("D:\\Kinga\\Studies\\IV rok\\Semestr 7\\Praca dyplomowa\\Invoices\\" + MedicinesOrderId + ".xlsx");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("This order is not completed. There is no invoice for that.");
+            }
         }
     }
 }

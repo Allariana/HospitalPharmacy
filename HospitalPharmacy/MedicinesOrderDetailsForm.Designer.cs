@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.medicinesOrderDetailsGridView = new System.Windows.Forms.DataGridView();
+            this.invoiceButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesOrderDetailsGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,11 +63,23 @@
             this.medicinesOrderDetailsGridView.TabIndex = 0;
             this.medicinesOrderDetailsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // invoiceButton
+            // 
+            this.invoiceButton.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.invoiceButton.Location = new System.Drawing.Point(426, 418);
+            this.invoiceButton.Name = "invoiceButton";
+            this.invoiceButton.Size = new System.Drawing.Size(111, 23);
+            this.invoiceButton.TabIndex = 1;
+            this.invoiceButton.Text = "Open invoice";
+            this.invoiceButton.UseVisualStyleBackColor = true;
+            this.invoiceButton.Click += new System.EventHandler(this.invoiceButton_Click);
+            // 
             // MedicinesOrderDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1010, 426);
+            this.ClientSize = new System.Drawing.Size(1010, 453);
+            this.Controls.Add(this.invoiceButton);
             this.Controls.Add(this.medicinesOrderDetailsGridView);
             this.Name = "MedicinesOrderDetailsForm";
             this.Text = "Medicines Order Details";
@@ -79,5 +92,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView medicinesOrderDetailsGridView;
+        private System.Windows.Forms.Button invoiceButton;
     }
 }

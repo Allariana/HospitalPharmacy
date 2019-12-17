@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -22,6 +23,8 @@ namespace HospitalPharmacy
 
         private void MainPagecs_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'pharmacyDataSet.MedicinesOrders' table. You can move, or remove it, as needed.
+            this.medicinesOrdersTableAdapter.Fill(this.pharmacyDataSet.MedicinesOrders);
             // TODO: This line of code loads data into the 'pharmacyDataSet.StatisticView' table. You can move, or remove it, as needed.
             this.statisticViewTableAdapter.Fill(this.pharmacyDataSet.StatisticView);
             // TODO: This line of code loads data into the 'pharmacyDataSet.ProfileView' table. You can move, or remove it, as needed.
@@ -291,10 +294,11 @@ namespace HospitalPharmacy
 
         }
 
-        private void statisticsToolStripMenuItem_Click(object sender, EventArgs e)
+         private void statisticsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             openTabPage(statisticTabPage);
         }
+        
     }
 }
 
