@@ -63,7 +63,7 @@ namespace HospitalPharmacy
                 }
                 else if (tableListBox.SelectedItem.ToString() == "User Details")
                 {
-                    new AdministratorUserDetailsForm().Show();
+                    new AdminUserDetailsForm().Show();
                 }
                 else if (tableListBox.SelectedItem.ToString() == "Suppliers")
                 {
@@ -73,6 +73,7 @@ namespace HospitalPharmacy
                 {
                     new AdministratorOrderForm().Show();
                 }
+                
             }
             catch (NullReferenceException) { 
             

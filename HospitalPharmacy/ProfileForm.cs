@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,7 @@ namespace HospitalPharmacy
     public partial class ProfileForm : Form
     {
         int id;
+        public SqlConnection sqlConnection = new SqlConnection("Data Source=.;Initial Catalog=Pharmacy;Integrated Security=True");
         public ProfileForm(int userID)
         {
             id = userID;
@@ -27,6 +30,25 @@ namespace HospitalPharmacy
             phoneLabel.Text = connection.getRecord("Phone", id);
             usernameLabel.Text = connection.getRecord("Username", id);
             emailLabel.Text = connection.getRecord("Email", id);
+            sqlConnection.Open();
+            
+
+            SqlCommand cmd = new SqlCommand("select Photo from UserDetails where UserID=" + id + ";", sqlConnection);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            DataSet ds = new DataSet();
+
+            da.Fill(ds);
+
+            //if (ds.Tables[0].Rows.Count > 0)
+
+            //{
+
+            MemoryStream ms = new MemoryStream((byte[])ds.Tables[0].Rows[0]["Photo"]);
+            photoPictureBox.Image = new Bitmap(ms);
+            sqlConnection.Close();
+            //   photoPictureBox.Image = connection.GetImage(id);
             //photoPictureBox.Image = connection.GetImage(id);
         }
 
@@ -44,6 +66,11 @@ namespace HospitalPharmacy
         }
 
         private void photoPictureBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void photoPictureBox_Click_1(object sender, EventArgs e)
         {
 
         }

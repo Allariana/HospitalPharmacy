@@ -12,6 +12,7 @@ namespace HospitalPharmacy
 {
     public partial class AdministratorMedicinesForm : Form
     {
+        BindingSource bindingSource = new BindingSource();
         public AdministratorMedicinesForm()
         {
             InitializeComponent();
@@ -36,36 +37,23 @@ namespace HospitalPharmacy
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string searchValue = searchTextBox.Text;
-            medicinesDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            try
-            {
-                bool valueResult = false;
-                foreach (DataGridViewRow row in medicinesDataGridView.Rows)
-                {
-                    for (int i = 0; i < row.Cells.Count; i++)
-                    {
-                        if (row.Cells[i].Value != null && row.Cells[i].Value.ToString().Equals(searchValue))
-                        {
-                            int rowIndex = row.Index;
-                            medicinesDataGridView.Rows[rowIndex].Selected = true;
-                            valueResult = true;
-                            break;
-                        }
-                    }
-
-                }
-                if (!valueResult)
-                {
-                    MessageBox.Show("Unable to find " + searchTextBox.Text, "Not Found");
-                    return;
-                }
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show(exc.Message);
-            }
+            
+            bindingSource.DataSource = medicinesDataGridView.DataSource;       
+            bindingSource.Filter = "TradeName = '" + searchTextBox.Text + "' OR ActiveSubstance = '" + searchTextBox.Text + "'";         
         }
+
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        /*private void viewAllButton_Click(object sender, EventArgs e)
+        {
+            bindingSource.DataSource = pharmacyDataSet.Medicines;
+            medicinesDataGridView.DataSource = bindingSource;
+
+
+        }*/
     }
 
 }

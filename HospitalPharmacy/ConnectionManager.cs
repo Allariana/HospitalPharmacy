@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -303,7 +304,28 @@ namespace HospitalPharmacy
         }
         public Image GetImage(int id)
         {
-            Image photo = Image.FromFile("D:/Kinga/Photos/Serduszka/Fenuś/podkładka/a.jpg");
+            connection.Open();
+            Image photo;
+            
+            SqlCommand cmd = new SqlCommand("select Photo from UserDetails where UserID=" + id + ";", connection);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            DataSet ds = new DataSet();
+
+            da.Fill(ds);
+
+            //if (ds.Tables[0].Rows.Count > 0)
+
+            //{
+
+                MemoryStream ms = new MemoryStream((byte[])ds.Tables[0].Rows[0]["Photo"]);
+
+                photo = new Bitmap(ms);
+
+            //}
+
+        
             return photo;
         }
     }   

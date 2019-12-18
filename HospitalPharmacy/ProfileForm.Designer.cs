@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Label photoLabel;
             this.pharmacyDataSet = new HospitalPharmacy.PharmacyDataSet();
             this.profileViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.profileViewTableAdapter = new HospitalPharmacy.PharmacyDataSetTableAdapters.ProfileViewTableAdapter();
@@ -51,8 +52,11 @@
             this.phoneLabel = new System.Windows.Forms.Label();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.emailLabel = new System.Windows.Forms.Label();
+            this.photoPictureBox = new System.Windows.Forms.PictureBox();
+            photoLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pharmacyDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profileViewBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.photoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // pharmacyDataSet
@@ -267,11 +271,32 @@
             this.emailLabel.TabIndex = 17;
             this.emailLabel.Text = "label13";
             // 
+            // photoLabel
+            // 
+            photoLabel.AutoSize = true;
+            photoLabel.Location = new System.Drawing.Point(316, 55);
+            photoLabel.Name = "photoLabel";
+            photoLabel.Size = new System.Drawing.Size(38, 13);
+            photoLabel.TabIndex = 18;
+            photoLabel.Text = "Photo:";
+            // 
+            // photoPictureBox
+            // 
+            this.photoPictureBox.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.profileViewBindingSource, "Photo", true));
+            this.photoPictureBox.Location = new System.Drawing.Point(360, 55);
+            this.photoPictureBox.Name = "photoPictureBox";
+            this.photoPictureBox.Size = new System.Drawing.Size(689, 317);
+            this.photoPictureBox.TabIndex = 19;
+            this.photoPictureBox.TabStop = false;
+            this.photoPictureBox.Click += new System.EventHandler(this.photoPictureBox_Click_1);
+            // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(585, 358);
+            this.ClientSize = new System.Drawing.Size(1106, 398);
+            this.Controls.Add(photoLabel);
+            this.Controls.Add(this.photoPictureBox);
             this.Controls.Add(this.emailLabel);
             this.Controls.Add(this.usernameLabel);
             this.Controls.Add(this.phoneLabel);
@@ -295,6 +320,7 @@
             this.Load += new System.EventHandler(this.ProfileForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pharmacyDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profileViewBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.photoPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -323,5 +349,6 @@
         private System.Windows.Forms.Label phoneLabel;
         private System.Windows.Forms.Label usernameLabel;
         private System.Windows.Forms.Label emailLabel;
+        private System.Windows.Forms.PictureBox photoPictureBox;
     }
 }
