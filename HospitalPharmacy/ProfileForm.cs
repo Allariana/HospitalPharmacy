@@ -15,7 +15,6 @@ namespace HospitalPharmacy
     public partial class ProfileForm : Form
     {
         int id;
-        //public SqlConnection sqlConnection = new SqlConnection("Data Source=.;Initial Catalog=Pharmacy;Integrated Security=True");
         public ProfileForm(int userID)
         {
             id = userID;
@@ -31,34 +30,11 @@ namespace HospitalPharmacy
             usernameLabel.Text = connection.getRecord("Username", id);
             emailLabel.Text = connection.getRecord("Email", id);
             photoPictureBox.Image = connection.GetImage(id);
-            /*sqlConnection.Open();
-            
-
-            SqlCommand cmd = new SqlCommand("select Photo from UserDetails where UserID=" + id + ";", sqlConnection);
-
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-
-            DataSet ds = new DataSet();
-
-            da.Fill(ds);
-
-            //if (ds.Tables[0].Rows.Count > 0)
-
-            //{
-
-            MemoryStream ms = new MemoryStream((byte[])ds.Tables[0].Rows[0]["Photo"]);
-            photoPictureBox.Image = new Bitmap(ms);
-            sqlConnection.Close();
-            //   
-            //photoPictureBox.Image = connection.GetImage(id);*/
         }
 
         private void ProfileForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'pharmacyDataSet.ProfileView' table. You can move, or remove it, as needed.
-            this.profileViewTableAdapter.Fill(this.pharmacyDataSet.ProfileView);
-             
-
+            profileViewTableAdapter.Fill(pharmacyDataSet.ProfileView);           
         }
 
         private void userIDLabel1_Click(object sender, EventArgs e)

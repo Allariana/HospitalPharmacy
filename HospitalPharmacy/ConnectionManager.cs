@@ -305,27 +305,14 @@ namespace HospitalPharmacy
         public Image GetImage(int id)
         {
             connection.Open();
-            Image photo;
-            
+            Image photo;           
             SqlCommand cmd = new SqlCommand("select Photo from UserDetails where UserID =" + id +";", connection);
-
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-
             DataSet ds = new DataSet();
-
             da.Fill(ds);
-
-            //if (ds.Tables[0].Rows.Count > 0)
-
-            //{
-
-                MemoryStream ms = new MemoryStream((byte[])ds.Tables[0].Rows[0]["Photo"]);
-
-                photo = new Bitmap(ms);
-
-            //}
-
-        
+            MemoryStream ms = new MemoryStream((byte[])ds.Tables[0].Rows[0]["Photo"]);
+            photo = new Bitmap(ms);
+            connection.Close();
             return photo;
         }
     }   

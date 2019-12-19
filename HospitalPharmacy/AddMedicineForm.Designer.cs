@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddMedicineForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pharmacyDataSet = new HospitalPharmacy.PharmacyDataSet();
             this.medicinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.medicinesTableAdapter = new HospitalPharmacy.PharmacyDataSetTableAdapters.MedicinesTableAdapter();
@@ -50,6 +50,8 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.medicinesBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.medicinesDataGridView = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,8 +61,6 @@
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
-            this.searchTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pharmacyDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesBindingNavigator)).BeginInit();
@@ -226,15 +226,16 @@
             // medicinesDataGridView
             // 
             this.medicinesDataGridView.AutoGenerateColumns = false;
+            this.medicinesDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.medicinesDataGridView.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.medicinesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.medicinesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.medicinesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.medicinesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -247,19 +248,39 @@
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9});
             this.medicinesDataGridView.DataSource = this.medicinesBindingSource;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.medicinesDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.medicinesDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.medicinesDataGridView.Location = new System.Drawing.Point(12, 62);
             this.medicinesDataGridView.Name = "medicinesDataGridView";
             this.medicinesDataGridView.Size = new System.Drawing.Size(940, 376);
             this.medicinesDataGridView.TabIndex = 1;
             this.medicinesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.medicinesDataGridView_CellContentClick);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button1.Location = new System.Drawing.Point(494, 31);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(85, 25);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Search";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // searchTextBox
+            // 
+            this.searchTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.searchTextBox.Location = new System.Drawing.Point(324, 31);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(133, 25);
+            this.searchTextBox.TabIndex = 4;
+            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -296,6 +317,7 @@
             this.dataGridViewTextBoxColumn6.DataPropertyName = "CategoryID";
             this.dataGridViewTextBoxColumn6.HeaderText = "CategoryID";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.Visible = false;
             // 
             // dataGridViewTextBoxColumn7
             // 
@@ -314,26 +336,6 @@
             this.dataGridViewTextBoxColumn9.DataPropertyName = "SupplierID";
             this.dataGridViewTextBoxColumn9.HeaderText = "SupplierID";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(494, 31);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 25);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // searchTextBox
-            // 
-            this.searchTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.searchTextBox.Location = new System.Drawing.Point(324, 31);
-            this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(133, 25);
-            this.searchTextBox.TabIndex = 4;
-            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             // 
             // AddMedicineForm
             // 
@@ -378,6 +380,8 @@
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton medicinesBindingNavigatorSaveItem;
         private System.Windows.Forms.DataGridView medicinesDataGridView;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -387,7 +391,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox searchTextBox;
     }
 }

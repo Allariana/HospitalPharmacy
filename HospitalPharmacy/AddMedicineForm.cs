@@ -18,17 +18,36 @@ namespace HospitalPharmacy
         {
             InitializeComponent();
             ConnectionManager connection = ConnectionManager.getInstance();
-            DataTable categoryColumn = new DataTable();
-            connection.getColumn("Categories","CategoryName",categoryColumn);
-            List<string> list = categoryColumn.Rows.OfType<DataRow>().Select(dr => (string)dr["CategoryName"]).ToList();
-            
+            DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
+            comboBoxColumn.HeaderText = "CategoryName";
+            comboBoxColumn.Width = 100;
+            comboBoxColumn.Name = "comboBoxColumn";
+            medicinesDataGridView.Columns.Add(comboBoxColumn);
             foreach (DataGridViewRow row in medicinesDataGridView.Rows)
             {
-                DataGridViewComboBoxCell cell = (DataGridViewComboBoxCell)(row.Cells["CategoryID"]);
-                cell.DataSource = list;
+                DataGridViewComboBoxCell comboBoxCell = (row.Cells[9] as DataGridViewComboBoxCell);
+                comboBoxCell.Items.Add("Select CategoryName");
+                comboBoxCell.Value = "Psychotrop";
             }
-            
-        }
+                /*DataTable categoryTable = new DataTable();
+                connection.getColumn("Categories", "CategoryName", categoryTable);
+                foreach (DataRow drow in categoryTable.Rows)
+                {
+                    comboBoxCell.Items.Add(drow[0]);
+                    comboBoxCell.Value = drow[0];
+                }
+            }*/
+                DataTable categoryColumn = new DataTable();
+                connection.getColumn("Categories","CategoryName",categoryColumn);
+                /*List<string> list = categoryColumn.Rows.OfType<DataRow>().Select(dr => (string)dr["CategoryName"]).ToList();
+
+                foreach (DataGridViewRow row in medicinesDataGridView.Rows)
+                {
+                    DataGridViewComboBoxCell cell = (DataGridViewComboBoxCell)(row.Cells["CategoryName"]);
+                    cell.DataSource = list;
+                }*/
+
+            }
 
         private void medicinesBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
