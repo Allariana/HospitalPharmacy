@@ -52,7 +52,7 @@ namespace HospitalPharmacy
             SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
             adapter.Fill(dataTable);
             connection.Close();
-        }       
+        }
         public String getRecord(String columnname, int id)
         {
             connection.Open();
@@ -307,7 +307,7 @@ namespace HospitalPharmacy
             connection.Open();
             Image photo;
             
-            SqlCommand cmd = new SqlCommand("select Photo from UserDetails where UserID=" + id + ";", connection);
+            SqlCommand cmd = new SqlCommand("select Photo from UserDetails where UserID =" + id +";", connection);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
 

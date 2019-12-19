@@ -15,7 +15,7 @@ namespace HospitalPharmacy
     public partial class ProfileForm : Form
     {
         int id;
-        public SqlConnection sqlConnection = new SqlConnection("Data Source=.;Initial Catalog=Pharmacy;Integrated Security=True");
+        //public SqlConnection sqlConnection = new SqlConnection("Data Source=.;Initial Catalog=Pharmacy;Integrated Security=True");
         public ProfileForm(int userID)
         {
             id = userID;
@@ -30,7 +30,8 @@ namespace HospitalPharmacy
             phoneLabel.Text = connection.getRecord("Phone", id);
             usernameLabel.Text = connection.getRecord("Username", id);
             emailLabel.Text = connection.getRecord("Email", id);
-            sqlConnection.Open();
+            photoPictureBox.Image = connection.GetImage(id);
+            /*sqlConnection.Open();
             
 
             SqlCommand cmd = new SqlCommand("select Photo from UserDetails where UserID=" + id + ";", sqlConnection);
@@ -48,8 +49,8 @@ namespace HospitalPharmacy
             MemoryStream ms = new MemoryStream((byte[])ds.Tables[0].Rows[0]["Photo"]);
             photoPictureBox.Image = new Bitmap(ms);
             sqlConnection.Close();
-            //   photoPictureBox.Image = connection.GetImage(id);
-            //photoPictureBox.Image = connection.GetImage(id);
+            //   
+            //photoPictureBox.Image = connection.GetImage(id);*/
         }
 
         private void ProfileForm_Load(object sender, EventArgs e)

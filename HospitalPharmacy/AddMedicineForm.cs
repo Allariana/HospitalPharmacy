@@ -13,9 +13,21 @@ namespace HospitalPharmacy
     public partial class AddMedicineForm : Form
     {
         BindingSource bindingSource = new BindingSource();
+        
         public AddMedicineForm()
         {
             InitializeComponent();
+            ConnectionManager connection = ConnectionManager.getInstance();
+            DataTable categoryColumn = new DataTable();
+            connection.getColumn("Categories","CategoryName",categoryColumn);
+            List<string> list = categoryColumn.Rows.OfType<DataRow>().Select(dr => (string)dr["CategoryName"]).ToList();
+            
+            foreach (DataGridViewRow row in medicinesDataGridView.Rows)
+            {
+                DataGridViewComboBoxCell cell = (DataGridViewComboBoxCell)(row.Cells["CategoryID"]);
+                cell.DataSource = list;
+            }
+            
         }
 
         private void medicinesBindingNavigatorSaveItem_Click(object sender, EventArgs e)

@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPageForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.LogOutButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -178,6 +178,7 @@
             this.archivesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addNewMedicineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
+            this.pharmacyDataSet1 = new HospitalPharmacy.PharmacyDataSet();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesViewBindingSource)).BeginInit();
@@ -220,6 +221,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.medicinesViewDataGridView)).BeginInit();
             this.menuStrip2.SuspendLayout();
             this.tabControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pharmacyDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -577,7 +579,7 @@
             this.label7.BackColor = System.Drawing.Color.White;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(227, 14);
+            this.label7.Location = new System.Drawing.Point(196, 16);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(624, 27);
             this.label7.TabIndex = 10;
@@ -586,23 +588,23 @@
             // chart1
             // 
             this.chart1.BorderSkin.PageColor = System.Drawing.Color.Transparent;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
             this.chart1.DataSource = this.statisticViewBindingSource;
-            legend1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            legend1.IsTextAutoFit = false;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            legend2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            legend2.IsTextAutoFit = false;
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(22, 78);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
-            series1.ChartArea = "ChartArea1";
-            series1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            series1.Legend = "Legend1";
-            series1.Name = "Department";
-            series1.XValueMember = "Department";
-            series1.YValueMembers = "Price";
-            this.chart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            series2.Legend = "Legend1";
+            series2.Name = "Department";
+            series2.XValueMember = "Department";
+            series2.YValueMembers = "Price";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(1024, 450);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -872,7 +874,7 @@
             this.panel.Controls.Add(this.label6);
             this.panel.Location = new System.Drawing.Point(-4, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(1158, 544);
+            this.panel.Size = new System.Drawing.Size(1070, 544);
             this.panel.TabIndex = 4;
             // 
             // currentOrdersViewDataGridView
@@ -901,8 +903,8 @@
             // dataGridViewTextBoxColumn11
             // 
             this.dataGridViewTextBoxColumn11.DataPropertyName = "OrderID";
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTextBoxColumn11.HeaderText = "OrderID";
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             this.dataGridViewTextBoxColumn11.ReadOnly = true;
@@ -911,8 +913,8 @@
             // dataGridViewTextBoxColumn12
             // 
             this.dataGridViewTextBoxColumn12.DataPropertyName = "DepartmentName";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dataGridViewTextBoxColumn12.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dataGridViewTextBoxColumn12.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewTextBoxColumn12.HeaderText = "Department Name";
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             this.dataGridViewTextBoxColumn12.ReadOnly = true;
@@ -920,8 +922,8 @@
             // dataGridViewTextBoxColumn13
             // 
             this.dataGridViewTextBoxColumn13.DataPropertyName = "OrderDate";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dataGridViewTextBoxColumn13.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dataGridViewTextBoxColumn13.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewTextBoxColumn13.HeaderText = "Order Date";
             this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
             this.dataGridViewTextBoxColumn13.ReadOnly = true;
@@ -929,8 +931,8 @@
             // dataGridViewTextBoxColumn14
             // 
             this.dataGridViewTextBoxColumn14.DataPropertyName = "Order_status";
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewTextBoxColumn14.HeaderText = "Order Status";
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.ReadOnly = true;
@@ -1466,6 +1468,11 @@
             this.tabControl.TabIndex = 5;
             this.tabControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tabControl_MouseClick);
             // 
+            // pharmacyDataSet1
+            // 
+            this.pharmacyDataSet1.DataSetName = "PharmacyDataSet";
+            this.pharmacyDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // MainPageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1532,6 +1539,7 @@
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
             this.tabControl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pharmacyDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1683,5 +1691,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
+        private PharmacyDataSet pharmacyDataSet1;
     }
 }
