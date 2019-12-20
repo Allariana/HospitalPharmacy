@@ -70,15 +70,10 @@ namespace HospitalPharmacy
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            bindingSource.DataSource = medicinesDataGridView.DataSource;
-            bindingSource.Filter = "TradeName = '" + searchTextBox.Text + "' OR ActiveSubstance = '" + searchTextBox.Text + "'";
-        }
-
         private void searchTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            bindingSource.DataSource = medicinesDataGridView.DataSource;
+            bindingSource.Filter = "TradeName like '" + searchTextBox.Text + "%' OR ActiveSubstance like '" + searchTextBox.Text + "%'";
         }
     }
 }

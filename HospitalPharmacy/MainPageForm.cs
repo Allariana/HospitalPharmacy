@@ -8,6 +8,7 @@ namespace HospitalPharmacy
 {
     public partial class MainPageForm : Form
     {
+        BindingSource bindingSource = new BindingSource();
         private int userID;
         private string username;
         public MainPageForm(int userID, String username)
@@ -298,7 +299,22 @@ namespace HospitalPharmacy
         {
             openTabPage(statisticTabPage);
         }
-        
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            bindingSource.DataSource = medicinesViewDataGridView.DataSource;
+            bindingSource.Filter = "TradeName like '" + searchTextBox.Text + "%' OR ActiveSubstance like '" + searchTextBox.Text + "%'";
+        }
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void searchTextBox_TextChanged_1(object sender, EventArgs e)
+        {
+            bindingSource.DataSource = medicinesViewDataGridView.DataSource;
+            bindingSource.Filter = "TradeName like '" + searchTextBox.Text + "%' OR ActiveSubstance like '" + searchTextBox.Text + "%'";
+        }
     }
 }
 
