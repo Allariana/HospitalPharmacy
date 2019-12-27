@@ -60,7 +60,6 @@ namespace HospitalPharmacy
 
         private void AddMedicineForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'pharmacyDataSet.Medicines' table. You can move, or remove it, as needed.
             medicinesTableAdapter.Fill(pharmacyDataSet.Medicines);
 
         }

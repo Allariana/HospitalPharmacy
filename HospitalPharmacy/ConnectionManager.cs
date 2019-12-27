@@ -134,13 +134,14 @@ namespace HospitalPharmacy
                 new SqlCommand(sumPrice, connection).ExecuteNonQuery();
                     MessageBox.Show("Succeed!");
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 
                 String pickUpOrderCommand = "UPDATE MedicinesOrders SET RealizationFlag = 'N', RealizationDate = null where MedicinesOrderID " +
                     "= " + id + "; ";
                 new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
-                MessageBox.Show("Could not pick up the order!");
+                MessageBox.Show(e.Message);
+                //MessageBox.Show("Could not pick up the order!");
 
 
             }

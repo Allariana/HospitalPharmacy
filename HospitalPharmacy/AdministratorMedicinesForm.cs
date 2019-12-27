@@ -20,18 +20,16 @@ namespace HospitalPharmacy
 
         private void medicinesBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.medicinesBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.pharmacyDataSet);
+            Validate();
+            medicinesBindingSource.EndEdit();
+            tableAdapterManager.UpdateAll(pharmacyDataSet);
 
         }
 
         private void AdministratorMedicinesForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'pharmacyDataSet.Categories' table. You can move, or remove it, as needed.
-            this.categoriesTableAdapter.Fill(this.pharmacyDataSet.Categories);
-            // TODO: This line of code loads data into the 'pharmacyDataSet.Medicines' table. You can move, or remove it, as needed.
-            this.medicinesTableAdapter.Fill(this.pharmacyDataSet.Medicines);
+            categoriesTableAdapter.Fill(pharmacyDataSet.Categories);
+            medicinesTableAdapter.Fill(pharmacyDataSet.Medicines);
 
         }
 
