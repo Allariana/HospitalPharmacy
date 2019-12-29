@@ -1054,6 +1054,24 @@ SELECT UserDetailsID, UserID, LastName, FirstName, Title, BirthDate, HireDate, A
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ExpiredPackagesViewTableAdapter" GeneratorDataComponentClassName="ExpiredPackagesViewTableAdapter" Name="ExpiredPackagesView" UserDataComponentName="ExpiredPackagesViewTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PharmacyConnectionString (Settings)" DbObjectName="Pharmacy.dbo.ExpiredPackagesView" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT TradeName, [SerialNumber(SN)], [TermofValidity(EXP)] FROM dbo.ExpiredPackagesView</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TradeName" DataSetColumn="TradeName" />
+              <Mapping SourceColumn="SerialNumber(SN)" DataSetColumn="SerialNumber(SN)" />
+              <Mapping SourceColumn="TermofValidity(EXP)" DataSetColumn="TermofValidity(EXP)" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -1642,6 +1660,21 @@ SELECT UserDetailsID, UserID, LastName, FirstName, Title, BirthDate, HireDate, A
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="ExpiredPackagesView" msprop:Generator_TableClassName="ExpiredPackagesViewDataTable" msprop:Generator_TableVarName="tableExpiredPackagesView" msprop:Generator_TablePropName="ExpiredPackagesView" msprop:Generator_RowDeletingName="ExpiredPackagesViewRowDeleting" msprop:Generator_RowChangingName="ExpiredPackagesViewRowChanging" msprop:Generator_RowEvHandlerName="ExpiredPackagesViewRowChangeEventHandler" msprop:Generator_RowDeletedName="ExpiredPackagesViewRowDeleted" msprop:Generator_UserTableName="ExpiredPackagesView" msprop:Generator_RowChangedName="ExpiredPackagesViewRowChanged" msprop:Generator_RowEvArgName="ExpiredPackagesViewRowChangeEvent" msprop:Generator_RowClassName="ExpiredPackagesViewRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TradeName" msprop:Generator_ColumnVarNameInTable="columnTradeName" msprop:Generator_ColumnPropNameInRow="TradeName" msprop:Generator_ColumnPropNameInTable="TradeNameColumn" msprop:Generator_UserColumnName="TradeName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SerialNumber_x0028_SN_x0029_" msprop:Generator_ColumnVarNameInTable="_columnSerialNumber_SN_" msprop:Generator_ColumnPropNameInRow="_SerialNumber_SN_" msprop:Generator_ColumnPropNameInTable="_SerialNumber_SN_Column" msprop:Generator_UserColumnName="SerialNumber(SN)" type="xs:int" />
+              <xs:element name="TermofValidity_x0028_EXP_x0029_" msprop:Generator_ColumnVarNameInTable="_columnTermofValidity_EXP_" msprop:Generator_ColumnPropNameInRow="_TermofValidity_EXP_" msprop:Generator_ColumnPropNameInTable="_TermofValidity_EXP_Column" msprop:Generator_UserColumnName="TermofValidity(EXP)" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -1719,6 +1752,10 @@ SELECT UserDetailsID, UserID, LastName, FirstName, Title, BirthDate, HireDate, A
     <xs:unique name="UserDetails_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:UserDetails" />
       <xs:field xpath="mstns:UserDetailsID" />
+    </xs:unique>
+    <xs:unique name="ExpiredPackagesView_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ExpiredPackagesView" />
+      <xs:field xpath="mstns:SerialNumber_x0028_SN_x0029_" />
     </xs:unique>
   </xs:element>
   <xs:annotation>

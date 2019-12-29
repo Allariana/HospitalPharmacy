@@ -51,5 +51,10 @@ namespace HospitalPharmacy
         {
 
         }
+
+        private void lastNameLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

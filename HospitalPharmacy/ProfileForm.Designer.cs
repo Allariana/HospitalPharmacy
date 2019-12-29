@@ -110,6 +110,7 @@
             this.lastNameLabel.Size = new System.Drawing.Size(45, 19);
             this.lastNameLabel.TabIndex = 0;
             this.lastNameLabel.Text = "label1";
+            this.lastNameLabel.Click += new System.EventHandler(this.lastNameLabel_Click);
             // 
             // label1
             // 
