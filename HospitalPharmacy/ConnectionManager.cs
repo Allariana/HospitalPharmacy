@@ -53,6 +53,22 @@ namespace HospitalPharmacy
             adapter.Fill(dataTable);
             connection.Close();
         }
+        public void insertCategory(String columnname, String tablename, String condition, String condition2, String medicineID)
+        {
+            connection.Open();
+            DataTable valueTable = new DataTable();
+            String value;
+            int id;
+            SqlCommand getValue = new SqlCommand("select " + columnname + " from " + tablename + " where " + condition + " = " + condition2 + ";", connection);
+            SqlDataReader reader = getValue.ExecuteReader();
+            valueTable.Load(reader);
+            DataRow dw = valueTable.Rows[0];
+            value = dw[0].ToString();
+            id = int.Parse(value);
+            String update = "update Medicines SET CategoryID = " + id + "where MedicineID = " + medicineID + ";";
+            new SqlCommand(update, connection).ExecuteNonQuery();
+            connection.Close();
+        }
         public String getRecord(String columnname, int id)
         {
             connection.Open();
@@ -315,6 +331,15 @@ namespace HospitalPharmacy
             photo = new Bitmap(ms);
             connection.Close();
             return photo;
+        }
+        public void deleteExpiredPackage()
+        {
+            connection.Open();
+            string deletePackages = /*"UPDATE Medicines SET UnitsInStock = UnitsInStock - 1 where MedicineID in " +
+                "(SELECT m.MedicineID FROM[Pharmacy].[dbo].[ExpiredPackagesView] o join Medicines m on RIGHT(o.[SerialNumber(SN)], 3) = m.MedicineID); " +*/
+                "delete from PackageOfMedicine where [SerialNumber(SN)] in (select [SerialNumber(SN)] from ExpiredPackagesView);";
+            new SqlCommand(deletePackages, connection).ExecuteNonQuery();
+            connection.Close();
         }
     }   
 }

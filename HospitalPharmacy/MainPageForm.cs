@@ -315,6 +315,17 @@ namespace HospitalPharmacy
             bindingSource.DataSource = medicinesViewDataGridView.DataSource;
             bindingSource.Filter = "TradeName like '" + searchTextBox.Text + "%' OR ActiveSubstance like '" + searchTextBox.Text + "%'";
         }
+
+        private void checkOfExpiredPackagesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (ExpiredPackagesForm expiredPackagesForm = new ExpiredPackagesForm())
+            {
+                if (expiredPackagesForm.ShowDialog() == DialogResult.OK)
+                {
+                    MainPagecs_Load(null, null);
+                }
+            }
+        }
     }
 }
 

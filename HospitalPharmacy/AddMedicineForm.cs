@@ -50,5 +50,18 @@ namespace HospitalPharmacy
             bindingSource.DataSource = medicinesDataGridView.DataSource;
             bindingSource.Filter = "TradeName like '" + searchTextBox.Text + "%' OR ActiveSubstance like '" + searchTextBox.Text + "%'";
         }
+
+        private void medicinesDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            /*ConnectionManager connection = ConnectionManager.getInstance();
+            foreach (DataGridViewRow row in medicinesDataGridView.Rows)
+            {
+                String category = row.Cells["CategoryName"].ToString();
+                String medicineID = row.Cells["MedicineID"].ToString();
+                connection.insertCategory("CategoryID", "Categories", "CategoryName", category, medicineID);
+                
+            }*/
+                //this.Hide();
+        }
     }
 }
