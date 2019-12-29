@@ -51,7 +51,16 @@ namespace HospitalPharmacy
             panel1.BackColor = Color.FromArgb(100, 255, 255, 255);
             panel2.BackColor = Color.FromArgb(100, 255, 255, 255);
             panel3.BackColor = Color.FromArgb(100, 255, 255, 255);
-
+            foreach (DataGridViewRow row in currentOrdersViewDataGridView.Rows)
+            {
+                int index = currentOrdersViewDataGridView.Rows.IndexOf(row);
+                if ((index % 2) == 0) //currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.FromArgb(0, 153, 180, 209);
+                    //currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.Blue;
+                    //currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.AliceBlue;
+                    currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.Lavender;
+                    //currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.CadetBlue;
+                //currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.CornflowerBlue;
+            }
 
         }
    

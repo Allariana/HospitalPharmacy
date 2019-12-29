@@ -34,9 +34,11 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPageForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.LogOutButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -178,10 +180,10 @@
             this.generateOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archivesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addNewMedicineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkOfExpiredPackagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.pharmacyDataSet1 = new HospitalPharmacy.PharmacyDataSet();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.checkOfExpiredPackagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pharmacyDataSet)).BeginInit();
@@ -887,6 +889,14 @@
             this.currentOrdersViewDataGridView.AutoGenerateColumns = false;
             this.currentOrdersViewDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.currentOrdersViewDataGridView.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.currentOrdersViewDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.currentOrdersViewDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.currentOrdersViewDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn11,
@@ -896,6 +906,14 @@
             this.dataGridViewTextBoxColumn15,
             this.dataGridViewTextBoxColumn16});
             this.currentOrdersViewDataGridView.DataSource = this.currentOrdersViewBindingSource;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.currentOrdersViewDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
             this.currentOrdersViewDataGridView.Location = new System.Drawing.Point(281, 49);
             this.currentOrdersViewDataGridView.Name = "currentOrdersViewDataGridView";
             this.currentOrdersViewDataGridView.ReadOnly = true;
@@ -906,8 +924,8 @@
             // dataGridViewTextBoxColumn11
             // 
             this.dataGridViewTextBoxColumn11.DataPropertyName = "OrderID";
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn11.HeaderText = "OrderID";
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             this.dataGridViewTextBoxColumn11.ReadOnly = true;
@@ -916,8 +934,8 @@
             // dataGridViewTextBoxColumn12
             // 
             this.dataGridViewTextBoxColumn12.DataPropertyName = "DepartmentName";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dataGridViewTextBoxColumn12.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dataGridViewTextBoxColumn12.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxColumn12.HeaderText = "Department Name";
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             this.dataGridViewTextBoxColumn12.ReadOnly = true;
@@ -925,8 +943,8 @@
             // dataGridViewTextBoxColumn13
             // 
             this.dataGridViewTextBoxColumn13.DataPropertyName = "OrderDate";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dataGridViewTextBoxColumn13.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dataGridViewTextBoxColumn13.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewTextBoxColumn13.HeaderText = "Order Date";
             this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
             this.dataGridViewTextBoxColumn13.ReadOnly = true;
@@ -934,8 +952,8 @@
             // dataGridViewTextBoxColumn14
             // 
             this.dataGridViewTextBoxColumn14.DataPropertyName = "Order_status";
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTextBoxColumn14.HeaderText = "Order Status";
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.ReadOnly = true;
@@ -1481,6 +1499,14 @@
             this.addNewMedicineToolStripMenuItem.Text = "Add/edit medicines";
             this.addNewMedicineToolStripMenuItem.Click += new System.EventHandler(this.addNewMedicineToolStripMenuItem_Click);
             // 
+            // checkOfExpiredPackagesToolStripMenuItem
+            // 
+            this.checkOfExpiredPackagesToolStripMenuItem.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkOfExpiredPackagesToolStripMenuItem.Name = "checkOfExpiredPackagesToolStripMenuItem";
+            this.checkOfExpiredPackagesToolStripMenuItem.Size = new System.Drawing.Size(187, 23);
+            this.checkOfExpiredPackagesToolStripMenuItem.Text = "Check of expired packages";
+            this.checkOfExpiredPackagesToolStripMenuItem.Click += new System.EventHandler(this.checkOfExpiredPackagesToolStripMenuItem_Click);
+            // 
             // tabControl
             // 
             this.tabControl.Controls.Add(this.stockPage);
@@ -1505,14 +1531,6 @@
             // 
             this.pharmacyDataSet1.DataSetName = "PharmacyDataSet";
             this.pharmacyDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // checkOfExpiredPackagesToolStripMenuItem
-            // 
-            this.checkOfExpiredPackagesToolStripMenuItem.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkOfExpiredPackagesToolStripMenuItem.Name = "checkOfExpiredPackagesToolStripMenuItem";
-            this.checkOfExpiredPackagesToolStripMenuItem.Size = new System.Drawing.Size(187, 23);
-            this.checkOfExpiredPackagesToolStripMenuItem.Text = "Check of expired packages";
-            this.checkOfExpiredPackagesToolStripMenuItem.Click += new System.EventHandler(this.checkOfExpiredPackagesToolStripMenuItem_Click);
             // 
             // MainPageForm
             // 
