@@ -335,9 +335,10 @@ namespace HospitalPharmacy
         public void deleteExpiredPackage()
         {
             connection.Open();
-            string deletePackages = /*"UPDATE Medicines SET UnitsInStock = UnitsInStock - 1 where MedicineID in " +
-                "(SELECT m.MedicineID FROM[Pharmacy].[dbo].[ExpiredPackagesView] o join Medicines m on RIGHT(o.[SerialNumber(SN)], 3) = m.MedicineID); " +*/
-                "delete from PackageOfMedicine where [SerialNumber(SN)] in (select [SerialNumber(SN)] from ExpiredPackagesView);";
+            string update = "UPDATE Medicines SET UnitsInStock = UnitsInStock - 1 where MedicineID in " +
+                "(SELECT m.MedicineID FROM[Pharmacy].[dbo].[ExpiredPackagesView] o join Medicines m on RIGHT(o.[SerialNumber(SN)], 3) = m.MedicineID); ";
+            new SqlCommand(update, connection).ExecuteNonQuery();
+            string deletePackages = "delete from PackageOfMedicine where [SerialNumber(SN)] in (select [SerialNumber(SN)] from ExpiredPackagesView);";
             new SqlCommand(deletePackages, connection).ExecuteNonQuery();
             connection.Close();
         }
