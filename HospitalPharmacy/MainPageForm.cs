@@ -57,9 +57,10 @@ namespace HospitalPharmacy
                 if ((index % 2) == 0) //currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.FromArgb(0, 153, 180, 209);
                     //currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.Blue;
                     //currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.AliceBlue;
-                    currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.Lavender;
-                    //currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.CadetBlue;
+                    //currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.Lavender;
+                //currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.CadetBlue;
                 //currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.CornflowerBlue;
+                currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
             }
 
         }
