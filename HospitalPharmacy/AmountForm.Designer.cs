@@ -72,7 +72,7 @@
             this.Controls.Add(this.amountTextBox);
             this.Controls.Add(this.label1);
             this.Name = "AmountForm";
-            this.Text = "AmountForm";
+            this.Text = "Amount";
             this.Load += new System.EventHandler(this.AmountForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

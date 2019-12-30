@@ -79,9 +79,9 @@
             this.packageOfMedicineDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.packageOfMedicineDataGridView.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.HotTrack;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Info;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -98,7 +98,7 @@
             this.packageOfMedicineDataGridView.Location = new System.Drawing.Point(12, 12);
             this.packageOfMedicineDataGridView.Name = "packageOfMedicineDataGridView";
             this.packageOfMedicineDataGridView.ReadOnly = true;
-            this.packageOfMedicineDataGridView.Size = new System.Drawing.Size(501, 426);
+            this.packageOfMedicineDataGridView.Size = new System.Drawing.Size(501, 242);
             this.packageOfMedicineDataGridView.TabIndex = 1;
             this.packageOfMedicineDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.packageOfMedicineDataGridView_CellContentClick);
             // 
@@ -106,7 +106,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(525, 450);
+            this.ClientSize = new System.Drawing.Size(525, 264);
             this.Controls.Add(this.packageOfMedicineDataGridView);
             this.Name = "PackageForm";
             this.Text = "PackageForm";

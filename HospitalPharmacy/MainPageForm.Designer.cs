@@ -39,6 +39,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.LogOutButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -320,8 +321,8 @@
             this.listOfPurchaseOrdersToolStripMenuItem,
             this.receiptOfOrdersToolStripMenuItem});
             this.warehouseAndShoppingToolStripMenuItem.Name = "warehouseAndShoppingToolStripMenuItem";
-            this.warehouseAndShoppingToolStripMenuItem.Size = new System.Drawing.Size(189, 23);
-            this.warehouseAndShoppingToolStripMenuItem.Text = "Warehouse and shopping";
+            this.warehouseAndShoppingToolStripMenuItem.Size = new System.Drawing.Size(191, 23);
+            this.warehouseAndShoppingToolStripMenuItem.Text = "Warehouse and Shopping";
             // 
             // inStockToolStripMenuItem
             // 
@@ -914,10 +915,10 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.currentOrdersViewDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
-            this.currentOrdersViewDataGridView.Location = new System.Drawing.Point(281, 49);
+            this.currentOrdersViewDataGridView.Location = new System.Drawing.Point(281, 64);
             this.currentOrdersViewDataGridView.Name = "currentOrdersViewDataGridView";
             this.currentOrdersViewDataGridView.ReadOnly = true;
-            this.currentOrdersViewDataGridView.Size = new System.Drawing.Size(495, 472);
+            this.currentOrdersViewDataGridView.Size = new System.Drawing.Size(495, 474);
             this.currentOrdersViewDataGridView.TabIndex = 3;
             this.currentOrdersViewDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.currentOrdersViewDataGridView_CellDoubleClick_1);
             // 
@@ -980,7 +981,7 @@
             this.label6.BackColor = System.Drawing.Color.White;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(304, 19);
+            this.label6.Location = new System.Drawing.Point(303, 34);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(451, 27);
             this.label6.TabIndex = 3;
@@ -1350,7 +1351,7 @@
             this.searchTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.searchTextBox.Location = new System.Drawing.Point(881, 3);
             this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(164, 25);
+            this.searchTextBox.Size = new System.Drawing.Size(185, 25);
             this.searchTextBox.TabIndex = 10;
             this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged_1);
             // 
@@ -1360,6 +1361,14 @@
             this.medicinesViewDataGridView.AllowUserToDeleteRows = false;
             this.medicinesViewDataGridView.AutoGenerateColumns = false;
             this.medicinesViewDataGridView.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.medicinesViewDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.medicinesViewDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.medicinesViewDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -1372,10 +1381,10 @@
             this.dataGridViewTextBoxColumn9,
             this.dataGridViewTextBoxColumn10});
             this.medicinesViewDataGridView.DataSource = this.medicinesViewBindingSource;
-            this.medicinesViewDataGridView.Location = new System.Drawing.Point(22, 30);
+            this.medicinesViewDataGridView.Location = new System.Drawing.Point(3, 30);
             this.medicinesViewDataGridView.Name = "medicinesViewDataGridView";
             this.medicinesViewDataGridView.ReadOnly = true;
-            this.medicinesViewDataGridView.Size = new System.Drawing.Size(1023, 510);
+            this.medicinesViewDataGridView.Size = new System.Drawing.Size(1063, 510);
             this.medicinesViewDataGridView.TabIndex = 8;
             this.medicinesViewDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.medicinesViewDataGridView_CellDoubleClick);
             // 

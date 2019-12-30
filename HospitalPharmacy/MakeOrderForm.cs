@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HospitalPharmacy
@@ -25,8 +18,12 @@ namespace HospitalPharmacy
 
         private void MakeOrderForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'pharmacyDataSet.MedicinesView' table. You can move, or remove it, as needed.
-            this.medicinesViewTableAdapter.Fill(this.pharmacyDataSet.MedicinesView);       
+            medicinesViewTableAdapter.Fill(pharmacyDataSet.MedicinesView);
+            foreach (DataGridViewRow row in medicinesViewDataGridView.Rows)
+            {
+                int index = medicinesViewDataGridView.Rows.IndexOf(row);
+                if ((index % 2) == 0) medicinesViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
+            }
         }
 
         private void medicinesViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -60,7 +57,7 @@ namespace HospitalPharmacy
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Invalid values in the basket! Check and correct mistakes!");
             }
 
         }

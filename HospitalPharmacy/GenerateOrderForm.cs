@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HospitalPharmacy
@@ -55,8 +48,12 @@ namespace HospitalPharmacy
 
         private void GenerateOrderForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'pharmacyDataSet.GenerateOrderView' table. You can move, or remove it, as needed.
             generateOrderViewTableAdapter.Fill(pharmacyDataSet.GenerateOrderView);
+            foreach (DataGridViewRow row in generateOrderViewDataGridView.Rows)
+            {
+                int index = generateOrderViewDataGridView.Rows.IndexOf(row);
+                if ((index % 2) == 0) generateOrderViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
+            }
         }
     }
 }

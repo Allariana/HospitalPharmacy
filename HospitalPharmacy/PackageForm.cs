@@ -37,7 +37,11 @@ namespace HospitalPharmacy
         {
             // TODO: This line of code loads data into the 'pharmacyDataSet.PackageOfMedicine' table. You can move, or remove it, as needed.
             this.packageOfMedicineTableAdapter.Fill(this.pharmacyDataSet.PackageOfMedicine);
-
+            foreach (DataGridViewRow row in packageOfMedicineDataGridView.Rows)
+            {
+                int index = packageOfMedicineDataGridView.Rows.IndexOf(row);
+                if ((index % 2) == 0) packageOfMedicineDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
+            }
         }
 
         private void packageOfMedicineDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)

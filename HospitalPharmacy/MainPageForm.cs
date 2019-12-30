@@ -54,15 +54,13 @@ namespace HospitalPharmacy
             foreach (DataGridViewRow row in currentOrdersViewDataGridView.Rows)
             {
                 int index = currentOrdersViewDataGridView.Rows.IndexOf(row);
-                if ((index % 2) == 0) //currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.FromArgb(0, 153, 180, 209);
-                    //currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.Blue;
-                    //currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.AliceBlue;
-                    //currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.Lavender;
-                //currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.CadetBlue;
-                //currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.CornflowerBlue;
-                currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
+                if ((index % 2) == 0) currentOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
             }
-
+            foreach (DataGridViewRow row in medicinesViewDataGridView.Rows)
+            {
+                int index = medicinesViewDataGridView.Rows.IndexOf(row);
+                if ((index % 2) == 0) medicinesViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
+            }
         }
    
         private void ExitButton_Click(object sender, EventArgs e)
@@ -124,11 +122,13 @@ namespace HospitalPharmacy
         private void inStockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openTabPage(stockPage);
+            MainPagecs_Load(null, null);
         }
 
         private void listOfOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openTabPage(currentOrderTabPage);
+            MainPagecs_Load(null, null);
         }
         private void ListOfDepartmentsToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
