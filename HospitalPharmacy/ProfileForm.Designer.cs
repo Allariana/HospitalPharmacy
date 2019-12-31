@@ -181,6 +181,7 @@
             this.birthLabel.Size = new System.Drawing.Size(45, 19);
             this.birthLabel.TabIndex = 7;
             this.birthLabel.Text = "label5";
+            this.birthLabel.Click += new System.EventHandler(this.birthLabel_Click);
             // 
             // label5
             // 

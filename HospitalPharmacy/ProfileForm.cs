@@ -23,8 +23,8 @@ namespace HospitalPharmacy
             lastNameLabel.Text = connection.getRecord("LastName",id);
             firstNameLabel.Text = connection.getRecord("FirstName", id);
             titleLabel.Text = connection.getRecord("Title", id);
-            birthLabel.Text = connection.getRecord("BirthDate", id);
-            hireLabel.Text = connection.getRecord("HireDate", id);
+            birthLabel.Text = connection.getRecord("BirthDate", id).Substring(0,8);
+            hireLabel.Text = connection.getRecord("HireDate", id).Substring(0, 10);
             addressLabel.Text = connection.getRecord("Address", id);
             phoneLabel.Text = connection.getRecord("Phone", id);
             usernameLabel.Text = connection.getRecord("Username", id);
@@ -53,6 +53,11 @@ namespace HospitalPharmacy
         }
 
         private void lastNameLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void birthLabel_Click(object sender, EventArgs e)
         {
 
         }

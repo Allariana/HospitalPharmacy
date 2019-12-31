@@ -21,7 +21,11 @@ namespace HospitalPharmacy
         {
             // TODO: This line of code loads data into the 'pharmacyDataSet.ExpiredPackagesView' table. You can move, or remove it, as needed.
             this.expiredPackagesViewTableAdapter.Fill(this.pharmacyDataSet.ExpiredPackagesView);
-
+            foreach (DataGridViewRow row in expiredPackagesViewDataGridView.Rows)
+            {
+                int index = expiredPackagesViewDataGridView.Rows.IndexOf(row);
+                if ((index % 2) == 0) expiredPackagesViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
+            }
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
