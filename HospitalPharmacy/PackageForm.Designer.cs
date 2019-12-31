@@ -109,7 +109,7 @@
             this.ClientSize = new System.Drawing.Size(525, 264);
             this.Controls.Add(this.packageOfMedicineDataGridView);
             this.Name = "PackageForm";
-            this.Text = "PackageForm";
+            this.Text = "Packages of medicine";
             this.Load += new System.EventHandler(this.PackageForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pharmacyDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.packageOfMedicineBindingSource)).EndInit();
