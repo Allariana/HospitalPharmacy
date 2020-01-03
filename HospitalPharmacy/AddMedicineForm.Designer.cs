@@ -225,6 +225,7 @@
             // 
             // medicinesDataGridView
             // 
+            this.medicinesDataGridView.AllowUserToAddRows = false;
             this.medicinesDataGridView.AutoGenerateColumns = false;
             this.medicinesDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.medicinesDataGridView.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;

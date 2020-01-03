@@ -32,7 +32,11 @@ namespace HospitalPharmacy
 
         private void MedicinesOrderDetailsForm_Load(object sender, EventArgs e)
         {
-
+            foreach (DataGridViewRow row in medicinesOrderDetailsGridView.Rows)
+            {
+                int index = medicinesOrderDetailsGridView.Rows.IndexOf(row);
+                if ((index % 2) == 0) medicinesOrderDetailsGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
+            }
         }
 
         private void invoiceButton_Click(object sender, EventArgs e)

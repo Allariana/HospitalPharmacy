@@ -59,16 +59,16 @@
             this.medicinesOrderDetailsGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.medicinesOrderDetailsGridView.Location = new System.Drawing.Point(12, 12);
             this.medicinesOrderDetailsGridView.Name = "medicinesOrderDetailsGridView";
-            this.medicinesOrderDetailsGridView.Size = new System.Drawing.Size(986, 393);
+            this.medicinesOrderDetailsGridView.Size = new System.Drawing.Size(920, 279);
             this.medicinesOrderDetailsGridView.TabIndex = 0;
             this.medicinesOrderDetailsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // invoiceButton
             // 
-            this.invoiceButton.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.invoiceButton.Location = new System.Drawing.Point(426, 418);
+            this.invoiceButton.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.invoiceButton.Location = new System.Drawing.Point(407, 297);
             this.invoiceButton.Name = "invoiceButton";
-            this.invoiceButton.Size = new System.Drawing.Size(111, 23);
+            this.invoiceButton.Size = new System.Drawing.Size(130, 35);
             this.invoiceButton.TabIndex = 1;
             this.invoiceButton.Text = "Open invoice";
             this.invoiceButton.UseVisualStyleBackColor = true;
@@ -78,7 +78,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1010, 453);
+            this.ClientSize = new System.Drawing.Size(944, 338);
             this.Controls.Add(this.invoiceButton);
             this.Controls.Add(this.medicinesOrderDetailsGridView);
             this.Name = "MedicinesOrderDetailsForm";

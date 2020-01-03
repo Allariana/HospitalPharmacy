@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -37,6 +38,11 @@ namespace HospitalPharmacy
         private void AddMedicineForm_Load(object sender, EventArgs e)
         {
             medicinesTableAdapter.Fill(pharmacyDataSet.Medicines);
+            foreach (DataGridViewRow row in medicinesDataGridView.Rows)
+            {
+                int index = medicinesDataGridView.Rows.IndexOf(row);
+                if ((index % 2) == 0) medicinesDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
+            }
 
         }
 

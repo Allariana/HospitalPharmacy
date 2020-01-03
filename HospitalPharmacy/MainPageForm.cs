@@ -51,6 +51,12 @@ namespace HospitalPharmacy
             panel1.BackColor = Color.FromArgb(100, 255, 255, 255);
             panel2.BackColor = Color.FromArgb(100, 255, 255, 255);
             panel3.BackColor = Color.FromArgb(100, 255, 255, 255);
+            panel4.BackColor = Color.FromArgb(100, 255, 255, 255);
+            foreach (DataGridViewRow row in receiptMedicinesOrdersViewDataGridView.Rows)
+            {
+                int index = receiptMedicinesOrdersViewDataGridView.Rows.IndexOf(row);
+                if ((index % 2) == 0) receiptMedicinesOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
+            }
             foreach (DataGridViewRow row in currentOrdersViewDataGridView.Rows)
             {
                 int index = currentOrdersViewDataGridView.Rows.IndexOf(row);
@@ -61,6 +67,12 @@ namespace HospitalPharmacy
                 int index = medicinesViewDataGridView.Rows.IndexOf(row);
                 if ((index % 2) == 0) medicinesViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
             }
+            foreach (DataGridViewRow row in medicinesOrdersViewDataGridView1.Rows)
+            {
+                int index = medicinesOrdersViewDataGridView1.Rows.IndexOf(row);
+                if ((index % 2) == 0) medicinesOrdersViewDataGridView1.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
+            }
+            
         }
    
         private void ExitButton_Click(object sender, EventArgs e)
@@ -225,18 +237,10 @@ namespace HospitalPharmacy
                         MainPagecs_Load(null, null);
                     }
                 }
-                //new PackagesToIssueForm(int.Parse(completeOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()),userID).Show();
+                
             }
             else MessageBox.Show("There is not enough medicines to complete this order!");
-            /*
-            if (completeOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
-            {
-                int id;
-                id = userID;
-                ConnectionManager connection = ConnectionManager.getInstance();
-                connection.completeOrder(completeOrdersViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString(),id);
-                MainPagecs_Load(null, null);
-            }*/
+ 
         }
 
         private void listOfSuppliersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -258,10 +262,11 @@ namespace HospitalPharmacy
         {
             using (MakeOrderForm makeOrderForm = new MakeOrderForm(userID))
             {
-                if (makeOrderForm.ShowDialog() == DialogResult.OK)
-                {
-                    MainPagecs_Load(null, null);
-                }
+               
+                    if (makeOrderForm.ShowDialog() == DialogResult.OK)
+                    {
+                        MainPagecs_Load(null, null);
+                    }
             }
         }
 
@@ -338,6 +343,26 @@ namespace HospitalPharmacy
         }
 
         private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void medicinesOrdersViewDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void purchaseDetailsPage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void recepitOrderTabPage_Click(object sender, EventArgs e)
         {
 
         }

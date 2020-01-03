@@ -55,7 +55,7 @@ namespace HospitalPharmacy
                 DialogResult = DialogResult.OK;
                 MessageBox.Show("Order completed!");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Invalid values in the basket! Check and correct mistakes!");
             }
