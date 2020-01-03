@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -20,33 +18,26 @@ namespace HospitalPharmacy
             tabControl.TabPages.Clear();
             tabControl.TabPages.Insert(0, currentOrderTabPage);
             UserLabel.Text = username;
-            MainPagecs_Load(null, null);
+            //MainPagecs_Load(null, null);
         }
 
         private void MainPagecs_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'pharmacyDataSet.MedicinesOrders' table. You can move, or remove it, as needed.
-            this.medicinesOrdersTableAdapter.Fill(this.pharmacyDataSet.MedicinesOrders);
-            // TODO: This line of code loads data into the 'pharmacyDataSet.StatisticView' table. You can move, or remove it, as needed.
-            this.statisticViewTableAdapter.Fill(this.pharmacyDataSet.StatisticView);
-            // TODO: This line of code loads data into the 'pharmacyDataSet.ProfileView' table. You can move, or remove it, as needed.
+            medicinesOrdersTableAdapter.Fill(pharmacyDataSet.MedicinesOrders);
+            statisticViewTableAdapter.Fill(pharmacyDataSet.StatisticView);
             profileViewTableAdapter.Fill(pharmacyDataSet.ProfileView);
-            // TODO: This line of code loads data into the 'pharmacyDataSet.PharmacistsView' table. You can move, or remove it, as needed.
             pharmacistsViewTableAdapter.Fill(pharmacyDataSet.PharmacistsView);
-            // TODO: This line of code loads data into the 'pharmacyDataSet.Suppliers' table. You can move, or remove it, as needed.
             suppliersTableAdapter.Fill(pharmacyDataSet.Suppliers);
-            // TODO: This line of code loads data into the 'pharmacyDataSet.Departments' table. You can move, or remove it, as needed.
             departmentsTableAdapter.Fill(pharmacyDataSet.Departments);
             receiptMedicinesOrdersViewTableAdapter.Fill(pharmacyDataSet.ReceiptMedicinesOrdersView);
             currentOrdersViewTableAdapter.Fill(pharmacyDataSet.CurrentOrdersView);
             ordersViewTableAdapter.Fill(pharmacyDataSet.OrdersView);
-            // TODO: This line of code loads data into the 'pharmacyDataSet.GenerateOrderView' table. You can move, or remove it, as needed.
             generateOrderViewTableAdapter.Fill(pharmacyDataSet.GenerateOrderView);
-            // TODO: This line of code loads data into the 'pharmacyDataSet.MedicinesView' table. You can move, or remove it, as needed.
             medicinesViewTableAdapter.Fill(pharmacyDataSet.MedicinesView);
-            // TODO: This line of code loads data into the 'pharmacyDataSet.Medicines' table. You can move, or remove it, as needed.
             medicinesTableAdapter.Fill(pharmacyDataSet.Medicines);
             medicinesOrdersViewTableAdapter.Fill(pharmacyDataSet.MedicinesOrdersView);
+
+            //chart1.Series["Department"].Font = new Font("Times New Roman", 12);
 
             panel.BackColor = Color.FromArgb(100, 255, 255, 255);
             panel1.BackColor = Color.FromArgb(100, 255, 255, 255);
@@ -54,6 +45,17 @@ namespace HospitalPharmacy
             panel3.BackColor = Color.FromArgb(100, 255, 255, 255);
             panel4.BackColor = Color.FromArgb(100, 255, 255, 255);
             panel5.BackColor = Color.FromArgb(100, 255, 255, 255);
+
+            foreach (DataGridViewRow row in suppliersDataGridView.Rows)
+            {
+                int index = suppliersDataGridView.Rows.IndexOf(row);
+                if ((index % 2) == 0) suppliersDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
+            }
+            foreach (DataGridViewRow row in pharmacistsViewDataGridView.Rows)
+            {
+                int index = pharmacistsViewDataGridView.Rows.IndexOf(row);
+                if ((index % 2) == 0) pharmacistsViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
+            }
             foreach (DataGridViewRow row in departmentsGridView.Rows)
             {
                 int index = departmentsGridView.Rows.IndexOf(row);
