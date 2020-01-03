@@ -27,7 +27,11 @@ namespace HospitalPharmacy
 
         private void PackagesToIssueForm_Load(object sender, EventArgs e)
         {
-
+            foreach (DataGridViewRow row in packagesBasketDataGridView.Rows)
+            {
+                int index = packagesBasketDataGridView.Rows.IndexOf(row);
+                if ((index % 2) == 0) packagesBasketDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

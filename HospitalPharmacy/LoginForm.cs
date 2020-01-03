@@ -41,7 +41,7 @@ namespace HospitalPharmacy
             int userID, roleID;
             DataRow dataRow;
             UsernameTextBox.Text = "";
-            PasswordTextBox.Text = "";
+            PasswordTextBox.Text = "s";
 
             ConnectionManager connection = ConnectionManager.getInstance();
 

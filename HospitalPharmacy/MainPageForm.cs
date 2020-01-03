@@ -20,6 +20,7 @@ namespace HospitalPharmacy
             tabControl.TabPages.Clear();
             tabControl.TabPages.Insert(0, currentOrderTabPage);
             UserLabel.Text = username;
+            MainPagecs_Load(null, null);
         }
 
         private void MainPagecs_Load(object sender, EventArgs e)
@@ -52,6 +53,22 @@ namespace HospitalPharmacy
             panel2.BackColor = Color.FromArgb(100, 255, 255, 255);
             panel3.BackColor = Color.FromArgb(100, 255, 255, 255);
             panel4.BackColor = Color.FromArgb(100, 255, 255, 255);
+            panel5.BackColor = Color.FromArgb(100, 255, 255, 255);
+            foreach (DataGridViewRow row in departmentsGridView.Rows)
+            {
+                int index = departmentsGridView.Rows.IndexOf(row);
+                if ((index % 2) == 0) departmentsGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
+            }
+            foreach (DataGridViewRow row in ordersViewDataGridView.Rows)
+            {
+                int index = ordersViewDataGridView.Rows.IndexOf(row);
+                if ((index % 2) == 0) ordersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
+            }
+            foreach (DataGridViewRow row in completeOrdersViewDataGridView.Rows)
+            {
+                int index = completeOrdersViewDataGridView.Rows.IndexOf(row);
+                if ((index % 2) == 0) completeOrdersViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
+            }
             foreach (DataGridViewRow row in receiptMedicinesOrdersViewDataGridView.Rows)
             {
                 int index = receiptMedicinesOrdersViewDataGridView.Rows.IndexOf(row);
