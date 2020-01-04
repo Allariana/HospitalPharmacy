@@ -125,7 +125,7 @@
             this.medicinesBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.medicinesBindingNavigator.Name = "medicinesBindingNavigator";
             this.medicinesBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.medicinesBindingNavigator.Size = new System.Drawing.Size(976, 25);
+            this.medicinesBindingNavigator.Size = new System.Drawing.Size(1193, 25);
             this.medicinesBindingNavigator.TabIndex = 0;
             this.medicinesBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -258,7 +258,7 @@
             this.medicinesDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.medicinesDataGridView.Location = new System.Drawing.Point(12, 31);
             this.medicinesDataGridView.Name = "medicinesDataGridView";
-            this.medicinesDataGridView.Size = new System.Drawing.Size(940, 407);
+            this.medicinesDataGridView.Size = new System.Drawing.Size(1169, 407);
             this.medicinesDataGridView.TabIndex = 1;
             this.medicinesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.medicinesDataGridView_CellContentClick);
             this.medicinesDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.medicinesDataGridView_CellFormatting);
@@ -267,9 +267,9 @@
             // searchTextBox
             // 
             this.searchTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.searchTextBox.Location = new System.Drawing.Point(788, 0);
+            this.searchTextBox.Location = new System.Drawing.Point(989, 3);
             this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(164, 25);
+            this.searchTextBox.Size = new System.Drawing.Size(192, 25);
             this.searchTextBox.TabIndex = 4;
             this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             // 
@@ -278,7 +278,7 @@
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label8.Location = new System.Drawing.Point(730, 3);
+            this.label8.Location = new System.Drawing.Point(931, 6);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(52, 17);
             this.label8.TabIndex = 13;
@@ -293,13 +293,13 @@
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "TradeName";
-            this.dataGridViewTextBoxColumn2.HeaderText = "TradeName";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Trade Name";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.DataPropertyName = "ActiveSubstance";
-            this.dataGridViewTextBoxColumn3.HeaderText = "ActiveSubstance";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Active Substance";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
             // dataGridViewTextBoxColumn4
@@ -311,7 +311,7 @@
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "QuantityPerUnit";
-            this.dataGridViewTextBoxColumn5.HeaderText = "QuantityPerUnit";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Quantity Per Unit";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
             // dataGridViewTextBoxColumn6
@@ -324,13 +324,13 @@
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.DataPropertyName = "UnitsInStock";
-            this.dataGridViewTextBoxColumn7.HeaderText = "UnitsInStock";
+            this.dataGridViewTextBoxColumn7.HeaderText = "Units In Stock";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             // 
             // dataGridViewTextBoxColumn8
             // 
             this.dataGridViewTextBoxColumn8.DataPropertyName = "RequiredQuantity";
-            this.dataGridViewTextBoxColumn8.HeaderText = "RequiredQuantity";
+            this.dataGridViewTextBoxColumn8.HeaderText = "Required Quantity";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             // 
             // dataGridViewTextBoxColumn9
@@ -344,7 +344,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(976, 450);
+            this.ClientSize = new System.Drawing.Size(1193, 450);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.searchTextBox);
             this.Controls.Add(this.medicinesDataGridView);

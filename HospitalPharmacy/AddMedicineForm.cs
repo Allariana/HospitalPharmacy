@@ -16,7 +16,7 @@ namespace HospitalPharmacy
             InitializeComponent();
             DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
             DataGridViewComboBoxColumn supplierComboBoxColumn = new DataGridViewComboBoxColumn();
-            comboBoxColumn.HeaderText = "CategoryName";
+            comboBoxColumn.HeaderText = "Category Name";
             supplierComboBoxColumn.HeaderText = "Company Name";
             comboBoxColumn.Width = 100;
             supplierComboBoxColumn.Width = 100;
@@ -113,5 +113,7 @@ namespace HospitalPharmacy
                 catch (Exception) { }
             }
         }
+
+        
     }
 }
