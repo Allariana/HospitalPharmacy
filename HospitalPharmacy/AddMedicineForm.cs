@@ -36,8 +36,12 @@ namespace HospitalPharmacy
             medicinesBindingSource.EndEdit();
             foreach (DataGridViewRow row in medicinesDataGridView.Rows)
             {
-                Console.WriteLine(row.Cells[9].Value.ToString());
-                connection.updateCategory("CategoryID", "Categories", "CategoryName", row.Cells[9].Value.ToString(), row.Cells[0].Value.ToString());
+                try
+                {
+                    Console.WriteLine(row.Cells[9].Value.ToString());
+                    connection.updateCategory("CategoryID", "Categories", "CategoryName", row.Cells[9].Value.ToString(), row.Cells[0].Value.ToString());
+                }
+                catch (Exception) { }
             }
             tableAdapterManager.UpdateAll(pharmacyDataSet);
             DialogResult = DialogResult.OK;
@@ -84,9 +88,13 @@ namespace HospitalPharmacy
                        
             foreach (DataGridViewRow row in medicinesDataGridView.Rows)
             {
-                String id = row.Cells[5].Value.ToString();
-                String categoryName = connection.getRecordWithCondition("CategoryName", "Categories", "CategoryID", int.Parse(id));               
-                row.Cells[9].Value = categoryName;
+                try
+                {
+                    String id = row.Cells[5].Value.ToString();
+                    String categoryName = connection.getRecordWithCondition("CategoryName", "Categories", "CategoryID", int.Parse(id));
+                    row.Cells[9].Value = categoryName;
+                }
+                catch (Exception) { }
             }
         }
     }
