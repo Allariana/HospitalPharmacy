@@ -31,8 +31,14 @@ namespace HospitalPharmacy
 
         private void medicinesBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            Validate();
+            
+             Validate();
             medicinesBindingSource.EndEdit();
+            foreach (DataGridViewRow row in medicinesDataGridView.Rows)
+            {
+                Console.WriteLine(row.Cells[9].Value.ToString());
+                connection.updateCategory("CategoryID", "Categories", "CategoryName", row.Cells[9].Value.ToString(), row.Cells[0].Value.ToString());
+            }
             tableAdapterManager.UpdateAll(pharmacyDataSet);
             DialogResult = DialogResult.OK;
 
@@ -75,8 +81,7 @@ namespace HospitalPharmacy
 
         private void medicinesDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            
-            
+                       
             foreach (DataGridViewRow row in medicinesDataGridView.Rows)
             {
                 String id = row.Cells[5].Value.ToString();

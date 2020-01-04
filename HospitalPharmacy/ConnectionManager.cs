@@ -53,13 +53,14 @@ namespace HospitalPharmacy
             adapter.Fill(dataTable);
             connection.Close();
         }
-        public void insertCategory(String columnname, String tablename, String condition, String condition2, String medicineID)
+        public void updateCategory(String columnname, String tablename, String condition, String condition2, String medicineID)
         {
             connection.Open();
             DataTable valueTable = new DataTable();
             String value;
             int id;
-            SqlCommand getValue = new SqlCommand("select " + columnname + " from " + tablename + " where " + condition + " = " + condition2 + ";", connection);
+            string query = "select " + columnname + " from " + tablename + " where " + condition + " = '" + condition2 + "';";
+            SqlCommand getValue = new SqlCommand(query, connection);
             SqlDataReader reader = getValue.ExecuteReader();
             valueTable.Load(reader);
             DataRow dw = valueTable.Rows[0];
