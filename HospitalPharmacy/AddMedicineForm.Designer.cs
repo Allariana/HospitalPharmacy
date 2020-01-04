@@ -262,6 +262,7 @@
             this.medicinesDataGridView.Size = new System.Drawing.Size(940, 407);
             this.medicinesDataGridView.TabIndex = 1;
             this.medicinesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.medicinesDataGridView_CellContentClick);
+            this.medicinesDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.medicinesDataGridView_CellFormatting);
             this.medicinesDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.medicinesDataGridView_CellValueChanged);
             // 
             // dataGridViewTextBoxColumn1
@@ -331,6 +332,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label8.Location = new System.Drawing.Point(730, 3);
             this.label8.Name = "label8";

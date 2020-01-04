@@ -24,6 +24,10 @@ namespace HospitalPharmacy
             List<string> list = categoryColumn.Rows.OfType<DataRow>().Select(dr => (string)dr["CategoryName"]).ToList();
             comboBoxColumn.DataSource = list;
             medicinesDataGridView.Columns.Add(comboBoxColumn);
+            foreach (DataGridViewRow row in medicinesDataGridView.Rows)
+            {
+                row.Cells[8].Value = "Psychotrop";
+            }
         }
 
         private void medicinesBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -68,6 +72,14 @@ namespace HospitalPharmacy
                 
             }*/
                 //this.Hide();
+        }
+
+        private void medicinesDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 9) // your combo column index
+            {
+                e.Value = "Psychotrop";
+            }
         }
     }
 }
