@@ -10,11 +10,10 @@ namespace HospitalPharmacy
     public partial class AddMedicineForm : Form
     {
         BindingSource bindingSource = new BindingSource();
-        
+        ConnectionManager connection = ConnectionManager.getInstance();
         public AddMedicineForm()
         {
             InitializeComponent();
-            ConnectionManager connection = ConnectionManager.getInstance();
             DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
             comboBoxColumn.HeaderText = "CategoryName";
             comboBoxColumn.Width = 100;
@@ -76,9 +75,13 @@ namespace HospitalPharmacy
 
         private void medicinesDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == 9) // your combo column index
+            
+            
+            foreach (DataGridViewRow row in medicinesDataGridView.Rows)
             {
-                e.Value = "Psychotrop";
+                String id = row.Cells[5].Value.ToString();
+                String categoryName = connection.getRecordWithCondition("CategoryName", "Categories", "CategoryID", int.Parse(id));               
+                row.Cells[9].Value = categoryName;
             }
         }
     }

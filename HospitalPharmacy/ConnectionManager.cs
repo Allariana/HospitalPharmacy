@@ -69,6 +69,19 @@ namespace HospitalPharmacy
             new SqlCommand(update, connection).ExecuteNonQuery();
             connection.Close();
         }
+        public String getRecordWithCondition(String columnname, String tablename, String condition, int id)
+        {
+            connection.Open();
+            DataTable valueTable = new DataTable();
+            String value;
+            SqlCommand getValue = new SqlCommand("select " + columnname + " from " + tablename + " where " + condition + " = " + id + ";", connection);
+            SqlDataReader reader = getValue.ExecuteReader();
+            valueTable.Load(reader);
+            DataRow dw = valueTable.Rows[0];
+            value = dw[0].ToString();
+            connection.Close();
+            return value;
+        }
         public String getRecord(String columnname, int id)
         {
             connection.Open();
@@ -82,6 +95,7 @@ namespace HospitalPharmacy
             connection.Close();
             return value;
         }
+
         public void getMedicinesOrderDetails(DataTable dataTable, String MedicineOrderID)
         {
             connection.Open();
