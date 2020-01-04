@@ -15,18 +15,24 @@ namespace HospitalPharmacy
         {
             InitializeComponent();
             DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
+            DataGridViewComboBoxColumn supplierComboBoxColumn = new DataGridViewComboBoxColumn();
             comboBoxColumn.HeaderText = "CategoryName";
+            supplierComboBoxColumn.HeaderText = "Company Name";
             comboBoxColumn.Width = 100;
+            supplierComboBoxColumn.Width = 100;
             comboBoxColumn.Name = "comboBoxColumn";
+            supplierComboBoxColumn.Name = "supplierComboBoxColumn";
             DataTable categoryColumn = new DataTable();
+            DataTable supplierColumn = new DataTable();
             connection.getColumn("Categories", "CategoryName", categoryColumn);
+            connection.getColumn("Suppliers", "CompanyName", supplierColumn);
             List<string> list = categoryColumn.Rows.OfType<DataRow>().Select(dr => (string)dr["CategoryName"]).ToList();
+            List<string> supplierList = supplierColumn.Rows.OfType<DataRow>().Select(dr => (string)dr["CompanyName"]).ToList();
             comboBoxColumn.DataSource = list;
+            supplierComboBoxColumn.DataSource = supplierList;
             medicinesDataGridView.Columns.Add(comboBoxColumn);
-            foreach (DataGridViewRow row in medicinesDataGridView.Rows)
-            {
-                row.Cells[8].Value = "Psychotrop";
-            }
+            medicinesDataGridView.Columns.Add(supplierComboBoxColumn);
+
         }
 
         private void medicinesBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -38,8 +44,16 @@ namespace HospitalPharmacy
             {
                 try
                 {
-                    Console.WriteLine(row.Cells[9].Value.ToString());
-                    connection.updateCategory("CategoryID", "Categories", "CategoryName", row.Cells[9].Value.ToString(), row.Cells[0].Value.ToString());
+                    connection.update("CategoryID", "Categories", "CategoryName", row.Cells[9].Value.ToString(), row.Cells[0].Value.ToString());
+                }
+                catch (Exception) { }
+            }
+            foreach (DataGridViewRow row in medicinesDataGridView.Rows)
+            {
+                try
+                {
+                    
+                    connection.update("SupplierID", "Suppliers", "CompanyName", row.Cells[10].Value.ToString(), row.Cells[0].Value.ToString());
                 }
                 catch (Exception) { }
             }
@@ -72,15 +86,7 @@ namespace HospitalPharmacy
 
         private void medicinesDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            /*ConnectionManager connection = ConnectionManager.getInstance();
-            foreach (DataGridViewRow row in medicinesDataGridView.Rows)
-            {
-                String category = row.Cells["CategoryName"].ToString();
-                String medicineID = row.Cells["MedicineID"].ToString();
-                connection.insertCategory("CategoryID", "Categories", "CategoryName", category, medicineID);
-                
-            }*/
-                //this.Hide();
+            
         }
 
         private void medicinesDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -93,6 +99,16 @@ namespace HospitalPharmacy
                     String id = row.Cells[5].Value.ToString();
                     String categoryName = connection.getRecordWithCondition("CategoryName", "Categories", "CategoryID", int.Parse(id));
                     row.Cells[9].Value = categoryName;
+                }
+                catch (Exception) { }
+            }
+            foreach (DataGridViewRow row in medicinesDataGridView.Rows)
+            {
+                try
+                {
+                    String id = row.Cells[8].Value.ToString();
+                    String supplierName = connection.getRecordWithCondition("CompanyName", "Suppliers", "SupplierID", int.Parse(id));
+                    row.Cells[10].Value = supplierName;
                 }
                 catch (Exception) { }
             }
