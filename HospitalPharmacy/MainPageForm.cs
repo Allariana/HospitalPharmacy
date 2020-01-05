@@ -385,6 +385,11 @@ namespace HospitalPharmacy
         {
 
         }
+
+        private void completeOrdersViewDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
 

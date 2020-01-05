@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HospitalPharmacy
 {
     class ConnectionManager
     {
-        public SqlConnection connection = new SqlConnection("Data Source=.;Initial Catalog=Pharmacy;Integrated Security=True");
-
         private static ConnectionManager instance; //singleton
 
         private ConnectionManager() { } //żeby żadna inna klasa nie mogła go stworzyć
@@ -27,7 +21,8 @@ namespace HospitalPharmacy
             }
             return instance;
         }
-        
+        public SqlConnection connection = new SqlConnection("Data Source=.;Initial Catalog=Pharmacy;Integrated Security=True");
+
         public bool verifyIfUserIsCorrect(String username, String password)
         {
             connection.Open();
@@ -96,7 +91,6 @@ namespace HospitalPharmacy
             connection.Close();
             return value;
         }
-
         public void getMedicinesOrderDetails(DataTable dataTable, String MedicineOrderID)
         {
             connection.Open();
@@ -141,12 +135,12 @@ namespace HospitalPharmacy
                     "SELECT a.[SerialNumber(SN)],RIGHT(a.[SerialNumber(SN)],3),CONVERT(DATE,a.[TermOfValidity(EXP)]),a.[SerialNumber(LOT)], CONVERT(FLOAT,a.[Price(EUR)]), d.MedicineOrderDetailsID " +
                     "FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0','Excel 12.0;Database=D:\\Kinga\\Studies\\IV rok\\Semestr 7\\Praca dyplomowa\\Invoices\\" +
                     MedicineOrderID + ".xlsx','SELECT * from [Arkusz1$]')a join MedicineOrderDetails d on RIGHT(a.[SerialNumber(SN)],3)= d.MedicineID " +
-                    "join MedicinesOrders o on o.MedicinesOrderID = d.MedicinesOrderID and d.MedicinesOrderID = " + id + ";" +
+                    "join MedicinesOrders o on o.MedicinesOrderID = d.MedicinesOrderID and d.MedicinesOrderID = " + id + ";" /*+
                 " UPDATE Medicines SET UnitsInStock = UnitsInStock + " +
                 "(select a.Amount from(select d.MedicineID MedicineID, d.Amount Amount from MedicineOrderDetails d join Medicines m on m.MedicineID = d.MedicineID " +
                 "join MedicinesOrders o on d.MedicinesOrderID = o.MedicinesOrderID and o.MedicinesOrderID = " + id + ")a join Medicines m on a.MedicineID = m.MedicineID " +
                 "and a.MedicineID = Medicines.MedicineID)where MedicineID in (select d.MedicineID from MedicineOrderDetails d join MedicinesOrders o on " +
-                "d.MedicinesOrderID = o.MedicinesOrderID and d.MedicinesOrderID = " + id + "); ";
+                "d.MedicinesOrderID = o.MedicinesOrderID and d.MedicinesOrderID = " + id + "); "*/;
                 new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
                 SqlCommand detailsID = new SqlCommand("select MedicineOrderDetailsID from MedicineOrderDetails where MedicinesOrderID = " + id + ";", connection);
                 SqlDataReader reader = detailsID.ExecuteReader();
@@ -171,9 +165,7 @@ namespace HospitalPharmacy
                 String pickUpOrderCommand = "UPDATE MedicinesOrders SET RealizationFlag = 'N', RealizationDate = null where MedicinesOrderID " +
                     "= " + id + "; ";
                 new SqlCommand(pickUpOrderCommand, connection).ExecuteNonQuery();
-                MessageBox.Show(e.Message);
-                //MessageBox.Show("Could not pick up the order!");
-
+                MessageBox.Show("Could not pick up the order!");
 
             }
             finally {
@@ -186,20 +178,7 @@ namespace HospitalPharmacy
             connection.Open();
                 try
             {
-                
-               /* SqlCommand checkIfEnoughMedicines = new SqlCommand("select TOP (1) Units from (select UnitsInStock - (select a.Amount from(select d.MedicineID MedicineID, " +
-                    "d.Amount Amount from OrderDetails d join Medicines m on m.MedicineID = d.MedicineID join Orders o on d.OrderID = o.OrderID and o.OrderID = " + id + ")a " +
-                    "join Medicines m on a.MedicineID = m.MedicineID and a.MedicineID = Medicines.MedicineID) Units from Medicines where MedicineID in " +
-                    "(select d.MedicineID from OrderDetails d join Orders o on d.OrderID = o.OrderID and d.OrderID = " + id + "))b where Units < 0; ", connection);
-                         
-                SqlDataReader reader2 = checkIfEnoughMedicines.ExecuteReader();
-                DataTable dataTable = new DataTable();
-                dataTable.Load(reader2);
-                reader2.Close();
-               
-                    if (dataTable.Rows.Count == 0)
-                    {*/
-                        String completeOrderCommand = "UPDATE Orders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()), UserID = " + pharmacistID
+                 String completeOrderCommand = "UPDATE Orders SET RealizationFlag = 'Y', RealizationDate = CONVERT (date, SYSDATETIME()), UserID = " + pharmacistID
                         + " where OrderID = " + id + ";" +
                         " UPDATE Medicines SET UnitsInStock = UnitsInStock - " +
                         "(select a.Amount from(select d.MedicineID MedicineID, d.Amount Amount from OrderDetails d join Medicines m on m.MedicineID = d.MedicineID " +
@@ -221,8 +200,6 @@ namespace HospitalPharmacy
                     }
                         MessageBox.Show("Succeed!");
                     idReader.Close();
-                    /*}
-                    else MessageBox.Show("There is not enough medicines to complete this order!");*/
 
             }
             catch (Exception ex)
