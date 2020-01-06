@@ -32,12 +32,12 @@ namespace HospitalPharmacy
             {
                 try
                 {
-                    connection.update("RoleID", "Roles", "RoleName", row.Cells[5].Value.ToString(), row.Cells[1].Value.ToString(), "Users", "RoleID");
+                    connection.update("RoleID", "Roles", "RoleName", row.Cells[5].Value.ToString(), row.Cells[0].Value.ToString(), "Users", "UserID");
                 }
                 catch (Exception) { }
             }
             tableAdapterManager.UpdateAll(pharmacyDataSet);
-
+            //this.Hide();
         }
 
         private void AdministratorUsersForm_Load(object sender, EventArgs e)
@@ -47,6 +47,16 @@ namespace HospitalPharmacy
             {
                 int index = usersDataGridView.Rows.IndexOf(row);
                 if ((index % 2) == 0) usersDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
+            }
+            foreach (DataGridViewRow row in usersDataGridView.Rows)
+            {
+                try
+                {
+                    String id = row.Cells[1].Value.ToString();
+                    String roleName = connection.getRecordWithCondition("RoleName", "Roles", "RoleID", int.Parse(id));
+                    row.Cells[5].Value = roleName;
+                }
+                catch (Exception) { }
             }
 
         }
@@ -58,16 +68,7 @@ namespace HospitalPharmacy
 
         private void usersDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            foreach (DataGridViewRow row in usersDataGridView.Rows)
-            {
-                try
-                {
-                    String id = row.Cells[1].Value.ToString();
-                    String roleName = connection.getRecordWithCondition("RoleName", "Roles", "RoleID", int.Parse(id));
-                    row.Cells[5].Value = roleName;
-                }
-                catch (Exception) { }
-            }
+            
         }
     }
 }

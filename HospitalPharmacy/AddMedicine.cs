@@ -7,11 +7,11 @@ using System.Windows.Forms;
 
 namespace HospitalPharmacy
 {
-    public partial class AddMedicineForm : Form
+    public partial class AddMedicine : Form
     {
         BindingSource bindingSource = new BindingSource();
         ConnectionManager connection = ConnectionManager.getInstance();
-        public AddMedicineForm()
+        public AddMedicine()
         {
             InitializeComponent();
             DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
@@ -32,13 +32,14 @@ namespace HospitalPharmacy
             supplierComboBoxColumn.DataSource = supplierList;
             medicinesDataGridView.Columns.Add(comboBoxColumn);
             medicinesDataGridView.Columns.Add(supplierComboBoxColumn);
+            
 
         }
 
         private void medicinesBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             
-             Validate();
+            Validate();
             medicinesBindingSource.EndEdit();
             foreach (DataGridViewRow row in medicinesDataGridView.Rows)
             {
@@ -70,7 +71,26 @@ namespace HospitalPharmacy
                 int index = medicinesDataGridView.Rows.IndexOf(row);
                 if ((index % 2) == 0) medicinesDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
             }
-
+            foreach (DataGridViewRow row in medicinesDataGridView.Rows)
+            {
+                try
+                {
+                    String id = row.Cells[5].Value.ToString();
+                    String categoryName = connection.getRecordWithCondition("CategoryName", "Categories", "CategoryID", int.Parse(id));
+                    row.Cells[9].Value = categoryName;
+                }
+                catch (Exception) { }
+            }
+            foreach (DataGridViewRow row in medicinesDataGridView.Rows)
+            {
+                try
+                {
+                    String id = row.Cells[8].Value.ToString();
+                    String supplierName = connection.getRecordWithCondition("CompanyName", "Suppliers", "SupplierID", int.Parse(id));
+                    row.Cells[10].Value = supplierName;
+                }
+                catch (Exception) { }
+            }
         }
 
         private void medicinesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -92,7 +112,7 @@ namespace HospitalPharmacy
         private void medicinesDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
                        
-            foreach (DataGridViewRow row in medicinesDataGridView.Rows)
+            /*foreach (DataGridViewRow row in medicinesDataGridView.Rows)
             {
                 try
                 {
@@ -111,7 +131,7 @@ namespace HospitalPharmacy
                     row.Cells[10].Value = supplierName;
                 }
                 catch (Exception) { }
-            }
+            }*/
         }
 
         

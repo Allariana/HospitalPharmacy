@@ -48,20 +48,20 @@ namespace HospitalPharmacy
             adapter.Fill(dataTable);
             connection.Close();
         }
-        public void update(String columnname, String tablename, String condition, String condition2, String medicineID, String updateTable, String updateColumn)
+        public void update(String columnname, String tablename, String condition, String condition2, String id, String updateTable, String updateColumn)
         {
             connection.Open();
             DataTable valueTable = new DataTable();
             String value;
-            int id;
+            int id2;
             string query = "select " + columnname + " from " + tablename + " where " + condition + " = '" + condition2 + "';";
             SqlCommand getValue = new SqlCommand(query, connection);
             SqlDataReader reader = getValue.ExecuteReader();
             valueTable.Load(reader);
             DataRow dw = valueTable.Rows[0];
             value = dw[0].ToString();
-            id = int.Parse(value);
-            String update = "update " + updateTable + " SET " + columnname + " = " + id + "where " + updateColumn + " = " + medicineID + ";";
+            id2 = int.Parse(value);
+            String update = "update " + updateTable + " SET " + columnname + " = " + id2 + "where " + updateColumn + " = " + int.Parse(id) + ";";
             new SqlCommand(update, connection).ExecuteNonQuery();
             connection.Close();
         }

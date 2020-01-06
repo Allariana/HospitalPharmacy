@@ -58,7 +58,7 @@ namespace HospitalPharmacy
                 }
                 if(roleID == 2) {
                     this.Hide();
-                    new MainPageForm(userID, username).Show();
+                    new MainPage(userID, username).Show();
                 }
                 
             }

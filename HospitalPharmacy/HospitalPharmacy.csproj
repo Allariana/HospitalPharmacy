@@ -54,11 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddMedicineForm.cs">
+    <Compile Include="AddMedicine.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddMedicineForm.Designer.cs">
-      <DependentUpon>AddMedicineForm.cs</DependentUpon>
+    <Compile Include="AddMedicine.Designer.cs">
+      <DependentUpon>AddMedicine.cs</DependentUpon>
     </Compile>
     <Compile Include="AdministratorCategoriesForm.cs">
       <SubType>Form</SubType>
@@ -139,11 +139,11 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainPageForm.cs">
+    <Compile Include="MainPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainPageForm.Designer.cs">
-      <DependentUpon>MainPageForm.cs</DependentUpon>
+    <Compile Include="MainPage.Designer.cs">
+      <DependentUpon>MainPage.cs</DependentUpon>
     </Compile>
     <Compile Include="MakeOrderForm.cs">
       <SubType>Form</SubType>
@@ -192,8 +192,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddMedicineForm.resx">
-      <DependentUpon>AddMedicineForm.cs</DependentUpon>
+    <EmbeddedResource Include="AddMedicine.resx">
+      <DependentUpon>AddMedicine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdministratorCategoriesForm.resx">
       <DependentUpon>AdministratorCategoriesForm.cs</DependentUpon>
@@ -234,8 +234,8 @@
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainPageForm.resx">
-      <DependentUpon>MainPageForm.cs</DependentUpon>
+    <EmbeddedResource Include="MainPage.resx">
+      <DependentUpon>MainPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MakeOrderForm.resx">
       <DependentUpon>MakeOrderForm.cs</DependentUpon>

@@ -4,12 +4,12 @@ using System.Windows.Forms;
 
 namespace HospitalPharmacy
 {
-    public partial class MainPageForm : Form
+    public partial class MainPage : Form
     {
         BindingSource bindingSource = new BindingSource();
         private int userID;
         private string username;
-        public MainPageForm(int userID, String username)
+        public MainPage(int userID, String username)
         {
             InitializeComponent();
             var topLeftHeaderCell = currentOrdersViewDataGridView.TopLeftHeaderCell;
@@ -307,7 +307,7 @@ namespace HospitalPharmacy
 
         private void addNewMedicineToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (AddMedicineForm addMedicineForm = new AddMedicineForm())
+            using (AddMedicine addMedicineForm = new AddMedicine())
             {
                 if (addMedicineForm.ShowDialog() == DialogResult.OK)
                 {
