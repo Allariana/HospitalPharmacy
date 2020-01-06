@@ -44,7 +44,7 @@ namespace HospitalPharmacy
             {
                 try
                 {
-                    connection.update("CategoryID", "Categories", "CategoryName", row.Cells[9].Value.ToString(), row.Cells[0].Value.ToString());
+                    connection.update("CategoryID", "Categories", "CategoryName", row.Cells[9].Value.ToString(), row.Cells[0].Value.ToString(), "Medicines", "MedicineID");
                 }
                 catch (Exception) { }
             }
@@ -53,7 +53,7 @@ namespace HospitalPharmacy
                 try
                 {
                     
-                    connection.update("SupplierID", "Suppliers", "CompanyName", row.Cells[10].Value.ToString(), row.Cells[0].Value.ToString());
+                    connection.update("SupplierID", "Suppliers", "CompanyName", row.Cells[10].Value.ToString(), row.Cells[0].Value.ToString(), "Medicines", "MedicineID");
                 }
                 catch (Exception) { }
             }
