@@ -38,7 +38,6 @@ namespace HospitalPharmacy
 
         private void medicinesBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            
             Validate();
             medicinesBindingSource.EndEdit();
             foreach (DataGridViewRow row in medicinesDataGridView.Rows)
@@ -58,6 +57,7 @@ namespace HospitalPharmacy
                 }
                 catch (Exception) { }
             }
+                      
             tableAdapterManager.UpdateAll(pharmacyDataSet);
             DialogResult = DialogResult.OK;
 
@@ -102,6 +102,7 @@ namespace HospitalPharmacy
         {
             bindingSource.DataSource = medicinesDataGridView.DataSource;
             bindingSource.Filter = "TradeName like '" + searchTextBox.Text + "%' OR ActiveSubstance like '" + searchTextBox.Text + "%'";
+            AddMedicineForm_Load(null, null);
         }
 
         private void medicinesDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)

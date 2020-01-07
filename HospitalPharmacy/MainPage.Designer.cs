@@ -767,7 +767,7 @@
             this.panel.Controls.Add(this.label6);
             this.panel.Location = new System.Drawing.Point(-4, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(1070, 540);
+            this.panel.Size = new System.Drawing.Size(1070, 544);
             this.panel.TabIndex = 4;
             // 
             // currentOrdersViewDataGridView
@@ -1589,7 +1589,7 @@
             this.pharmacyDataSet1.DataSetName = "PharmacyDataSet";
             this.pharmacyDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // MainPageForm
+            // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1602,7 +1602,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "MainPageForm";
+            this.Name = "MainPage";
             this.Text = "PharmKing";
             this.Load += new System.EventHandler(this.MainPagecs_Load);
             this.menuStrip1.ResumeLayout(false);

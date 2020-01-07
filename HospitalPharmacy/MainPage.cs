@@ -18,6 +18,11 @@ namespace HospitalPharmacy
             tabControl.TabPages.Clear();
             tabControl.TabPages.Insert(0, currentOrderTabPage);
             UserLabel.Text = username;
+            foreach (DataGridViewRow row in medicinesViewDataGridView.Rows)
+            {
+                int index = medicinesViewDataGridView.Rows.IndexOf(row);
+                if ((index % 2) == 0) medicinesViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
+            }
             //MainPagecs_Load(null, null);
         }
 
@@ -164,21 +169,25 @@ namespace HospitalPharmacy
         private void ListOfDepartmentsToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             openTabPage(departmentsPage);
+            MainPagecs_Load(null, null);
         }
 
         private void listOfPurchaseOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openTabPage(purchaseDetailsPage);
+            MainPagecs_Load(null, null);
         }
 
         private void purchaseOrderDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openTabPage(purchaseDetailsPage);
+            MainPagecs_Load(null, null);
         }
        
         private void receiptOfOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openTabPage(recepitOrderTabPage);
+            MainPagecs_Load(null, null);
         }
 
         private void medicinesViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -196,11 +205,13 @@ namespace HospitalPharmacy
         private void departmentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openTabPage(departmentsPage);
+            MainPagecs_Load(null, null);
         }
 
         private void listOfDepartmentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openTabPage(departmentsPage);
+            MainPagecs_Load(null, null);
         }
 
         private void receiptMedicinesOrdersViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -220,11 +231,13 @@ namespace HospitalPharmacy
         private void completeOrderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openTabPage(orderTabPage);
+            MainPagecs_Load(null, null);
         }
 
         private void orderDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openTabPage(historyOrdersTabPage);
+            MainPagecs_Load(null, null);
         }
 
         private void ordersViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -265,6 +278,7 @@ namespace HospitalPharmacy
         private void listOfSuppliersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openTabPage(suppliersTabPage);
+            MainPagecs_Load(null, null);
         }
 
         private void profileButton_Click(object sender, EventArgs e)
@@ -275,6 +289,7 @@ namespace HospitalPharmacy
         private void listOfPharmacistsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openTabPage(pharmacistTabPage);
+            MainPagecs_Load(null, null);
         }
 
         private void makeOrderToolStripMenuItem_Click(object sender, EventArgs e)
@@ -332,6 +347,7 @@ namespace HospitalPharmacy
          private void statisticsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             openTabPage(statisticTabPage);
+            MainPagecs_Load(null, null);
         }
 
         private void button1_Click_2(object sender, EventArgs e)
@@ -348,6 +364,7 @@ namespace HospitalPharmacy
         {
             bindingSource.DataSource = medicinesViewDataGridView.DataSource;
             bindingSource.Filter = "TradeName like '" + searchTextBox.Text + "%' OR ActiveSubstance like '" + searchTextBox.Text + "%'";
+            MainPagecs_Load(null, null);
         }
 
         private void checkOfExpiredPackagesToolStripMenuItem_Click(object sender, EventArgs e)
