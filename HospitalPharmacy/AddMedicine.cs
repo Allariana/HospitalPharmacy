@@ -14,7 +14,7 @@ namespace HospitalPharmacy
         public AddMedicine()
         {
             InitializeComponent();
-            DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
+            /*DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
             DataGridViewComboBoxColumn supplierComboBoxColumn = new DataGridViewComboBoxColumn();
             comboBoxColumn.HeaderText = "Category Name";
             supplierComboBoxColumn.HeaderText = "Company Name";
@@ -31,7 +31,7 @@ namespace HospitalPharmacy
             comboBoxColumn.DataSource = list;
             supplierComboBoxColumn.DataSource = supplierList;
             medicinesDataGridView.Columns.Add(comboBoxColumn);
-            medicinesDataGridView.Columns.Add(supplierComboBoxColumn);
+            medicinesDataGridView.Columns.Add(supplierComboBoxColumn);*/
             
 
         }
@@ -40,7 +40,7 @@ namespace HospitalPharmacy
         {
             Validate();
             medicinesBindingSource.EndEdit();
-            foreach (DataGridViewRow row in medicinesDataGridView.Rows)
+            /*foreach (DataGridViewRow row in medicinesDataGridView.Rows)
             {
                 try
                 {
@@ -56,7 +56,7 @@ namespace HospitalPharmacy
                     connection.update("SupplierID", "Suppliers", "CompanyName", row.Cells[10].Value.ToString(), row.Cells[0].Value.ToString(), "Medicines", "MedicineID");
                 }
                 catch (Exception) { }
-            }
+            }*/
                       
             tableAdapterManager.UpdateAll(pharmacyDataSet);
             DialogResult = DialogResult.OK;
@@ -65,13 +65,17 @@ namespace HospitalPharmacy
 
         private void AddMedicineForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'pharmacyDataSet.Suppliers' table. You can move, or remove it, as needed.
+            this.suppliersTableAdapter.Fill(this.pharmacyDataSet.Suppliers);
+            // TODO: This line of code loads data into the 'pharmacyDataSet.Categories' table. You can move, or remove it, as needed.
+            this.categoriesTableAdapter.Fill(this.pharmacyDataSet.Categories);
             medicinesTableAdapter.Fill(pharmacyDataSet.Medicines);
             foreach (DataGridViewRow row in medicinesDataGridView.Rows)
             {
                 int index = medicinesDataGridView.Rows.IndexOf(row);
                 if ((index % 2) == 0) medicinesDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
             }
-            foreach (DataGridViewRow row in medicinesDataGridView.Rows)
+            /*foreach (DataGridViewRow row in medicinesDataGridView.Rows)
             {
                 try
                 {
@@ -90,7 +94,7 @@ namespace HospitalPharmacy
                     row.Cells[10].Value = supplierName;
                 }
                 catch (Exception) { }
-            }
+            }*/
         }
 
         private void medicinesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)

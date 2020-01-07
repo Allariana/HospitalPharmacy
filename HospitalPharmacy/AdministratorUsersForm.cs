@@ -13,7 +13,7 @@ namespace HospitalPharmacy
         public AdministratorUsersForm()
         {
             InitializeComponent();
-            DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
+            /*DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
             comboBoxColumn.HeaderText = "Role Name";
             comboBoxColumn.Width = 100;
             comboBoxColumn.Name = "comboBoxColumn";
@@ -21,34 +21,36 @@ namespace HospitalPharmacy
             connection.getColumn("Roles", "RoleName", roleColumn);
             List<string> list = roleColumn.Rows.OfType<DataRow>().Select(dr => (string)dr["RoleName"]).ToList();
             comboBoxColumn.DataSource = list;
-            usersDataGridView.Columns.Add(comboBoxColumn);
+            usersDataGridView.Columns.Add(comboBoxColumn);*/
         }
 
         private void usersBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             Validate();
             usersBindingSource.EndEdit();
-            foreach (DataGridViewRow row in usersDataGridView.Rows)
+            /*foreach (DataGridViewRow row in usersDataGridView.Rows)
             {
                 try
                 {
                     connection.update("RoleID", "Roles", "RoleName", row.Cells[5].Value.ToString(), row.Cells[0].Value.ToString(), "Users", "UserID");
                 }
                 catch (Exception) { }
-            }
+            }*/
             tableAdapterManager.UpdateAll(pharmacyDataSet);
             //this.Hide();
         }
 
         private void AdministratorUsersForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'pharmacyDataSet.Roles' table. You can move, or remove it, as needed.
+            this.rolesTableAdapter.Fill(this.pharmacyDataSet.Roles);
             usersTableAdapter.Fill(pharmacyDataSet.Users);
             foreach (DataGridViewRow row in usersDataGridView.Rows)
             {
                 int index = usersDataGridView.Rows.IndexOf(row);
                 if ((index % 2) == 0) usersDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
             }
-            foreach (DataGridViewRow row in usersDataGridView.Rows)
+            /*foreach (DataGridViewRow row in usersDataGridView.Rows)
             {
                 try
                 {
@@ -57,7 +59,7 @@ namespace HospitalPharmacy
                     row.Cells[5].Value = roleName;
                 }
                 catch (Exception) { }
-            }
+            }*/
 
         }
 

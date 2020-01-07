@@ -52,20 +52,26 @@
             this.medicinesDataGridView = new System.Windows.Forms.DataGridView();
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.categoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.categoriesTableAdapter = new HospitalPharmacy.PharmacyDataSetTableAdapters.CategoriesTableAdapter();
+            this.suppliersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.suppliersTableAdapter = new HospitalPharmacy.PharmacyDataSetTableAdapters.SuppliersTableAdapter();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pharmacyDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesBindingNavigator)).BeginInit();
             this.medicinesBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.suppliersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pharmacyDataSet
@@ -125,7 +131,7 @@
             this.medicinesBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.medicinesBindingNavigator.Name = "medicinesBindingNavigator";
             this.medicinesBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.medicinesBindingNavigator.Size = new System.Drawing.Size(1193, 25);
+            this.medicinesBindingNavigator.Size = new System.Drawing.Size(1201, 25);
             this.medicinesBindingNavigator.TabIndex = 0;
             this.medicinesBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -243,9 +249,9 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn9});
             this.medicinesDataGridView.DataSource = this.medicinesBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -258,7 +264,7 @@
             this.medicinesDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.medicinesDataGridView.Location = new System.Drawing.Point(12, 31);
             this.medicinesDataGridView.Name = "medicinesDataGridView";
-            this.medicinesDataGridView.Size = new System.Drawing.Size(1169, 407);
+            this.medicinesDataGridView.Size = new System.Drawing.Size(1169, 429);
             this.medicinesDataGridView.TabIndex = 1;
             this.medicinesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.medicinesDataGridView_CellContentClick);
             this.medicinesDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.medicinesDataGridView_CellFormatting);
@@ -283,6 +289,24 @@
             this.label8.Size = new System.Drawing.Size(52, 17);
             this.label8.TabIndex = 13;
             this.label8.Text = "Search:";
+            // 
+            // categoriesBindingSource
+            // 
+            this.categoriesBindingSource.DataMember = "Categories";
+            this.categoriesBindingSource.DataSource = this.pharmacyDataSet;
+            // 
+            // categoriesTableAdapter
+            // 
+            this.categoriesTableAdapter.ClearBeforeFill = true;
+            // 
+            // suppliersBindingSource
+            // 
+            this.suppliersBindingSource.DataMember = "Suppliers";
+            this.suppliersBindingSource.DataSource = this.pharmacyDataSet;
+            // 
+            // suppliersTableAdapter
+            // 
+            this.suppliersTableAdapter.ClearBeforeFill = true;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -314,13 +338,6 @@
             this.dataGridViewTextBoxColumn5.HeaderText = "Quantity Per Unit";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "CategoryID";
-            this.dataGridViewTextBoxColumn6.HeaderText = "CategoryID";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Visible = false;
-            // 
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.DataPropertyName = "UnitsInStock";
@@ -333,23 +350,38 @@
             this.dataGridViewTextBoxColumn8.HeaderText = "Required Quantity";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "CategoryID";
+            this.dataGridViewTextBoxColumn6.DataSource = this.categoriesBindingSource;
+            this.dataGridViewTextBoxColumn6.DisplayMember = "CategoryName";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Category";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn6.ValueMember = "CategoryID";
+            // 
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.DataPropertyName = "SupplierID";
-            this.dataGridViewTextBoxColumn9.HeaderText = "SupplierID";
+            this.dataGridViewTextBoxColumn9.DataSource = this.suppliersBindingSource;
+            this.dataGridViewTextBoxColumn9.DisplayMember = "CompanyName";
+            this.dataGridViewTextBoxColumn9.HeaderText = "Supplier";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.Visible = false;
+            this.dataGridViewTextBoxColumn9.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn9.ValueMember = "SupplierID";
             // 
-            // AddMedicineForm
+            // AddMedicine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1193, 450);
+            this.ClientSize = new System.Drawing.Size(1201, 472);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.searchTextBox);
             this.Controls.Add(this.medicinesDataGridView);
             this.Controls.Add(this.medicinesBindingNavigator);
-            this.Name = "AddMedicineForm";
+            this.Name = "AddMedicine";
             this.Text = "Add/Edit Medicine";
             this.Load += new System.EventHandler(this.AddMedicineForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pharmacyDataSet)).EndInit();
@@ -358,6 +390,8 @@
             this.medicinesBindingNavigator.ResumeLayout(false);
             this.medicinesBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.medicinesDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.suppliersBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -385,14 +419,18 @@
         private System.Windows.Forms.DataGridView medicinesDataGridView;
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.BindingSource categoriesBindingSource;
+        private PharmacyDataSetTableAdapters.CategoriesTableAdapter categoriesTableAdapter;
+        private System.Windows.Forms.BindingSource suppliersBindingSource;
+        private PharmacyDataSetTableAdapters.SuppliersTableAdapter suppliersTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn9;
     }
 }
