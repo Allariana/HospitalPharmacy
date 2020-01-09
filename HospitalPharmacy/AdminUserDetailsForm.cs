@@ -34,5 +34,17 @@ namespace HospitalPharmacy
                 }
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (PathToPhoto pathToPhoto = new PathToPhoto())
+            {
+                if (pathToPhoto.ShowDialog() == DialogResult.OK)
+                {
+                    connection.insertPhoto(pathToPhoto.value, bindingNavigatorPositionItem.ToString());
+                    AdminUserDetailsForm_Load(null, null);
+                }
+            }
+        }
     }
 }
