@@ -48,23 +48,6 @@ namespace HospitalPharmacy
             adapter.Fill(dataTable);
             connection.Close();
         }
-        public void update(String columnname, String tablename, String condition, String condition2, String id, String updateTable, String updateColumn)
-        {
-            connection.Open();
-            DataTable valueTable = new DataTable();
-            String value;
-            int id2;
-            string query = "select " + columnname + " from " + tablename + " where " + condition + " = '" + condition2 + "';";
-            SqlCommand getValue = new SqlCommand(query, connection);
-            SqlDataReader reader = getValue.ExecuteReader();
-            valueTable.Load(reader);
-            DataRow dw = valueTable.Rows[0];
-            value = dw[0].ToString();
-            id2 = int.Parse(value);
-            String update = "update " + updateTable + " SET " + columnname + " = " + id2 + "where " + updateColumn + " = " + int.Parse(id) + ";";
-            new SqlCommand(update, connection).ExecuteNonQuery();
-            connection.Close();
-        }
         public String getRecordWithCondition(String columnname, String tablename, String condition, int id)
         {
             connection.Open();
@@ -332,6 +315,15 @@ namespace HospitalPharmacy
             new SqlCommand(update, connection).ExecuteNonQuery();
             string deletePackages = "delete from PackageOfMedicine where [SerialNumber(SN)] in (select [SerialNumber(SN)] from ExpiredPackagesView);";
             new SqlCommand(deletePackages, connection).ExecuteNonQuery();
+            connection.Close();
+        }
+        public void insertPhoto(String path, String userID)
+        {
+            connection.Open();
+            string update = "UPDATE[dbo].[UserDetails] SET[Photo] = (SELECT BulkColumn FROM Openrowset " +
+                "(Bulk 'D:\\Kinga\\Studies\\IV rok\\Semestr 7\\Praca dyplomowa\\Images\\" + path + ".jpg', Single_Blob) as img)where UserDetailsID = " 
+                + int.Parse(userID).ToString() + ";";
+            new SqlCommand(update, connection).ExecuteNonQuery();
             connection.Close();
         }
     }   

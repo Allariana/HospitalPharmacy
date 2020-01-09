@@ -191,6 +191,12 @@
     <Compile Include="PackagesToIssueForm.Designer.cs">
       <DependentUpon>PackagesToIssueForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PathToPhoto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PathToPhoto.Designer.cs">
+      <DependentUpon>PathToPhoto.cs</DependentUpon>
+    </Compile>
     <Compile Include="PharmacyDataSet.cs">
       <DependentUpon>PharmacyDataSet.xsd</DependentUpon>
     </Compile>
@@ -266,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PackagesToIssueForm.resx">
       <DependentUpon>PackagesToIssueForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PathToPhoto.resx">
+      <DependentUpon>PathToPhoto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProfileForm.resx">
       <DependentUpon>ProfileForm.cs</DependentUpon>
