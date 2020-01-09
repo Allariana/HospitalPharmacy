@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HospitalPharmacy
@@ -19,9 +13,9 @@ namespace HospitalPharmacy
 
         private void suppliersBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.suppliersBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.pharmacyDataSet);
+            Validate();
+            suppliersBindingSource.EndEdit();
+            tableAdapterManager.UpdateAll(pharmacyDataSet);
 
         }
 
@@ -30,6 +24,31 @@ namespace HospitalPharmacy
             // TODO: This line of code loads data into the 'pharmacyDataSet.Suppliers' table. You can move, or remove it, as needed.
             this.suppliersTableAdapter.Fill(this.pharmacyDataSet.Suppliers);
 
+        }
+
+        private void AdministratorSuppliersForm_Load_1(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'pharmacyDataSet1.Suppliers' table. You can move, or remove it, as needed.
+            this.suppliersTableAdapter1.Fill(this.pharmacyDataSet1.Suppliers);
+            foreach (DataGridViewRow row in suppliersDataGridView1.Rows)
+            {
+                int index = suppliersDataGridView1.Rows.IndexOf(row);
+                if ((index % 2) == 0) suppliersDataGridView1.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
+            }
+
+        }
+
+        private void suppliersBindingSource1BindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.suppliersBindingSource1.EndEdit();
+            this.tableAdapterManager1.UpdateAll(this.pharmacyDataSet1);
+
+        }
+
+        private void suppliersDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            AdministratorSuppliersForm_Load_1(null, null);
         }
     }
 }

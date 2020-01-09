@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace HospitalPharmacy
@@ -12,22 +9,33 @@ namespace HospitalPharmacy
         ConnectionManager connection = ConnectionManager.getInstance();
         public AdministratorUsersForm()
         {
+
             InitializeComponent();
-            /*DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
-            comboBoxColumn.HeaderText = "Role Name";
-            comboBoxColumn.Width = 100;
-            comboBoxColumn.Name = "comboBoxColumn";
-            DataTable roleColumn = new DataTable();
-            connection.getColumn("Roles", "RoleName", roleColumn);
-            List<string> list = roleColumn.Rows.OfType<DataRow>().Select(dr => (string)dr["RoleName"]).ToList();
-            comboBoxColumn.DataSource = list;
-            usersDataGridView.Columns.Add(comboBoxColumn);*/
-        }
+            
+                /*DataGridViewComboBoxColumn comboBoxColumn = new DataGridViewComboBoxColumn();
+                comboBoxColumn.HeaderText = "Role Name";
+                comboBoxColumn.Width = 100;
+                comboBoxColumn.Name = "comboBoxColumn";
+                DataTable roleColumn = new DataTable();
+                connection.getColumn("Roles", "RoleName", roleColumn);
+                List<string> list = roleColumn.Rows.OfType<DataRow>().Select(dr => (string)dr["RoleName"]).ToList();
+                comboBoxColumn.DataSource = list;
+                usersDataGridView.Columns.Add(comboBoxColumn);*/
+            }
 
         private void usersBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            Validate();
+            
+                Validate();
             usersBindingSource.EndEdit();
+            /*foreach (DataGridViewRow row in usersDataGridView.Rows)
+            {
+                try
+                {
+                    if (row.Cells[0].Value.ToString() == null) row.Cells[0].Value = 10;
+                }
+                catch (NullReferenceException) { row.Cells[0].Value = 10; }
+            }*/
             /*foreach (DataGridViewRow row in usersDataGridView.Rows)
             {
                 try
@@ -60,6 +68,14 @@ namespace HospitalPharmacy
                 }
                 catch (Exception) { }
             }*/
+            foreach (DataGridViewRow row in usersDataGridView.Rows)
+            {
+                try
+                {
+                    if (row.Cells[0].Value.ToString() == null) row.Cells[0].Value = 10;
+                }
+                catch (NullReferenceException) { row.Cells[0].Value = 10; }
+            }
 
         }
 
