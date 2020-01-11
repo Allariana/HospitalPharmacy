@@ -20,6 +20,8 @@ namespace HospitalPharmacy
 
         private void AdminUserDetailsForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'pharmacyDataSet.Users' table. You can move, or remove it, as needed.
+            this.usersTableAdapter.Fill(this.pharmacyDataSet.Users);
             userDetailsTableAdapter.Fill(pharmacyDataSet.UserDetails);
         }
 

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label userDetailsIDLabel;
             System.Windows.Forms.Label userIDLabel;
             System.Windows.Forms.Label lastNameLabel;
             System.Windows.Forms.Label firstNameLabel;
@@ -57,7 +56,6 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.userDetailsBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.userDetailsIDTextBox = new System.Windows.Forms.TextBox();
             this.userIDTextBox = new System.Windows.Forms.TextBox();
             this.lastNameTextBox = new System.Windows.Forms.TextBox();
             this.firstNameTextBox = new System.Windows.Forms.TextBox();
@@ -68,7 +66,8 @@
             this.phoneTextBox = new System.Windows.Forms.TextBox();
             this.photoPictureBox = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
-            userDetailsIDLabel = new System.Windows.Forms.Label();
+            this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.usersTableAdapter = new HospitalPharmacy.PharmacyDataSetTableAdapters.UsersTableAdapter();
             userIDLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
             firstNameLabel = new System.Windows.Forms.Label();
@@ -83,23 +82,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.userDetailsBindingNavigator)).BeginInit();
             this.userDetailsBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.photoPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // userDetailsIDLabel
-            // 
-            userDetailsIDLabel.AutoSize = true;
-            userDetailsIDLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            userDetailsIDLabel.Location = new System.Drawing.Point(12, 51);
-            userDetailsIDLabel.Name = "userDetailsIDLabel";
-            userDetailsIDLabel.Size = new System.Drawing.Size(116, 17);
-            userDetailsIDLabel.TabIndex = 1;
-            userDetailsIDLabel.Text = "User Details ID:";
             // 
             // userIDLabel
             // 
             userIDLabel.AutoSize = true;
             userIDLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            userIDLabel.Location = new System.Drawing.Point(12, 77);
+            userIDLabel.Location = new System.Drawing.Point(14, 54);
             userIDLabel.Name = "userIDLabel";
             userIDLabel.Size = new System.Drawing.Size(66, 17);
             userIDLabel.TabIndex = 3;
@@ -109,7 +99,7 @@
             // 
             lastNameLabel.AutoSize = true;
             lastNameLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            lastNameLabel.Location = new System.Drawing.Point(12, 103);
+            lastNameLabel.Location = new System.Drawing.Point(14, 80);
             lastNameLabel.Name = "lastNameLabel";
             lastNameLabel.Size = new System.Drawing.Size(84, 17);
             lastNameLabel.TabIndex = 5;
@@ -119,7 +109,7 @@
             // 
             firstNameLabel.AutoSize = true;
             firstNameLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            firstNameLabel.Location = new System.Drawing.Point(12, 129);
+            firstNameLabel.Location = new System.Drawing.Point(14, 106);
             firstNameLabel.Name = "firstNameLabel";
             firstNameLabel.Size = new System.Drawing.Size(86, 17);
             firstNameLabel.TabIndex = 7;
@@ -129,7 +119,7 @@
             // 
             titleLabel.AutoSize = true;
             titleLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            titleLabel.Location = new System.Drawing.Point(12, 155);
+            titleLabel.Location = new System.Drawing.Point(14, 132);
             titleLabel.Name = "titleLabel";
             titleLabel.Size = new System.Drawing.Size(44, 17);
             titleLabel.TabIndex = 9;
@@ -139,7 +129,7 @@
             // 
             birthDateLabel.AutoSize = true;
             birthDateLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            birthDateLabel.Location = new System.Drawing.Point(12, 182);
+            birthDateLabel.Location = new System.Drawing.Point(14, 159);
             birthDateLabel.Name = "birthDateLabel";
             birthDateLabel.Size = new System.Drawing.Size(82, 17);
             birthDateLabel.TabIndex = 11;
@@ -149,7 +139,7 @@
             // 
             hireDateLabel.AutoSize = true;
             hireDateLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            hireDateLabel.Location = new System.Drawing.Point(12, 208);
+            hireDateLabel.Location = new System.Drawing.Point(14, 185);
             hireDateLabel.Name = "hireDateLabel";
             hireDateLabel.Size = new System.Drawing.Size(78, 17);
             hireDateLabel.TabIndex = 13;
@@ -159,7 +149,7 @@
             // 
             addressLabel.AutoSize = true;
             addressLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            addressLabel.Location = new System.Drawing.Point(12, 233);
+            addressLabel.Location = new System.Drawing.Point(14, 210);
             addressLabel.Name = "addressLabel";
             addressLabel.Size = new System.Drawing.Size(68, 17);
             addressLabel.TabIndex = 15;
@@ -169,7 +159,7 @@
             // 
             phoneLabel.AutoSize = true;
             phoneLabel.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            phoneLabel.Location = new System.Drawing.Point(12, 259);
+            phoneLabel.Location = new System.Drawing.Point(14, 236);
             phoneLabel.Name = "phoneLabel";
             phoneLabel.Size = new System.Drawing.Size(54, 17);
             phoneLabel.TabIndex = 17;
@@ -242,7 +232,7 @@
             this.userDetailsBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.userDetailsBindingNavigator.Name = "userDetailsBindingNavigator";
             this.userDetailsBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.userDetailsBindingNavigator.Size = new System.Drawing.Size(790, 25);
+            this.userDetailsBindingNavigator.Size = new System.Drawing.Size(798, 25);
             this.userDetailsBindingNavigator.TabIndex = 0;
             this.userDetailsBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -340,20 +330,11 @@
             this.userDetailsBindingNavigatorSaveItem.Text = "Save Data";
             this.userDetailsBindingNavigatorSaveItem.Click += new System.EventHandler(this.userDetailsBindingNavigatorSaveItem_Click);
             // 
-            // userDetailsIDTextBox
-            // 
-            this.userDetailsIDTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userDetailsBindingSource, "UserDetailsID", true));
-            this.userDetailsIDTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.userDetailsIDTextBox.Location = new System.Drawing.Point(134, 48);
-            this.userDetailsIDTextBox.Name = "userDetailsIDTextBox";
-            this.userDetailsIDTextBox.Size = new System.Drawing.Size(215, 25);
-            this.userDetailsIDTextBox.TabIndex = 2;
-            // 
             // userIDTextBox
             // 
             this.userIDTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userDetailsBindingSource, "UserID", true));
             this.userIDTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.userIDTextBox.Location = new System.Drawing.Point(134, 74);
+            this.userIDTextBox.Location = new System.Drawing.Point(136, 51);
             this.userIDTextBox.Name = "userIDTextBox";
             this.userIDTextBox.Size = new System.Drawing.Size(215, 25);
             this.userIDTextBox.TabIndex = 4;
@@ -362,7 +343,7 @@
             // 
             this.lastNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userDetailsBindingSource, "LastName", true));
             this.lastNameTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lastNameTextBox.Location = new System.Drawing.Point(134, 100);
+            this.lastNameTextBox.Location = new System.Drawing.Point(136, 77);
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(215, 25);
             this.lastNameTextBox.TabIndex = 6;
@@ -371,7 +352,7 @@
             // 
             this.firstNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userDetailsBindingSource, "FirstName", true));
             this.firstNameTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.firstNameTextBox.Location = new System.Drawing.Point(134, 126);
+            this.firstNameTextBox.Location = new System.Drawing.Point(136, 103);
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(215, 25);
             this.firstNameTextBox.TabIndex = 8;
@@ -380,7 +361,7 @@
             // 
             this.titleTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userDetailsBindingSource, "Title", true));
             this.titleTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.titleTextBox.Location = new System.Drawing.Point(134, 152);
+            this.titleTextBox.Location = new System.Drawing.Point(136, 129);
             this.titleTextBox.Name = "titleTextBox";
             this.titleTextBox.Size = new System.Drawing.Size(215, 25);
             this.titleTextBox.TabIndex = 10;
@@ -389,7 +370,7 @@
             // 
             this.birthDateDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.userDetailsBindingSource, "BirthDate", true));
             this.birthDateDateTimePicker.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.birthDateDateTimePicker.Location = new System.Drawing.Point(134, 178);
+            this.birthDateDateTimePicker.Location = new System.Drawing.Point(136, 155);
             this.birthDateDateTimePicker.Name = "birthDateDateTimePicker";
             this.birthDateDateTimePicker.Size = new System.Drawing.Size(215, 25);
             this.birthDateDateTimePicker.TabIndex = 12;
@@ -398,7 +379,7 @@
             // 
             this.hireDateDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.userDetailsBindingSource, "HireDate", true));
             this.hireDateDateTimePicker.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.hireDateDateTimePicker.Location = new System.Drawing.Point(134, 204);
+            this.hireDateDateTimePicker.Location = new System.Drawing.Point(136, 181);
             this.hireDateDateTimePicker.Name = "hireDateDateTimePicker";
             this.hireDateDateTimePicker.Size = new System.Drawing.Size(215, 25);
             this.hireDateDateTimePicker.TabIndex = 14;
@@ -407,7 +388,7 @@
             // 
             this.addressTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userDetailsBindingSource, "Address", true));
             this.addressTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.addressTextBox.Location = new System.Drawing.Point(134, 230);
+            this.addressTextBox.Location = new System.Drawing.Point(136, 207);
             this.addressTextBox.Name = "addressTextBox";
             this.addressTextBox.Size = new System.Drawing.Size(215, 25);
             this.addressTextBox.TabIndex = 16;
@@ -416,7 +397,7 @@
             // 
             this.phoneTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userDetailsBindingSource, "Phone", true));
             this.phoneTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.phoneTextBox.Location = new System.Drawing.Point(134, 256);
+            this.phoneTextBox.Location = new System.Drawing.Point(136, 233);
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.Size = new System.Drawing.Size(215, 25);
             this.phoneTextBox.TabIndex = 18;
@@ -435,7 +416,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(15, 298);
+            this.button1.Location = new System.Drawing.Point(12, 273);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(151, 32);
             this.button1.TabIndex = 21;
@@ -443,14 +424,21 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // usersBindingSource
+            // 
+            this.usersBindingSource.DataMember = "Users";
+            this.usersBindingSource.DataSource = this.pharmacyDataSet;
+            // 
+            // usersTableAdapter
+            // 
+            this.usersTableAdapter.ClearBeforeFill = true;
+            // 
             // AdminUserDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(790, 528);
+            this.ClientSize = new System.Drawing.Size(798, 536);
             this.Controls.Add(this.button1);
-            this.Controls.Add(userDetailsIDLabel);
-            this.Controls.Add(this.userDetailsIDTextBox);
             this.Controls.Add(userIDLabel);
             this.Controls.Add(this.userIDTextBox);
             this.Controls.Add(lastNameLabel);
@@ -479,6 +467,7 @@
             this.userDetailsBindingNavigator.ResumeLayout(false);
             this.userDetailsBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.photoPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -503,7 +492,6 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton userDetailsBindingNavigatorSaveItem;
-        private System.Windows.Forms.TextBox userDetailsIDTextBox;
         private System.Windows.Forms.TextBox userIDTextBox;
         private System.Windows.Forms.TextBox lastNameTextBox;
         private System.Windows.Forms.TextBox firstNameTextBox;
@@ -514,5 +502,7 @@
         private System.Windows.Forms.TextBox phoneTextBox;
         private System.Windows.Forms.PictureBox photoPictureBox;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.BindingSource usersBindingSource;
+        private PharmacyDataSetTableAdapters.UsersTableAdapter usersTableAdapter;
     }
 }

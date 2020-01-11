@@ -202,17 +202,16 @@ namespace HospitalPharmacy
             bool enough = false;
             int id = int.Parse(OrderID.ToString());
             connection.Open();
-            SqlCommand checkIfEnoughMedicines = new SqlCommand("select TOP (1) Units from (select UnitsInStock - (select a.Amount from(select d.MedicineID MedicineID, " +
-                    "d.Amount Amount from OrderDetails d join Medicines m on m.MedicineID = d.MedicineID join Orders o on d.OrderID = o.OrderID and o.OrderID = " + id + ")a " +
-                    "join Medicines m on a.MedicineID = m.MedicineID and a.MedicineID = Medicines.MedicineID) Units from Medicines where MedicineID in " +
-                    "(select d.MedicineID from OrderDetails d join Orders o on d.OrderID = o.OrderID and d.OrderID = " + id + "))b where Units < 0; ", connection);
-
-                SqlDataReader reader2 = checkIfEnoughMedicines.ExecuteReader();
-                DataTable dataTable = new DataTable();
-                dataTable.Load(reader2);
-                reader2.Close();
-
-                if (dataTable.Rows.Count == 0)
+            SqlCommand checkIfEnoughMedicines = new SqlCommand("select TOP (1) Units from (select UnitsInStock - (select a.Amount from(select d.MedicineID " +
+                "MedicineID, d.Amount Amount from OrderDetails d join Medicines m on m.MedicineID = d.MedicineID join Orders o on d.OrderID = o.OrderID and " +
+                "o.OrderID = " + id + ")a join Medicines m on a.MedicineID = m.MedicineID and a.MedicineID = Medicines.MedicineID) Units from Medicines where " +
+                "MedicineID in (select d.MedicineID from OrderDetails d join Orders o on d.OrderID = o.OrderID and d.OrderID = " + id + "))b where Units < 0; ", 
+                connection);
+            SqlDataReader reader2 = checkIfEnoughMedicines.ExecuteReader();
+            DataTable dataTable = new DataTable();
+            dataTable.Load(reader2);
+            reader2.Close();
+            if (dataTable.Rows.Count == 0)
             {
                 enough = true;
             }

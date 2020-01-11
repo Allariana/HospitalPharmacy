@@ -37,17 +37,17 @@
             this.suppliersTableAdapter1 = new HospitalPharmacy.PharmacyDataSetTableAdapters.SuppliersTableAdapter();
             this.tableAdapterManager1 = new HospitalPharmacy.PharmacyDataSetTableAdapters.TableAdapterManager();
             this.suppliersBindingSource1BindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.suppliersBindingSource1BindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.suppliersDataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -119,15 +119,40 @@
             this.suppliersBindingSource1BindingNavigator.MovePreviousItem = this.toolStripButton2;
             this.suppliersBindingSource1BindingNavigator.Name = "suppliersBindingSource1BindingNavigator";
             this.suppliersBindingSource1BindingNavigator.PositionItem = this.toolStripTextBox1;
-            this.suppliersBindingSource1BindingNavigator.Size = new System.Drawing.Size(623, 25);
+            this.suppliersBindingSource1BindingNavigator.Size = new System.Drawing.Size(820, 25);
             this.suppliersBindingSource1BindingNavigator.TabIndex = 0;
             this.suppliersBindingSource1BindingNavigator.Text = "bindingNavigator1";
+            // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.RightToLeftAutoMirrorImage = true;
+            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton5.Text = "Add new";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(35, 22);
+            this.toolStripLabel1.Text = "of {0}";
+            this.toolStripLabel1.ToolTipText = "Total number of items";
+            // 
+            // toolStripButton6
+            // 
+            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.RightToLeftAutoMirrorImage = true;
+            this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton6.Text = "Delete";
             // 
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.Name = "bindingNavigatorMoveFirstItem";
+            this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.RightToLeftAutoMirrorImage = true;
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton1.Text = "Move first";
@@ -136,42 +161,35 @@
             // 
             this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.Name = "bindingNavigatorMovePreviousItem";
+            this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.RightToLeftAutoMirrorImage = true;
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "Move previous";
             // 
             // toolStripSeparator1
             // 
-            this.toolStripSeparator1.Name = "bindingNavigatorSeparator";
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripTextBox1
             // 
             this.toolStripTextBox1.AccessibleName = "Position";
             this.toolStripTextBox1.AutoSize = false;
-            this.toolStripTextBox1.Name = "bindingNavigatorPositionItem";
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
             this.toolStripTextBox1.Size = new System.Drawing.Size(50, 23);
             this.toolStripTextBox1.Text = "0";
             this.toolStripTextBox1.ToolTipText = "Current position";
             // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "bindingNavigatorCountItem";
-            this.toolStripLabel1.Size = new System.Drawing.Size(35, 22);
-            this.toolStripLabel1.Text = "of {0}";
-            this.toolStripLabel1.ToolTipText = "Total number of items";
-            // 
             // toolStripSeparator2
             // 
-            this.toolStripSeparator2.Name = "bindingNavigatorSeparator";
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripButton3
             // 
             this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.Name = "bindingNavigatorMoveNextItem";
+            this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.RightToLeftAutoMirrorImage = true;
             this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton3.Text = "Move next";
@@ -180,33 +198,15 @@
             // 
             this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.Name = "bindingNavigatorMoveLastItem";
+            this.toolStripButton4.Name = "toolStripButton4";
             this.toolStripButton4.RightToLeftAutoMirrorImage = true;
             this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton4.Text = "Move last";
             // 
             // toolStripSeparator3
             // 
-            this.toolStripSeparator3.Name = "bindingNavigatorSeparator";
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButton5
-            // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.Name = "bindingNavigatorAddNewItem";
-            this.toolStripButton5.RightToLeftAutoMirrorImage = true;
-            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton5.Text = "Add new";
-            // 
-            // toolStripButton6
-            // 
-            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
-            this.toolStripButton6.Name = "bindingNavigatorDeleteItem";
-            this.toolStripButton6.RightToLeftAutoMirrorImage = true;
-            this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton6.Text = "Delete";
             // 
             // suppliersBindingSource1BindingNavigatorSaveItem
             // 
@@ -248,7 +248,7 @@
             this.suppliersDataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.suppliersDataGridView1.Location = new System.Drawing.Point(12, 43);
             this.suppliersDataGridView1.Name = "suppliersDataGridView1";
-            this.suppliersDataGridView1.Size = new System.Drawing.Size(590, 300);
+            this.suppliersDataGridView1.Size = new System.Drawing.Size(796, 300);
             this.suppliersDataGridView1.TabIndex = 1;
             this.suppliersDataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.suppliersDataGridView1_CellContentClick);
             // 
@@ -263,7 +263,7 @@
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.DataPropertyName = "CompanyName";
-            this.dataGridViewTextBoxColumn9.HeaderText = "CompanyName";
+            this.dataGridViewTextBoxColumn9.HeaderText = "Company Name";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             // 
             // dataGridViewTextBoxColumn10
@@ -281,12 +281,12 @@
             // dataGridViewTextBoxColumn12
             // 
             this.dataGridViewTextBoxColumn12.DataPropertyName = "HomePage";
-            this.dataGridViewTextBoxColumn12.HeaderText = "HomePage";
+            this.dataGridViewTextBoxColumn12.HeaderText = "Home Page";
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             // 
             // AdministratorSuppliersForm
             // 
-            this.ClientSize = new System.Drawing.Size(623, 405);
+            this.ClientSize = new System.Drawing.Size(820, 353);
             this.Controls.Add(this.suppliersDataGridView1);
             this.Controls.Add(this.suppliersBindingSource1BindingNavigator);
             this.Name = "AdministratorSuppliersForm";
