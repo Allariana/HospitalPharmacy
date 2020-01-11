@@ -56,7 +56,6 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.userDetailsBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.userIDTextBox = new System.Windows.Forms.TextBox();
             this.lastNameTextBox = new System.Windows.Forms.TextBox();
             this.firstNameTextBox = new System.Windows.Forms.TextBox();
             this.titleTextBox = new System.Windows.Forms.TextBox();
@@ -68,6 +67,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.usersTableAdapter = new HospitalPharmacy.PharmacyDataSetTableAdapters.UsersTableAdapter();
+            this.userIDLabel2 = new System.Windows.Forms.Label();
             userIDLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
             firstNameLabel = new System.Windows.Forms.Label();
@@ -330,15 +330,6 @@
             this.userDetailsBindingNavigatorSaveItem.Text = "Save Data";
             this.userDetailsBindingNavigatorSaveItem.Click += new System.EventHandler(this.userDetailsBindingNavigatorSaveItem_Click);
             // 
-            // userIDTextBox
-            // 
-            this.userIDTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userDetailsBindingSource, "UserID", true));
-            this.userIDTextBox.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.userIDTextBox.Location = new System.Drawing.Point(136, 51);
-            this.userIDTextBox.Name = "userIDTextBox";
-            this.userIDTextBox.Size = new System.Drawing.Size(215, 25);
-            this.userIDTextBox.TabIndex = 4;
-            // 
             // lastNameTextBox
             // 
             this.lastNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userDetailsBindingSource, "LastName", true));
@@ -433,14 +424,24 @@
             // 
             this.usersTableAdapter.ClearBeforeFill = true;
             // 
+            // userIDLabel2
+            // 
+            this.userIDLabel2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userDetailsBindingSource, "UserID", true));
+            this.userIDLabel2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.userIDLabel2.Location = new System.Drawing.Point(133, 54);
+            this.userIDLabel2.Name = "userIDLabel2";
+            this.userIDLabel2.Size = new System.Drawing.Size(100, 23);
+            this.userIDLabel2.TabIndex = 22;
+            this.userIDLabel2.Text = "label1";
+            // 
             // AdminUserDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(798, 536);
+            this.Controls.Add(this.userIDLabel2);
             this.Controls.Add(this.button1);
             this.Controls.Add(userIDLabel);
-            this.Controls.Add(this.userIDTextBox);
             this.Controls.Add(lastNameLabel);
             this.Controls.Add(this.lastNameTextBox);
             this.Controls.Add(firstNameLabel);
@@ -492,7 +493,6 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton userDetailsBindingNavigatorSaveItem;
-        private System.Windows.Forms.TextBox userIDTextBox;
         private System.Windows.Forms.TextBox lastNameTextBox;
         private System.Windows.Forms.TextBox firstNameTextBox;
         private System.Windows.Forms.TextBox titleTextBox;
@@ -504,5 +504,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.BindingSource usersBindingSource;
         private PharmacyDataSetTableAdapters.UsersTableAdapter usersTableAdapter;
+        private System.Windows.Forms.Label userIDLabel2;
     }
 }

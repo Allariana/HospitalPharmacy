@@ -31,7 +31,7 @@ namespace HospitalPharmacy
             {
                 if (pathToPhoto.ShowDialog() == DialogResult.OK)
                 {
-                    connection.insertPhoto(pathToPhoto.value, bindingNavigatorPositionItem.ToString());
+                    connection.insertPhoto(pathToPhoto.value, userIDLabel2.Text);
                     AdminUserDetailsForm_Load(null, null);
                 }
             }

@@ -320,7 +320,7 @@ namespace HospitalPharmacy
         {
             connection.Open();
             string update = "UPDATE[dbo].[UserDetails] SET[Photo] = (SELECT BulkColumn FROM Openrowset " +
-                "(Bulk 'D:\\Kinga\\Studies\\IV rok\\Semestr 7\\Praca dyplomowa\\Images\\" + path + ".jpg', Single_Blob) as img)where UserDetailsID = " 
+                "(Bulk 'D:\\Kinga\\Studies\\IV rok\\Semestr 7\\Praca dyplomowa\\Images\\" + path + ".jpg', Single_Blob) as img)where UserID = " 
                 + int.Parse(userID).ToString() + ";";
             new SqlCommand(update, connection).ExecuteNonQuery();
             connection.Close();

@@ -68,14 +68,14 @@ namespace HospitalPharmacy
                 }
                 catch (Exception) { }
             }*/
-            foreach (DataGridViewRow row in usersDataGridView.Rows)
+            /*foreach (DataGridViewRow row in usersDataGridView.Rows)
             {
                 try
                 {
                     if (row.Cells[0].Value.ToString() == null) row.Cells[0].Value = 10;
                 }
                 catch (NullReferenceException) { row.Cells[0].Value = 10; }
-            }
+            }*/
 
         }
 
