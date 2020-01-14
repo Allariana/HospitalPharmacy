@@ -29,8 +29,7 @@ namespace HospitalPharmacy
         private void medicinesViewDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (medicinesViewDataGridView.Rows[e.RowIndex].Cells[0].Value != null)
-            {
-                
+            {              
                 using (AmountForm amountForm = new AmountForm(medicinesViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()))
                 {
                     if(amountForm.ShowDialog() == DialogResult.OK)
@@ -38,8 +37,7 @@ namespace HospitalPharmacy
                         objectsController.basketDataTable.Rows.Add(medicinesViewDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString(), amountForm.value);
                         basketGridView.DataSource = objectsController.basketDataTable;
                         basketGridView.Refresh();                       
-                    }
-                    
+                    }                  
                 }
             }
         }

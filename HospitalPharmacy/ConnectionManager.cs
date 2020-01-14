@@ -48,18 +48,18 @@ namespace HospitalPharmacy
             adapter.Fill(dataTable);
             connection.Close();
         }
-        public String getRecordWithCondition(String columnname, String tablename, String condition, int id)
+        public String getRecordWithCondition(String columnname, String tablename, String condition, int value)
         {
             connection.Open();
             DataTable valueTable = new DataTable();
-            String value;
-            SqlCommand getValue = new SqlCommand("select " + columnname + " from " + tablename + " where " + condition + " = " + id + ";", connection);
+            String r;
+            SqlCommand getValue = new SqlCommand("select " + columnname + " from " + tablename + " where " + condition + " = " + value + ";", connection);
             SqlDataReader reader = getValue.ExecuteReader();
             valueTable.Load(reader);
             DataRow dw = valueTable.Rows[0];
-            value = dw[0].ToString();
+            r = dw[0].ToString();
             connection.Close();
-            return value;
+            return r;
         }
         public String getRecord(String columnname, int id)
         {

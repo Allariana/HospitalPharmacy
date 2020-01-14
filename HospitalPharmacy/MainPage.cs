@@ -23,7 +23,6 @@ namespace HospitalPharmacy
                 int index = medicinesViewDataGridView.Rows.IndexOf(row);
                 if ((index % 2) == 0) medicinesViewDataGridView.Rows[index].DefaultCellStyle.BackColor = Color.LightBlue;
             }
-            //MainPagecs_Load(null, null);
         }
 
         private void MainPagecs_Load(object sender, EventArgs e)
@@ -41,8 +40,6 @@ namespace HospitalPharmacy
             medicinesViewTableAdapter.Fill(pharmacyDataSet.MedicinesView);
             medicinesTableAdapter.Fill(pharmacyDataSet.Medicines);
             medicinesOrdersViewTableAdapter.Fill(pharmacyDataSet.MedicinesOrdersView);
-
-            //chart1.Series["Department"].Font = new Font("Times New Roman", 12);
 
             panel.BackColor = Color.FromArgb(100, 255, 255, 255);
             panel1.BackColor = Color.FromArgb(100, 255, 255, 255);
