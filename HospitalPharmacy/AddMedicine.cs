@@ -24,10 +24,8 @@ namespace HospitalPharmacy
 
         private void AddMedicineForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'pharmacyDataSet.Suppliers' table. You can move, or remove it, as needed.
-            this.suppliersTableAdapter.Fill(this.pharmacyDataSet.Suppliers);
-            // TODO: This line of code loads data into the 'pharmacyDataSet.Categories' table. You can move, or remove it, as needed.
-            this.categoriesTableAdapter.Fill(this.pharmacyDataSet.Categories);
+            suppliersTableAdapter.Fill(pharmacyDataSet.Suppliers);
+            categoriesTableAdapter.Fill(pharmacyDataSet.Categories);
             medicinesTableAdapter.Fill(pharmacyDataSet.Medicines);
             foreach (DataGridViewRow row in medicinesDataGridView.Rows)
             {
@@ -36,28 +34,11 @@ namespace HospitalPharmacy
             }
         }
 
-        private void medicinesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void searchTextBox_TextChanged(object sender, EventArgs e)
+         private void searchTextBox_TextChanged(object sender, EventArgs e)
         {
             bindingSource.DataSource = medicinesDataGridView.DataSource;
             bindingSource.Filter = "TradeName like '" + searchTextBox.Text + "%' OR ActiveSubstance like '" + searchTextBox.Text + "%'";
             AddMedicineForm_Load(null, null);
-        }
-
-        private void medicinesDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
-        private void medicinesDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-                       
-        }
-
-        
+        }       
     }
 }

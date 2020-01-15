@@ -250,7 +250,6 @@
             this.suppliersDataGridView1.Name = "suppliersDataGridView1";
             this.suppliersDataGridView1.Size = new System.Drawing.Size(796, 300);
             this.suppliersDataGridView1.TabIndex = 1;
-            this.suppliersDataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.suppliersDataGridView1_CellContentClick);
             // 
             // dataGridViewTextBoxColumn8
             // 
@@ -290,6 +289,7 @@
             this.Controls.Add(this.suppliersDataGridView1);
             this.Controls.Add(this.suppliersBindingSource1BindingNavigator);
             this.Name = "AdministratorSuppliersForm";
+            this.Text = "Suppliers";
             this.Load += new System.EventHandler(this.AdministratorSuppliersForm_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.pharmacyDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.suppliersBindingSource1)).EndInit();
